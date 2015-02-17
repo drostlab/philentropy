@@ -11,47 +11,44 @@ Sampled.Entropy.Matrix(ExpressionSet, permutations = 1000, parallel = FALSE)
 DivergenceExpressionSet object.}
 
 \item{permutations}{a numeric value specifying the number of permutations
-that shall be performed.}
+that shall be performed. Default is \code{permutations} = \code{1000}.}
 
 \item{parallel}{a boolean value specifying whether multicore (parallel)
-computations shall be performed on a multicore machine. The parallelization
-only works on a single multicore machine and not on a cluster.}
+processing shall be performed on a multicore machine.}
 }
 \value{
-a numeric N x S matrix containing phylotranscriptomics Entropy
-values for S developmental stages after N samplings.
+a numeric \code{N x S} matrix containing Entropy
+values for \code{S} developmental stages after \code{N} permutations.
 }
 \description{
 This function receives a standard PhyloExpressionSet or
-DivergenceExpressionSet, samples the PS or DS column of the corresponding
+DivergenceExpressionSet, samples the Phylostratum or Divergence Stratum column of the corresponding
 PhyloExpressionSet or DivergenceExpressionSet and furthermore, computes the
-phylotranscriptomics Entropy profile of this sampled PhyloExpressionSet or
-DivergenceExpressionSet. This procedure is being done N times, with N =
-number of permutations.
+Entropy profile of this sampled PhyloExpressionSet or
+DivergenceExpressionSet.
 
-The resulting sample matrix consists of N x S elements, where S denotes the
+The resulting sample matrix consists of \code{N x S} elements, where S denotes the
 total number of developmental stages stored in the corresponding
-PhyloExpressionSet or DivergenceExpressionSet. This N x S sample matrix can
-be used to perform further test statistics (sampling test) of the
-statistical significance of any phylotranscriptomics Entropy pattern.
-
-To speed up computations the sampling process can be paralallized (on a
-multicore machine).
-
-Internally this functions calls the C++ function
-\code{\link{Phylotranscriptomics_Entropy}} to speed up the sampling process
-and furthermore (optionally) uses muticore computing.
+PhyloExpressionSet or DivergenceExpressionSet and \code{N} the number of permutations. This \code{N x S} sample matrix can
+be used to perform further test statistics (sampling test) to quantify the
+statistical significance of any observed Entropy pattern.
 }
 \examples{
-# read standard phylotranscriptomics data
+# read example phylotranscriptomics data
 data(PhyloExpressionSetExample)
 data(DivergenceExpressionSetExample)
 
-# perform N=1000 sampling computations sequencially
-sMatrix <- Sampled.Entropy.Matrix(PhyloExpressionSetExample,nPermutations=1000)
+# perform N = 1000 sampling computations sequencially
+sMatrix <- Sampled.Entropy.Matrix( ExpressionSet = PhyloExpressionSetExample,
+                                   permutations  = 1000 )
 
-# perform N=1000 sampling computations on a multicore machine to speed up computations
-psMatrix <- Sampled.Entropy.Matrix(PhyloExpressionSetExample,nPermutations=1000,parallel=T)
+\dontrun{
+
+# perform N = 1000 sampling computations on a multicore machine to speed up computations
+psMatrix <- Sampled.Entropy.Matrix( ExpressionSet = PhyloExpressionSetExample,
+                                    permutations  = 1000,
+                                    parallel      = TRUE )
+}
 }
 \author{
 Hajk-Georg Drost
