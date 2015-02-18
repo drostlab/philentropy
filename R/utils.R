@@ -1,3 +1,7 @@
+#' @useDynLib phylentropy
+#' @importFrom Rcpp sourceCpp
+NULL
+
 #' @title Testing the validaty of a PhyloExpressionSet or DivergenceExpressionSet standard
 #' @description This function tests whether a given ExpressionSet follows the pre-defined PhyloExpressionSet or DivergenceExpressionSet standard.
 #' @param ExpressionSet a standard PhyloExpressionSet or DivergenceExpressionSet that shall be tested for format validity.
