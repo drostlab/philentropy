@@ -37,13 +37,24 @@ is.ExpressionSet <- function(ExpressionSet){
 #' @title Check the validity of the input probability distribution
 valid.distr <- function(x){
         
-        if(all(!is.na(x), dplyr::between(x,0,1))){
+        
+        if(any(is.na(x))){
                 
-                return(TRUE)
-        } else {
-                
-                stop("Your input vector includes NA values or does not represent a probability distribution range: [0,1].")
+                stop("Your input vector includes NA values")
         }
         
+        else if(!all(dplyr::between(x,0,1))){
+                
+                stop("Your probability values are not between: [0,1].")
+        }
+        
+        else if(sum(x) > 1){
+                
+                stop("Your probability distribution does not sum to 1.")
+        } else{
+                
+           return(TRUE)
+        
+        }
 }
 
