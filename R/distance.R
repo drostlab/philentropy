@@ -11,7 +11,7 @@
 #' 
 #' @export
 
-distance <- function(x,y, method = "euclidean", n = NULL){
+distance <- function(x,y, method = "euclidean", p = NULL){
         
         if(is.na(x) || is.na(y)){
                 stop("Your vector stores NA values...")
@@ -36,9 +36,9 @@ distance <- function(x,y, method = "euclidean", n = NULL){
         
         if(method == "minkowski"){
                 
-                if(!is.null(n)){
+                if(!is.null(p)){
                         
-                        dist <- minkowski(x,y, n)
+                        dist <- minkowski(x,y, p)
                         
                 } else {
                         
