@@ -28,9 +28,9 @@
 #' @examples
 #' 
 #' # a general example: comparing a normal distribution with an exponential distribution
-#' P <- pnorm(1:10, 5 , 1)
-#' Q <- pexp(1:10, 1)
-#' KLD <- KL(Q,P)
+#' P <- 1:10/sum(1:10)
+#' Q <- 20:29/sum(20:29)
+#' KLD <- KL(P,Q)
 #' 
 #' # a phylotranscriptomics example:
 #' # compare the probability distribution of developmental 
