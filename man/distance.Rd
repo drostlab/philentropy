@@ -4,7 +4,7 @@
 \alias{distance}
 \title{Distance between Probability Density Functions}
 \usage{
-distance(x, y, method = "euclidean", n = NULL)
+distance(x, y, method = "euclidean", p = NULL)
 }
 \arguments{
 \item{x}{a numeric vector (probability density function).}
