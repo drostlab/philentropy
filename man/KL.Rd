@@ -26,7 +26,7 @@ distributions P and Q and H(P) denotes the \code{\link{Entropy}} of
 probability distribution P. In case P = Q then KL(P,Q) = 0 and in case P !=
 Q then KL(P,Q) > 0.
 
-The KL divergence is a \textbf{non-symmetric measure} of the directed divergence
+The KL divergence is a non-symmetric measure of the directed divergence
 between two probability distributions P and Q. It only fulfills the
 \emph{positivity} property of a \emph{distance metric}.
 
