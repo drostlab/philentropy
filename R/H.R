@@ -6,7 +6,7 @@
 #' This function might be useful to fastly compute Shannon's Entropy for any
 #' given probability vector.
 #' 
-#' @param X a numeric probability vector \eqn{P(X)} for which
+#' @param x a numeric probability vector \eqn{P(X)} for which
 #' Shannon's Entropy \eqn{H(X)} shall be computed.
 #' @return a numeric value representing Shannon's Entropy in bit.
 #' @author Hajk-Georg Drost
@@ -31,9 +31,9 @@
 #' 
 #' @export
 
-H <- function(X){
+H <- function(x){
         
-        valid.distr(X)
-        return(Ecpp(as.vector(X)))
+        valid.distr(x)
+        return(Ecpp(as.vector(x)))
         
 }
