@@ -18,6 +18,17 @@ This functions computes the distance/dissimilarity between two probability densi
 }
 \details{
 The following distance measures are implemented in this function:
+
+\itemize{
+\item Euclidean :
+\item City block (manhatten) :
+\item Minkowski :
+\item Chebyshev :
+\item Sorensen :
+\item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
+\item Jensen-Shannon : \eqn{JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))}, where \eqn{R = 0.5 * (P + Q)} denotes the mid-point of the probability
+vectors P and Q
+}
 }
 \examples{
 distance(1:10, 20:29, method = "euclidean")

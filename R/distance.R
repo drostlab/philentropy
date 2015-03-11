@@ -5,6 +5,17 @@
 #' @param method a character string specifying the distance measure that shall be computed.
 #' @author Hajk-Georg Drost
 #' @details The following distance measures are implemented in this function:
+#' 
+#' \itemize{
+#' \item Euclidean : 
+#' \item City block (manhatten) :
+#' \item Minkowski :
+#' \item Chebyshev : 
+#' \item Sorensen :
+#' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
+#' \item Jensen-Shannon : \eqn{JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))}, where \eqn{R = 0.5 * (P + Q)} denotes the mid-point of the probability
+#' vectors P and Q
+#' }
 #' @examples
 #' 
 #' distance(1:10, 20:29, method = "euclidean")
@@ -15,6 +26,11 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         
         if(is.na(x) || is.na(y)){
                 stop("Your vector stores NA values...")
+        }
+        
+        if(!all(is.numeric(x),is.numeric(y))){
+                stop("Non numeric values cannot be used to compute distances..")
+                
         }
         
         # result distance
@@ -59,6 +75,18 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 dist <- sorensen(x,y)
         }
         
+        
+        
+        if(method == "kullback-leibler"){
+                
+                dist <- KL(x,y)
+        }
+        
+        
+        if(method == "jensen-shannon"){
+                
+                dist <- JSD(x,y)
+        }
         
         names(dist) <- method
         
