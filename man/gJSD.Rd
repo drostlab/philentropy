@@ -4,15 +4,13 @@
 \alias{gJSD}
 \title{Generalized Jensen-Shannon Divergence}
 \usage{
-gJSD(ProbabilityMatrix)
+gJSD(x)
 }
 \arguments{
-\item{P}{a probability distribution P.}
-
-\item{Q}{a probability distribution Q.}
+\item{x}{a probability matrix.}
 }
 \value{
-The Jensen-Shannon divergence  of P and Q.
+The Jensen-Shannon divergence between all possible combinations of comparisons.
 }
 \description{
 This function computes the Generalized Jensen-Shannon Divergence of a probability matrix with equal weights.
