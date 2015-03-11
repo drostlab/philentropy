@@ -46,9 +46,9 @@ Probability <- function(ExpressionSet){
         PhylostratumVector <- vector(mode="numeric",length = nRows)
         PhylostratumVector <- ExpressionSet[ , 1]
         nPS <- as.numeric(max(PhylostratumVector))
-        ProbMatrix <- matrix(NA_real_,nrow = nPS,ncol = nCols-2)
+        ProbMatrix <- matrix(NA_real_, nrow = nPS, ncol = nCols-2)
                 
-        ProbMatrix <- Phylotranscriptomics_Probability(as.matrix(ExpressionSet[ ,3:nCols]), PhylostratumVector, nPS)
+        ProbMatrix <- Phylotranscriptomics_Probability(as.matrix(ExpressionSet[ , 3:nCols]), PhylostratumVector, nPS)
                 
         rownames(ProbMatrix) <- 1:nPS
         colnames(ProbMatrix) <- names(ExpressionSet)[3:nCols]

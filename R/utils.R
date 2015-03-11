@@ -48,7 +48,7 @@ valid.distr <- function(x){
                 stop("Your probability values are not between: [0,1].")
         }
         
-        else if(sum(x) > 1){
+        else if(abs(1 - sum(x)) > 1E-5) {
                 
                 stop("Your probability distribution does not sum to 1.")
         } else{
