@@ -7,14 +7,26 @@
 #' @details The following distance measures are implemented in this function:
 #' 
 #' \itemize{
-#' \item Euclidean : 
+#' \item L_p Minkowski family
+#' \itemize{
+#' \item Euclidean : \eqn{d = sqrt( \sum | P_i - Q_i |^2)}
 #' \item City block (manhatten) :
 #' \item Minkowski :
 #' \item Chebyshev : 
+#' }
+#' 
+#' \item L_1 family
+#' \itemize{
 #' \item Sorensen :
+#' \item Gower : 
+#' }
+#' 
+#' \item Shannon's entropy family
+#' \itemize{
 #' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
 #' \item Jensen-Shannon : \eqn{JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))}, where \eqn{R = 0.5 * (P + Q)} denotes the mid-point of the probability
 #' vectors P and Q
+#' }
 #' }
 #' @examples
 #' 

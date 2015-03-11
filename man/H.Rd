@@ -4,10 +4,10 @@
 \alias{H}
 \title{Shannon's Entropy \eqn{H(X)}}
 \usage{
-H(X)
+H(x)
 }
 \arguments{
-\item{X}{a numeric probability vector \eqn{P(X)} for which
+\item{x}{a numeric probability vector \eqn{P(X)} for which
 Shannon's Entropy \eqn{H(X)} shall be computed.}
 }
 \value{
