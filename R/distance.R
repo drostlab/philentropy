@@ -10,9 +10,9 @@
 #' \item L_p Minkowski family
 #' \itemize{
 #' \item Euclidean : \eqn{d = sqrt( \sum | P_i - Q_i |^2)}
-#' \item City block (manhatten) :
-#' \item Minkowski :
-#' \item Chebyshev : 
+#' \item City block (manhatten) : \eqn{d = \sum | P_i - Q_i |}
+#' \item Minkowski : \eqn{d = ( \sum | P_i - Q_i |^p)^1/p}
+#' \item Chebyshev : \eqn{max | P_i - Q_i |}
 #' }
 #' 
 #' \item L_1 family
