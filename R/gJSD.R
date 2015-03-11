@@ -1,8 +1,7 @@
 #' @title Generalized Jensen-Shannon Divergence 
 #' @description This function computes the Generalized Jensen-Shannon Divergence of a probability matrix with equal weights.
-#' @param P a probability distribution P.
-#' @param Q a probability distribution Q.
-#' @return The Jensen-Shannon divergence  of P and Q.
+#' @param x a probability matrix.
+#' @return The Jensen-Shannon divergence between all possible combinations of comparisons.
 #' @author Hajk-Georg Drost
 #' @details 
 #' 
@@ -19,13 +18,13 @@
 #' \code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{E}}, \code{\link{JSD}}
 #' @export
 
-gJSD <- function(ProbabilityMatrix){
+gJSD <- function(x){
         
         # check for ditribution validity
-        apply(ProbabilityMatrix,2,valid.distr)
+        apply(x,2,valid.distr)
         
-        nDistributions <- dim(ProbabilityMatrix)[2]
-        nElements <- dim(ProbabilityMatrix)[1]
+        nDistributions <- dim(x)[2]
+        nElements <- dim(x)[1]
         # defining the weights for the generalized Jensen-Shannon Divergence
         weights <- NA_real_
         g.JSD <- NA_real_ 
@@ -37,11 +36,11 @@ gJSD <- function(ProbabilityMatrix){
                 
                 for(i in 1:nDistributions){
                         
-                        weightedProbabilityMatrix[ ,i] <- weights[i] * ProbabilityMatrix[ ,i]
+                        weightedProbabilityMatrix[ ,i] <- weights[i] * x[ ,i]
                         
                 }
                 
-                g.JSD <- H(rowSums(weightedProbabilityMatrix)) - sum((weights * apply(ProbabilityMatrix,2,H)))
+                g.JSD <- H(rowSums(weightedProbabilityMatrix)) - sum((weights * apply(x,2,H)))
                 
                 return(g.JSD)
                 
