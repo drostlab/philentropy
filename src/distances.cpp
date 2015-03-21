@@ -11,7 +11,7 @@ double euclidean(NumericVector P, NumericVector Q){
         double dist  = 0;
         double diff  = 0;
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -36,7 +36,7 @@ double manhattan(NumericVector P, NumericVector Q){
         double dist  = 0;
         double diff  = 0;
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -62,7 +62,7 @@ double minkowski(NumericVector P, NumericVector Q, double n){
         double dist  = 0.0;
         double diff  = 0.0;
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -88,7 +88,7 @@ double chebyshev(NumericVector P, NumericVector Q){
         double dist  = 0;
         double diff  = 0;
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -98,7 +98,7 @@ double chebyshev(NumericVector P, NumericVector Q){
                 
                 diff = fabs(P[i] - Q[i]);
                 
-                if(diff > dist)
+                if (diff > dist)
                      dist = diff;
                         
         }
@@ -119,7 +119,7 @@ double sorensen(NumericVector P, NumericVector Q){
         double sum   = 0;
         
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -149,7 +149,7 @@ double gower(NumericVector P, NumericVector Q){
         double diff  = 0;
         double dist  = 0;
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -178,7 +178,7 @@ double soergel(NumericVector P, NumericVector Q){
         double dist2      = 0;
         double max_point  = 0;
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -187,7 +187,7 @@ double soergel(NumericVector P, NumericVector Q){
                 
                 diff      = fabs(P[i] - Q[i]);
                 
-                if(P[i] >= Q[i]){
+                if (P[i] >= Q[i]){
                         
                         max_point = P[i];
                         
@@ -217,7 +217,7 @@ double kulczynski(NumericVector P, NumericVector Q){
         double dist2      = 0;
         double min_point  = 0;
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -226,7 +226,7 @@ double kulczynski(NumericVector P, NumericVector Q){
                 
                 diff      = fabs(P[i] - Q[i]);
                 
-                if(P[i] <= Q[i]){
+                if (P[i] <= Q[i]){
                         
                         min_point = P[i];
                         
@@ -256,7 +256,7 @@ double canberra(NumericVector P, NumericVector Q){
         double sum   = 0;
         
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -283,7 +283,7 @@ double lorentzian(NumericVector P, NumericVector Q){
         double dist  = 0;
         double diff  = 0;
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
@@ -309,14 +309,14 @@ double intersection_dist(NumericVector P, NumericVector Q){
         double dist      = 0;
         double min_point  = 0;
         
-        if(P_len != Q_len){
+        if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         
         for(int i = 0; i < P_len; i++){
                                 
-                if(P[i] <= Q[i]){
+                if (P[i] <= Q[i]){
                         
                         min_point = P[i];
                         
@@ -332,3 +332,111 @@ double intersection_dist(NumericVector P, NumericVector Q){
         return dist;
         
 }
+
+
+//' @export
+// [[Rcpp::export]]
+double wave_hedges(NumericVector P, NumericVector Q){
+        
+        int    P_len      = P.size();
+        int    Q_len      = Q.size();
+        double diff       = 0;
+        double dist       = 0;
+        double max_point  = 0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        
+        for(int i = 0; i < P_len; i++){
+                
+                diff      = fabs(P[i] - Q[i]);
+                
+                if (P[i] >= Q[i]){
+                        
+                        max_point = P[i];
+                        
+                } else {
+                        
+                        max_point = Q[i];
+                }
+               
+                dist = dist + (diff / max_point);
+                
+        }
+        
+        return dist;
+        
+}
+
+
+//' @export
+// [[Rcpp::export]]
+double czekanowski(NumericVector P, NumericVector Q){
+        
+        int    P_len      = P.size();
+        int    Q_len      = Q.size();
+        double diff1      = 0;
+        double diff2      = 0;
+        double dist1      = 0;
+        double dist2      = 0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        
+        for(int i = 0; i < P_len; i++){
+                
+                diff1 = fabs(P[i] - Q[i]);
+                diff2 = fabs(P[i] + Q[i]);
+                
+               
+                dist1 = dist1 + diff1;
+                dist2 = dist2 + diff2;
+                
+        }
+        
+        return dist1 / dist2;
+        
+}
+
+
+
+//' @export
+// [[Rcpp::export]]
+double motyka(NumericVector P, NumericVector Q){
+        
+        int    P_len      = P.size();
+        int    Q_len      = Q.size();
+        double diff       = 0;
+        double dist       = 0;
+        double min_point  = 0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        
+        for(int i = 0; i < P_len; i++){
+                
+                diff      = fabs(P[i] + Q[i]);
+                
+                if (P[i] <= Q[i]){
+                        
+                        min_point = P[i];
+                        
+                } else {
+                        
+                        min_point = Q[i];
+                }
+               
+                dist = dist + (min_point / diff);
+                
+        }
+        
+        return dist;
+        
+}
+

@@ -36,7 +36,7 @@ double JEcpp(NumericVector JointProbabilities){
 
         } else{
 
-          JointEntropy += 0;
+          JointEntropy += 0.0;
 
         }
      }
@@ -75,7 +75,7 @@ double CrossEntropy(NumericVector P, NumericVector Q) {
                 
             } else{
               
-                CE += 0;
+                CE += 0.0;
          }
        }
         return CE;
