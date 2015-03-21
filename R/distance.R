@@ -56,6 +56,12 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
         
+        # although validation would be great, it cost a lot of computation time
+        # for large comparisons between multiple distributions
+        # here a smarter (faster) way to validate distributions needs to be implemented
+#         valid.distr(x)
+#         valid.distr(y)
+#         
         # result distance
         dist <- NA_real_
         
