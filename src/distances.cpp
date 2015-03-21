@@ -410,9 +410,10 @@ double motyka(NumericVector P, NumericVector Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
-        double diff       = 0;
-        double dist       = 0;
-        double min_point  = 0;
+        double diff       = 0.0;
+        double dist1      = 0.0;
+        double dist2      = 0.0;
+        double min_point  = 0.0;
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -432,11 +433,12 @@ double motyka(NumericVector P, NumericVector Q){
                         min_point = Q[i];
                 }
                
-                dist = dist + (min_point / diff);
+                dist1 = dist1 + min_point;
+                dist2 = dist2 + diff;
                 
         }
         
-        return dist;
+        return (1.0 - (dist1 / dist2));
         
 }
 
