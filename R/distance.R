@@ -10,15 +10,26 @@
 #' \item L_p Minkowski family
 #' \itemize{
 #' \item Euclidean : \eqn{d = sqrt( \sum | P_i - Q_i |^2)}
-#' \item City block (manhatten) : \eqn{d = \sum | P_i - Q_i |}
+#' \item Manhatten : \eqn{d = \sum | P_i - Q_i |}
 #' \item Minkowski : \eqn{d = ( \sum | P_i - Q_i |^p)^1/p}
-#' \item Chebyshev : \eqn{max | P_i - Q_i |}
+#' \item Chebyshev : \eqn{d = max | P_i - Q_i |}
 #' }
 #' 
 #' \item L_1 family
 #' \itemize{
-#' \item Sorensen :
-#' \item Gower : 
+#' \item Sorensen : \eqn{d = \sum | P_i - Q_i | / \sum (P_i + Q_i)}
+#' \item Gower : \eqn{d = 1/d * \sum | P_i - Q_i |}
+#' \item Soergel : \eqn{d = \sum | P_i - Q_i | / \sum max(P_i , Q_i)}
+#' \item Kulczynski d : \eqn{d = \sum | P_i - Q_i | / \sum min(P_i , Q_i)}
+#' \item Canberra : \eqn{d = \sum | P_i - Q_i | / (P_i + Q_i)}
+#' \item Lorentzian : \eqn{d = \sum ln(1 + | P_i - Q_i |)}
+#' }
+#' 
+#' 
+#' \item Intersection family
+#' \itemize{
+#' \item Intersection : \eqn{d = \sum min(P_i , Q_i)}
+#' \item Non-Intersection : \eqn{d = 1 - \sum min(P_i , Q_i)}
 #' }
 #' 
 #' \item Shannon's entropy family
@@ -55,9 +66,9 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         }
         
         
-        if(method == "cityblock"){
+        if(method == "manhattan"){
                 
-                dist <- cityblock(x,y)
+                dist <- manhattan(x,y)
                 
         }
            
@@ -88,6 +99,47 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         }
         
         
+        if(method == "gower"){
+                
+                dist <- gower(x,y)
+                
+        }
+        
+        if(method == "soergel"){
+                
+                dist <- soergel(x,y)
+                
+        }
+        
+        if(method == "kulczynski"){
+                
+                dist <- kulczynski(x,y)
+                
+        }
+        
+        if(method == "canberra"){
+                
+                dist <- canberra(x,y)
+                
+        }
+
+        if(method == "lorentzian"){
+                
+                dist <- lorentzian(x,y)
+                
+        }
+        
+        if(method == "intersection"){
+                
+                dist <- intersection_dist(x,y)
+                
+        }
+        
+        if(method == "non_intersection"){
+                
+                dist <- 1 - intersection_dist(x,y)
+                
+        }
         
         if(method == "kullback-leibler"){
                 
@@ -99,6 +151,9 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
                 dist <- JSD(x,y)
         }
+        
+        
+        
         
         names(dist) <- method
         
