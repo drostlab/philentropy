@@ -43,6 +43,9 @@ The following distance measures are implemented in this function:
 \itemize{
 \item Intersection : \eqn{d = \sum min(P_i , Q_i)}
 \item Non-Intersection : \eqn{d = 1 - \sum min(P_i , Q_i)}
+\item Wave Hedges : \eqn{d = \sum | P_i - Q_i | / max(P_i , Q_i)}
+\item Czekanowski : \eqn{d = \sum | P_i - Q_i | / \sum | P_i + Q_i |}
+\item Motyka : \eqn{d = \sum min(P_i , Q_i) / | P_i + Q_i |}
 }
 
 \item Shannon's entropy family
@@ -54,7 +57,7 @@ vectors P and Q
 }
 }
 \examples{
-distance(1:10, 20:29, method = "euclidean")
+distance(1:10/sum(1:10), 20:29/sum(20:29), method = "euclidean")
 }
 \author{
 Hajk-Georg Drost
