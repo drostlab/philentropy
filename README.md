@@ -1,10 +1,9 @@
 phylentropy
 ===========
 
-## An Information Theory Based Framework for Phylotranscriptomics
+## An Information Theory And Statistics Framework for Predictive Analytics
 
-The `phylentropy` package provides an information theory modeling approach
-for phylotranscriptomics.
+The `phylentropy` Package Provides an Information Theory and Statistics Framework to Perform Predictive Analytics.
 
 
 ## Fast Installation Guide
