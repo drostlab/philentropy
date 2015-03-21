@@ -30,6 +30,9 @@
 #' \itemize{
 #' \item Intersection : \eqn{d = \sum min(P_i , Q_i)}
 #' \item Non-Intersection : \eqn{d = 1 - \sum min(P_i , Q_i)}
+#' \item Wave Hedges : \eqn{d = \sum | P_i - Q_i | / max(P_i , Q_i)}
+#' \item Czekanowski : \eqn{d = \sum | P_i - Q_i | / \sum | P_i + Q_i |}
+#' \item Motyka : \eqn{d = \sum min(P_i , Q_i) / | P_i + Q_i |}
 #' }
 #' 
 #' \item Shannon's entropy family
@@ -41,7 +44,7 @@
 #' }
 #' @examples
 #' 
-#' distance(1:10, 20:29, method = "euclidean")
+#' distance(1:10/sum(1:10), 20:29/sum(20:29), method = "euclidean")
 #' 
 #' @export
 
@@ -59,9 +62,9 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
         # here a smarter (faster) way to validate distributions needs to be implemented
-#         valid.distr(x)
-#         valid.distr(y)
-#         
+        valid.distr(x)
+        valid.distr(y)
+        
         # result distance
         dist <- NA_real_
         
@@ -144,6 +147,24 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         if(method == "non_intersection"){
                 
                 dist <- 1 - intersection_dist(x,y)
+                
+        }
+        
+        if(method == "wavehedges"){
+                
+                dist <- wave_hedges(x,y)
+                
+        }
+        
+        if(method == "czekanowski"){
+                
+                dist <- czekanowski(x,y)
+                
+        }
+        
+        if(method == "motyka"){
+                
+                dist <- motyka(x,y)
                 
         }
         
