@@ -75,7 +75,8 @@ getDistMethods <- function(){
                             "sorensen", "gower", "soergel", "kulczynski_d",
                             "canberra", "lorentzian", "intersection", "non-intersection",
                             "wavehedges", "czekanowski", "motyka","kulczynski_s",
-                            "tanimoto", "ruzicka")
+                            "tanimoto", "ruzicka","inner_product","harmonic_mean",
+                            "cosine", "hassebrook", "jaccard", "dice")
         
         return(distance.names)
 }
