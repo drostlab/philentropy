@@ -512,3 +512,32 @@ double harmonic_mean_dist(NumericVector P, NumericVector Q){
 }
 
 
+//' @export
+// [[Rcpp::export]]
+double cosine_dist(NumericVector P, NumericVector Q){
+        
+        int    P_len     = P.size();
+        int    Q_len     = Q.size();
+        double prod      = 0.0;
+        double p_square  = 0.0;
+        double q_square  = 0.0;
+        double dist      = 0.0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        for(int i = 0; i < P_len; i++){
+                
+                prod = P[i] * Q[i];
+                
+                p_square  = p_square + pow(P[i], 2);
+                q_square  = q_square + pow(Q[i], 2);
+                
+                dist = dist + prod;
+                
+        }
+        
+        return (dist / (sqrt(p_square) * sqrt(q_square)));
+        
+}
