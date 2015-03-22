@@ -42,7 +42,7 @@
 #' \itemize{
 #' \item Inner Product : \eqn{d = \sum P_i * Q_i}
 #' \item Harmonic mean : \eqn{d = 2 * \sum (P_i * Q_i) / (P_i + Q_i)}
-#' \item Cosine :
+#' \item Cosine : \eqn{d = \sum (P_i * Q_i) / sqrt(P_i^2) * sqrt(Q_i^2)}
 #' \item Kumar-Hassebrook (PCE) :
 #' \item Jaccard :
 #' \item Dice :
@@ -210,6 +210,11 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
         
+        if(method == "cosine"){
+                
+                dist <- cosine_dist(x,y)
+                
+        }
         
         if(method == "kullback-leibler"){
                 
