@@ -40,8 +40,8 @@
 #' 
 #' \item Inner Product family
 #' \itemize{
-#' \item Inner Product :
-#' \item Harmonic mean :
+#' \item Inner Product : \eqn{d = \sum P_i * Q_i}
+#' \item Harmonic mean : \eqn{d = 2 * \sum (P_i * Q_i) / (P_i + Q_i)}
 #' \item Cosine :
 #' \item Kumar-Hassebrook (PCE) :
 #' \item Jaccard :
@@ -201,6 +201,12 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         if(method == "inner_product"){
                 
                 dist <- inner_product(x,y)
+                
+        }
+        
+        if(method == "harmonic_mean"){
+                
+                dist <- harmonic_mean_dist(x,y)
                 
         }
         
