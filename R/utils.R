@@ -58,3 +58,24 @@ valid.distr <- function(x){
         }
 }
 
+#' @title Get method names for \code{distance}
+#' @description This function returns the names of the methods that can be applied
+#' to compute distances between probability density functions using the \code{\link{distance}} 
+#' function.
+#' @author Hajk-Georg Drost
+#' @examples
+#' 
+#' getDistMethods()
+#' 
+#' @export
+
+getDistMethods <- function(){
+        
+        distance.names <- c("euclidean", "manhatten", "minkowski", "chebyshev",
+                            "sorensen", "gower", "soergel", "kulczynski_d",
+                            "canberra", "lorentzian", "intersection", "non-intersection",
+                            "wavehedges", "czekanowski", "motyka","kulczynski_s",
+                            "tanimoto", "ruzicka")
+        
+        return(distance.names)
+}
