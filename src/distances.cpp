@@ -583,5 +583,33 @@ double jaccard(NumericVector P, NumericVector Q){
 }
 
 
-
+//' @export
+// [[Rcpp::export]]
+double dice_dist(NumericVector P, NumericVector Q){
+        
+        int    P_len       = P.size();
+        int    Q_len       = Q.size();
+        double diff_square = 0.0;
+        double p_square    = 0.0;
+        double q_square    = 0.0;
+        double dist        = 0.0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        for(int i = 0; i < P_len; i++){
+                
+                diff_square = pow((P[i] - Q[i]), 2);
+                
+                p_square    = p_square + pow(P[i], 2);
+                q_square    = q_square + pow(Q[i], 2);
+                
+                dist = dist + diff_square;
+                
+        }
+        
+        return (dist / (p_square + q_square));
+        
+}
 
