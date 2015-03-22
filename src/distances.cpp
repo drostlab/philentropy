@@ -613,3 +613,25 @@ double dice_dist(NumericVector P, NumericVector Q){
         
 }
 
+
+//' @export
+// [[Rcpp::export]]
+double fidelity(NumericVector P, NumericVector Q){
+        
+        int    P_len      = P.size();
+        int    Q_len      = Q.size();
+        double dist      = 0.0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        for(int i = 0; i < P_len; i++){
+                
+                dist = dist + sqrt(P[i] * Q[i]);
+                
+        }
+        
+        return dist;
+        
+}

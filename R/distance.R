@@ -40,13 +40,23 @@
 #' 
 #' \item Inner Product family
 #' \itemize{
-#' \item Inner Product : \eqn{d = \sum P_i * Q_i}
-#' \item Harmonic mean : \eqn{d = 2 * \sum (P_i * Q_i) / (P_i + Q_i)}
-#' \item Cosine : \eqn{d = \sum (P_i * Q_i) / sqrt(\sum P_i^2) * sqrt(\sum Q_i^2)}
-#' \item Kumar-Hassebrook (PCE) : \eqn{d = \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))}
+#' \item Inner Product : \eqn{s = \sum P_i * Q_i}
+#' \item Harmonic mean : \eqn{s = 2 * \sum (P_i * Q_i) / (P_i + Q_i)}
+#' \item Cosine : \eqn{s = \sum (P_i * Q_i) / sqrt(\sum P_i^2) * sqrt(\sum Q_i^2)}
+#' \item Kumar-Hassebrook (PCE) : \eqn{s = \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))}
 #' \item Jaccard : \eqn{d = 1 - \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))} ; equivalent to 1 - Kumar-Hassebrook
 #' \item Dice : \eqn{d = \sum (P_i - Q_i)^2 / (\sum P_i^2 + \sum Q_i^2)}
 #' }
+#' 
+#' \item Squared-chord family
+#' \itemize{
+#' \item Fidelity : \eqn{s = \sum sqrt(P_i * Q_i)}
+#' \item Bhattacharyya : \eqn{d = - ln \sum sqrt(P_i * Q_i)}
+#' \item Hellinger :
+#' \item Matusita :
+#' \item Squared-chord :
+#' }
+#' 
 #' \item Shannon's entropy family
 #' \itemize{
 #' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
@@ -234,6 +244,12 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         if(method == "dice"){
                 
                 dist <- dice_dist(x,y)
+                
+        }
+        
+        if(method == "fidelity"){
+                
+                dist <- fidelity(x,y)
                 
         }
         
