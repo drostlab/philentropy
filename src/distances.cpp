@@ -635,3 +635,24 @@ double fidelity(NumericVector P, NumericVector Q){
         return dist;
         
 }
+
+
+//' @export
+// [[Rcpp::export]]
+double bhattacharyya(NumericVector P, NumericVector Q){
+        
+        
+        return -log(fidelity(P,Q));
+}
+
+
+//' @export
+// [[Rcpp::export]]
+double hellinger(NumericVector P, NumericVector Q){
+        
+        
+        return 2.0 * sqrt( 1.0 - fidelity(P,Q));
+}
+
+
+
