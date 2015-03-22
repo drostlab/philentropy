@@ -459,3 +459,30 @@ double ruzicka(NumericVector P, NumericVector Q){
         // Ruzicka = 1 - Tanimoto = 1 - Soergel
         return (1.0 - soergel(P, Q));
 }
+
+
+//' @export
+// [[Rcpp::export]]
+double inner_product(NumericVector P, NumericVector Q){
+        
+        int    P_len      = P.size();
+        int    Q_len      = Q.size();
+        double dist      = 0.0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        for(int i = 0; i < P_len; i++){
+                
+                dist = dist + (P[i] * Q[i]);
+                
+        }
+        
+        return dist;
+        
+}
+
+
+
+
