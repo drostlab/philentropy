@@ -33,6 +33,9 @@
 #' \item Wave Hedges : \eqn{d = \sum | P_i - Q_i | / max(P_i , Q_i)}
 #' \item Czekanowski : \eqn{d = \sum | P_i - Q_i | / \sum | P_i + Q_i |}
 #' \item Motyka : \eqn{d = \sum min(P_i , Q_i) / | P_i + Q_i |}
+#' \item Kulczynski s : \eqn{d = 1.0 / \sum | P_i - Q_i | / \sum min(P_i , Q_i)}
+#' \item Tanimoto : \eqn{d = \sum (max(P_i , Q_i) - min(P_i , Q_i)) / \sum max(P_i , Q_i)} ; equivalent to Soergel
+#' \item Ruzicka : \eqn{d = \sum min(P_i , Q_i) / \sum max(P_i , Q_i)} ; equivalent to 1 - Tanimoto = 1 - Soergel 
 #' }
 #' 
 #' \item Shannon's entropy family
@@ -120,9 +123,9 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
         
-        if(method == "kulczynski"){
+        if(method == "kulczynski_d"){
                 
-                dist <- kulczynski(x,y)
+                dist <- kulczynski_d(x,y)
                 
         }
         
@@ -165,6 +168,24 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         if(method == "motyka"){
                 
                 dist <- motyka(x,y)
+                
+        }
+        
+        if(method == "kulczynski_s"){
+                
+                dist <- 1.0 / kulczynski_d(x,y)
+                
+        }
+        
+        if(method == "tanimoto"){
+                
+                dist <- tanimoto(x,y)
+                
+        }
+        
+        if(method == "ruzicka"){
+                
+                dist <- ruzicka(x,y)
                 
         }
         
