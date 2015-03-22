@@ -45,7 +45,7 @@
 #' \item Cosine : \eqn{d = \sum (P_i * Q_i) / sqrt(\sum P_i^2) * sqrt(\sum Q_i^2)}
 #' \item Kumar-Hassebrook (PCE) : \eqn{d = \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))}
 #' \item Jaccard : \eqn{d = 1 - \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))} ; equivalent to 1 - Kumar-Hassebrook
-#' \item Dice :
+#' \item Dice : \eqn{d = \sum (P_i - Q_i)^2 / (\sum P_i^2 + \sum Q_i^2)}
 #' }
 #' \item Shannon's entropy family
 #' \itemize{
@@ -228,6 +228,12 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         if(method == "jaccard"){
                 
                 dist <- jaccard(x,y)
+                
+        }
+        
+        if(method == "dice"){
+                
+                dist <- dice_dist(x,y)
                 
         }
         
