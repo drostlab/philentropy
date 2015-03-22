@@ -32,7 +32,7 @@
 #' \item Non-Intersection : \eqn{d = 1 - \sum min(P_i , Q_i)}
 #' \item Wave Hedges : \eqn{d = \sum | P_i - Q_i | / max(P_i , Q_i)}
 #' \item Czekanowski : \eqn{d = \sum | P_i - Q_i | / \sum | P_i + Q_i |}
-#' \item Motyka : \eqn{d = \sum min(P_i , Q_i) / | P_i + Q_i |}
+#' \item Motyka : \eqn{d = \sum min(P_i , Q_i) / (P_i + Q_i)}
 #' \item Kulczynski s : \eqn{d = 1.0 / \sum | P_i - Q_i | / \sum min(P_i , Q_i)}
 #' \item Tanimoto : \eqn{d = \sum (max(P_i , Q_i) - min(P_i , Q_i)) / \sum max(P_i , Q_i)} ; equivalent to Soergel
 #' \item Ruzicka : \eqn{d = \sum min(P_i , Q_i) / \sum max(P_i , Q_i)} ; equivalent to 1 - Tanimoto = 1 - Soergel 
@@ -42,9 +42,9 @@
 #' \itemize{
 #' \item Inner Product : \eqn{d = \sum P_i * Q_i}
 #' \item Harmonic mean : \eqn{d = 2 * \sum (P_i * Q_i) / (P_i + Q_i)}
-#' \item Cosine : \eqn{d = \sum (P_i * Q_i) / sqrt(P_i^2) * sqrt(Q_i^2)}
-#' \item Kumar-Hassebrook (PCE) :
-#' \item Jaccard :
+#' \item Cosine : \eqn{d = \sum (P_i * Q_i) / sqrt(\sum P_i^2) * sqrt(\sum Q_i^2)}
+#' \item Kumar-Hassebrook (PCE) : \eqn{d = \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))}
+#' \item Jaccard : \eqn{d = 1 - \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))} ; equivalent to 1 - Kumar-Hassebrook
 #' \item Dice :
 #' }
 #' \item Shannon's entropy family
@@ -61,6 +61,9 @@
 #' @export
 
 distance <- function(x,y, method = "euclidean", p = NULL){
+        
+        if(!is.element(method,getDistMethods()))
+                stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
         
         if(is.na(x) || is.na(y)){
                 stop("Your vector stores NA values...")
@@ -213,6 +216,18 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         if(method == "cosine"){
                 
                 dist <- cosine_dist(x,y)
+                
+        }
+        
+        if(method == "hassebrook"){
+                
+                dist <- kumar_hassebrook(x,y)
+                
+        }
+        
+        if(method == "jaccard"){
+                
+                dist <- jaccard(x,y)
                 
         }
         
