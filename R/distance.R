@@ -52,7 +52,7 @@
 #' \itemize{
 #' \item Fidelity : \eqn{s = \sum sqrt(P_i * Q_i)}
 #' \item Bhattacharyya : \eqn{d = - ln \sum sqrt(P_i * Q_i)}
-#' \item Hellinger :
+#' \item Hellinger : \eqn{d = 2 * sqrt( 1 - \sum sqrt(P_i * Q_i))}
 #' \item Matusita :
 #' \item Squared-chord :
 #' }
@@ -253,6 +253,19 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
         
+        if(method == "bhattacharyya"){
+                
+                dist <- bhattacharyya(x,y)
+                
+        }
+        
+        if(method == "hellinger"){
+                
+                dist <- hellinger(x,y)
+                
+        }
+        
+
         if(method == "kullback-leibler"){
                 
                 dist <- KL(x,y)
