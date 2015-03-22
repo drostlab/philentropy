@@ -377,8 +377,8 @@ double czekanowski(NumericVector P, NumericVector Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
-        double diff1      = 0;
-        double diff2      = 0;
+        double diff       = 0;
+        double sum        = 0;
         double dist1      = 0;
         double dist2      = 0;
         
@@ -389,12 +389,12 @@ double czekanowski(NumericVector P, NumericVector Q){
         
         for(int i = 0; i < P_len; i++){
                 
-                diff1 = fabs(P[i] - Q[i]);
-                diff2 = fabs(P[i] + Q[i]);
+                diff  = fabs(P[i] - Q[i]);
+                sum   = P[i] + Q[i];
                 
                
-                dist1 = dist1 + diff1;
-                dist2 = dist2 + diff2;
+                dist1 = dist1 + diff;
+                dist2 = dist2 + sum;
                 
         }
         
@@ -410,7 +410,7 @@ double motyka(NumericVector P, NumericVector Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
-        double diff       = 0.0;
+        double sum        = 0.0;
         double dist1      = 0.0;
         double dist2      = 0.0;
         double min_point  = 0.0;
@@ -422,7 +422,7 @@ double motyka(NumericVector P, NumericVector Q){
         
         for(int i = 0; i < P_len; i++){
                 
-                diff      = fabs(P[i] + Q[i]);
+                sum      = P[i] + Q[i];
                 
                 if (P[i] <= Q[i]){
                         
@@ -434,7 +434,7 @@ double motyka(NumericVector P, NumericVector Q){
                 }
                
                 dist1 = dist1 + min_point;
-                dist2 = dist2 + diff;
+                dist2 = dist2 + sum;
                 
         }
         
@@ -541,3 +541,47 @@ double cosine_dist(NumericVector P, NumericVector Q){
         return (dist / (sqrt(p_square) * sqrt(q_square)));
         
 }
+
+
+//' @export
+// [[Rcpp::export]]
+double kumar_hassebrook(NumericVector P, NumericVector Q){
+        
+        int    P_len     = P.size();
+        int    Q_len     = Q.size();
+        double prod      = 0.0;
+        double p_square  = 0.0;
+        double q_square  = 0.0;
+        double dist      = 0.0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        for(int i = 0; i < P_len; i++){
+                
+                prod = P[i] * Q[i];
+                
+                p_square  = p_square + pow(P[i], 2);
+                q_square  = q_square + pow(Q[i], 2);
+                
+                dist = dist + prod;
+                
+        }
+        
+        return (dist / (p_square + q_square - dist));
+        
+}
+
+
+//' @export
+// [[Rcpp::export]]
+double jaccard(NumericVector P, NumericVector Q){
+        
+        return (1.0 - kumar_hassebrook(P,Q));
+        
+}
+
+
+
+
