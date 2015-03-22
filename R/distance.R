@@ -38,6 +38,15 @@
 #' \item Ruzicka : \eqn{d = \sum min(P_i , Q_i) / \sum max(P_i , Q_i)} ; equivalent to 1 - Tanimoto = 1 - Soergel 
 #' }
 #' 
+#' \item Inner Product family
+#' \itemize{
+#' \item Inner Product :
+#' \item Harmonic mean :
+#' \item Cosine :
+#' \item Kumar-Hassebrook (PCE) :
+#' \item Jaccard :
+#' \item Dice :
+#' }
 #' \item Shannon's entropy family
 #' \itemize{
 #' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
@@ -188,6 +197,13 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 dist <- ruzicka(x,y)
                 
         }
+        
+        if(method == "inner_product"){
+                
+                dist <- inner_product(x,y)
+                
+        }
+        
         
         if(method == "kullback-leibler"){
                 
