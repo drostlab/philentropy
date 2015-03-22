@@ -53,8 +53,8 @@
 #' \item Fidelity : \eqn{s = \sum sqrt(P_i * Q_i)}
 #' \item Bhattacharyya : \eqn{d = - ln \sum sqrt(P_i * Q_i)}
 #' \item Hellinger : \eqn{d = 2 * sqrt( 1 - \sum sqrt(P_i * Q_i))}
-#' \item Matusita :
-#' \item Squared-chord :
+#' \item Matusita : \eqn{d = sqrt( 2 - 2 * \sum sqrt(P_i * Q_i))}
+#' \item Squared-chord : \eqn{d = \sum ( sqrt(P_i) - sqrt(Q_i) )^2}
 #' }
 #' 
 #' \item Shannon's entropy family
@@ -265,6 +265,17 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
         
+        if(method == "matusita"){
+                
+                dist <- matusita(x,y)
+                
+        }
+        
+        if(method == "squared_chord"){
+                
+                dist <- squared_chord(x,y)
+                
+        }
 
         if(method == "kullback-leibler"){
                 
