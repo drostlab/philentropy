@@ -208,7 +208,7 @@ double soergel(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double kulczynski(NumericVector P, NumericVector Q){
+double kulczynski_d(NumericVector P, NumericVector Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -442,3 +442,20 @@ double motyka(NumericVector P, NumericVector Q){
         
 }
 
+
+//' @export
+// [[Rcpp::export]]
+double tanimoto(NumericVector P, NumericVector Q){
+        
+        // Soergel = Tanimoto
+        return soergel(P, Q);
+}
+
+
+//' @export
+// [[Rcpp::export]]
+double ruzicka(NumericVector P, NumericVector Q){
+        
+        // Ruzicka = 1 - Tanimoto = 1 - Soergel
+        return (1.0 - soergel(P, Q));
+}
