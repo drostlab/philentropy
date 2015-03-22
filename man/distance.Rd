@@ -41,14 +41,14 @@ The following distance measures are implemented in this function:
 
 \item Intersection family
 \itemize{
-\item Intersection : \eqn{d = \sum min(P_i , Q_i)}
+\item Intersection : \eqn{s = \sum min(P_i , Q_i)}
 \item Non-Intersection : \eqn{d = 1 - \sum min(P_i , Q_i)}
 \item Wave Hedges : \eqn{d = \sum | P_i - Q_i | / max(P_i , Q_i)}
 \item Czekanowski : \eqn{d = \sum | P_i - Q_i | / \sum | P_i + Q_i |}
 \item Motyka : \eqn{d = \sum min(P_i , Q_i) / (P_i + Q_i)}
 \item Kulczynski s : \eqn{d = 1.0 / \sum | P_i - Q_i | / \sum min(P_i , Q_i)}
 \item Tanimoto : \eqn{d = \sum (max(P_i , Q_i) - min(P_i , Q_i)) / \sum max(P_i , Q_i)} ; equivalent to Soergel
-\item Ruzicka : \eqn{d = \sum min(P_i , Q_i) / \sum max(P_i , Q_i)} ; equivalent to 1 - Tanimoto = 1 - Soergel
+\item Ruzicka : \eqn{s = \sum min(P_i , Q_i) / \sum max(P_i , Q_i)} ; equivalent to 1 - Tanimoto = 1 - Soergel
 }
 
 \item Inner Product family
