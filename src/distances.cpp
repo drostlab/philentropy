@@ -484,5 +484,31 @@ double inner_product(NumericVector P, NumericVector Q){
 }
 
 
+//' @export
+// [[Rcpp::export]]
+double harmonic_mean_dist(NumericVector P, NumericVector Q){
+        
+        int    P_len     = P.size();
+        int    Q_len     = Q.size();
+        double prod      = 0.0;
+        double sum       = 0.0;
+        double dist      = 0.0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        for(int i = 0; i < P_len; i++){
+                
+                prod = P[i] * Q[i];
+                sum  = P[i] + Q[i];
+                
+                dist = dist + (prod / sum);
+                
+        }
+        
+        return (2.0 * dist);
+        
+}
 
 
