@@ -654,5 +654,32 @@ double hellinger(NumericVector P, NumericVector Q){
         return 2.0 * sqrt( 1.0 - fidelity(P,Q));
 }
 
+//' @export
+// [[Rcpp::export]]
+double matusita(NumericVector P, NumericVector Q){
+        
+        
+        return sqrt( 2.0 - ( 2.0 * fidelity(P,Q)));
+}
 
-
+//' @export
+// [[Rcpp::export]]
+double squared_chord(NumericVector P, NumericVector Q){
+        
+        int    P_len      = P.size();
+        int    Q_len      = Q.size();
+        double dist      = 0.0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        for(int i = 0; i < P_len; i++){
+                
+                dist = dist + pow(sqrt(P[i]) - sqrt(Q[i]), 2);
+                
+        }
+        
+        return dist;
+        
+}
