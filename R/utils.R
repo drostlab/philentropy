@@ -40,17 +40,17 @@ valid.distr <- function(x){
         
         if(any(is.na(x))){
                 
-                stop("Your input vector includes NA values")
+                stop("Your input vector includes NA values", call. = FALSE)
         }
         
         else if(!all(dplyr::between(x,0,1))){
                 
-                stop("Your probability values are not between: [0,1].")
+                stop("Your probability values are not between: [0,1].", call. = FALSE)
         }
         
         else if(abs(1 - sum(x)) > 1E-5) {
                 
-                stop("Your probability distribution does not sum to 1.")
+                stop("Your probability distribution does not sum to 1.", call. = FALSE)
         } else{
                 
            return(TRUE)
