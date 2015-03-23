@@ -36,18 +36,11 @@
 #' 
 #' P <- 1:10/sum(1:10)
 #' Q <- 20:29/sum(20:29)
+#' 
 #' JSD.Example <- JSD(P,Q)
 #' 
-#' # reading a standard PhyloExpressionSet
-#' data(PhyloExpressionSetExample)
-#' 
-#' Prob <- Probability(PhyloExpressionSetExample)
-#' 
-#' # compute the JSD comparing the PS probability distributions of developmental stages 1 and 5
-#' JSD( P = Prob[ , 1],
-#'      Q = Prob[ , 5] )
 #' @seealso
-#' \code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{E}}, \code{\link{gJSD}}
+#' \code{\link{KL}}, \code{\link{H}}, \code{\link{CE}}, \code{\link{gJSD}}, \code{\link{distance}}
 #' @export
 
 JSD <- function(P,Q){

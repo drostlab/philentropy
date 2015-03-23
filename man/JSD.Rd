@@ -42,16 +42,8 @@ General properties of the Jensen-Shannon Divergence:
 \examples{
 P <- 1:10/sum(1:10)
 Q <- 20:29/sum(20:29)
+
 JSD.Example <- JSD(P,Q)
-
-# reading a standard PhyloExpressionSet
-data(PhyloExpressionSetExample)
-
-Prob <- Probability(PhyloExpressionSetExample)
-
-# compute the JSD comparing the PS probability distributions of developmental stages 1 and 5
-JSD( P = Prob[ , 1],
-     Q = Prob[ , 5] )
 }
 \author{
 Hajk-Georg Drost
@@ -64,6 +56,6 @@ Endres M. and Schindelin J. E. 2003. "A new metric for probability
 distributions". IEEE Trans. on Info. Thy. (49) 3: 1858-1860.
 }
 \seealso{
-\code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{E}}, \code{\link{gJSD}}
+\code{\link{KL}}, \code{\link{H}}, \code{\link{CE}}, \code{\link{gJSD}}, \code{\link{distance}}
 }
 
