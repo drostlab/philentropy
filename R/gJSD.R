@@ -9,13 +9,14 @@
 #' 
 #' @examples
 #' 
-#' Prob <- Probability(PhyloExpressionSetExample)
+#' Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 #' 
 #' # compute the Generalized JSD comparing the PS probability matrix
 #' gJSD(Prob)
 #' 
 #' @seealso
-#' \code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{E}}, \code{\link{JSD}}
+#' \code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{H}}, \code{\link{JSD}},
+#'  \code{\link{CE}}, \code{\link{JE}}
 #' @export
 
 gJSD <- function(x){

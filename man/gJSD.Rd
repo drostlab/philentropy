@@ -19,7 +19,7 @@ This function computes the Generalized Jensen-Shannon Divergence of a probabilit
 Function to compute the Generalized Jensen-Shannon Divergence
 }
 \examples{
-Prob <- Probability(PhyloExpressionSetExample)
+Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 
 # compute the Generalized JSD comparing the PS probability matrix
 gJSD(Prob)
@@ -28,6 +28,7 @@ gJSD(Prob)
 Hajk-Georg Drost
 }
 \seealso{
-\code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{E}}, \code{\link{JSD}}
+\code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{H}}, \code{\link{JSD}},
+ \code{\link{CE}}, \code{\link{JE}}
 }
 
