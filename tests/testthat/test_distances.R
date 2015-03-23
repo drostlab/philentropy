@@ -46,6 +46,35 @@ test_that("distance(method = 'gower') computes the correct distance value.", {
 })
 
 
+test_that("distance(method = 'soergel') computes the correct distance value.", {
+        
+        expect_equal(as.vector(phylentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "soergel")), sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))) / sum(apply(rbind(1:10/sum(1:10), 20:29/sum(20:29)),2,max)))
+        
+})
+
+
+test_that("distance(method = 'kulczynski_d') computes the correct distance value.", {
+        
+        expect_equal(as.vector(phylentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "kulczynski_d")), sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))) / sum(apply(rbind(1:10/sum(1:10), 20:29/sum(20:29)),2,min)))
+        
+})
+
+
+test_that("distance(method = 'canberra') computes the correct distance value.", {
+        
+        expect_equal(as.vector(phylentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "canberra")), sum( abs((1:10/sum(1:10)) - (20:29/sum(20:29))) / ((1:10/sum(1:10)) + (20:29/sum(20:29)))))
+        expect_equal(as.vector(phylentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "canberra")), as.vector(stats::dist(base::rbind(1:10/sum(1:10),20:29/sum(20:29)), method = "canberra")))
+        
+})
+
+
+test_that("distance(method = 'lorentzian') computes the correct distance value.", {
+        
+        expect_equal(as.vector(phylentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "lorentzian")), sum( log(1 + abs((1:10/sum(1:10)) - (20:29/sum(20:29))))))
+        
+})
+
+
 
 
 
