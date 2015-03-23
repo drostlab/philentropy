@@ -17,11 +17,10 @@ This function computes the cross entropy (Kullback-Leibler Divergence) of
 all combinations of stage specific probability distributions.
 }
 \examples{
-# read standard phylotranscriptomics data
-data(PhyloExpressionSetExample)
+Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 
-# compute the KL matrix of a given PhyoExpressionSet
-KLMatrix <- KL.Matrix(Probability(PhyloExpressionSetExample))
+# compute the KL matrix of a given probability matrix
+KLMatrix <- KL.Matrix(Prob)
 
 # plot a heatmap of the corresponding KL matrix
 heatmap(KLMatrix)
@@ -34,6 +33,6 @@ Cover Thomas M. and Thomas Joy A. 2006. "Elements of Information
 Theory". \emph{John Wiley & Sons}.
 }
 \seealso{
-\code{\link{gJSD}}, \code{\link{KL}}, \code{\link{Probability}}
+\code{\link{gJSD}}, \code{\link{KL}}, \code{\link{H}}, \code{\link{CE}}, \code{\link{JE}}
 }
 
