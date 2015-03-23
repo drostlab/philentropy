@@ -131,4 +131,30 @@ test_that("distance(method = 'ruzicka') computes the correct distance value.", {
 })
 
 
+test_that("distance(method = 'inner_product') computes the correct distance value.", {
+        
+        expect_equal(as.vector(phylentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "inner_product")), sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) ))
+        
+})
+
+
+test_that("distance(method = 'harmonic_mean') computes the correct distance value.", {
+        
+        expect_equal(as.vector(phylentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "harmonic_mean")), 2 * sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) / ((1:10/sum(1:10)) + (20:29/sum(20:29))) ))
+        
+})
+
+
+test_that("distance(method = 'cosine') computes the correct distance value.", {
+        
+        expect_equal(as.vector(phylentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "cosine")), ((sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) )) / (sqrt(sum((1:10/sum(1:10))^2)) * sqrt(sum((20:29/sum(20:29))^2)))))
+        
+})
+
+
+
+
+
+
+
 
