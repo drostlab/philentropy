@@ -23,7 +23,7 @@ The following distance measures are implemented in this function:
 \item L_p Minkowski family
 \itemize{
 \item Euclidean : \eqn{d = sqrt( \sum | P_i - Q_i |^2)}
-\item Manhatten : \eqn{d = \sum | P_i - Q_i |}
+\item Manhattan : \eqn{d = \sum | P_i - Q_i |}
 \item Minkowski : \eqn{d = ( \sum | P_i - Q_i |^p)^1/p}
 \item Chebyshev : \eqn{d = max | P_i - Q_i |}
 }
