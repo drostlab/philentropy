@@ -31,6 +31,18 @@ library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
 
 ```
 
+## Tutorials 
+
+ - [Introduction]()
+ - [Distances]()
+ - [Information Theory]()
+ - [Predictive Analytics]()
+
+## Functions
+
+`distance()` : implements almost all known probability distance (or similarity) measures
+
+
 ## Discussions and Bug Reports
 
 I would be very happy to learn more about potential improvements of the concepts and functions
