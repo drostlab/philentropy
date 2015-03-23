@@ -8,9 +8,9 @@ Authors@R: as.person(
 Maintainer: Hajk-Georg Drost <hajk-georg.drost@informatik.uni-halle.de>
 Description: This framework implements a vast diversity of probability distance measures and goodness of fit techniques allowing to build customized test statistics.
 Depends: R (>= 3.1.2)
-Imports: nortest (>= 1.0-2), fitdistrplus (>= 1.0-2), parallel (>= 3.1.1), foreach (>= 1.4.2), doParallel (>= 1.0.8), dplyr (>= 0.3.0)
+Imports: Rcpp
 License: GPL-3
 LazyData: true
 LinkingTo: Rcpp
-Imports: Rcpp
 URL: https://github.com/HajkD/phylentropy
+Suggests: testthat
