@@ -1,4 +1,4 @@
 library(testthat)
-library(phylentropy)
+library(philentropy)
 
-test_check("phylentropy")
+test_check("philentropy")
