@@ -160,5 +160,20 @@ test_that("distance(method = 'hassebrook') computes the correct distance value."
 
 
 
+test_that("distance(method = 'jaccard') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "jaccard")), 1 - ((sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) )) / (sum((1:10/sum(1:10))^2) + sum((20:29/sum(20:29))^2) - ((sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) ))))))
+        
+})
+
+
+test_that("distance(method = 'dice') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "dice")), 1 - (2 * (sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) )) / (sum((1:10/sum(1:10))^2) + sum((20:29/sum(20:29))^2) )))
+        
+})
+
+
+
 
 
