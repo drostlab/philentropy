@@ -21,8 +21,8 @@ distributions P and Q.
 \details{
 \deqn{KL(P||Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
 
-where H(P,Q) denotes the \code{\link{JointEntropy}} of the probability
-distributions P and Q and H(P) denotes the \code{\link{Entropy}} of
+where H(P,Q) denotes the joint entropy of the probability
+distributions P and Q and H(P) denotes the entropy of
 probability distribution P. In case P = Q then KL(P,Q) = 0 and in case P !=
 Q then KL(P,Q) > 0.
 
@@ -39,17 +39,6 @@ divergence of two probability distributions P and Q is also named
 P <- 1:10/sum(1:10)
 Q <- 20:29/sum(20:29)
 KLD <- KL(P,Q)
-
-# a phylotranscriptomics example:
-# compare the probability distribution of developmental
-# stage 1 and 5 of a given PhyloExpressionSet
-
-# read standard phylotranscriptomics data
-data(PhyloExpressionSetExample)
-data(DivergenceExpressionSetExample)
-
-pKLD <- KL( P = Probability(PhyloExpressionSetExample)[ , 1],
-            Q = Probability(PhyloExpressionSetExample)[ , 5] )
 }
 \author{
 Hajk-Georg Drost
@@ -59,6 +48,6 @@ Cover Thomas M. and Thomas Joy A. 2006. "Elements of Information
 Theory". \emph{John Wiley & Sons}.
 }
 \seealso{
-\code{\link{KL.Matrix}}, \code{\link{Entropy}}, \code{\link{JointEntropy}}
+\code{\link{H}}, \code{\link{CE}}, \code{\link{JSD}}
 }
 
