@@ -1,9 +1,9 @@
-phylentropy
+philentropy
 ===========
 
 ## An Information Theory And Statistics Framework for Predictive Analytics
 
-The `phylentropy` Package Provides an Information Theory and Statistics Framework to Perform Predictive Analytics.
+The `philentropy` Package Provides an Information Theory and Statistics Framework to Perform Predictive Analytics.
 
 
 ## Fast Installation Guide
@@ -11,12 +11,12 @@ The `phylentropy` Package Provides an Information Theory and Statistics Framewor
 ```r
 # install.packages("devtools")
 
-# install the current version of phylentropy on your system
+# install the current version of philentropy on your system
 library(devtools)
-install_github("HajkD/phylentropy", build_vignettes = TRUE, dependencies = TRUE)
+install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
 
 # On Windows, this won't work - see ?build_github_devtools
-install_github("HajkD/phylentropy", build_vignettes = TRUE, dependencies = TRUE)
+install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
 
 # When working with Windows, first you need to install the
 # R package: rtools -> install.packages("rtools")
@@ -24,10 +24,10 @@ install_github("HajkD/phylentropy", build_vignettes = TRUE, dependencies = TRUE)
 # Afterwards you can install devtools -> install.packages("devtools")
 # and then you can run:
 
-devtools::install_github("HajkD/phylentropy", build_vignettes = TRUE, dependencies = TRUE)
+devtools::install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
 
 # and then call it from the library
-library("phylentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
+library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
 
 ```
 

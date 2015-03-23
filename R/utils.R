@@ -1,4 +1,4 @@
-#' @useDynLib phylentropy
+#' @useDynLib philentropy
 #' @importFrom Rcpp sourceCpp
 NULL
 

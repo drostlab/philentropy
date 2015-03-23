@@ -1,16 +1,16 @@
-Package: phylentropy
+Package: philentropy
 Type: Package
-Title: An Information Theory Framework Probability Distributions
+Title: An Information Theory And Statistics Framework for Predictive Analytics
 Version: 0.0.1
 Date: 2014-05-03
 Authors@R: as.person(
     "Hajk-Georg Drost <hajk-georg.drost@informatik.uni-halle.de> [aut, cre]")
 Maintainer: Hajk-Georg Drost <hajk-georg.drost@informatik.uni-halle.de>
-Description: This framework implements a vast diversity of probability distance measures and goodness of fit techniques allowing to build customized test statistics.
+Description: The philentropy Package Provides an Information Theory and Statistics Framework to Perform Predictive Analytics.
 Depends: R (>= 3.1.2)
 Imports: Rcpp
 License: GPL-3
 LazyData: true
 LinkingTo: Rcpp
-URL: https://github.com/HajkD/phylentropy
+URL: https://github.com/HajkD/philentropy
 Suggests: testthat
