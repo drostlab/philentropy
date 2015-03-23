@@ -22,19 +22,7 @@ This function might be useful to fastly compute Shannon's Entropy for any
 given probability vector.
 }
 \examples{
-# read a standard PhyloExpressionSet
-data(PhyloExpressionSetExample)
-
-# compute the Entropy based on the probability P(PS) of developmental stage 1
-EntropyValue <- H(Probability(PhyloExpressionSetExample)[ , 1])
-
-# or
-
-# compute the phylotranscriptomics Entropy profile analogous to the 'Entopy' function
-EntropyProfile <- apply(Probability(PhyloExpressionSetExample),2,H)
-
-# and compare it with the 'Entropy' function
-EntropyProfile2 <- Entropy(PhyloExpressionSetExample)
+H(1:10/sum(1:10))
 }
 \author{
 Hajk-Georg Drost
@@ -44,6 +32,6 @@ Shannon, Claude E. 1948. "A Mathematical Theory of
 Communication". \emph{Bell System Technical Journal} \bold{27} (3): 379-423.
 }
 \seealso{
-\code{\link{CE}}, \code{\link{KL}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{Entropy}}
+\code{\link{JE}}, \code{\link{CE}}, \code{\link{KL}}, \code{\link{JSD}}, \code{\link{gJSD}}
 }
 

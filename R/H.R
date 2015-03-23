@@ -10,24 +10,12 @@
 #' Shannon's Entropy \eqn{H(X)} shall be computed.
 #' @return a numeric value representing Shannon's Entropy in bit.
 #' @author Hajk-Georg Drost
-#' @seealso \code{\link{CE}}, \code{\link{KL}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{Entropy}}
+#' @seealso \code{\link{JE}}, \code{\link{CE}}, \code{\link{KL}}, \code{\link{JSD}}, \code{\link{gJSD}}
 #' @references Shannon, Claude E. 1948. "A Mathematical Theory of
 #' Communication". \emph{Bell System Technical Journal} \bold{27} (3): 379-423.
 #' @examples
 #' 
-#' # read a standard PhyloExpressionSet
-#' data(PhyloExpressionSetExample)
-#' 
-#' # compute the Entropy based on the probability P(PS) of developmental stage 1
-#' EntropyValue <- H(Probability(PhyloExpressionSetExample)[ , 1])
-#' 
-#' # or
-#' 
-#' # compute the phylotranscriptomics Entropy profile analogous to the 'Entopy' function
-#' EntropyProfile <- apply(Probability(PhyloExpressionSetExample),2,H)
-#' 
-#' # and compare it with the 'Entropy' function
-#' EntropyProfile2 <- Entropy(PhyloExpressionSetExample)
+#' H(1:10/sum(1:10))
 #' 
 #' @export
 
