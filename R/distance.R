@@ -10,7 +10,7 @@
 #' \item L_p Minkowski family
 #' \itemize{
 #' \item Euclidean : \eqn{d = sqrt( \sum | P_i - Q_i |^2)}
-#' \item Manhatten : \eqn{d = \sum | P_i - Q_i |}
+#' \item Manhattan : \eqn{d = \sum | P_i - Q_i |}
 #' \item Minkowski : \eqn{d = ( \sum | P_i - Q_i |^p)^1/p}
 #' \item Chebyshev : \eqn{d = max | P_i - Q_i |}
 #' }
@@ -115,7 +115,7 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                         
                 } else {
                         
-                        stop("Please specify n for the Minkowski distance!")
+                        stop("Please specify p for the Minkowski distance!")
                 }
         }
         
