@@ -71,7 +71,7 @@ valid.distr <- function(x){
 
 getDistMethods <- function(){
         
-        distance.names <- c("euclidean", "manhatten", "minkowski", "chebyshev",
+        distance.names <- c("euclidean", "manhattan", "minkowski", "chebyshev",
                             "sorensen", "gower", "soergel", "kulczynski_d",
                             "canberra", "lorentzian", "intersection", "non-intersection",
                             "wavehedges", "czekanowski", "motyka","kulczynski_s",
