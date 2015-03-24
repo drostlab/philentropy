@@ -217,4 +217,16 @@ test_that("distance(method = 'squared_euclidean') computes the correct distance 
 })
 
 
+test_that("distance(method = 'pearson') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "pearson")), sum(((1:10/sum(1:10)) - (20:29/sum(20:29)))^2 / (20:29/sum(20:29))))
+        
+})
+
+
+
+
+
+
+
 
