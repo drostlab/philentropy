@@ -778,6 +778,18 @@ double squared_chi_sq(NumericVector P, NumericVector Q){
 }
 
 
+//' @export
+// [[Rcpp::export]]
+double prob_symm_chi_sq(NumericVector P, NumericVector Q){
+        
+        return (2.0 * squared_chi_sq(P,Q));
+        
+}
+
+
+
+
+
 
 
 
