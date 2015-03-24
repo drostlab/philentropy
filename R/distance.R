@@ -57,6 +57,12 @@
 #' \item Squared-chord : \eqn{d = \sum ( sqrt(P_i) - sqrt(Q_i) )^2}
 #' }
 #' 
+#' 
+#' \item Squared L_2 family (chi squared family)
+#' \itemize{
+#' \item Squared Euclidean : \eqn{d = \sum ( P_i - Q_i )^2}
+#' }
+#' 
 #' \item Shannon's entropy family
 #' \itemize{
 #' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
@@ -277,6 +283,12 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
 
+        if(method == "squared_euclidean"){
+                
+                dist <- squared_euclidean(x,y)
+                
+        }
+        
         if(method == "kullback-leibler"){
                 
                 dist <- KL(x,y)
