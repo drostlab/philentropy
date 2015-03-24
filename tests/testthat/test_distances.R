@@ -210,7 +210,11 @@ test_that("distance(method = 'squared_chord') computes the correct distance valu
 })
 
 
-
+test_that("distance(method = 'squared_euclidean') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "squared_euclidean")), sum(((1:10/sum(1:10)) - (20:29/sum(20:29)))^2))
+        
+})
 
 
 
