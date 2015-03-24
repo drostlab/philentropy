@@ -58,9 +58,16 @@
 #' }
 #' 
 #' 
-#' \item Squared L_2 family (chi squared family)
+#' \item Squared L_2 family (\eqn{\Chi}^2 squared family)
 #' \itemize{
 #' \item Squared Euclidean : \eqn{d = \sum ( P_i - Q_i )^2}
+#' \item Pearson \eqn{\Chi}^2 : 
+#' \item Neyman \eqn{\Chi}^2 :
+#' \item Squared \eqn{\Chi}^2 :
+#' \item Probabilistic Symmetric \eqn{\Chi}^2 :
+#' \item Divergence : 
+#' \item Clark :
+#' \item Additive Symmetric \eqn{\Chi}^2 : 
 #' }
 #' 
 #' \item Shannon's entropy family
@@ -286,6 +293,12 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         if(method == "squared_euclidean"){
                 
                 dist <- squared_euclidean(x,y)
+                
+        }
+        
+        if(method == "pearson"){
+                
+                dist <- pearson_chi_sq(x,y)
                 
         }
         
