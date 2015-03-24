@@ -61,8 +61,8 @@
 #' \item Squared L_2 family (\eqn{\Chi}^2 squared family)
 #' \itemize{
 #' \item Squared Euclidean : \eqn{d = \sum ( P_i - Q_i )^2}
-#' \item Pearson \eqn{\Chi}^2 : 
-#' \item Neyman \eqn{\Chi}^2 :
+#' \item Pearson \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / Q_i )}
+#' \item Neyman \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / P_i )}
 #' \item Squared \eqn{\Chi}^2 :
 #' \item Probabilistic Symmetric \eqn{\Chi}^2 :
 #' \item Divergence : 
@@ -301,6 +301,13 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 dist <- pearson_chi_sq(x,y)
                 
         }
+        
+        if(method == "neyman"){
+                
+                dist <- neyman_chi_sq(x,y)
+                
+        }
+        
         
         if(method == "kullback-leibler"){
                 
