@@ -238,3 +238,16 @@ test_that("distance(method = 'squared_chi') computes the correct distance value.
 })
 
 
+test_that("distance(method = 'prob_symm') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "prob_symm")), 2 * sum(((1:10/sum(1:10)) - (20:29/sum(20:29)))^2 / ((1:10/sum(1:10)) + (20:29/sum(20:29)))))
+        
+})
+
+
+
+
+
+
+
+
