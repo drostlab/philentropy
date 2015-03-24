@@ -48,7 +48,7 @@ getDistMethods <- function(){
                             "tanimoto", "ruzicka","inner_product","harmonic_mean",
                             "cosine", "hassebrook", "jaccard", "dice","fidelity","bhattacharyya",
                             "hellinger", "matusita", "squared_chord","squared_euclidean","pearson",
-                            "neyman", "squared_chi")
+                            "neyman", "squared_chi", "prob_symm", "divergence")
         
         return(distance.names)
 }
