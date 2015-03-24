@@ -70,6 +70,19 @@ The following distance measures are implemented in this function:
 \item Squared-chord : \eqn{d = \sum ( sqrt(P_i) - sqrt(Q_i) )^2}
 }
 
+
+\item Squared L_2 family (\eqn{\Chi}^2 squared family)
+\itemize{
+\item Squared Euclidean : \eqn{d = \sum ( P_i - Q_i )^2}
+\item Pearson \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / Q_i )}
+\item Neyman \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / P_i )}
+\item Squared \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )}
+\item Probabilistic Symmetric \eqn{\Chi}^2 :
+\item Divergence :
+\item Clark :
+\item Additive Symmetric \eqn{\Chi}^2 :
+}
+
 \item Shannon's entropy family
 \itemize{
 \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
