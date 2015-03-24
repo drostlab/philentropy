@@ -63,7 +63,7 @@
 #' \item Squared Euclidean : \eqn{d = \sum ( P_i - Q_i )^2}
 #' \item Pearson \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / Q_i )}
 #' \item Neyman \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / P_i )}
-#' \item Squared \eqn{\Chi}^2 :
+#' \item Squared \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )}
 #' \item Probabilistic Symmetric \eqn{\Chi}^2 :
 #' \item Divergence : 
 #' \item Clark :
@@ -308,6 +308,11 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
         
+        if(method == "squared_chi"){
+                
+                dist <- squared_chi_sq(x,y)
+                
+        }
         
         if(method == "kullback-leibler"){
                 
