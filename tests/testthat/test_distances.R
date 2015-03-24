@@ -181,5 +181,28 @@ test_that("distance(method = 'fidelity') computes the correct distance value.", 
 })
 
 
+test_that("distance(method = 'bhattacharyya') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "bhattacharyya")), -log(sum(sqrt(1:10/sum(1:10) * 20:29/sum(20:29)))))
+        
+})
+
+
+test_that("distance(method = 'hellinger') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "hellinger")), 2 * sqrt(1 - sum(sqrt(1:10/sum(1:10) * 20:29/sum(20:29)))))
+        
+})
+
+
+
+
+
+
+
+
+
+
+
 
 
