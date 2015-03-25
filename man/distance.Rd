@@ -77,8 +77,8 @@ The following distance measures are implemented in this function:
 \item Pearson \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / Q_i )}
 \item Neyman \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / P_i )}
 \item Squared \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )}
-\item Probabilistic Symmetric \eqn{\Chi}^2 :
-\item Divergence :
+\item Probabilistic Symmetric \eqn{\Chi}^2 : \eqn{d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )}
+\item Divergence : \eqn{\Chi}^2 : \eqn{d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i)^2 )}
 \item Clark :
 \item Additive Symmetric \eqn{\Chi}^2 :
 }
