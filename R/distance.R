@@ -326,6 +326,12 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
         
+        if(method == "clark"){
+                
+                dist <- clark_sq(x,y)
+                
+        }
+        
         if(method == "kullback-leibler"){
                 
                 dist <- KL(x,y)
