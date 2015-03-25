@@ -320,6 +320,11 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
         
+        if(method == "divergence"){
+                
+                dist <- divergence_sq(x,y)
+                
+        }
         
         if(method == "kullback-leibler"){
                 
