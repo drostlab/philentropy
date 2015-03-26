@@ -67,14 +67,18 @@
 #' \item Probabilistic Symmetric \eqn{\Chi}^2 : \eqn{d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )}
 #' \item Divergence : \eqn{\Chi}^2 : \eqn{d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i)^2 )}
 #' \item Clark : \eqn{d = sqrt ( \sum (| P_i - Q_i | / (P_i + Q_i))^2 )}
-#' \item Additive Symmetric \eqn{\Chi}^2 : 
+#' \item Additive Symmetric \eqn{\Chi}^2 : \eqn{d = \sum ( ((P_i - Q_i)^2 * (P_i + Q_i)) / (P_i * Q_i) ) }
 #' }
 #' 
 #' \item Shannon's entropy family
 #' \itemize{
 #' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
+#' \item Jeffreys : 
+#' \item K divergence :
+#' \item Topsoe :
 #' \item Jensen-Shannon : \eqn{JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))}, where \eqn{R = 0.5 * (P + Q)} denotes the mid-point of the probability
 #' vectors P and Q
+#' \item Jensen difference :
 #' }
 #' }
 #' @examples
