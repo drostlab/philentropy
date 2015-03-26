@@ -1,0 +1,12 @@
+---
+title: "Introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+## Introduction to the `philentropy` Package
+
+The `philentropy` package implements a framework based on `Information Theory`, `Information Theoretic Learning`, and `Statistical Learning` to perform `Predictive Analytics`.
