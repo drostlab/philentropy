@@ -332,6 +332,12 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 
         }
         
+        if(method == "additive_symm"){
+                
+                dist <- additive_symm_chi_sq(x,y)
+                
+        }
+        
         if(method == "kullback-leibler"){
                 
                 dist <- KL(x,y)
