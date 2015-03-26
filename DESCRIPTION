@@ -13,4 +13,6 @@ License: GPL-3
 LazyData: true
 LinkingTo: Rcpp
 URL: https://github.com/HajkD/philentropy
-Suggests: testthat
+Suggests: testthat,
+    knitr
+VignetteBuilder: knitr
