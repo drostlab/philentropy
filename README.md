@@ -33,10 +33,10 @@ library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
 
 ## Tutorials 
 
- - [Introduction]()
- - [Distances]()
- - [Information Theory]()
- - [Predictive Analytics]()
+ - [Introduction](https://github.com/HajkD/philentropy/blob/master/vignettes/Introduction.Rmd)
+ - [Distances](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd)
+ - [Information Theoretic Learning](https://github.com/HajkD/philentropy/blob/master/vignettes/Information%20Theory.Rmd)
+ - [Modeling and Predictive Analytics](https://github.com/HajkD/philentropy/blob/master/vignettes/Predictive%20Analytics.Rmd)
 
 ## Important Functions
 
