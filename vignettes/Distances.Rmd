@@ -1,0 +1,10 @@
+---
+title: "Distance Measures"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Distances}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
