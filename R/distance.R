@@ -73,7 +73,7 @@
 #' \item Shannon's entropy family
 #' \itemize{
 #' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
-#' \item Jeffreys : 
+#' \item Jeffreys : \eqn{d = \sum (P_i - Q_i) * log(P_i / Q_i)}
 #' \item K divergence :
 #' \item Topsoe :
 #' \item Jensen-Shannon : \eqn{JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))}, where \eqn{R = 0.5 * (P + Q)} denotes the mid-point of the probability
@@ -347,6 +347,15 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 dist <- KL(x,y)
         }
         
+        if(method == "jeffreys"){
+                
+                dist <- jeffreys(x,y)
+        }
+        
+        if(method == "k_divergence"){
+                
+                dist <- k_divergence(x,y)
+        }
         
         if(method == "jensen-shannon"){
                 

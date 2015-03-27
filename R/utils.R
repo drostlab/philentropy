@@ -49,7 +49,7 @@ getDistMethods <- function(){
                             "cosine", "hassebrook", "jaccard", "dice","fidelity","bhattacharyya",
                             "hellinger", "matusita", "squared_chord","squared_euclidean","pearson",
                             "neyman", "squared_chi", "prob_symm", "divergence","clark",
-                            "additive_symm")
+                            "additive_symm","kullback-leibler","jeffreys","k_divergence")
         
         return(distance.names)
 }
