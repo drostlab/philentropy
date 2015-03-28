@@ -74,7 +74,7 @@
 #' \itemize{
 #' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
 #' \item Jeffreys : \eqn{d = \sum (P_i - Q_i) * log(P_i / Q_i)}
-#' \item K divergence :
+#' \item K divergence : \eqn{d = \sum P_i * log(2 * P_i / P_i + Q_i)}
 #' \item Topsoe :
 #' \item Jensen-Shannon : \eqn{JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))}, where \eqn{R = 0.5 * (P + Q)} denotes the mid-point of the probability
 #' vectors P and Q
