@@ -273,6 +273,10 @@ test_that("distance(method = 'kullback-leibler') computes the correct distance v
 })
 
 
-
+test_that("distance(method = 'jeffreys') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "jeffreys")), sum(((1:10/sum(1:10)) - (20:29/sum(20:29))) * log((1:10/sum(1:10)) / (20:29/sum(20:29)))))
+        
+})
 
 
