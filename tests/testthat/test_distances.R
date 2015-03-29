@@ -280,3 +280,9 @@ test_that("distance(method = 'jeffreys') computes the correct distance value.", 
 })
 
 
+
+test_that("distance(method = 'k_divergence') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "k_divergence")), sum((1:10/sum(1:10)) * log(2 * (1:10/sum(1:10)) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))))
+        
+})
