@@ -286,3 +286,15 @@ test_that("distance(method = 'k_divergence') computes the correct distance value
         expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "k_divergence")), sum((1:10/sum(1:10)) * log(2 * (1:10/sum(1:10)) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))))
         
 })
+
+
+test_that("distance(method = 'topsoe') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "topsoe")), sum(((1:10/sum(1:10)) * log(2 * (1:10/sum(1:10)) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))) + ((20:29/sum(20:29)) * log(2 * (20:29/sum(20:29)) / ((1:10/sum(1:10)) + (20:29/sum(20:29)))))))
+        
+})
+
+
+
+
+
