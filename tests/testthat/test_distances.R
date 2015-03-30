@@ -268,7 +268,7 @@ test_that("distance(method = 'additive_symm') computes the correct distance valu
 
 test_that("distance(method = 'kullback-leibler') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "kullback-leibler")), sum((1:10/sum(1:10)) * log2((1:10/sum(1:10)) / (20:29/sum(20:29)))))
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "kullback-leibler")), sum((1:10/sum(1:10)) * log((1:10/sum(1:10)) / (20:29/sum(20:29)))))
         
 })
 
