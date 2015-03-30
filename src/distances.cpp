@@ -813,6 +813,27 @@ double additive_symm_chi_sq(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
+double kullback_leibler_distance(NumericVector P, NumericVector Q){
+        
+        int    P_len      = P.size();
+        int    Q_len      = Q.size();
+        double dist       = 0.0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        for(int i = 0; i < P_len; i++){
+                
+                dist += P[i] * log(P[i] / Q[i]);
+                
+        }
+        
+        return dist;
+}
+
+//' @export
+// [[Rcpp::export]]
 double jeffreys(NumericVector P, NumericVector Q){
         
         int    P_len      = P.size();
