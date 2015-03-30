@@ -72,7 +72,7 @@
 #' 
 #' \item Shannon's entropy family
 #' \itemize{
-#' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
+#' \item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log(P(P) / P(Q)) = H(P,Q) - H(P)}
 #' \item Jeffreys : \eqn{d = \sum (P_i - Q_i) * log(P_i / Q_i)}
 #' \item K divergence : \eqn{d = \sum P_i * log(2 * P_i / P_i + Q_i)}
 #' \item Topsoe :
@@ -344,7 +344,7 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         
         if(method == "kullback-leibler"){
                 
-                dist <- KL(x,y)
+                dist <- kullback_leibler_distance(x,y)
         }
         
         if(method == "jeffreys"){
