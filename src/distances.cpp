@@ -1,10 +1,11 @@
 #include <Rcpp.h>
 #include <math.h>
 using namespace Rcpp;
+using namespace std;
 
 //' @export
 // [[Rcpp::export]]
-double euclidean(NumericVector P, NumericVector Q){
+double euclidean(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -28,7 +29,7 @@ double euclidean(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double manhattan(NumericVector P, NumericVector Q){
+double manhattan(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -53,7 +54,7 @@ double manhattan(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double minkowski(NumericVector P, NumericVector Q, double n){
+double minkowski(const std::vector<double>& P, const std::vector<double>& Q, double n){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -77,7 +78,7 @@ double minkowski(NumericVector P, NumericVector Q, double n){
 
 //' @export
 // [[Rcpp::export]]
-double chebyshev(NumericVector P, NumericVector Q){
+double chebyshev(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -103,7 +104,7 @@ double chebyshev(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double sorensen(NumericVector P, NumericVector Q){
+double sorensen(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -135,7 +136,7 @@ double sorensen(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double gower(NumericVector P, NumericVector Q){
+double gower(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -160,7 +161,7 @@ double gower(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double soergel(NumericVector P, NumericVector Q){
+double soergel(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -197,7 +198,7 @@ double soergel(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double kulczynski_d(NumericVector P, NumericVector Q){
+double kulczynski_d(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -235,7 +236,7 @@ double kulczynski_d(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double canberra(NumericVector P, NumericVector Q){
+double canberra(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -262,7 +263,7 @@ double canberra(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double lorentzian(NumericVector P, NumericVector Q){
+double lorentzian(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -286,7 +287,7 @@ double lorentzian(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double intersection_dist(NumericVector P, NumericVector Q){
+double intersection_dist(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -318,7 +319,7 @@ double intersection_dist(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double wave_hedges(NumericVector P, NumericVector Q){
+double wave_hedges(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -353,7 +354,7 @@ double wave_hedges(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double czekanowski(NumericVector P, NumericVector Q){
+double czekanowski(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -382,7 +383,7 @@ double czekanowski(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double motyka(NumericVector P, NumericVector Q){
+double motyka(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -419,7 +420,7 @@ double motyka(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double tanimoto(NumericVector P, NumericVector Q){
+double tanimoto(const std::vector<double>& P, const std::vector<double>& Q){
         
         // Soergel = Tanimoto
         return soergel(P, Q);
@@ -428,7 +429,7 @@ double tanimoto(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double ruzicka(NumericVector P, NumericVector Q){
+double ruzicka(const std::vector<double>& P, const std::vector<double>& Q){
         
         // Ruzicka = 1 - Tanimoto = 1 - Soergel
         return (1.0 - soergel(P, Q));
@@ -437,7 +438,7 @@ double ruzicka(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double inner_product(NumericVector P, NumericVector Q){
+double inner_product(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -459,7 +460,7 @@ double inner_product(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double harmonic_mean_dist(NumericVector P, NumericVector Q){
+double harmonic_mean_dist(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len     = P.size();
         int    Q_len     = Q.size();
@@ -486,7 +487,7 @@ double harmonic_mean_dist(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double cosine_dist(NumericVector P, NumericVector Q){
+double cosine_dist(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len     = P.size();
         int    Q_len     = Q.size();
@@ -514,7 +515,7 @@ double cosine_dist(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double kumar_hassebrook(NumericVector P, NumericVector Q){
+double kumar_hassebrook(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len     = P.size();
         int    Q_len     = Q.size();
@@ -542,7 +543,7 @@ double kumar_hassebrook(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double jaccard(NumericVector P, NumericVector Q){
+double jaccard(const std::vector<double>& P, const std::vector<double>& Q){
         
         return (1.0 - kumar_hassebrook(P,Q));
         
@@ -551,7 +552,7 @@ double jaccard(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double dice_dist(NumericVector P, NumericVector Q){
+double dice_dist(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len       = P.size();
         int    Q_len       = Q.size();
@@ -579,7 +580,7 @@ double dice_dist(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double fidelity(NumericVector P, NumericVector Q){
+double fidelity(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -601,7 +602,7 @@ double fidelity(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double bhattacharyya(NumericVector P, NumericVector Q){
+double bhattacharyya(const std::vector<double>& P, const std::vector<double>& Q){
         
         return -log(fidelity(P,Q));
 }
@@ -609,21 +610,21 @@ double bhattacharyya(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double hellinger(NumericVector P, NumericVector Q){
+double hellinger(const std::vector<double>& P, const std::vector<double>& Q){
         
         return 2.0 * sqrt( 1.0 - fidelity(P,Q));
 }
 
 //' @export
 // [[Rcpp::export]]
-double matusita(NumericVector P, NumericVector Q){
+double matusita(const std::vector<double>& P, const std::vector<double>& Q){
         
         return sqrt( 2.0 - ( 2.0 * fidelity(P,Q)));
 }
 
 //' @export
 // [[Rcpp::export]]
-double squared_chord(NumericVector P, NumericVector Q){
+double squared_chord(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -646,7 +647,7 @@ double squared_chord(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double squared_euclidean(NumericVector P, NumericVector Q){
+double squared_euclidean(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -668,7 +669,7 @@ double squared_euclidean(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double pearson_chi_sq(NumericVector P, NumericVector Q){
+double pearson_chi_sq(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -690,7 +691,7 @@ double pearson_chi_sq(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double neyman_chi_sq(NumericVector P, NumericVector Q){
+double neyman_chi_sq(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -712,7 +713,7 @@ double neyman_chi_sq(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double squared_chi_sq(NumericVector P, NumericVector Q){
+double squared_chi_sq(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -734,7 +735,7 @@ double squared_chi_sq(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double prob_symm_chi_sq(NumericVector P, NumericVector Q){
+double prob_symm_chi_sq(const std::vector<double>& P, const std::vector<double>& Q){
         
         return (2.0 * squared_chi_sq(P,Q));
         
@@ -745,7 +746,7 @@ double prob_symm_chi_sq(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double divergence_sq(NumericVector P, NumericVector Q){
+double divergence_sq(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -768,7 +769,7 @@ double divergence_sq(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double clark_sq(NumericVector P, NumericVector Q){
+double clark_sq(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -790,7 +791,7 @@ double clark_sq(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double additive_symm_chi_sq(NumericVector P, NumericVector Q){
+double additive_symm_chi_sq(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -813,7 +814,7 @@ double additive_symm_chi_sq(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double kullback_leibler_distance(NumericVector P, NumericVector Q){
+double kullback_leibler_distance(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -834,7 +835,7 @@ double kullback_leibler_distance(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double jeffreys(NumericVector P, NumericVector Q){
+double jeffreys(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -856,7 +857,7 @@ double jeffreys(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double k_divergence(NumericVector P, NumericVector Q){
+double k_divergence(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -878,7 +879,7 @@ double k_divergence(NumericVector P, NumericVector Q){
 
 //' @export
 // [[Rcpp::export]]
-double topsoe(NumericVector P, NumericVector Q){
+double topsoe(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
