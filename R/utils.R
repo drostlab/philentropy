@@ -50,7 +50,7 @@ getDistMethods <- function(){
                             "hellinger", "matusita", "squared_chord","squared_euclidean","pearson",
                             "neyman", "squared_chi", "prob_symm", "divergence","clark",
                             "additive_symm","kullback-leibler","jeffreys","k_divergence",
-                            "topsoe")
+                            "topsoe","jensen-shannon", "jensen_difference")
         
         return(distance.names)
 }
