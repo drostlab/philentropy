@@ -76,10 +76,17 @@
 #' \item Jeffreys : \eqn{d = \sum (P_i - Q_i) * log(P_i / Q_i)}
 #' \item K divergence : \eqn{d = \sum P_i * log(2 * P_i / P_i + Q_i)}
 #' \item Topsoe : \eqn{d = \sum ( P_i * log(2 * P_i / P_i + Q_i) ) + ( Q_i * log(2 * Q_i / P_i + Q_i) )}
-#' \item Jensen-Shannon :  denotes the mid-point of the probability
-#' vectors P and Q
+#' \item Jensen-Shannon :  \eqn{d = 0.5 * ( \sum P_i * log(2 * P_i / P_i + Q_i) + \sum Q_i * log(2 * Q_i / P_i + Q_i))} 
 #' \item Jensen difference : \eqn{d = \sum ( (P_i * log(P_i) + Q_i * log(Q_i) / 2) - (P_i + Q_i / 2) * log(P_i + Q_i / 2) )}
 #' }
+#' 
+#' \item Combinations
+#' \itemize{
+#' \item Taneja :
+#' \item Kumar-Johnson :
+#' \item Avg(L_1, L_n)
+#' }
+#' 
 #' }
 #' @examples
 #' 
@@ -364,7 +371,7 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         
         if(method == "jensen-shannon"){
                 
-                dist <- JSD(x,y)
+                dist <- jensen_shannon(x,y)
         }
         
         if(method == "jensen_difference"){

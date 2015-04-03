@@ -89,7 +89,7 @@ The following distance measures are implemented in this function:
 \item Jeffreys : \eqn{d = \sum (P_i - Q_i) * log(P_i / Q_i)}
 \item K divergence : \eqn{d = \sum P_i * log(2 * P_i / P_i + Q_i)}
 \item Topsoe : \eqn{d = \sum ( P_i * log(2 * P_i / P_i + Q_i) ) + ( Q_i * log(2 * Q_i / P_i + Q_i) )}
-\item Jensen-Shannon :  denotes the mid-point of the probability
+\item Jensen-Shannon :  \eqn{d = 0.5 * ( \sum P_i * log(2 * P_i / P_i + Q_i) + \sum Q_i * log(2 * Q_i / P_i + Q_i))}
 vectors P and Q
 \item Jensen difference : \eqn{d = \sum ( (P_i * log(P_i) + Q_i * log(Q_i) / 2) - (P_i + Q_i / 2) * log(P_i + Q_i / 2) )}
 }
