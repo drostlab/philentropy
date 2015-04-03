@@ -12,6 +12,8 @@ distance(x, y, method = "euclidean", p = NULL)
 \item{y}{a numeric vector (probability density function).}
 
 \item{method}{a character string specifying the distance measure that shall be computed.}
+
+\item{p}{power of the Minkowski distance.}
 }
 \description{
 This functions computes the distance/dissimilarity between two probability density functions.
@@ -90,9 +92,16 @@ The following distance measures are implemented in this function:
 \item K divergence : \eqn{d = \sum P_i * log(2 * P_i / P_i + Q_i)}
 \item Topsoe : \eqn{d = \sum ( P_i * log(2 * P_i / P_i + Q_i) ) + ( Q_i * log(2 * Q_i / P_i + Q_i) )}
 \item Jensen-Shannon :  \eqn{d = 0.5 * ( \sum P_i * log(2 * P_i / P_i + Q_i) + \sum Q_i * log(2 * Q_i / P_i + Q_i))}
-vectors P and Q
 \item Jensen difference : \eqn{d = \sum ( (P_i * log(P_i) + Q_i * log(Q_i) / 2) - (P_i + Q_i / 2) * log(P_i + Q_i / 2) )}
 }
+
+\item Combinations
+\itemize{
+\item Taneja :
+\item Kumar-Johnson :
+\item Avg(L_1, L_n)
+}
+
 }
 }
 \examples{

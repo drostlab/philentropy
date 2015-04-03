@@ -3,6 +3,7 @@
 #' @param x a numeric vector (probability density function).
 #' @param y a numeric vector (probability density function).
 #' @param method a character string specifying the distance measure that shall be computed.
+#' @param p power of the Minkowski distance.
 #' @author Hajk-Georg Drost
 #' @details The following distance measures are implemented in this function:
 #' 
