@@ -295,6 +295,11 @@ test_that("distance(method = 'topsoe') computes the correct distance value.", {
 })
 
 
+test_that("distance(method = 'jensen-shannon') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "jensen-shannon")), 0.5 * ((sum((1:10/sum(1:10)) * log((2 * (1:10/sum(1:10))) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))))  +  (sum((20:29/sum(20:29)) * log((2 * (20:29/sum(20:29))) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))))))
+        
+})
 
 test_that("distance(method = 'jensen_difference') computes the correct distance value.", {
         
