@@ -9,7 +9,7 @@ Maintainer: Hajk-Georg Drost <hajk-georg.drost@informatik.uni-halle.de>
 Description: The philentropy Package Provides an Information Theory and Statistics Framework to Perform Predictive Analytics.
 Depends: R (>= 3.1.2)
 Imports: Rcpp
-License: GPL-3
+License: GPL-2
 LazyData: true
 LinkingTo: Rcpp
 URL: https://github.com/HajkD/philentropy
