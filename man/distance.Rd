@@ -97,7 +97,7 @@ The following distance measures are implemented in this function:
 
 \item Combinations
 \itemize{
-\item Taneja :
+\item Taneja : \eqn{d = \sum ( P_i + Q_i / 2) * log( P_i + Q_i / ( 2 * sqrt( P_i * Q_i)) )}
 \item Kumar-Johnson :
 \item Avg(L_1, L_n)
 }
