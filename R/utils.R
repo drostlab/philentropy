@@ -37,7 +37,7 @@ valid.distr <- function(x){
                 stop("Your probability values are not between: [0,1].", call. = FALSE)
         }
         
-        else if(abs(1 - sum(x)) > 1E-5) {
+        else if(abs(1 - sum(x)) > 1E-10) {
                 
                 stop("Your probability distribution does not sum to 1.", call. = FALSE)
         } else{
@@ -69,7 +69,8 @@ getDistMethods <- function(){
                             "hellinger", "matusita", "squared_chord","squared_euclidean","pearson",
                             "neyman", "squared_chi", "prob_symm", "divergence","clark",
                             "additive_symm","kullback-leibler","jeffreys","k_divergence",
-                            "topsoe","jensen-shannon", "jensen_difference")
+                            "topsoe","jensen-shannon", "jensen_difference","taneja",
+                            "kumar-johnson","avg")
         
         return(distance.names)
 }
