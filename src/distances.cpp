@@ -1024,5 +1024,38 @@ double kumar_johnson(const std::vector<double>& P, const std::vector<double>& Q)
 
 
 
+//' @export
+// [[Rcpp::export]]
+double avg(const std::vector<double>& P, const std::vector<double>& Q){
+        
+        int    P_len       = P.size();
+        int    Q_len       = Q.size();
+        double dist        = 0.0;
+        double PQdiff      = 0.0;
+        double PQmax       = 0.0;
+        
+        if (P_len != Q_len){
+                Rcpp::stop("The vectors you are comparing do not have the same length!");
+        }
+        
+        for(int i = 0; i < P_len; i++){
+                
+                PQdiff = P[i] - Q[i];
+                
+                if (PQdiff > PQmax)
+                     PQmax = PQdiff;
+                     
+                dist += (PQdiff + PQmax) / 2.0 ;
+                
+        }
+        
+        return dist;
+}
+
+
+
+
+
+
 
 
