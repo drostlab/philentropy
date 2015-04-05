@@ -87,7 +87,7 @@ The following distance measures are implemented in this function:
 
 \item Shannon's entropy family
 \itemize{
-\item Kullback-Leibler : \eqn{KL(P || Q) = \sum P(P) * log(P(P) / P(Q)) = H(P,Q) - H(P)}
+\item Kullback-Leibler : \eqn{d = \sum P_i * log(P_i / Q_i)}
 \item Jeffreys : \eqn{d = \sum (P_i - Q_i) * log(P_i / Q_i)}
 \item K divergence : \eqn{d = \sum P_i * log(2 * P_i / P_i + Q_i)}
 \item Topsoe : \eqn{d = \sum ( P_i * log(2 * P_i / P_i + Q_i) ) + ( Q_i * log(2 * Q_i / P_i + Q_i) )}
@@ -98,8 +98,8 @@ The following distance measures are implemented in this function:
 \item Combinations
 \itemize{
 \item Taneja : \eqn{d = \sum ( P_i + Q_i / 2) * log( P_i + Q_i / ( 2 * sqrt( P_i * Q_i)) )}
-\item Kumar-Johnson :
-\item Avg(L_1, L_n)
+\item Kumar-Johnson : \eqn{d = \sum (P_i^2 - Q_i^2)^2 / 2 * (P_i * Q_i)^1.5}
+\item Avg(L_1, L_n) : \eqn{d = \sum | P_i - Q_i| + max{ | P_i - Q_i |} / 2}
 }
 
 }
