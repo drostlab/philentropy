@@ -405,6 +405,11 @@ distance <- function(x,y, method = "euclidean", p = NULL){
                 dist <- taneja(x,y)
         }
         
+        if(method == "kumar-johnson"){
+                
+                dist <- kumar_johnson(x,y)
+        }
+        
         
         names(dist) <- method
         
