@@ -25,7 +25,7 @@ test_that("distance(method = 'euclidean') computes the correct distance value.",
         
         expect_identical(as.vector(philentropy::distance(P, Q, method = "euclidean")), sqrt(sum(abs((P) - (Q))^2)))
         expect_equal(as.vector(philentropy::distance(P, Q, method = "euclidean")), as.vector(stats::dist(base::rbind(P,Q), method = "euclidean")))
-        #expect_error(philentropy::distance(1:10, 20:29, method = "euclidean"), "Error : Your probability values are not between: [0,1].")
+        #expect_error(philentropy::distance(1:10, 20:29, method = "euclidean"), "Your probability values are not between: [0,1].")
 })
 
 
