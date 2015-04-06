@@ -16,165 +16,165 @@
 #  http://www.r-project.org/Licenses/
 
 
-P <- (1:10/sum(1:10))
+P <- 1:10/sum(1:10)
 Q <- 20:29/sum(20:29)
 
 context("Test implementation of distance measures...")
 
 test_that("distance(method = 'euclidean') computes the correct distance value.", {
         
-        expect_identical(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "euclidean")), sqrt(sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))^2)))
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "euclidean")), as.vector(stats::dist(base::rbind(1:10/sum(1:10),20:29/sum(20:29)), method = "euclidean")))
+        expect_identical(as.vector(philentropy::distance(P, Q, method = "euclidean")), sqrt(sum(abs((P) - (Q))^2)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "euclidean")), as.vector(stats::dist(base::rbind(P,Q), method = "euclidean")))
         #expect_error(philentropy::distance(1:10, 20:29, method = "euclidean"), "Error : Your probability values are not between: [0,1].")
 })
 
 
 test_that("distance(method = 'manhattan') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "manhattan")), sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))))
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "manhattan")), as.vector(stats::dist(base::rbind(1:10/sum(1:10),20:29/sum(20:29)), method = "manhattan")))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "manhattan")), sum(abs((P) - (Q))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "manhattan")), as.vector(stats::dist(base::rbind(P,Q), method = "manhattan")))
 })
 
 
 test_that("distance(method = 'minkowski') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "minkowski", p = 4)), (sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))^4))^0.25)
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "minkowski", p = 4)), as.vector(stats::dist(base::rbind(1:10/sum(1:10),20:29/sum(20:29)), method = "minkowski", p = 4)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "minkowski", p = 4)), (sum(abs((P) - (Q))^4))^0.25)
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "minkowski", p = 4)), as.vector(stats::dist(base::rbind(P,Q), method = "minkowski", p = 4)))
         
 })
 
 
 test_that("distance(method = 'chebyshev') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "chebyshev")), max(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))))
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "chebyshev")), as.vector(stats::dist(base::rbind(1:10/sum(1:10),20:29/sum(20:29)), method = "maximum")))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "chebyshev")), max(abs((P) - (Q))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "chebyshev")), as.vector(stats::dist(base::rbind(P,Q), method = "maximum")))
         
 })
 
 
 test_that("distance(method = 'sorensen') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "sorensen")), sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))) / sum((1:10/sum(1:10)) + (20:29/sum(20:29))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "sorensen")), sum(abs((P) - (Q))) / sum((P) + (Q)))
         
 })
 
 
 test_that("distance(method = 'gower') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "gower")), (1/length(1:10)) * sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "gower")), (1/length(1:10)) * sum(abs((P) - (Q))))
         
 })
 
 
 test_that("distance(method = 'soergel') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "soergel")), sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))) / sum(apply(rbind(1:10/sum(1:10), 20:29/sum(20:29)),2,max)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "soergel")), sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,max)))
         
 })
 
 
 test_that("distance(method = 'kulczynski_d') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "kulczynski_d")), sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))) / sum(apply(rbind(1:10/sum(1:10), 20:29/sum(20:29)),2,min)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "kulczynski_d")), sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,min)))
         
 })
 
 
 test_that("distance(method = 'canberra') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "canberra")), sum( abs((1:10/sum(1:10)) - (20:29/sum(20:29))) / ((1:10/sum(1:10)) + (20:29/sum(20:29)))))
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "canberra")), as.vector(stats::dist(base::rbind(1:10/sum(1:10),20:29/sum(20:29)), method = "canberra")))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "canberra")), sum( abs((P) - (Q)) / ((P) + (Q))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "canberra")), as.vector(stats::dist(base::rbind(P,Q), method = "canberra")))
         
 })
 
 
 test_that("distance(method = 'lorentzian') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "lorentzian")), sum( log(1 + abs((1:10/sum(1:10)) - (20:29/sum(20:29))))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "lorentzian")), sum( log(1 + abs((P) - (Q)))))
         
 })
 
 
 test_that("distance(method = 'intersection') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "intersection")), sum(apply(base::rbind(1:10/sum(1:10),20:29/sum(20:29)),2,min)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "intersection")), sum(apply(base::rbind(P,Q),2,min)))
         
 })
 
 
 test_that("distance(method = 'non-intersection') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "non-intersection")), 1 - sum(apply(base::rbind(1:10/sum(1:10),20:29/sum(20:29)),2,min)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "non-intersection")), 1 - sum(apply(base::rbind(P,Q),2,min)))
         
 })
 
 
 test_that("distance(method = 'wavehedges') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "wavehedges")), sum(abs(1:10/sum(1:10) - 20:29/sum(20:29)) / apply(base::rbind(1:10/sum(1:10),20:29/sum(20:29)),2,max)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "wavehedges")), sum(abs(P - Q) / apply(base::rbind(P,Q),2,max)))
         
 })
 
 
 test_that("distance(method = 'czekanowski') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "czekanowski")), sum(abs(1:10/sum(1:10) - 20:29/sum(20:29))) / sum(1:10/sum(1:10) + 20:29/sum(20:29)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "czekanowski")), sum(abs(P - Q)) / sum(P + Q))
         
 })
 
 
 test_that("distance(method = 'motyka') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "motyka")), sum(apply(base::rbind(1:10/sum(1:10),20:29/sum(20:29)),2,max)) / sum(1:10/sum(1:10) + 20:29/sum(20:29)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "motyka")), sum(apply(base::rbind(P,Q),2,max)) / sum(P + Q))
         
 })
 
 
 test_that("distance(method = 'kulczynski_s') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "kulczynski_s")), 1 / (sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))) / sum(apply(rbind(1:10/sum(1:10), 20:29/sum(20:29)),2,min))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "kulczynski_s")), 1 / (sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,min))))
         
 })
 
 
 test_that("distance(method = 'tanimoto') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "tanimoto")), sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))) / sum(apply(rbind(1:10/sum(1:10), 20:29/sum(20:29)),2,max)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "tanimoto")), sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,max)))
         
 })
 
 
 test_that("distance(method = 'ruzicka') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "ruzicka")), 1 - (sum(abs((1:10/sum(1:10)) - (20:29/sum(20:29)))) / sum(apply(rbind(1:10/sum(1:10), 20:29/sum(20:29)),2,max))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "ruzicka")), 1 - (sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,max))))
         
 })
 
 
 test_that("distance(method = 'inner_product') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "inner_product")), sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) ))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "inner_product")), sum ( (P) * (Q) ))
         
 })
 
 
 test_that("distance(method = 'harmonic_mean') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "harmonic_mean")), 2 * sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) / ((1:10/sum(1:10)) + (20:29/sum(20:29))) ))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "harmonic_mean")), 2 * sum ( (P) * (Q) / ((P) + (Q)) ))
         
 })
 
 
 test_that("distance(method = 'cosine') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "cosine")), ((sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) )) / (sqrt(sum((1:10/sum(1:10))^2)) * sqrt(sum((20:29/sum(20:29))^2)))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "cosine")), ((sum ( (P) * (Q) )) / (sqrt(sum((P)^2)) * sqrt(sum((Q)^2)))))
         
 })
 
 
 test_that("distance(method = 'hassebrook') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "hassebrook")), ((sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) )) / (sum((1:10/sum(1:10))^2) + sum((20:29/sum(20:29))^2) - ((sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) ))))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "hassebrook")), ((sum ( (P) * (Q) )) / (sum((P)^2) + sum((Q)^2) - ((sum ( (P) * (Q) ))))))
         
 })
 
@@ -182,35 +182,35 @@ test_that("distance(method = 'hassebrook') computes the correct distance value."
 
 test_that("distance(method = 'jaccard') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "jaccard")), 1 - ((sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) )) / (sum((1:10/sum(1:10))^2) + sum((20:29/sum(20:29))^2) - ((sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) ))))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "jaccard")), 1 - ((sum ( (P) * (Q) )) / (sum((P)^2) + sum((Q)^2) - ((sum ( (P) * (Q) ))))))
         
 })
 
 
 test_that("distance(method = 'dice') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "dice")), 1 - (2 * (sum ( (1:10/sum(1:10)) * (20:29/sum(20:29)) )) / (sum((1:10/sum(1:10))^2) + sum((20:29/sum(20:29))^2) )))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "dice")), 1 - (2 * (sum ( (P) * (Q) )) / (sum((P)^2) + sum((Q)^2) )))
         
 })
 
 
 test_that("distance(method = 'fidelity') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "fidelity")), sum(sqrt(1:10/sum(1:10) * 20:29/sum(20:29))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "fidelity")), sum(sqrt(P * Q)))
         
 })
 
 
 test_that("distance(method = 'bhattacharyya') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "bhattacharyya")), -log(sum(sqrt(1:10/sum(1:10) * 20:29/sum(20:29)))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "bhattacharyya")), -log(sum(sqrt(P * Q))))
         
 })
 
 
 test_that("distance(method = 'hellinger') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "hellinger")), 2 * sqrt(1 - sum(sqrt(1:10/sum(1:10) * 20:29/sum(20:29)))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "hellinger")), 2 * sqrt(1 - sum(sqrt(P * Q))))
         
 })
 
@@ -218,84 +218,84 @@ test_that("distance(method = 'hellinger') computes the correct distance value.",
 
 test_that("distance(method = 'matusita') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "matusita")), sqrt(sum((sqrt(1:10/sum(1:10)) - sqrt(20:29/sum(20:29)))^2)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "matusita")), sqrt(sum((sqrt(P) - sqrt(Q))^2)))
         
 })
 
 
 test_that("distance(method = 'squared_chord') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "squared_chord")), sum((sqrt(1:10/sum(1:10)) - sqrt(20:29/sum(20:29)))^2))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "squared_chord")), sum((sqrt(P) - sqrt(Q))^2))
         
 })
 
 
 test_that("distance(method = 'squared_euclidean') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "squared_euclidean")), sum(((1:10/sum(1:10)) - (20:29/sum(20:29)))^2))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "squared_euclidean")), sum(((P) - (Q))^2))
         
 })
 
 
 test_that("distance(method = 'pearson') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "pearson")), sum(((1:10/sum(1:10)) - (20:29/sum(20:29)))^2 / (20:29/sum(20:29))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "pearson")), sum(((P) - (Q))^2 / (Q)))
         
 })
 
 
 test_that("distance(method = 'neyman') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "neyman")), sum(((1:10/sum(1:10)) - (20:29/sum(20:29)))^2 / (1:10/sum(1:10))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "neyman")), sum(((P) - (Q))^2 / (P)))
         
 })
 
 
 test_that("distance(method = 'squared_chi') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "squared_chi")), sum(((1:10/sum(1:10)) - (20:29/sum(20:29)))^2 / ((1:10/sum(1:10)) + (20:29/sum(20:29)))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "squared_chi")), sum(((P) - (Q))^2 / ((P) + (Q))))
         
 })
 
 
 test_that("distance(method = 'prob_symm') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "prob_symm")), 2 * sum(((1:10/sum(1:10)) - (20:29/sum(20:29)))^2 / ((1:10/sum(1:10)) + (20:29/sum(20:29)))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "prob_symm")), 2 * sum(((P) - (Q))^2 / ((P) + (Q))))
         
 })
 
 
 test_that("distance(method = 'divergence') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "divergence")), 2 * sum(((1:10/sum(1:10)) - (20:29/sum(20:29)))^2 / ((1:10/sum(1:10)) + (20:29/sum(20:29)))^2))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "divergence")), 2 * sum(((P) - (Q))^2 / ((P) + (Q))^2))
         
 })
 
 
 test_that("distance(method = 'clark') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "clark")), sqrt(sum((abs((1:10/sum(1:10)) - (20:29/sum(20:29))) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))^2)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "clark")), sqrt(sum((abs((P) - (Q)) / ((P) + (Q)))^2)))
         
 })
 
 
 test_that("distance(method = 'additive_symm') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "additive_symm")), sum((((1:10/sum(1:10)) - (20:29/sum(20:29)))^2 * ((1:10/sum(1:10)) + (20:29/sum(20:29)))) / ((1:10/sum(1:10)) * (20:29/sum(20:29)))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "additive_symm")), sum((((P) - (Q))^2 * ((P) + (Q))) / ((P) * (Q))))
         
 })
 
 
 test_that("distance(method = 'kullback-leibler') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "kullback-leibler")), sum((1:10/sum(1:10)) * log((1:10/sum(1:10)) / (20:29/sum(20:29)))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "kullback-leibler")), sum((P) * log((P) / (Q))))
         
 })
 
 
 test_that("distance(method = 'jeffreys') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "jeffreys")), sum(((1:10/sum(1:10)) - (20:29/sum(20:29))) * log((1:10/sum(1:10)) / (20:29/sum(20:29)))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "jeffreys")), sum(((P) - (Q)) * log((P) / (Q))))
         
 })
 
@@ -303,38 +303,42 @@ test_that("distance(method = 'jeffreys') computes the correct distance value.", 
 
 test_that("distance(method = 'k_divergence') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "k_divergence")), sum((1:10/sum(1:10)) * log(2 * (1:10/sum(1:10)) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "k_divergence")), sum((P) * log(2 * (P) / ((P) + (Q)))))
         
 })
 
 
 test_that("distance(method = 'topsoe') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "topsoe")), sum(((1:10/sum(1:10)) * log(2 * (1:10/sum(1:10)) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))) + ((20:29/sum(20:29)) * log(2 * (20:29/sum(20:29)) / ((1:10/sum(1:10)) + (20:29/sum(20:29)))))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "topsoe")), sum(((P) * log(2 * (P) / ((P) + (Q)))) + ((Q) * log(2 * (Q) / ((P) + (Q))))))
         
 })
 
 
 test_that("distance(method = 'jensen-shannon') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "jensen-shannon")), 0.5 * ((sum((1:10/sum(1:10)) * log((2 * (1:10/sum(1:10))) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))))  +  (sum((20:29/sum(20:29)) * log((2 * (20:29/sum(20:29))) / ((1:10/sum(1:10)) + (20:29/sum(20:29))))))))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen-shannon")), 0.5 * ((sum((P) * log((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log((2 * (Q)) / ((P) + (Q)))))))
         
 })
 
 test_that("distance(method = 'jensen_difference') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "jensen_difference")), sum(((((1:10/sum(1:10)) * log((1:10/sum(1:10)))) + ((20:29/sum(20:29)) * log((20:29/sum(20:29))))) / 2 ) - (((1:10/sum(1:10)) + (20:29/sum(20:29))) / 2) * log(((1:10/sum(1:10)) + (20:29/sum(20:29))) / 2)))
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen_difference")), sum(((((P) * log((P))) + ((Q) * log((Q)))) / 2 ) - (((P) + (Q)) / 2) * log(((P) + (Q)) / 2)))
         
 })
 
 
 test_that("distance(method = 'taneja') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(1:10/sum(1:10), 20:29/sum(20:29), method = "taneja")), sum(((P + Q) / 2) * log((P+Q) / (2 * sqrt(P*Q)))) )
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "taneja")), sum(((P + Q) / 2) * log((P+Q) / (2 * sqrt(P*Q)))) )
         
 })
 
-
+test_that("distance(method = 'kumar-johnson') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "kumar-johnson")), sum(((P^2 - Q^2)^2 / (2 * (P*Q)^1.5))) )
+        
+})
 
 
 
