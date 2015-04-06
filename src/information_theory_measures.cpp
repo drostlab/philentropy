@@ -25,7 +25,7 @@ double Ecpp(const NumericVector& P){
 
 //' @export
 // [[Rcpp::export]]
-double JEcpp(NumericVector JointProbabilities){
+double JEcpp(const NumericVector& JointProbabilities){
   int len = JointProbabilities.size();
   double JointEntropy = 0;
 
@@ -60,7 +60,7 @@ double CEcpp(NumericVector JointProbabilities,NumericVector Probabilities){
 
 //' @export
 // [[Rcpp::export]]
-double CrossEntropy(NumericVector P, NumericVector Q) {
+double CrossEntropy(const NumericVector& P, const NumericVector& Q) {
      double log_2 = log(2);
      int Psize = P.size();
      int Qsize = Q.size();
@@ -88,7 +88,7 @@ double CrossEntropy(NumericVector P, NumericVector Q) {
 
 //' @export
 // [[Rcpp::export]]
-double MIcpp(NumericVector X, NumericVector Y, NumericVector XY){
+double MIcpp(const NumericVector& X, const NumericVector& Y, const NumericVector& XY){
 
   double MutualInformation = 0;
   // Using the identity: I(X,Y) = H(X) + H(Y) -  H(X,Y)
@@ -99,7 +99,7 @@ double MIcpp(NumericVector X, NumericVector Y, NumericVector XY){
 
 //' @export
 // [[Rcpp::export]]
-double JensonShannonDivergenceCpp(NumericVector P,NumericVector Q){
+double JensonShannonDivergenceCpp(const NumericVector& P, const NumericVector& Q){
   int Psize = P.size();
   int Qsize = Q.size();
   double jsd = -1;
