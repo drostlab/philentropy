@@ -342,5 +342,9 @@ test_that("distance(method = 'kumar-johnson') computes the correct distance valu
 
 
 
-
+test_that("distance(method = 'avg') computes the correct distance value.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "avg")), (sum( abs(P-Q) ) + max( abs(P-Q))) / 2 )
+        
+})
 
