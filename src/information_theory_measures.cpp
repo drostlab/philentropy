@@ -6,13 +6,13 @@ using namespace std;
 
 //' @export
 // [[Rcpp::export]]
-double Ecpp(NumericVector Probabilities){
-  int len = Probabilities.size();
-  double Entropy = 0;
+double Ecpp(const NumericVector& P){
+  int len = P.size();
+  double Entropy = 0.0;
 
   for(int i = 0; i < len; i++){
-    if(Probabilities[i] > 0){
-      Entropy += (Probabilities[i] * (log(Probabilities[i])/log(2)));
+    if(P[i] > 0){
+      Entropy += (P[i] * (log(P[i])/log(2)));
     }
 
     else{
@@ -20,7 +20,7 @@ double Ecpp(NumericVector Probabilities){
     }
   }
 
-  return(-Entropy);
+  return -Entropy;
 }
 
 //' @export
