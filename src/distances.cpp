@@ -1040,16 +1040,16 @@ double avg(const std::vector<double>& P, const std::vector<double>& Q){
         
         for(int i = 0; i < P_len; i++){
                 
-                PQdiff = P[i] - Q[i];
+                PQdiff = fabs(P[i] - Q[i]);
                 
                 if (PQdiff > PQmax)
                      PQmax = PQdiff;
                      
-                dist += (PQdiff + PQmax) / 2.0 ;
+                dist += PQdiff;
                 
         }
         
-        return dist;
+        return (dist + PQmax) / 2.0;
 }
 
 
