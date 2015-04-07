@@ -38,33 +38,29 @@
 
 gJSD <- function(x){
         
+        if(class(x) == "data.frame")
+                x <- as.matrix(x)
+        
+        if(!(class(x) == "matrix"))
+                stop("Please enter a numeric probability matrix.")
+        
         # check for ditribution validity
         apply(x,2,valid.distr)
         
-        nDistributions <- dim(x)[2]
-        nElements <- dim(x)[1]
+        nDistributions <- ncol(x)
+        nElements <- nrow(x)
         # defining the weights for the generalized Jensen-Shannon Divergence
-        weights <- NA_real_
+        weights <- vector(mode = "numeric", length = nDistributions)
         g.JSD <- NA_real_ 
         weights <- rep(1/nDistributions, nDistributions)
         weightedProbabilityMatrix <- matrix(NA_real_, nrow = nElements, ncol = nDistributions)
         
+        weightedProbabilityMatrix <- weights * x
+                
+        g.JSD <- H(rowSums(weightedProbabilityMatrix)) - sum((weights * apply(x,2,H)))
+                
+        return(g.JSD)
         
-        if(length(weights) == nDistributions){
-                
-                for(i in 1:nDistributions){
-                        
-                        weightedProbabilityMatrix[ ,i] <- weights[i] * x[ ,i]
-                        
-                }
-                
-                g.JSD <- H(rowSums(weightedProbabilityMatrix)) - sum((weights * apply(x,2,H)))
-                
-                return(g.JSD)
-                
-        } else{
-                stop("The weight vector and probability distribution have different lengths!")
-        }
 }
 
 
