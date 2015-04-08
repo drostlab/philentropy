@@ -16,13 +16,13 @@
 #  http://www.r-project.org/Licenses/
 
 
-P <- 1:10/sum(1:10)
-Q <- 20:29/sum(20:29)
-R <- 30:39/sum(30:39)
-
 context("Test implementation of information theory measures...")
 
 test_that("Numeric computation of gJSD() : ", {
+        
+        P <- 1:10/sum(1:10)
+        Q <- 20:29/sum(20:29)
+        R <- 30:39/sum(30:39)
         
         x <- cbind(P,Q,R)
         w <- rep(1 / ncol(x),ncol(x))
@@ -40,6 +40,9 @@ test_that("gJSD() throughs error when distributions of different lengths (a list
         A <- 1:10/sum(1:10)
         B <- 20:28/sum(20:28)
         C <- 30:39/sum(30:39)
+        P <- 1:10/sum(1:10)
+        Q <- 20:29/sum(20:29)
+        R <- 30:39/sum(30:39)
         
         x <- cbind(P,Q,R)
         w <- rep(1 / ncol(x),ncol(x))
@@ -51,6 +54,10 @@ test_that("gJSD() throughs error when distributions of different lengths (a list
 
 
 test_that("gJSD() internally changes a data.frame to a matrix", {
+        
+        P <- 1:10/sum(1:10)
+        Q <- 20:29/sum(20:29)
+        R <- 30:39/sum(30:39)
         
         x <- cbind(P,Q,R)
         w <- rep(1 / ncol(x),ncol(x))
