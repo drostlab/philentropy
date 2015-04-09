@@ -858,6 +858,7 @@ double jeffreys(const std::vector<double>& P, const std::vector<double>& Q){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
+        double PQrate     = 0.0;
         double dist       = 0.0;
         
         if (P_len != Q_len){
@@ -866,8 +867,15 @@ double jeffreys(const std::vector<double>& P, const std::vector<double>& Q){
         
         for(int i = 0; i < P_len; i++){
                 
-                dist += (P[i] - Q[i]) * log(P[i] / Q[i]);
+                PQrate = P[i] / Q[i];
                 
+                if(PQrate == 0){
+                      dist += (P[i] - Q[i]) * log(0.00001);
+                } else {
+                        
+                      dist += (P[i] - Q[i]) * log(PQrate);
+                }
+                     
         }
         
         return dist;
