@@ -300,6 +300,27 @@ test_that("distance(method = 'jeffreys') computes the correct distance value.", 
 })
 
 
+test_that("distance(method = 'jeffreys') computes the correct distance value in case 0 values are stored in the input probability vectors -> leading to log(0) computations.", {
+        
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- rep(1,6) / 6
+        
+        jeff <- function(x,y){
+                
+                if(any((x/y) == 0)){
+                        xy.ratio <- x/y
+                        xy.ratio[xy.ratio == 0] <- 0.00001
+                        sum((x - y) * log(xy.ratio))
+                } else {
+                        
+                        sum((x - y) * log(x/y))
+                }
+                
+        }
+        expect_equal(as.vector(philentropy::distance(A, B, method = "jeffreys")), jeff(A,B))
+})
+
+
 
 test_that("distance(method = 'k_divergence') computes the correct distance value.", {
         
