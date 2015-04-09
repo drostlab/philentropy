@@ -272,8 +272,15 @@ double canberra(const std::vector<double>& P, const std::vector<double>& Q){
                 
                 diff = fabs(P[i] - Q[i]);
                 sum  = P[i] + Q[i];
-                dist += diff / sum;
                 
+                // replace 0/0 by 0 according to Sung-HYuk Cha (2007)
+                if((diff == 0) & (sum == 0)){
+                        
+                        dist += 0;
+                } else {
+                        
+                        dist += diff / sum;
+                }     
         }
         
         return dist;
