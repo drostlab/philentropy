@@ -4,16 +4,20 @@
 \alias{gJSD}
 \title{Generalized Jensen-Shannon Divergence}
 \usage{
-gJSD(x)
+gJSD(x, weights = NULL)
 }
 \arguments{
 \item{x}{a probability matrix.}
+
+\item{weights}{a numeric vector specifying the weights for each distribution in \code{x}.
+
+Default: \code{weights} = \code{NULL}; in this case all distributions are weighted equally.}
 }
 \value{
 The Jensen-Shannon divergence between all possible combinations of comparisons.
 }
 \description{
-This function computes the Generalized Jensen-Shannon Divergence of a probability matrix with equal weights.
+This function computes the Generalized Jensen-Shannon Divergence of a probability matrix.
 }
 \details{
 Function to compute the Generalized Jensen-Shannon Divergence
