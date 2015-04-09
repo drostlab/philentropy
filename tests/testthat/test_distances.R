@@ -88,6 +88,34 @@ test_that("distance(method = 'canberra') computes the correct distance value.", 
 })
 
 
+test_that("distance(method = 'canberra') computes the correct distance value when P_i and Q_i are 0 -> 0/0 is then replaced by 0.", {
+        
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        
+        canb <- function(x,y){
+                
+                dist <- vector(mode = "numeric", length = 1)
+                dist <- 0
+                
+                for(i in 1:length(x)){
+                        
+                        if((abs(x[i] - y[i]) == 0) & ((x[i] + y[i]) == 0)){
+                                dist = dist
+                        } else {
+                                dist = dist + (abs(x[i] - y[i]) / ((x[i]) + (y[i])))
+                        }
+                        
+                }
+                
+                return(dist)
+        }
+        
+        expect_equal(as.vector(philentropy::distance(A, B, method = "canberra")), canb(A,B))
+        
+        
+})
+
 test_that("distance(method = 'lorentzian') computes the correct distance value.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "lorentzian")), sum( log(1 + abs((P) - (Q)))))
