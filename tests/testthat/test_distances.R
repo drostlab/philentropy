@@ -139,9 +139,41 @@ test_that("distance(method = 'non-intersection') computes the correct distance v
 
 test_that("distance(method = 'wavehedges') computes the correct distance value.", {
         
+        
         expect_equal(as.vector(philentropy::distance(P, Q, method = "wavehedges")), sum(abs(P - Q) / apply(base::rbind(P,Q),2,max)))
         
 })
+
+
+
+test_that("distance(method = 'wavehedges') computes the correct distance value in case the input probability vectors store 0 values at the same position causing 0/0 computations.", {
+        
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        
+        wh <- function(x,y){
+                
+                dist <- vector(mode = "numeric", length = 1)
+                dist <- 0
+                
+                for(i in 1:length(x)){
+                        
+                        if((abs(x[i] - y[i]) == 0) & ((max(c(x[i],y[i]))) == 0)){
+                                dist = dist
+                        } else {
+                                dist = dist + (abs(x[i] - y[i]) / max(c(x[i],y[i])))
+                        }
+                        
+                }
+                
+                return(dist)
+        }
+        
+        expect_equal(as.vector(philentropy::distance(A, B, method = "wavehedges")), wh(A,B))
+        
+})
+
+
 
 
 test_that("distance(method = 'czekanowski') computes the correct distance value.", {
