@@ -44,7 +44,7 @@ gJSD <- function(x){
         if(!(class(x) == "matrix"))
                 stop("Please enter a numeric probability matrix.")
         
-        # check for ditribution validity
+        # check for distribution validity
         apply(x,2,valid.distr)
         
         nDistributions <- ncol(x)
