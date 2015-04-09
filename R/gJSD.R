@@ -16,8 +16,11 @@
 #  http://www.r-project.org/Licenses/
 
 #' @title Generalized Jensen-Shannon Divergence 
-#' @description This function computes the Generalized Jensen-Shannon Divergence of a probability matrix with equal weights.
+#' @description This function computes the Generalized Jensen-Shannon Divergence of a probability matrix.
 #' @param x a probability matrix.
+#' @param weights a numeric vector specifying the weights for each distribution in \code{x}. 
+#' 
+#' Default: \code{weights} = \code{NULL}; in this case all distributions are weighted equally. 
 #' @return The Jensen-Shannon divergence between all possible combinations of comparisons.
 #' @author Hajk-Georg Drost
 #' @details 
@@ -36,7 +39,7 @@
 #'  \code{\link{CE}}, \code{\link{JE}}
 #' @export
 
-gJSD <- function(x){
+gJSD <- function(x, weights = NULL){
         
         if(class(x) == "data.frame")
                 x <- as.matrix(x)
@@ -49,15 +52,29 @@ gJSD <- function(x){
         
         nDistributions <- ncol(x)
         nElements <- nrow(x)
-        # defining the weights for the generalized Jensen-Shannon Divergence
-        weights <- vector(mode = "numeric", length = nDistributions)
-        g.JSD <- NA_real_ 
-        weights <- rep(1/nDistributions, nDistributions)
-        weightedProbabilityMatrix <- matrix(NA_real_, nrow = nElements, ncol = nDistributions)
         
-        weightedProbabilityMatrix <- weights * x
+        if(is.null(weights)){
                 
-        g.JSD <- H(rowSums(weightedProbabilityMatrix)) - sum((weights * apply(x,2,H)))
+                # defining the weights for the generalized Jensen-Shannon Divergence
+                # -> weights are equally distributed
+                weights <- vector(mode = "numeric", length = nDistributions)
+                g.JSD <- NA_real_ 
+                weights <- rep(1/nDistributions, nDistributions)
+                
+        } else {
+                # check for the validity of input weights
+                valid.distr(weights)
+                
+                if(length(weights) != nDistributions)
+                        stop("The length of your input 'weights' vector differs from the number of input distributions..")
+                
+        }
+        
+        WeightedProbabilityMatrix <- matrix(NA_real_, nrow = nElements, ncol = nDistributions)
+        
+        WeightedProbabilityMatrix <- weights * x
+                
+        g.JSD <- H(rowSums(WeightedProbabilityMatrix)) - sum((weights * apply(x,2,H)))
                 
         return(g.JSD)
         
