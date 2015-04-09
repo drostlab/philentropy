@@ -369,9 +369,14 @@ double wave_hedges(const std::vector<double>& P, const std::vector<double>& Q){
                         
                         max_point = Q[i];
                 }
-               
-                dist += diff / max_point;
                 
+                if((diff == 0) & (max_point == 0)){
+                        
+                        dist += 0;
+                } else {
+                        
+                        dist += diff / max_point;
+                }     
         }
         
         return dist;       
