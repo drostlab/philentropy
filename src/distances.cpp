@@ -508,8 +508,13 @@ double harmonic_mean_dist(const std::vector<double>& P, const std::vector<double
                 prod = P[i] * Q[i];
                 sum  = P[i] + Q[i];
                 
-                dist += prod / sum;
-                
+                if((prod == 0) & (sum == 0)){
+                        
+                        dist += 0;
+                } else {
+                        
+                        dist += prod / sum;
+                } 
         }
         
         return (2.0 * dist);      
