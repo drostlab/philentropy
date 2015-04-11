@@ -225,7 +225,9 @@ test_that("distance(method = 'harmonic_mean') computes the correct distance valu
 })
 
 
-test_that("distance(method = 'harmonic_mean') computes the correct distance value.", {
+test_that("distance(method = 'harmonic_mean') computes the correct distance value in case input probability vectors store 0 values at the same position causing 0/0 computation
+
+.", {
         
         A <- c(0,0.25,0.25,0,0.25,0.25)
         B <- c(0,0,0.25,0.25,0.25,0.25)
@@ -340,9 +342,41 @@ test_that("distance(method = 'neyman') computes the correct distance value.", {
 
 test_that("distance(method = 'squared_chi') computes the correct distance value.", {
         
+        
         expect_equal(as.vector(philentropy::distance(P, Q, method = "squared_chi")), sum(((P) - (Q))^2 / ((P) + (Q))))
         
 })
+
+
+
+test_that("distance(method = 'squared_chi') computes the correct distance value in case input probability vectors store 0 values at the same position causing 0/0 computation
+.", {
+        
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        
+        sqchisq <- function(x,y){
+                
+                dist <- vector(mode = "numeric", length = 1)
+                dist <- 0
+                
+                for(i in 1:length(x)){
+                        
+                        if(((x[i] - y[i])^2 == 0) & ((x[i] + y[i]) == 0)){
+                                dist = dist
+                        } else {
+                                dist = dist + ((x[i] - y[i])^2 / (x[i] + y[i]))
+                        }
+                        
+                }
+                
+                return(dist)
+        }
+        
+        expect_equal(as.vector(philentropy::distance(A, B, method = "squared_chi")), sqchisq(A,B))
+        
+})
+
 
 
 test_that("distance(method = 'prob_symm') computes the correct distance value.", {
