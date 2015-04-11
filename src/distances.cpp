@@ -830,6 +830,8 @@ double clark_sq(const std::vector<double>& P, const std::vector<double>& Q){
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist       = 0.0;
+        double PQdiff     = 0.0;
+        double PQsum      = 0.0;
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -837,8 +839,16 @@ double clark_sq(const std::vector<double>& P, const std::vector<double>& Q){
         
         for(int i = 0; i < P_len; i++){
                 
-                dist += pow(fabs(P[i] - Q[i]) / (P[i] + Q[i]), 2);
+                PQdiff = fabs(P[i] - Q[i]);
+                PQsum  = P[i] + Q[i];
                 
+                if((PQdiff == 0) & (PQsum == 0)){
+                        
+                        dist += 0;
+                } else {
+                        
+                        dist += pow(PQdiff / PQsum, 2);
+                }
         }
         
         return sqrt(dist);
