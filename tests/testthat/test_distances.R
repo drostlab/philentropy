@@ -490,6 +490,33 @@ test_that("distance(method = 'additive_symm') computes the correct distance valu
 })
 
 
+test_that("distance(method = 'additive_symm') computes the correct distance value in case input probability vectors store 0 values at the same position causing 0/0 computation
+.", {
+        
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        
+        add <- function(x,y){
+                
+                dist <- vector(mode = "numeric", length = 1)
+                dist <- 0
+                
+                for(i in 1:length(x)){
+                        
+                        if(((x[i] + y[i]) == 0) & ((x[i] * y[i]) == 0)){
+                                dist = dist
+                        } else {
+                                dist = dist + ((x[i] - y[i])^2 * ((x[i] + y[i]) / (x[i] * y[i])))
+                        }
+                        
+                }
+                
+                return(dist)
+        }
+        
+        expect_equal(as.vector(philentropy::distance(A, B, method = "additive_symm")), add(A,B))
+})
+
 test_that("distance(method = 'kullback-leibler') computes the correct distance value.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "kullback-leibler")), sum((P) * log((P) / (Q))))
