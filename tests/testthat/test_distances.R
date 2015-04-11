@@ -225,6 +225,33 @@ test_that("distance(method = 'harmonic_mean') computes the correct distance valu
 })
 
 
+test_that("distance(method = 'harmonic_mean') computes the correct distance value.", {
+        
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        
+        hm <- function(x,y){
+                
+                dist <- vector(mode = "numeric", length = 1)
+                dist <- 0
+                
+                for(i in 1:length(x)){
+                        
+                        if(((x[i] * y[i]) == 0) & ((x[i] + y[i]) == 0)){
+                                dist = dist
+                        } else {
+                                dist = dist + ((x[i] * y[i]) / (x[i] + y[i]))
+                        }
+                        
+                }
+                
+                return(2 * dist)
+        }
+        
+        expect_equal(as.vector(philentropy::distance(A, B, method = "harmonic_mean")), hm(A,B))        
+})
+
+
 test_that("distance(method = 'cosine') computes the correct distance value.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "cosine")), ((sum ( (P) * (Q) )) / (sqrt(sum((P)^2)) * sqrt(sum((Q)^2)))))
