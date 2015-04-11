@@ -862,6 +862,8 @@ double additive_symm_chi_sq(const std::vector<double>& P, const std::vector<doub
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist       = 0.0;
+        double PQsum      = 0.0;
+        double PQprod     = 0.0;
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -869,8 +871,16 @@ double additive_symm_chi_sq(const std::vector<double>& P, const std::vector<doub
         
         for(int i = 0; i < P_len; i++){
                 
-                dist += (pow(P[i] - Q[i], 2) * (P[i] + Q[i])) / (P[i] * Q[i]);
+                PQsum  = P[i] + Q[i];
+                PQprod = P[i] * Q[i];
                 
+                if((PQsum == 0) & (PQprod == 0)){
+                        
+                        dist += 0;
+                } else {
+                        
+                        dist += pow(P[i] - Q[i], 2) * (PQsum / PQprod);
+                }
         }
         
         return dist;
