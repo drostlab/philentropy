@@ -60,6 +60,7 @@ valid.distr <- function(x){
 
 getDistMethods <- function(){
         
+        distance.names <- vector(mode = "character", length = 46)
         distance.names <- c("euclidean", "manhattan", "minkowski", "chebyshev",
                             "sorensen", "gower", "soergel", "kulczynski_d",
                             "canberra", "lorentzian", "intersection", "non-intersection",
