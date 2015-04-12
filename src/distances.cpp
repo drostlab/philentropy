@@ -893,7 +893,7 @@ double additive_symm_chi_sq(const NumericVector& P, const NumericVector& Q){
 
 //' @export
 // [[Rcpp::export]]
-double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q){
+double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q, const bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -904,8 +904,10 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q)
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        if(any(is_na(P)) | any(is_na(Q))){
-                Rcpp::stop("Your input vector stores NA values...");
+        if(testNA){
+               if(any(is_na(P)) | any(is_na(Q))){
+                       Rcpp::stop("Your input vector stores NA values...");
+                } 
         }
         
         for(int i = 0; i < P_len; i++){
