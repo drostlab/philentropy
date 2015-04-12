@@ -895,6 +895,7 @@ double kullback_leibler_distance(const std::vector<double>& P, const std::vector
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist       = 0.0;
+        double PQratio    = 0.0;
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -902,8 +903,14 @@ double kullback_leibler_distance(const std::vector<double>& P, const std::vector
         
         for(int i = 0; i < P_len; i++){
                 
-                dist += P[i] * log(P[i] / Q[i]);
+                PQratio = P[i] / Q[i];
                 
+                if((P[i] == 0) & (PQratio == 0)){
+                        dist += 0.0;
+                } else {
+                        
+                        dist += P[i] * log(PQratio);
+                }  
         }
         
         return dist;
