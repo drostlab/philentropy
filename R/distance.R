@@ -120,10 +120,6 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         if(!is.element(method,getDistMethods()))
                 stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
         
-        if(is.na(x) || is.na(y)){
-                stop("Your vector stores NA values...")
-        }
-        
         if(!all(is.numeric(x),is.numeric(y))){
                 stop("Non numeric values cannot be used to compute distances..")
                 
@@ -132,8 +128,8 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
         # here a smarter (faster) way to validate distributions needs to be implemented
-        valid.distr(x)
-        valid.distr(y)
+#         valid.distr(x)
+#         valid.distr(y)
         
         # result distance
         dist <- NA_real_
