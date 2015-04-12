@@ -537,7 +537,7 @@ test_that("distance(method = 'kullback-leibler') computes the correct distance v
                 
                 for(i in 1:length(x)){
                         
-                        if((x[i] == 0) & ((x[i] / y[i]) == 0)){
+                        if((x[i] == 0) & ((y[i]) == 0)){
                                 dist = dist
                         } else {
                                 dist = dist + (x[i] * log(x[i]/y[i]))
