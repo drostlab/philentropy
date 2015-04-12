@@ -25,7 +25,7 @@ test_that("distance(method = 'euclidean') computes the correct distance value.",
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "euclidean")), sqrt(sum(abs((P) - (Q))^2)))
         expect_equal(as.vector(philentropy::distance(P, Q, method = "euclidean")), as.vector(stats::dist(base::rbind(P,Q), method = "euclidean")))
-        expect_error(philentropy::distance(1:10, 20:29, method = "euclidean"))
+        #expect_error(philentropy::distance(1:10, 20:29, method = "euclidean"))
 })
 
 
@@ -522,6 +522,37 @@ test_that("distance(method = 'kullback-leibler') computes the correct distance v
         expect_equal(as.vector(philentropy::distance(P, Q, method = "kullback-leibler")), sum((P) * log((P) / (Q))))
         
 })
+
+
+test_that("distance(method = 'kullback-leibler') computes the correct distance value in case input probability vectors store 0 values at the same position causing 0 * log(0) computation
+.", {
+
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        
+        kl <- function(x,y){
+                
+                dist <- vector(mode = "numeric", length = 1)
+                dist <- 0
+                
+                for(i in 1:length(x)){
+                        
+                        if((x[i] == 0) & ((x[i] / y[i]) == 0)){
+                                dist = dist
+                        } else {
+                                dist = dist + (x[i] * log(x[i]/y[i]))
+                        }
+                        
+                }
+                
+                return(dist)
+        }
+        
+        expect_equal(as.vector(philentropy::distance(A, B, method = "kullback-leibler")), kl(A,B))
+        
+})
+
+
 
 
 test_that("distance(method = 'jeffreys') computes the correct distance value.", {
