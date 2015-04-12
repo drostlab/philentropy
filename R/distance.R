@@ -24,6 +24,7 @@
 #' @param y a numeric vector (probability density function).
 #' @param method a character string specifying the distance measure that shall be computed.
 #' @param p power of the Minkowski distance.
+#' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
 #' @author Hajk-Georg Drost
 #' @details The following distance measures are implemented in this function:
 #' 
@@ -115,7 +116,7 @@
 #' 
 #' @export
 
-distance <- function(x,y, method = "euclidean", p = NULL){
+distance <- function(x,y, method = "euclidean", p = NULL, test.na = TRUE){
         
         if(!is.element(method,getDistMethods()))
                 stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
@@ -368,7 +369,7 @@ distance <- function(x,y, method = "euclidean", p = NULL){
         
         if(method == "kullback-leibler"){
                 
-                dist <- kullback_leibler_distance(x,y)
+                dist <- kullback_leibler_distance(x,y,test.na)
         }
         
         if(method == "jeffreys"){
