@@ -4,7 +4,7 @@
 \alias{distance}
 \title{Distance between Probability Density Functions}
 \usage{
-distance(x, y, method = "euclidean", p = NULL)
+distance(x, y, method = "euclidean", p = NULL, test.na = TRUE)
 }
 \arguments{
 \item{x}{a numeric vector (probability density function).}
@@ -14,6 +14,8 @@ distance(x, y, method = "euclidean", p = NULL)
 \item{method}{a character string specifying the distance measure that shall be computed.}
 
 \item{p}{power of the Minkowski distance.}
+
+\item{test.na}{a boolean value specifying whether input vectors shall be tested for NA values.}
 }
 \description{
 This functions computes the distance/dissimilarity between two probability density functions.
