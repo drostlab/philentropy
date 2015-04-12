@@ -60,13 +60,20 @@ double CEcpp(NumericVector JointProbabilities,NumericVector Probabilities){
 
 //' @export
 // [[Rcpp::export]]
-double CrossEntropy(const NumericVector& P, const NumericVector& Q) {
+double CrossEntropy(const NumericVector& P, const NumericVector& Q, const bool& testNA) {
+     
      double log_2 = log(2);
+     // Cross-Entropy = Kullback-Leibler Divergence
+     double CE = 0.0;
      int Psize = P.size();
      int Qsize = Q.size();
      
-     // Cross-Entropy = Kullback-Leibler Divergence
-     double CE = 0.0;
+     if(testNA){
+               if(any(is_na(P)) | any(is_na(Q))){
+                       Rcpp::stop("Your input vector stores NA values...");
+                } 
+     }
+      
      if(Psize == Qsize){
          for(int i = 0; i < Psize; i++){
             if((P[i] > 0) && (Q[i] > 0)){
@@ -99,7 +106,7 @@ double MIcpp(const NumericVector& X, const NumericVector& Y, const NumericVector
 
 //' @export
 // [[Rcpp::export]]
-double JensonShannonDivergenceCpp(const NumericVector& P, const NumericVector& Q){
+double JensonShannonDivergenceCpp(const NumericVector& P, const NumericVector& Q, const bool& testNA){
   int Psize = P.size();
   int Qsize = Q.size();
   double jsd = -1;
@@ -108,10 +115,10 @@ double JensonShannonDivergenceCpp(const NumericVector& P, const NumericVector& Q
     NumericVector R(Psize);
 
     for(int i=0; i < Psize; i++){
-      R[i] = (P[i] + Q[i])/2;
+      R[i] = (P[i] + Q[i])/2.0;
     }
 
-    jsd = 0.5 * (CrossEntropy(P,R) + CrossEntropy(Q,R));
+    jsd = 0.5 * (CrossEntropy(P,R,testNA) + CrossEntropy(Q,R,testNA));
 
   }
 
