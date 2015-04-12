@@ -137,14 +137,14 @@ distance <- function(x,y, method = "euclidean", p = NULL, test.na = TRUE){
         
         if(method == "euclidean"){
                 
-                dist <- euclidean(x,y)
+                dist <- euclidean(x,y,test.na)
                 
         }
         
         
         if(method == "manhattan"){
                 
-                dist <- manhattan(x,y)
+                dist <- manhattan(x,y,test.na)
                 
         }
            
@@ -153,7 +153,7 @@ distance <- function(x,y, method = "euclidean", p = NULL, test.na = TRUE){
                 
                 if(!is.null(p)){
                         
-                        dist <- minkowski(x,y, p)
+                        dist <- minkowski(x,y, p, test.na)
                         
                 } else {
                         
@@ -164,206 +164,206 @@ distance <- function(x,y, method = "euclidean", p = NULL, test.na = TRUE){
         
         if(method == "chebyshev"){
                 
-                dist <- chebyshev(x,y)
+                dist <- chebyshev(x,y,test.na)
                 
         }
         
         
         if(method == "sorensen"){
                 
-                dist <- sorensen(x,y)
+                dist <- sorensen(x,y,test.na)
         }
         
         
         if(method == "gower"){
                 
-                dist <- gower(x,y)
+                dist <- gower(x,y,test.na)
                 
         }
         
         if(method == "soergel"){
                 
-                dist <- soergel(x,y)
+                dist <- soergel(x,y,test.na)
                 
         }
         
         if(method == "kulczynski_d"){
                 
-                dist <- kulczynski_d(x,y)
+                dist <- kulczynski_d(x,y,test.na)
                 
         }
         
         if(method == "canberra"){
                 
-                dist <- canberra(x,y)
+                dist <- canberra(x,y,test.na)
                 
         }
 
         if(method == "lorentzian"){
                 
-                dist <- lorentzian(x,y)
+                dist <- lorentzian(x,y,test.na)
                 
         }
         
         if(method == "intersection"){
                 
-                dist <- intersection_dist(x,y)
+                dist <- intersection_dist(x,y,test.na)
                 
         }
         
         if(method == "non-intersection"){
                 
-                dist <- 1.0 - intersection_dist(x,y)
+                dist <- 1.0 - intersection_dist(x,y,test.na)
                 
         }
         
         if(method == "wavehedges"){
                 
-                dist <- wave_hedges(x,y)
+                dist <- wave_hedges(x,y,test.na)
                 
         }
         
         if(method == "czekanowski"){
                 
-                dist <- czekanowski(x,y)
+                dist <- czekanowski(x,y,test.na)
                 
         }
         
         if(method == "motyka"){
                 
-                dist <- motyka(x,y)
+                dist <- motyka(x,y,test.na)
                 
         }
         
         if(method == "kulczynski_s"){
                 
-                dist <- 1.0 / kulczynski_d(x,y)
+                dist <- 1.0 / kulczynski_d(x,y,test.na)
                 
         }
         
         if(method == "tanimoto"){
                 
-                dist <- tanimoto(x,y)
+                dist <- tanimoto(x,y,test.na)
                 
         }
         
         if(method == "ruzicka"){
                 
-                dist <- ruzicka(x,y)
+                dist <- ruzicka(x,y,test.na)
                 
         }
         
         if(method == "inner_product"){
                 
-                dist <- inner_product(x,y)
+                dist <- inner_product(x,y,test.na)
                 
         }
         
         if(method == "harmonic_mean"){
                 
-                dist <- harmonic_mean_dist(x,y)
+                dist <- harmonic_mean_dist(x,y,test.na)
                 
         }
         
         if(method == "cosine"){
                 
-                dist <- cosine_dist(x,y)
+                dist <- cosine_dist(x,y,test.na)
                 
         }
         
         if(method == "hassebrook"){
                 
-                dist <- kumar_hassebrook(x,y)
+                dist <- kumar_hassebrook(x,y,test.na)
                 
         }
         
         if(method == "jaccard"){
                 
-                dist <- jaccard(x,y)
+                dist <- jaccard(x,y,test.na)
                 
         }
         
         if(method == "dice"){
                 
-                dist <- dice_dist(x,y)
+                dist <- dice_dist(x,y,test.na)
                 
         }
         
         if(method == "fidelity"){
                 
-                dist <- fidelity(x,y)
+                dist <- fidelity(x,y,test.na)
                 
         }
         
         if(method == "bhattacharyya"){
                 
-                dist <- bhattacharyya(x,y)
+                dist <- bhattacharyya(x,y,test.na)
                 
         }
         
         if(method == "hellinger"){
                 
-                dist <- hellinger(x,y)
+                dist <- hellinger(x,y,test.na)
                 
         }
         
         if(method == "matusita"){
                 
-                dist <- matusita(x,y)
+                dist <- matusita(x,y,test.na)
                 
         }
         
         if(method == "squared_chord"){
                 
-                dist <- squared_chord(x,y)
+                dist <- squared_chord(x,y,test.na)
                 
         }
 
         if(method == "squared_euclidean"){
                 
-                dist <- squared_euclidean(x,y)
+                dist <- squared_euclidean(x,y,test.na)
                 
         }
         
         if(method == "pearson"){
                 
-                dist <- pearson_chi_sq(x,y)
+                dist <- pearson_chi_sq(x,y,test.na)
                 
         }
         
         if(method == "neyman"){
                 
-                dist <- neyman_chi_sq(x,y)
+                dist <- neyman_chi_sq(x,y,test.na)
                 
         }
         
         if(method == "squared_chi"){
                 
-                dist <- squared_chi_sq(x,y)
+                dist <- squared_chi_sq(x,y,test.na)
                 
         }
         
         if(method == "prob_symm"){
                 
-                dist <- prob_symm_chi_sq(x,y)
+                dist <- prob_symm_chi_sq(x,y,test.na)
                 
         }
         
         if(method == "divergence"){
                 
-                dist <- divergence_sq(x,y)
+                dist <- divergence_sq(x,y,test.na)
                 
         }
         
         if(method == "clark"){
                 
-                dist <- clark_sq(x,y)
+                dist <- clark_sq(x,y,test.na)
                 
         }
         
         if(method == "additive_symm"){
                 
-                dist <- additive_symm_chi_sq(x,y)
+                dist <- additive_symm_chi_sq(x,y,test.na)
                 
         }
         
@@ -374,42 +374,42 @@ distance <- function(x,y, method = "euclidean", p = NULL, test.na = TRUE){
         
         if(method == "jeffreys"){
                 
-                dist <- jeffreys(x,y)
+                dist <- jeffreys(x,y,test.na)
         }
         
         if(method == "k_divergence"){
                 
-                dist <- k_divergence(x,y)
+                dist <- k_divergence(x,y,test.na)
         }
         
         if(method == "topsoe"){
                 
-                dist <- topsoe(x,y)
+                dist <- topsoe(x,y,test.na)
         }
         
         if(method == "jensen-shannon"){
                 
-                dist <- jensen_shannon(x,y)
+                dist <- jensen_shannon(x,y,test.na)
         }
         
         if(method == "jensen_difference"){
                 
-                dist <- jensen_difference(x,y)
+                dist <- jensen_difference(x,y,test.na)
         }
         
         if(method == "taneja"){
                 
-                dist <- taneja(x,y)
+                dist <- taneja(x,y,test.na)
         }
         
         if(method == "kumar-johnson"){
                 
-                dist <- kumar_johnson(x,y)
+                dist <- kumar_johnson(x,y,test.na)
         }
         
         if(method == "avg"){
                 
-                dist <- avg(x,y)
+                dist <- avg(x,y,test.na)
         }
         
         
