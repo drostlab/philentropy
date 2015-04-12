@@ -36,6 +36,7 @@
 #' \emph{Cross Entropy} of two probability distributions P and Q.
 #' @param P a probability distribution P.
 #' @param Q a probability distribution Q.
+#' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
 #' @return The Kullback–Leibler divergence of P and Q.
 #' @author Hajk-Georg Drost
 #' @seealso
@@ -51,7 +52,7 @@
 #' 
 #'@export
  
-KL <- function(P,Q){
+KL <- function(P,Q, test.na = TRUE){
         
         valid.distr(P)
         valid.distr(Q)
@@ -59,6 +60,6 @@ KL <- function(P,Q){
         if(!(length(P) == length(Q)))
                 stop("Your input vectors have different lengths..")
         
-        return(CrossEntropy(as.vector(P),as.vector(Q)))
+        return(CrossEntropy(as.vector(P),as.vector(Q),test.na))
         
 }
