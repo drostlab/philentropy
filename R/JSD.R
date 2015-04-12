@@ -2,6 +2,7 @@
 #' @description This function computes the Jensen-Shannon Divergence of two probability distributions P and Q with equal weights.
 #' @param P a probability distribution P.
 #' @param Q a probability distribution Q.
+#' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
 #' @return The Jensen-Shannon divergence  of P and Q.
 #' @author Hajk-Georg Drost
 #' @details 
@@ -43,7 +44,7 @@
 #' \code{\link{KL}}, \code{\link{H}}, \code{\link{CE}}, \code{\link{gJSD}}, \code{\link{distance}}
 #' @export
 
-JSD <- function(P,Q){
+JSD <- function(P,Q, test.na = TRUE){
         
         valid.distr(P)
         valid.distr(Q)
@@ -51,6 +52,6 @@ JSD <- function(P,Q){
         if(!(length(P) == length(Q)))
                 stop("Your input vectors have different lengths..")
         
-        return(JensonShannonDivergenceCpp(as.vector(P),as.vector(Q)))
+        return(JensonShannonDivergenceCpp(as.vector(P),as.vector(Q), test.na))
         
 }
