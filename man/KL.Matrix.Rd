@@ -4,10 +4,12 @@
 \alias{KL.Matrix}
 \title{Kullback-Leibler Divergence of a Probability Matrix}
 \usage{
-KL.Matrix(x)
+KL.Matrix(x, test.na = TRUE)
 }
 \arguments{
 \item{x}{a probability matrix.}
+
+\item{test.na}{a boolean value specifying whether input vectors shall be tested for NA values.}
 }
 \value{
 a matrix of pairwise KL divergences between all combinations of possible comparisons.

@@ -4,12 +4,14 @@
 \alias{KL}
 \title{Kullback–Leibler Divergence}
 \usage{
-KL(P, Q)
+KL(P, Q, test.na = TRUE)
 }
 \arguments{
 \item{P}{a probability distribution P.}
 
 \item{Q}{a probability distribution Q.}
+
+\item{test.na}{a boolean value specifying whether input vectors shall be tested for NA values.}
 }
 \value{
 The Kullback–Leibler divergence of P and Q.

@@ -4,12 +4,14 @@
 \alias{JSD}
 \title{Jensen-Shannon Divergence}
 \usage{
-JSD(P, Q)
+JSD(P, Q, test.na = TRUE)
 }
 \arguments{
 \item{P}{a probability distribution P.}
 
 \item{Q}{a probability distribution Q.}
+
+\item{test.na}{a boolean value specifying whether input vectors shall be tested for NA values.}
 }
 \value{
 The Jensen-Shannon divergence  of P and Q.
