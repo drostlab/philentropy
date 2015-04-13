@@ -1206,19 +1206,38 @@ double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
        
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+       if(testNA){
+               for(int i = 0; i < P_len; i++){
+                       if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
+                        }
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                sum1 += 0.0;
+                                sum2 += 0.0;
+                        } else {
+                        
+                                PQsum =   P[i] + Q[i];
+                                sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
+                                sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
+                        }
+                }
+        } else {
+                
+                for(int i = 0; i < P_len; i++){
+                       
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                sum1 += 0.0;
+                                sum2 += 0.0;
+                        } else {
+                        
+                                PQsum =   P[i] + Q[i];
+                                sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
+                                sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
                         }
                 }
                 
-                PQsum =   P[i] + Q[i];
-                sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
-                sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
-                
         }
-        
+
         return 0.5 * (sum1 + sum2);
 }
 
