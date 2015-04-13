@@ -732,6 +732,34 @@ test_that("distance(method = 'taneja') computes the correct distance value.", {
         
 })
 
+
+test_that("distance(method = 'taneja') computes the correct distance value in case input probability vectors store 0 values at the same position causing 0 * log(0) computation
+.", {
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        
+        taneja <- function(x,y){
+                
+                dist <- vector(mode = "numeric", length = 1)
+                dist <- 0
+                
+                for(i in 1:length(x)){
+                        
+                        if((x[i] == 0) & ((y[i]) == 0)){
+                                dist = dist
+                        } else {
+                                dist = dist + (((x[i] + y[i])/2) * log((x[i] + y[i]) / (2 * (x[i] * y[i])^1.5)))
+                        }
+                        
+                }
+                
+                return(dist)
+                
+        }
+        expect_equal(as.vector(philentropy::distance(A, B, method = "taneja")), taneja(A,B))
+        
+})
+
 test_that("distance(method = 'kumar-johnson') computes the correct distance value.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "kumar-johnson")), sum(((P^2 - Q^2)^2 / (2 * (P*Q)^1.5))) )
