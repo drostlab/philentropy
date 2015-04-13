@@ -1256,16 +1256,32 @@ double jensen_difference(const NumericVector& P, const NumericVector& Q, const b
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        if(testNA){
+                
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
+                        
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
+                                        PQsum = P[i] + Q[i];
+                                        dist += (((P[i] * log(P[i])) + (Q[i] * log(Q[i]))) / 2.0) - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                        }
                 }
+        } else {
                 
-                PQsum = P[i] + Q[i];
-                
-                dist += (((P[i] * log(P[i])) + (Q[i] * log(Q[i]))) / 2.0) - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                for(int i = 0; i < P_len; i++){
+                        
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
+                                        PQsum = P[i] + Q[i];
+                                        dist += (((P[i] * log(P[i])) + (Q[i] * log(Q[i]))) / 2.0) - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                        }
+                }
                 
         }
         
