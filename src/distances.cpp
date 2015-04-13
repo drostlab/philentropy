@@ -1159,21 +1159,32 @@ double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA)
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        if(testNA){
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
+                        
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
+                        
+                               PQsum = P[i] + Q[i];
+                               dist += ((P[i] * log((2.0 * P[i]) / PQsum )) + (Q[i] * log((2.0 * Q[i]) / PQsum ))); 
+                        }
                 }
+        } else {
                 
-                if((P[i] == 0.0) && (Q[i] == 0.0)){
+                for(int i = 0; i < P_len; i++){
+                
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
                         
-                        dist += 0.0;
-                } else {
-                        
-                      PQsum = P[i] + Q[i];
-                      dist += ((P[i] * log((2.0 * P[i]) / PQsum )) + (Q[i] * log((2.0 * Q[i]) / PQsum )));
-                  
+                               PQsum = P[i] + Q[i];
+                               dist += ((P[i] * log((2.0 * P[i]) / PQsum )) + (Q[i] * log((2.0 * Q[i]) / PQsum ))); 
+                        }
                 }
         }
         
