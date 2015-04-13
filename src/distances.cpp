@@ -1166,10 +1166,15 @@ double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA)
                         }
                 }
                 
-                PQsum = P[i] + Q[i];
-                
-                dist += ((P[i] * log((2.0 * P[i]) / PQsum )) + (Q[i] * log((2.0 * Q[i]) / PQsum )));
-                
+                if((P[i] == 0.0) && (Q[i] == 0.0)){
+                        
+                        dist += 0.0;
+                } else {
+                        
+                      PQsum = P[i] + Q[i];
+                      dist += ((P[i] * log((2.0 * P[i]) / PQsum )) + (Q[i] * log((2.0 * Q[i]) / PQsum )));
+                  
+                }
         }
         
         return dist;
