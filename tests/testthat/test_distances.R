@@ -625,6 +625,35 @@ test_that("distance(method = 'topsoe') computes the correct distance value.", {
 })
 
 
+
+test_that("distance(method = 'topsoe') computes the correct distance value in case 0 values are stored in the input probability vectors -> leading to 0 * log(0) computations
+.", {
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        
+        topsoe <- function(x,y){
+                
+                dist <- vector(mode = "numeric", length = 1)
+                dist <- 0
+                
+                for(i in 1:length(x)){
+                        
+                        if((x[i] == 0) & ((y[i]) == 0)){
+                                dist = dist
+                        } else {
+                                dist = dist + (x[i] * log((2 * x[i])/(x[i]+y[i]))) + (y[i] * log((2 * y[i])/(x[i]+y[i])))
+                        }
+                        
+                }
+                
+                return(dist)
+                
+        }
+        expect_equal(as.vector(philentropy::distance(A, B, method = "topsoe")), topsoe(A,B))
+        
+        
+})
+
 test_that("distance(method = 'jensen-shannon') computes the correct distance value.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen-shannon")), 0.5 * ((sum((P) * log((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log((2 * (Q)) / ((P) + (Q)))))))
