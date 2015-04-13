@@ -660,6 +660,37 @@ test_that("distance(method = 'jensen-shannon') computes the correct distance val
         
 })
 
+test_that("distance(method = 'jensen-shannon') computes the correct distance value in case input probability vectors store 0 values at the same position causing 0 * log(0) computation
+.", {
+        
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        
+        js <- function(x,y){
+                
+                dist <- vector(mode = "numeric", length = 1)
+                sum1 <- 0
+                sum2 <- 0
+                
+                for(i in 1:length(x)){
+                        
+                        if((x[i] == 0) & ((y[i]) == 0)){
+                                sum1 = sum1
+                                sum2 = sum2
+                        } else {
+                                sum1 = sum1 + (x[i] * log((2 * x[i])/(x[i]+y[i])))
+                                sum2 = sum2 + (y[i] * log((2 * y[i])/(x[i]+y[i])))
+                        }
+                        
+                }
+                
+                return(0.5 * (sum1 + sum2))
+                
+        }
+        expect_equal(as.vector(philentropy::distance(A, B, method = "jensen-shannon")), js(A,B))
+})
+
+
 test_that("distance(method = 'jensen_difference') computes the correct distance value.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen_difference")), sum(((((P) * log((P))) + ((Q) * log((Q)))) / 2 ) - (((P) + (Q)) / 2) * log(((P) + (Q)) / 2)))
