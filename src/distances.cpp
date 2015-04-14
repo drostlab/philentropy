@@ -294,8 +294,14 @@ double kulczynski_d(const NumericVector& P, const NumericVector& Q, const bool t
                 }
                
                 dist1 += diff;
-                dist2 += min_point;
                 
+                if(min_point == 0.0){
+                        
+                        dist2 += 0.00001;
+                } else {
+                        
+                        dist2 += min_point;
+                }     
         }
         
         return dist1/dist2;      
