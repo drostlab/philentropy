@@ -841,15 +841,24 @@ double squared_euclidean(const NumericVector& P, const NumericVector& Q, const b
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        if(testNA){
+                
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
+                  
+                        dist += pow(P[i] - Q[i], 2);
+                
                 }
+        } else {
                 
-                dist += pow(P[i] - Q[i], 2);
+                for(int i = 0; i < P_len; i++){
                 
+                        dist += pow(P[i] - Q[i], 2);
+                
+                }   
         }
         
         return dist;     
