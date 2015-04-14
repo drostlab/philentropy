@@ -823,9 +823,19 @@ double fidelity(const NumericVector& P, const NumericVector& Q, const bool testN
 
 //' @export
 // [[Rcpp::export]]
-double bhattacharyya(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double bhattacharyya(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
         
-        return -log(fidelity(P,Q, testNA));
+        if (unit == "log"){
+                return -log(fidelity(P,Q, testNA));
+        }
+        
+        else if (unit == "log2"){
+                return -custom_log2(fidelity(P,Q, testNA));
+        }
+        
+        else if (unit == "log10"){
+                return -custom_log10(fidelity(P,Q, testNA));
+        }
 }
 
 
