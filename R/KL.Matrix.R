@@ -23,6 +23,7 @@
 #' 
 #' @param x a probability matrix.
 #' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
+#' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @return a matrix of pairwise KL divergences between all combinations of possible comparisons.
 #' @author Hajk-Georg Drost
 #' @seealso
@@ -41,10 +42,7 @@
 #' 
 #' @export
 
-KL.Matrix <- function(x, test.na = TRUE){
-        
-        # check for ditribution validity
-        apply(x,2,valid.distr)
+KL.Matrix <- function(x, test.na = TRUE, unit = "log2"){
         
         nCols <- dim(x)[2]
         KLMatrix <- matrix(NA_real_,nCols,nCols)
@@ -53,7 +51,10 @@ KL.Matrix <- function(x, test.na = TRUE){
                 
                 for(i in 1:nCols){
                         for(j in 1:nCols){
-                                KLMatrix[i,j] <- CrossEntropy(as.vector(x[ , i]),as.vector(x[ , j]), test.na = test.na)
+                                KLMatrix[i,j] <- KL( P       = as.vector(x[ , i]),
+                                                     Q       = as.vector(x[ , j]), 
+                                                     test.na = test.na, 
+                                                     unit    = unit)
                         } 
                 }
                 

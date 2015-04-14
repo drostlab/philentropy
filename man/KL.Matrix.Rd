@@ -4,12 +4,14 @@
 \alias{KL.Matrix}
 \title{Kullback-Leibler Divergence of a Probability Matrix}
 \usage{
-KL.Matrix(x, test.na = TRUE)
+KL.Matrix(x, test.na = TRUE, unit = "log2")
 }
 \arguments{
 \item{x}{a probability matrix.}
 
 \item{test.na}{a boolean value specifying whether input vectors shall be tested for NA values.}
+
+\item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 }
 \value{
 a matrix of pairwise KL divergences between all combinations of possible comparisons.
