@@ -748,9 +748,15 @@ test_that("distance(method = 'taneja') computes the correct distance value in ca
                         if((x[i] == 0) & ((y[i]) == 0)){
                                 dist = dist
                         } else {
-                                dist = dist + (((x[i] + y[i])/2) * log((x[i] + y[i]) / (2 * (x[i] * y[i])^1.5)))
+                                
+                                denominator <- (2 * sqrt(x[i] * y[i]))
+                                
+                                if(denominator == 0){
+                                        dist = dist + (((x[i] + y[i])/2) * log((x[i] + y[i]) / 0.00001))
+                                } else {
+                                        dist = dist + (((x[i] + y[i])/2) * log((x[i] + y[i]) / denominator))
+                                }
                         }
-                        
                 }
                 
                 return(dist)
