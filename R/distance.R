@@ -25,6 +25,7 @@
 #' @param method a character string specifying the distance measure that shall be computed.
 #' @param p power of the Minkowski distance.
 #' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
+#' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @author Hajk-Georg Drost
 #' @details The following distance measures are implemented in this function:
 #' 
@@ -116,7 +117,11 @@
 #' 
 #' @export
 
-distance <- function(x,y, method = "euclidean", p = NULL, test.na = TRUE){
+distance <- function(x ,y,
+                     method  = "euclidean", 
+                     p       = NULL, 
+                     test.na = TRUE, 
+                     unit    = "log"){
         
         if(!is.element(method,getDistMethods()))
                 stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
