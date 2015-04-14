@@ -374,7 +374,7 @@ distance <- function(x ,y,
         
         if(method == "kullback-leibler"){
                 
-                dist <- kullback_leibler_distance(x,y,test.na)
+                dist <- kullback_leibler_distance(x,y,test.na,unit)
         }
         
         if(method == "jeffreys"){
