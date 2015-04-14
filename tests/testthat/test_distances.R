@@ -116,9 +116,21 @@ test_that("distance(method = 'canberra') computes the correct distance value whe
         
 })
 
-test_that("distance(method = 'lorentzian') computes the correct distance value.", {
+test_that("distance(method = 'lorentzian') computes the correct distance value using unit = log.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "lorentzian")), sum( log(1 + abs((P) - (Q)))))
+        
+})
+
+test_that("distance(method = 'lorentzian') computes the correct distance value using unit = log2.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "lorentzian", unit = "log2")), sum( log2(1 + abs((P) - (Q)))))
+        
+})
+
+test_that("distance(method = 'lorentzian') computes the correct distance value using unit = log10.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "lorentzian", unit = "log10")), sum( log10(1 + abs((P) - (Q)))))
         
 })
 
