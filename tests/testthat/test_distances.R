@@ -302,9 +302,21 @@ test_that("distance(method = 'fidelity') computes the correct distance value.", 
 })
 
 
-test_that("distance(method = 'bhattacharyya') computes the correct distance value.", {
+test_that("distance(method = 'bhattacharyya') computes the correct distance value using unit = log.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "bhattacharyya")), -log(sum(sqrt(P * Q))))
+        
+})
+
+test_that("distance(method = 'bhattacharyya') computes the correct distance value using unit = log2.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "bhattacharyya", unit = "log2")), -log2(sum(sqrt(P * Q))))
+        
+})
+
+test_that("distance(method = 'bhattacharyya') computes the correct distance value using unit = log10.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "bhattacharyya", unit = "log10")), -log10(sum(sqrt(P * Q))))
         
 })
 
