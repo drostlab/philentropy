@@ -22,6 +22,18 @@
 using namespace Rcpp;
 using namespace std;
 
+// [[Rcpp::export]]
+double custom_log2(const double& x ){
+        
+        return log(x)/log(2);
+}
+
+// [[Rcpp::export]]
+double custom_log10(const double& x ){
+        
+        return log(x)/log(10);
+}
+
 
 //' @export
 // [[Rcpp::export]]
@@ -377,7 +389,7 @@ double canberra(const NumericVector& P, const NumericVector& Q, const bool testN
 
 //' @export
 // [[Rcpp::export]]
-double lorentzian(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double lorentzian(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -388,16 +400,46 @@ double lorentzian(const NumericVector& P, const NumericVector& Q, const bool tes
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        if(testNA){
+                
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
-                }
-                
-                diff = fabs(P[i] - Q[i]);
-                dist += log(1.0 + diff);
                         
+                        diff = fabs(P[i] - Q[i]);
+                        
+                        if (unit == "log"){
+                                dist += log(1.0 + diff);
+                        } 
+                        
+                        else if (unit == "log2"){
+                                dist += custom_log2(1.0 + diff);
+                        }
+                        
+                        else if (unit == "log10"){
+                                dist += custom_log10(1.0 + diff);
+                        }
+                 }
+        } else {
+                
+                for(int i = 0; i < P_len; i++){
+        
+                        diff = fabs(P[i] - Q[i]);
+                        
+                        if (unit == "log"){
+                                dist += log(1.0 + diff);
+                        } 
+                        
+                        else if (unit == "log2"){
+                                dist += custom_log2(1.0 + diff);
+                        }
+                        
+                        else if (unit == "log10"){
+                                dist += custom_log10(1.0 + diff);
+                        }
+                 }
         }
         
         return dist;
