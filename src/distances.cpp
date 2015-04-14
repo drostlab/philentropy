@@ -1174,7 +1174,7 @@ double additive_symm_chi_sq(const NumericVector& P, const NumericVector& Q, cons
 
 //' @export
 // [[Rcpp::export]]
-double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1202,8 +1202,18 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q,
                                 
                                         PQratio = P[i] / Q[i];
                                 }
-                        
-                                dist += P[i] * log(PQratio);
+                                 
+                                if (unit == "log"){
+                                   dist += P[i] * log(PQratio);        
+                                }
+                                
+                                else if (unit == "log2"){
+                                        dist += P[i] * custom_log2(PQratio);
+                                }
+                                
+                                else if (unit == "log10"){
+                                        dist += P[i] * custom_log10(PQratio);
+                                }
                         }  
                 }
         } else {
@@ -1221,7 +1231,17 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q,
                                         PQratio = P[i] / Q[i];
                                 }
                         
-                                dist += P[i] * log(PQratio);
+                                if (unit == "log"){
+                                   dist += P[i] * log(PQratio);        
+                                }
+                                
+                                else if (unit == "log2"){
+                                        dist += P[i] * custom_log2(PQratio);
+                                }
+                                
+                                else if (unit == "log10"){
+                                        dist += P[i] * custom_log10(PQratio);
+                                }
                         }  
                 }  
         }
