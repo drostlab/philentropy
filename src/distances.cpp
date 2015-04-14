@@ -275,33 +275,61 @@ double kulczynski_d(const NumericVector& P, const NumericVector& Q, const bool t
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        if(testNA){
+                
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
-                }
                 
-                diff      = fabs(P[i] - Q[i]);
                 
-                if (P[i] <= Q[i]){
+                         diff      = fabs(P[i] - Q[i]);
+                
+                         if (P[i] <= Q[i]){
                         
-                        min_point = P[i];
+                                min_point = P[i];
                         
-                } else {
+                          } else {
                         
-                        min_point = Q[i];
-                }
+                                min_point = Q[i];
+                          }
                
-                dist1 += diff;
+                          dist1 += diff;
                 
-                if(min_point == 0.0){
+                          if(min_point == 0.0){
                         
-                        dist2 += 0.00001;
-                } else {
+                                dist2 += 0.00001;
+                          } else {
                         
-                        dist2 += min_point;
-                }     
+                                dist2 += min_point;
+                          }     
+                }
+        } else {
+                
+                for(int i = 0; i < P_len; i++){
+                
+                         diff      = fabs(P[i] - Q[i]);
+                
+                         if (P[i] <= Q[i]){
+                        
+                                min_point = P[i];
+                        
+                          } else {
+                        
+                                min_point = Q[i];
+                          }
+               
+                          dist1 += diff;
+                
+                          if(min_point == 0.0){
+                        
+                                dist2 += 0.00001;
+                          } else {
+                        
+                                dist2 += min_point;
+                          }     
+                }
         }
         
         return dist1/dist2;      
