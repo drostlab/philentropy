@@ -1427,16 +1427,18 @@ double jensen_difference(const NumericVector& P, const NumericVector& Q, const b
 // [[Rcpp::export]]
 double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA){
         
-        int    P_len      = P.size();
-        int    Q_len      = Q.size();
-        double dist       = 0.0;
-        double PQsum      = 0.0;
+        int    P_len       = P.size();
+        int    Q_len       = Q.size();
+        double dist        = 0.0;
+        double PQsum       = 0.0;
+        double denominator = 0.0;
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if(testNA){
+                
                 for(int i = 0; i < P_len; i++){
                 
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
@@ -1447,7 +1449,13 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA)
                                 dist += 0.0;
                         } else {
                                 PQsum = P[i] + Q[i];
-                                dist += (PQsum / 2.0) * log(PQsum / (2.0 * sqrt(P[i] * Q[i])));
+                                denominator = (2.0 * sqrt(P[i] * Q[i]));
+                                
+                                if(denominator == 0.0){
+                                        dist += (PQsum / 2.0) * log(PQsum / 0.00001);
+                                } else {
+                                        dist += (PQsum / 2.0) * log(PQsum / denominator);
+                                }
                         }      
                 }
         } else {
@@ -1457,11 +1465,19 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA)
                         if((P[i] == 0.0) && (Q[i] == 0.0)){
                                 dist += 0.0;
                         } else {
+                                
                                 PQsum = P[i] + Q[i];
-                                dist += (PQsum / 2.0) * log(PQsum / (2.0 * sqrt(P[i] * Q[i])));
+                                denominator = (2.0 * sqrt(P[i] * Q[i]));
+                                
+                                if(denominator == 0.0){
+                                        dist += (PQsum / 2.0) * log(PQsum / 0.00001);
+                                } else {
+                                        dist += (PQsum / 2.0) * log(PQsum / denominator);
+                                }
                         }      
                 }
         }
+        
         return dist;
 }
 
