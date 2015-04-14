@@ -206,7 +206,7 @@ distance <- function(x ,y,
 
         if(method == "lorentzian"){
                 
-                dist <- lorentzian(x,y,test.na)
+                dist <- lorentzian(x,y,test.na,unit)
                 
         }
         
