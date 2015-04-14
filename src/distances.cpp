@@ -1206,19 +1206,38 @@ double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
        
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+       if(testNA){
+               for(int i = 0; i < P_len; i++){
+                       if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
+                        }
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                sum1 += 0.0;
+                                sum2 += 0.0;
+                        } else {
+                        
+                                PQsum =   P[i] + Q[i];
+                                sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
+                                sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
+                        }
+                }
+        } else {
+                
+                for(int i = 0; i < P_len; i++){
+                       
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                sum1 += 0.0;
+                                sum2 += 0.0;
+                        } else {
+                        
+                                PQsum =   P[i] + Q[i];
+                                sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
+                                sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
                         }
                 }
                 
-                PQsum =   P[i] + Q[i];
-                sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
-                sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
-                
         }
-        
+
         return 0.5 * (sum1 + sum2);
 }
 
@@ -1237,16 +1256,32 @@ double jensen_difference(const NumericVector& P, const NumericVector& Q, const b
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        if(testNA){
+                
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
+                        
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
+                                        PQsum = P[i] + Q[i];
+                                        dist += (((P[i] * log(P[i])) + (Q[i] * log(Q[i]))) / 2.0) - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                        }
                 }
+        } else {
                 
-                PQsum = P[i] + Q[i];
-                
-                dist += (((P[i] * log(P[i])) + (Q[i] * log(Q[i]))) / 2.0) - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                for(int i = 0; i < P_len; i++){
+                        
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
+                                        PQsum = P[i] + Q[i];
+                                        dist += (((P[i] * log(P[i])) + (Q[i] * log(Q[i]))) / 2.0) - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                        }
+                }
                 
         }
         
@@ -1269,19 +1304,32 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA)
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        if(testNA){
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
+                        
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
+                                PQsum = P[i] + Q[i];
+                                dist += (PQsum / 2.0) * log(PQsum / (2.0 * sqrt(P[i] * Q[i])));
+                        }      
                 }
+        } else {
                 
-                PQsum = P[i] + Q[i];
-                
-                dist += (PQsum / 2.0) * log(PQsum / (2.0 * sqrt(P[i] * Q[i])));
-                
+                for(int i = 0; i < P_len; i++){
+                        
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
+                                PQsum = P[i] + Q[i];
+                                dist += (PQsum / 2.0) * log(PQsum / (2.0 * sqrt(P[i] * Q[i])));
+                        }      
+                }
         }
-        
         return dist;
 }
 
@@ -1292,21 +1340,41 @@ double kumar_johnson(const NumericVector& P, const NumericVector& Q, const bool 
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
+        double divisor    = 0.0;
         double dist       = 0.0;
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        
+        if(testNA){
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
+                        
+                        divisor = (2.0 * pow(P[i] * Q[i], 1.5));
+                        
+                        if(divisor == 0.0){
+                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2) / 0.00001;
+                        } else {
+                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2) / divisor;
+                        }
                 }
+        } else {
                 
-                dist += pow(pow(P[i],2) - pow(Q[i],2), 2) / (2.0 * pow(P[i] * Q[i], 1.5));
+                for(int i = 0; i < P_len; i++){
                 
+                        divisor = (2.0 * pow(P[i] * Q[i], 1.5));
+                        
+                        if(divisor == 0.0){
+                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2) / 0.00001;
+                        } else {
+                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2) / divisor;
+                        }
+                }
         }
         
         return dist;
