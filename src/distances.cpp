@@ -1190,22 +1190,45 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testN
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        if(testNA){
+                
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
-                }
-                
-                PQrate = P[i] / Q[i];
-                
-                if(PQrate == 0.0){
-                      dist += (P[i] - Q[i]) * log(0.00001);
-                } else {
                         
-                      dist += (P[i] - Q[i]) * log(PQrate);
+                        if(Q[i] == 0.0){
+                                PQrate = P[i] / 0.00001;
+                        } else {
+                                PQrate = P[i] / Q[i];
+                        }
+                
+                        if(PQrate == 0.0){
+                                dist += (P[i] - Q[i]) * log(0.00001);
+                        } else {
+                        
+                                dist += (P[i] - Q[i]) * log(PQrate);
+                        }     
                 }
-                     
+        } else {
+                
+                for(int i = 0; i < P_len; i++){
+                        
+                        if(Q[i] == 0.0){
+                                PQrate = P[i] / 0.00001;
+                        } else {
+                                PQrate = P[i] / Q[i];
+                        }
+                
+                        if(PQrate == 0.0){
+                                dist += (P[i] - Q[i]) * log(0.00001);
+                        } else {
+                        
+                                dist += (P[i] - Q[i]) * log(PQrate);
+                        }     
+                }
+                
         }
         
         return dist;
