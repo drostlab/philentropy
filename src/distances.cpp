@@ -1133,18 +1133,44 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q,
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
 
-        for(int i = 0; i < P_len; i++){
-                if(testNA){
+        if(testNA){
+                for(int i = 0; i < P_len; i++){
+                
                         if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
+                        
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
+                                
+                                if(Q[i] == 0.0){
+                                        PQratio = P[i] / 0.00001;
+                                } else {
+                                
+                                        PQratio = P[i] / Q[i];
+                                }
+                        
+                                dist += P[i] * log(PQratio);
+                        }  
                 }
+        } else {
                 
-                if((P[i] == 0.0) && (Q[i] == 0.0)){
-                        dist += 0.0;
-                } else {
-                        PQratio = P[i] / Q[i];
-                        dist += P[i] * log(PQratio);
+                for(int i = 0; i < P_len; i++){
+                        
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                                dist += 0.0;
+                        } else {
+                                
+                                if(Q[i] == 0.0){
+                                        PQratio = P[i] / 0.00001;
+                                } else {
+                                
+                                        PQratio = P[i] / Q[i];
+                                }
+                        
+                                dist += P[i] * log(PQratio);
+                        }  
                 }  
         }
         
