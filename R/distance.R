@@ -302,7 +302,7 @@ distance <- function(x ,y,
         
         if(method == "bhattacharyya"){
                 
-                dist <- bhattacharyya(x,y,test.na)
+                dist <- bhattacharyya(x,y,test.na,unit)
                 
         }
         
