@@ -541,12 +541,24 @@ test_that("distance(method = 'additive_symm') computes the correct distance valu
         expect_equal(as.vector(philentropy::distance(A, B, method = "additive_symm")), add(A,B))
 })
 
-test_that("distance(method = 'kullback-leibler') computes the correct distance value.", {
+test_that("distance(method = 'kullback-leibler') computes the correct distance value using unit = log.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "kullback-leibler")), sum((P) * log((P) / (Q))))
         
 })
 
+
+test_that("distance(method = 'kullback-leibler') computes the correct distance value using unit = log2.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "kullback-leibler", unit = "log2")), sum((P) * log2((P) / (Q))))
+        
+})
+
+test_that("distance(method = 'kullback-leibler') computes the correct distance valueusing unit = log10.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "kullback-leibler", unit = "log10")), sum((P) * log10((P) / (Q))))
+        
+})
 
 test_that("distance(method = 'kullback-leibler') computes the correct distance value in case input probability vectors store 0 values at the same position causing 0 * log(0) computation
 .", {
