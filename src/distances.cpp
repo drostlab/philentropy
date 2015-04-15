@@ -1415,7 +1415,7 @@ double k_divergence(const NumericVector& P, const NumericVector& Q, const bool t
 
 //' @export
 // [[Rcpp::export]]
-double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1438,7 +1438,18 @@ double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA)
                         } else {
                         
                                PQsum = P[i] + Q[i];
-                               dist += ((P[i] * log((2.0 * P[i]) / PQsum )) + (Q[i] * log((2.0 * Q[i]) / PQsum ))); 
+                               
+                               if (unit == "log"){
+                                       dist += ((P[i] * log((2.0 * P[i]) / PQsum )) + (Q[i] * log((2.0 * Q[i]) / PQsum ))); 
+                               }
+                               
+                               else if (unit == "log2"){
+                                       dist += ((P[i] * custom_log2((2.0 * P[i]) / PQsum )) + (Q[i] * custom_log2((2.0 * Q[i]) / PQsum ))); 
+                               }
+                               
+                               else if (unit == "log10"){
+                                       dist += ((P[i] * custom_log10((2.0 * P[i]) / PQsum )) + (Q[i] * custom_log10((2.0 * Q[i]) / PQsum ))); 
+                               }
                         }
                 }
         } else {
@@ -1450,7 +1461,18 @@ double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA)
                         } else {
                         
                                PQsum = P[i] + Q[i];
-                               dist += ((P[i] * log((2.0 * P[i]) / PQsum )) + (Q[i] * log((2.0 * Q[i]) / PQsum ))); 
+                               
+                               if (unit == "log"){
+                                       dist += ((P[i] * log((2.0 * P[i]) / PQsum )) + (Q[i] * log((2.0 * Q[i]) / PQsum ))); 
+                               }
+                               
+                               else if (unit == "log2"){
+                                       dist += ((P[i] * custom_log2((2.0 * P[i]) / PQsum )) + (Q[i] * custom_log2((2.0 * Q[i]) / PQsum ))); 
+                               }
+                               
+                               else if (unit == "log10"){
+                                       dist += ((P[i] * custom_log10((2.0 * P[i]) / PQsum )) + (Q[i] * custom_log10((2.0 * Q[i]) / PQsum ))); 
+                               }
                         }
                 }
         }
