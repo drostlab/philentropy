@@ -1483,7 +1483,7 @@ double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA,
 
 //' @export
 // [[Rcpp::export]]
-double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1506,8 +1506,21 @@ double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool
                         } else {
                         
                                 PQsum =   P[i] + Q[i];
-                                sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
-                                sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
+                                
+                                if (unit == "log"){
+                                        sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
+                                        sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
+                                }
+                                
+                                else if (unit == "log2"){
+                                        sum1  +=  P[i] * custom_log2((2.0 * P[i]) / PQsum);
+                                        sum1  +=  Q[i] * custom_log2((2.0 * Q[i]) / PQsum);
+                                }
+                                
+                                else if (unit == "log10"){
+                                        sum1  +=  P[i] * custom_log10((2.0 * P[i]) / PQsum);
+                                        sum1  +=  Q[i] * custom_log10((2.0 * Q[i]) / PQsum);
+                                }
                         }
                 }
         } else {
@@ -1520,8 +1533,21 @@ double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool
                         } else {
                         
                                 PQsum =   P[i] + Q[i];
-                                sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
-                                sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
+                                
+                                if (unit == "log"){
+                                        sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
+                                        sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
+                                }
+                                
+                                else if (unit == "log2"){
+                                        sum1  +=  P[i] * custom_log2((2.0 * P[i]) / PQsum);
+                                        sum1  +=  Q[i] * custom_log2((2.0 * Q[i]) / PQsum);
+                                }
+                                
+                                else if (unit == "log10"){
+                                        sum1  +=  P[i] * custom_log10((2.0 * P[i]) / PQsum);
+                                        sum1  +=  Q[i] * custom_log10((2.0 * Q[i]) / PQsum);
+                                }
                         }
                 }
                 
