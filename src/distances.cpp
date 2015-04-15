@@ -1352,7 +1352,7 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testN
 
 //' @export
 // [[Rcpp::export]]
-double k_divergence(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double k_divergence(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1365,26 +1365,46 @@ double k_divergence(const NumericVector& P, const NumericVector& Q, const bool t
         if(testNA){
                 
                 for(int i = 0; i < P_len; i++){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
-                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                        if ((P[i] == 0.0) && (Q[i] == 0.0)){
                                 dist += 0.0;
                         } else {
+                                
+                                if (unit == "log"){      
+                                    dist += (P[i] * log((2.0 * P[i]) / (P[i] + Q[i])));    
+                                }
                         
-                                dist += (P[i] * log((2.0 * P[i]) / (P[i] + Q[i])));
+                                else if (unit == "log2"){
+                                        dist += (P[i] * custom_log2((2.0 * P[i]) / (P[i] + Q[i])));
+                                }
+                                
+                                else if (unit == "log10"){
+                                        dist += (P[i] * custom_log10((2.0 * P[i]) / (P[i] + Q[i])));
+                                }
                         }
                 }
         } else {
                 
-                for(int i = 0; i < P_len; i++){
+                for (int i = 0; i < P_len; i++){
                         
-                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                        if ((P[i] == 0.0) && (Q[i] == 0.0)){
                                 dist += 0.0;
                         } else {
                         
-                                dist += (P[i] * log((2.0 * P[i]) / (P[i] + Q[i])));
+                                if (unit == "log"){      
+                                    dist += (P[i] * log((2.0 * P[i]) / (P[i] + Q[i])));    
+                                }
+                        
+                                else if (unit == "log2"){
+                                        dist += (P[i] * custom_log2((2.0 * P[i]) / (P[i] + Q[i])));
+                                }
+                                
+                                else if (unit == "log10"){
+                                        dist += (P[i] * custom_log10((2.0 * P[i]) / (P[i] + Q[i])));
+                                }
                          }
                 }
         }
