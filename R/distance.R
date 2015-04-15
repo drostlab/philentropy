@@ -397,7 +397,7 @@ distance <- function(x ,y,
         
         if(method == "jensen-shannon"){
                 
-                dist <- jensen_shannon(x,y,test.na)
+                dist <- jensen_shannon(x,y,test.na,unit)
         }
         
         if(method == "jensen_difference"){
