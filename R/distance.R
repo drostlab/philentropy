@@ -392,7 +392,7 @@ distance <- function(x ,y,
         
         if(method == "topsoe"){
                 
-                dist <- topsoe(x,y,test.na)
+                dist <- topsoe(x,y,test.na,unit)
         }
         
         if(method == "jensen-shannon"){
