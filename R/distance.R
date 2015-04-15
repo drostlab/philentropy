@@ -22,9 +22,9 @@
 #' @description This functions computes the distance/dissimilarity between two probability density functions.
 #' @param x a numeric vector (probability density function), a count vector (if \code{est.prob = TRUE}), or a probability matrix (\code{data.frame} or \code{matrix}).
 #' @param y a numeric vector (probability density function), a count vector (if \code{est.prob = TRUE}).
-#' @param method a character string specifying the distance measure that shall be computed.
+#' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
-#' @param test.na a boolean value specifying whether or not input vectors shall be tested for NA values.
+#' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values.
 #' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @author Hajk-Georg Drost
 #' @details The following distance measures are implemented in this function:

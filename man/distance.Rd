@@ -8,15 +8,15 @@ distance(x, y, method = "euclidean", p = NULL, test.na = TRUE,
   unit = "log")
 }
 \arguments{
-\item{x}{a numeric vector (probability density function).}
+\item{x}{a numeric vector (probability density function), a count vector (if \code{est.prob = TRUE}), or a probability matrix (\code{data.frame} or \code{matrix}).}
 
-\item{y}{a numeric vector (probability density function).}
+\item{y}{a numeric vector (probability density function), a count vector (if \code{est.prob = TRUE}).}
 
-\item{method}{a character string specifying the distance measure that shall be computed.}
+\item{method}{a character string indicating whether the distance measure that should be computed.}
 
 \item{p}{power of the Minkowski distance.}
 
-\item{test.na}{a boolean value specifying whether input vectors shall be tested for NA values.}
+\item{test.na}{a boolean value indicating whether input vectors should be tested for \code{NA} values.}
 
 \item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 }
