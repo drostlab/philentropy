@@ -131,6 +131,9 @@ distance <- function(x ,y,
                 
         }
         
+        if(!is.element(unit,c("log","log2","log10")))
+                stop("You can only choose units: log, log2, or log10.")
+        
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
         # here a smarter (faster) way to validate distributions needs to be implemented
@@ -379,7 +382,7 @@ distance <- function(x ,y,
         
         if(method == "jeffreys"){
                 
-                dist <- jeffreys(x,y,test.na)
+                dist <- jeffreys(x,y,test.na,unit)
         }
         
         if(method == "k_divergence"){
