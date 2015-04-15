@@ -632,12 +632,23 @@ test_that("distance(method = 'jeffreys') computes the correct distance value in 
 
 
 
-test_that("distance(method = 'k_divergence') computes the correct distance value.", {
+test_that("distance(method = 'k_divergence') computes the correct distance value using unit = log.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "k_divergence")), sum((P) * log(2 * (P) / ((P) + (Q)))))
         
 })
 
+test_that("distance(method = 'k_divergence') computes the correct distance value using unit = log2.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "k_divergence", unit = "log2")), sum((P) * log2(2 * (P) / ((P) + (Q)))))
+        
+})
+
+test_that("distance(method = 'k_divergence') computes the correct distance value using unit = log10.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "k_divergence", unit = "log10")), sum((P) * log10(2 * (P) / ((P) + (Q)))))
+        
+})
 
 test_that("distance(method = 'k_divergence') computes the correct distance value in case 0 values are stored in the input probability vectors -> leading to 0 * log(0) computations.", {
         
