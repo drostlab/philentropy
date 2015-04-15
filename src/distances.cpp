@@ -835,6 +835,9 @@ double bhattacharyya(const NumericVector& P, const NumericVector& Q, const bool 
         
         else if (unit == "log10"){
                 return -custom_log10(fidelity(P,Q, testNA));
+        } else {
+                Rcpp::stop("Please choose from units: log, log2, or log10.");
+                return -1.0;
         }
 }
 
@@ -1251,7 +1254,7 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q,
 
 //' @export
 // [[Rcpp::export]]
-double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1277,10 +1280,30 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testN
                         }
                 
                         if(PQrate == 0.0){
-                                dist += (P[i] - Q[i]) * log(0.00001);
+                                if (unit == "log"){
+                                        dist += (P[i] - Q[i]) * log(0.00001);
+                                }
+                                
+                                else if (unit == "log2"){
+                                        dist += (P[i] - Q[i]) * custom_log2(0.00001);
+                                } 
+                                
+                                else if (unit == "log10"){
+                                        dist += (P[i] - Q[i]) * custom_log10(0.00001);
+                                }
+                                
                         } else {
-                        
-                                dist += (P[i] - Q[i]) * log(PQrate);
+                                if (unit == "log"){
+                                        dist += (P[i] - Q[i]) * log(PQrate);
+                                }
+                                
+                                else if (unit == "log2"){
+                                        dist += (P[i] - Q[i]) * custom_log2(PQrate);
+                                } 
+                                
+                                else if (unit == "log10"){
+                                        dist += (P[i] - Q[i]) * custom_log10(PQrate);
+                                }
                         }     
                 }
         } else {
@@ -1294,10 +1317,30 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testN
                         }
                 
                         if(PQrate == 0.0){
-                                dist += (P[i] - Q[i]) * log(0.00001);
+                                if (unit == "log"){
+                                        dist += (P[i] - Q[i]) * log(0.00001);
+                                }
+                                
+                                else if (unit == "log2"){
+                                        dist += (P[i] - Q[i]) * custom_log2(0.00001);
+                                } 
+                                
+                                else if (unit == "log10"){
+                                        dist += (P[i] - Q[i]) * custom_log10(0.00001);
+                                }
                         } else {
                         
-                                dist += (P[i] - Q[i]) * log(PQrate);
+                                if (unit == "log"){
+                                        dist += (P[i] - Q[i]) * log(PQrate);
+                                }
+                                
+                                else if (unit == "log2"){
+                                        dist += (P[i] - Q[i]) * custom_log2(PQrate);
+                                } 
+                                
+                                else if (unit == "log10"){
+                                        dist += (P[i] - Q[i]) * custom_log10(PQrate);
+                                }
                         }     
                 }
                 
