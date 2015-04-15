@@ -824,12 +824,23 @@ test_that("distance(method = 'jensen_difference') computes the correct distance 
        
 })
 
-test_that("distance(method = 'taneja') computes the correct distance value.", {
+test_that("distance(method = 'taneja') computes the correct distance value using unit = log.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "taneja")), sum(((P + Q) / 2) * log((P+Q) / (2 * sqrt(P*Q)))) )
         
 })
 
+test_that("distance(method = 'taneja') computes the correct distance value using unit = log2.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "taneja", unit = "log2")), sum(((P + Q) / 2) * log2((P+Q) / (2 * sqrt(P*Q)))) )
+        
+})
+
+test_that("distance(method = 'taneja') computes the correct distance value using unit = log10.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "taneja", unit = "log10")), sum(((P + Q) / 2) * log10((P+Q) / (2 * sqrt(P*Q)))) )
+        
+})
 
 test_that("distance(method = 'taneja') computes the correct distance value in case input probability vectors store 0 values at the same position causing 0 * log(0) computation
 .", {
