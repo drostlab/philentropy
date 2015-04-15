@@ -775,9 +775,23 @@ test_that("distance(method = 'jensen-shannon') computes the correct distance val
 })
 
 
-test_that("distance(method = 'jensen_difference') computes the correct distance value.", {
+test_that("distance(method = 'jensen_difference') computes the correct distance value using unit = log.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen_difference")), sum(((((P) * log((P))) + ((Q) * log((Q)))) / 2 ) - (((P) + (Q)) / 2) * log(((P) + (Q)) / 2)))
+        
+})
+
+
+test_that("distance(method = 'jensen_difference') computes the correct distance value using unit = log2.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen_difference", unit = "log2")), sum(((((P) * log2((P))) + ((Q) * log2((Q)))) / 2 ) - (((P) + (Q)) / 2) * log2(((P) + (Q)) / 2)))
+        
+})
+
+
+test_that("distance(method = 'jensen_difference') computes the correct distance value using unit = log10.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen_difference", unit = "log10")), sum(((((P) * log10((P))) + ((Q) * log10((Q)))) / 2 ) - (((P) + (Q)) / 2) * log10(((P) + (Q)) / 2)))
         
 })
 
