@@ -725,9 +725,22 @@ test_that("distance(method = 'topsoe') computes the correct distance value in ca
         
 })
 
-test_that("distance(method = 'jensen-shannon') computes the correct distance value.", {
+test_that("distance(method = 'jensen-shannon') computes the correct distance value using unit = log.", {
         
         expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen-shannon")), 0.5 * ((sum((P) * log((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log((2 * (Q)) / ((P) + (Q)))))))
+        
+})
+
+
+test_that("distance(method = 'jensen-shannon') computes the correct distance value using unit = log2.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen-shannon", unit = "log2")), 0.5 * ((sum((P) * log2((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log2((2 * (Q)) / ((P) + (Q)))))))
+        
+})
+
+test_that("distance(method = 'jensen-shannon') computes the correct distance value using unit = log10.", {
+        
+        expect_equal(as.vector(philentropy::distance(P, Q, method = "jensen-shannon", unit = "log10")), 0.5 * ((sum((P) * log10((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log10((2 * (Q)) / ((P) + (Q)))))))
         
 })
 
