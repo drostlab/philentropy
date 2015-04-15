@@ -407,7 +407,7 @@ distance <- function(x ,y,
         
         if(method == "taneja"){
                 
-                dist <- taneja(x,y,test.na)
+                dist <- taneja(x,y,test.na,unit)
         }
         
         if(method == "kumar-johnson"){
