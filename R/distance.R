@@ -402,7 +402,7 @@ distance <- function(x ,y,
         
         if(method == "jensen_difference"){
                 
-                dist <- jensen_difference(x,y,test.na)
+                dist <- jensen_difference(x,y,test.na,unit)
         }
         
         if(method == "taneja"){
