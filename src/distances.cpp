@@ -1630,7 +1630,7 @@ double jensen_difference(const NumericVector& P, const NumericVector& Q, const b
 
 //' @export
 // [[Rcpp::export]]
-double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
         
         int    P_len       = P.size();
         int    Q_len       = Q.size();
@@ -1657,9 +1657,32 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA)
                                 denominator = (2.0 * sqrt(P[i] * Q[i]));
                                 
                                 if(denominator == 0.0){
-                                        dist += (PQsum / 2.0) * log(PQsum / 0.00001);
+                                        
+                                        if (unit == "log"){
+                                                dist += (PQsum / 2.0) * log(PQsum / 0.00001);
+                                        }
+                                        
+                                        else if (unit == "log2"){
+                                                dist += (PQsum / 2.0) * custom_log2(PQsum / 0.00001);
+                                        }
+                                        
+                                        else if (unit == "log10"){
+                                                dist += (PQsum / 2.0) * custom_log10(PQsum / 0.00001);
+                                        }
+                                        
                                 } else {
-                                        dist += (PQsum / 2.0) * log(PQsum / denominator);
+                                        
+                                        if (unit == "log"){
+                                                dist += (PQsum / 2.0) * log(PQsum / denominator);
+                                        }
+                                        
+                                        else if (unit == "log2"){
+                                                dist += (PQsum / 2.0) * custom_log2(PQsum / denominator);
+                                        }
+                                        
+                                        else if (unit == "log10"){
+                                                dist += (PQsum / 2.0) * custom_log10(PQsum / denominator);
+                                        }
                                 }
                         }      
                 }
@@ -1675,9 +1698,32 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA)
                                 denominator = (2.0 * sqrt(P[i] * Q[i]));
                                 
                                 if(denominator == 0.0){
-                                        dist += (PQsum / 2.0) * log(PQsum / 0.00001);
+                                        
+                                        if (unit == "log"){
+                                                dist += (PQsum / 2.0) * log(PQsum / 0.00001);
+                                        }
+                                        
+                                        else if (unit == "log2"){
+                                                dist += (PQsum / 2.0) * custom_log2(PQsum / 0.00001);
+                                        }
+                                        
+                                        else if (unit == "log10"){
+                                                dist += (PQsum / 2.0) * custom_log10(PQsum / 0.00001);
+                                        }
+                                        
                                 } else {
-                                        dist += (PQsum / 2.0) * log(PQsum / denominator);
+                                        
+                                        if (unit == "log"){
+                                                dist += (PQsum / 2.0) * log(PQsum / denominator);
+                                        }
+                                        
+                                        else if (unit == "log2"){
+                                                dist += (PQsum / 2.0) * custom_log2(PQsum / denominator);
+                                        }
+                                        
+                                        else if (unit == "log10"){
+                                                dist += (PQsum / 2.0) * custom_log10(PQsum / denominator);
+                                        }
                                 }
                         }      
                 }
