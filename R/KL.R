@@ -36,7 +36,7 @@
 #' \emph{Cross Entropy} of two probability distributions P and Q.
 #' @param P a probability distribution P.
 #' @param Q a probability distribution Q.
-#' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
+#' @param test.na a boolean value indicating whether input vectors should be tested for NA values.
 #' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @return The Kullback–Leibler divergence of P and Q.
 #' @author Hajk-Georg Drost
