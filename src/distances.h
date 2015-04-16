@@ -1859,7 +1859,6 @@ double avg(const NumericVector& P, const NumericVector& Q, const bool testNA){
         return (dist + PQmax) / 2.0;
 }
 
-
 //' @export
 // [[Rcpp::export]]
 NumericMatrix DistMatrixWithoutUnit(NumericMatrix dists, Function DistFunc, bool testNA){
@@ -1868,14 +1867,16 @@ NumericMatrix DistMatrixWithoutUnit(NumericMatrix dists, Function DistFunc, bool
         int nrow = dists.nrow();
         double dist_value = 0.0;
         NumericMatrix dist_matrix(nrow,nrow);
+        // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
+        std::fill( dist_matrix.begin(), dist_matrix.end(), NumericVector::get_na() );
         
         for (int i = 0; i < nrow; i++){
                 for (int j = 0; j < nrow; j++){
-                 
-                 dist_value = as<double>(DistFunc(dists(i,_),dists(j,_), testNA));
-                 dist_matrix(i,j) = dist_value;
-                 dist_matrix(j,i) = dist_value;
-                 
+                        if(NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = as<double>(DistFunc(dists(i,_),dists(j,_), testNA));
+                                dist_matrix(i,j) = dist_value;
+                                dist_matrix(j,i) = dist_value;
+                        }
                 }
         }
         
@@ -1891,14 +1892,16 @@ NumericMatrix DistMatrixWithUnit(NumericMatrix dists, Function DistFunc, bool te
         int nrow = dists.nrow();
         double dist_value = 0.0;
         NumericMatrix dist_matrix(nrow,nrow);
+        // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
+        std::fill( dist_matrix.begin(), dist_matrix.end(), NumericVector::get_na() );
         
         for (int i = 0; i < nrow; i++){
                 for (int j = 0; j < nrow; j++){
-                 
-                 dist_value = as<double>(DistFunc(dists(i,_),dists(j,_), testNA, unit));
-                 dist_matrix(i,j) = dist_value;
-                 dist_matrix(j,i) = dist_value;
-                 
+                        if(NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = as<double>(DistFunc(dists(i,_),dists(j,_), testNA, unit));
+                                dist_matrix(i,j) = dist_value;
+                                dist_matrix(j,i) = dist_value;
+                        }
                 }
         }
         
