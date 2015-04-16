@@ -18,6 +18,7 @@
 #' @title Generalized Jensen-Shannon Divergence 
 #' @description This function computes the Generalized Jensen-Shannon Divergence of a probability matrix.
 #' @param x a probability matrix.
+#' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @param weights a numeric vector specifying the weights for each distribution in \code{x}. 
 #' 
 #' Default: \code{weights} = \code{NULL}; in this case all distributions are weighted equally. 
@@ -39,7 +40,7 @@
 #'  \code{\link{CE}}, \code{\link{JE}}
 #' @export
 
-gJSD <- function(x, weights = NULL){
+gJSD <- function(x, unit = "log2", weights = NULL){
         
         if(class(x) == "data.frame")
                 x <- as.matrix(x)
@@ -74,7 +75,7 @@ gJSD <- function(x, weights = NULL){
         
         WeightedProbabilityMatrix <- weights * x
                 
-        g.JSD <- H(rowSums(WeightedProbabilityMatrix)) - sum((weights * apply(x,2,H)))
+        g.JSD <- H(rowSums(WeightedProbabilityMatrix), unit = unit) - sum((weights * apply(x,2,H, unit = unit)))
                 
         return(g.JSD)
         
