@@ -6,17 +6,28 @@ using namespace std;
 
 //' @export
 // [[Rcpp::export]]
-double Ecpp(const NumericVector& P){
+double Ecpp(const NumericVector& P, const Rcpp::String unit){
   int len = P.size();
   double Entropy = 0.0;
 
-  for(int i = 0; i < len; i++){
-    if(P[i] > 0){
-      Entropy += (P[i] * (log(P[i])/log(2)));
-    }
-
-    else{
-      Entropy += 0;
+  for (int i = 0; i < len; i++){
+     if (P[i] > 0){
+            if (unit == "log"){
+                    Entropy += P[i] * log(P[i]);
+            }
+            
+            else if (unit == "log2"){
+                    Entropy += P[i] * custom_log2(P[i]);
+            }
+            
+            else if (unit == "log10"){
+                    Entropy += P[i] * custom_log10(P[i]);
+                    
+            } else {
+                    Rcpp::stop("Please choose from units: log, log2, or log10.")
+            }
+    } else{
+      Entropy += 0.0;
     }
   }
 
