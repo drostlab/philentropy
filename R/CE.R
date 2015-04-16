@@ -36,6 +36,7 @@
 #' Shannon's Entropy \eqn{H(Y)} (as part of the chain rule) shall be computed.
 #' It is important to note that this probability vector must be the probability
 #' distribution of random variable Y ( P(Y) for which H(Y) is computed).
+#' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @return Shannon's Conditional-Entropy in bit.
 #' @author Hajk-Georg Drost
 #' @seealso \code{\link{H}}, \code{\link{JE}}
@@ -47,11 +48,11 @@
 #' 
 #' @export
 
-CE <- function(xy,y){
+CE <- function(xy,y, unit = "log2"){
         
         valid.distr(xy)
         valid.distr(y)
-        return(CEcpp(as.vector(xy),as.vector(y)))
+        return(CEcpp(as.vector(xy),as.vector(y), unit))
         
 }
 
