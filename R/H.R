@@ -26,6 +26,7 @@
 #' 
 #' @param x a numeric probability vector \eqn{P(X)} for which
 #' Shannon's Entropy \eqn{H(X)} shall be computed.
+#' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @return a numeric value representing Shannon's Entropy in bit.
 #' @author Hajk-Georg Drost
 #' @seealso \code{\link{JE}}, \code{\link{CE}}, \code{\link{KL}}, \code{\link{JSD}}, \code{\link{gJSD}}
@@ -37,9 +38,9 @@
 #' 
 #' @export
 
-H <- function(x){
+H <- function(x, unit = "log2"){
         
         valid.distr(x)
-        return(Ecpp(as.vector(x)))
+        return(Ecpp(as.vector(x), unit))
         
 }
