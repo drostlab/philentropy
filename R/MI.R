@@ -27,6 +27,7 @@
 #' @param x a numeric probability vector \eqn{P(X)}.
 #' @param y a numeric probability vector \eqn{P(Y)}.
 #' @param xy a numeric joint-probability vector \eqn{P(X,Y)}.
+#' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @return Shannon's Mutual Information in bit.
 #' @author Hajk-Georg Drost
 #' @seealso \code{\link{H}}, \code{\link{JE}}, \code{\link{CE}}
@@ -38,13 +39,13 @@
 #' 
 #' @export
 
-MI <- function(x,y,xy){
+MI <- function(x,y,xy, unit = "log2"){
         
         valid.distr(x)
         valid.distr(y)
         valid.distr(xy)
         
-        return(MIcpp(as.vector(x),as.vector(y),as.vector(xy)))
+        return(MIcpp(as.vector(x),as.vector(y),as.vector(xy), unit))
         
 }
 
