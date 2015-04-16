@@ -4,7 +4,7 @@
 \alias{CE}
 \title{Shannon's Conditional-Entropy \eqn{H(X | Y)}}
 \usage{
-CE(xy, y)
+CE(xy, y, unit = "log2")
 }
 \arguments{
 \item{xy}{a numeric joint-probability vector \eqn{P(X,Y)}
@@ -14,6 +14,8 @@ for which Shannon's Joint-Entropy \eqn{H(X,Y)} shall be computed.}
 Shannon's Entropy \eqn{H(Y)} (as part of the chain rule) shall be computed.
 It is important to note that this probability vector must be the probability
 distribution of random variable Y ( P(Y) for which H(Y) is computed).}
+
+\item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 }
 \value{
 Shannon's Conditional-Entropy in bit.

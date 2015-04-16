@@ -4,11 +4,13 @@
 \alias{JE}
 \title{Shannon's Joint-Entropy \eqn{H(X,Y)}}
 \usage{
-JE(x)
+JE(x, unit = "log2")
 }
 \arguments{
 \item{x}{a numeric joint-probability vector \eqn{P(X,Y)} for
 which Shannon's Joint-Entropy \eqn{H(X,Y)} shall be computed.}
+
+\item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 }
 \value{
 a numeric value representing Shannon's Joint-Entropy in bit.

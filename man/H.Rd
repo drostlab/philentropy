@@ -4,11 +4,13 @@
 \alias{H}
 \title{Shannon's Entropy \eqn{H(X)}}
 \usage{
-H(x)
+H(x, unit = "log2")
 }
 \arguments{
 \item{x}{a numeric probability vector \eqn{P(X)} for which
 Shannon's Entropy \eqn{H(X)} shall be computed.}
+
+\item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 }
 \value{
 a numeric value representing Shannon's Entropy in bit.
