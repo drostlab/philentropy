@@ -23,6 +23,7 @@
 #' 
 #' @param x a numeric joint-probability vector \eqn{P(X,Y)} for
 #' which Shannon's Joint-Entropy \eqn{H(X,Y)} shall be computed.
+#' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @return a numeric value representing Shannon's Joint-Entropy in bit.
 #' @author Hajk-Georg Drost
 #' @seealso \code{\link{H}}, \code{\link{CE}}, \code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
@@ -34,9 +35,9 @@
 #' 
 #' @export
 
-JE <- function(x){
+JE <- function(x, unit = "log2"){
         
        valid.distr(x)
-       return(JEcpp(as.vector(x)))
+       return(JEcpp(as.vector(x), unit))
        
 }
