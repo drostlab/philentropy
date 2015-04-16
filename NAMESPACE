@@ -2,6 +2,8 @@
 
 export(CE)
 export(CEcpp)
+export(DistMatrixWithUnit)
+export(DistMatrixWithoutUnit)
 export(Ecpp)
 export(H)
 export(JE)

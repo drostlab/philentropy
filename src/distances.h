@@ -1860,6 +1860,51 @@ double avg(const NumericVector& P, const NumericVector& Q, const bool testNA){
 }
 
 
+//' @export
+// [[Rcpp::export]]
+NumericMatrix DistMatrixWithoutUnit(NumericMatrix dists, Function DistFunc, bool testNA){
+// http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
+
+        int nrow = dists.nrow();
+        double dist_value = 0.0;
+        NumericMatrix dist_matrix(nrow,nrow);
+        
+        for (int i = 0; i < nrow; i++){
+                for (int j = 0; j < nrow; j++){
+                 
+                 dist_value = as<double>(DistFunc(dists(i,_),dists(j,_), testNA));
+                 dist_matrix(i,j) = dist_value;
+                 dist_matrix(j,i) = dist_value;
+                 
+                }
+        }
+        
+        return dist_matrix;
+}
+
+
+//' @export
+// [[Rcpp::export]]
+NumericMatrix DistMatrixWithUnit(NumericMatrix dists, Function DistFunc, bool testNA, Rcpp::String unit){
+// http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
+
+        int nrow = dists.nrow();
+        double dist_value = 0.0;
+        NumericMatrix dist_matrix(nrow,nrow);
+        
+        for (int i = 0; i < nrow; i++){
+                for (int j = 0; j < nrow; j++){
+                 
+                 dist_value = as<double>(DistFunc(dists(i,_),dists(j,_), testNA, unit));
+                 dist_matrix(i,j) = dist_value;
+                 dist_matrix(j,i) = dist_value;
+                 
+                }
+        }
+        
+        return dist_matrix;
+}
+
 
 #endif
 
