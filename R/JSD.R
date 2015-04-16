@@ -3,6 +3,7 @@
 #' @param P a probability distribution P.
 #' @param Q a probability distribution Q.
 #' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
+#' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @return The Jensen-Shannon divergence  of P and Q.
 #' @author Hajk-Georg Drost
 #' @details 
@@ -44,14 +45,17 @@
 #' \code{\link{KL}}, \code{\link{H}}, \code{\link{CE}}, \code{\link{gJSD}}, \code{\link{distance}}
 #' @export
 
-JSD <- function(P,Q, test.na = TRUE){
-        
-        valid.distr(P)
-        valid.distr(Q)
-        
-        if(!(length(P) == length(Q)))
-                stop("Your input vectors have different lengths..")
-        
-        return(JensonShannonDivergenceCpp(as.vector(P),as.vector(Q), test.na))
+JSD <- function(P,Q, test.na = TRUE, unit = "log2"){
+                
+        return( distance(x      = P,
+                         y      = Q, 
+                        method  = "jensen-shannon", 
+                        test.na = test.na, 
+                        unit    = unit) )
         
 }
+
+
+
+
+
