@@ -11,7 +11,7 @@ KL(P, Q, test.na = TRUE, unit = "log2")
 
 \item{Q}{a probability distribution Q.}
 
-\item{test.na}{a boolean value specifying whether input vectors shall be tested for NA values.}
+\item{test.na}{a boolean value indicating whether input vectors should be tested for NA values.}
 
 \item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 }

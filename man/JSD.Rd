@@ -4,7 +4,7 @@
 \alias{JSD}
 \title{Jensen-Shannon Divergence}
 \usage{
-JSD(P, Q, test.na = TRUE)
+JSD(P, Q, test.na = TRUE, unit = "log2")
 }
 \arguments{
 \item{P}{a probability distribution P.}
@@ -12,6 +12,8 @@ JSD(P, Q, test.na = TRUE)
 \item{Q}{a probability distribution Q.}
 
 \item{test.na}{a boolean value specifying whether input vectors shall be tested for NA values.}
+
+\item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 }
 \value{
 The Jensen-Shannon divergence  of P and Q.
