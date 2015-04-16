@@ -40,7 +40,7 @@ test_that("distance(method = 'minkowski') computes the correct distance value.",
         
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)), (sum(abs((P) - (Q))^4))^0.25)
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)), as.vector(stats::dist(base::rbind(P,Q), method = "minkowski", p = 4)))
-        
+        expect_error(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski")), "Please specify p for the Minkowski distance!")
 })
 
 
