@@ -108,7 +108,7 @@ The following distance measures are implemented in this function:
 }
 }
 \examples{
-distance(1:10/sum(1:10), 20:29/sum(20:29), method = "euclidean")
+distance(rbind(1:10/sum(1:10), 20:29/sum(20:29)), method = "euclidean")
 }
 \author{
 Hajk-Georg Drost
