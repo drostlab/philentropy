@@ -1886,6 +1886,32 @@ NumericMatrix DistMatrixWithoutUnit(NumericMatrix dists, Function DistFunc, bool
 
 //' @export
 // [[Rcpp::export]]
+NumericMatrix DistMatrixMinkowski(NumericMatrix dists, double p, bool testNA){
+// http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
+
+        int nrow = dists.nrow();
+        double dist_value = 0.0;
+        NumericMatrix dist_matrix(nrow,nrow);
+        // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
+        std::fill( dist_matrix.begin(), dist_matrix.end(), NumericVector::get_na() );
+        
+        for (int i = 0; i < nrow; i++){
+                for (int j = 0; j < nrow; j++){
+                        if(NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = minkowski(dists(i,_),dists(j,_),p, testNA);
+                                dist_matrix(i,j) = dist_value;
+                                dist_matrix(j,i) = dist_value;
+                        }
+                }
+        }
+        
+        return dist_matrix;
+}
+
+
+
+//' @export
+// [[Rcpp::export]]
 NumericMatrix DistMatrixWithUnit(NumericMatrix dists, Function DistFunc, bool testNA, Rcpp::String unit){
 // http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
 

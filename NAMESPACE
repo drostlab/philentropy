@@ -2,6 +2,7 @@
 
 export(CE)
 export(CEcpp)
+export(DistMatrixMinkowski)
 export(DistMatrixWithUnit)
 export(DistMatrixWithoutUnit)
 export(Ecpp)
