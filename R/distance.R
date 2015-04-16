@@ -18,10 +18,9 @@
 
 
 
-#' @title Distance between Probability Density Functions
+#' @title Distances between Probability Density Functions
 #' @description This functions computes the distance/dissimilarity between two probability density functions.
-#' @param x a numeric vector (probability density function), a count vector (if \code{est.prob = TRUE}), or a probability matrix (\code{data.frame} or \code{matrix}).
-#' @param y a numeric vector (probability density function), a count vector (if \code{est.prob = TRUE}).
+#' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a count \code{data.frame} or \code{matrix} (if \code{est.prob = TRUE}).
 #' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
 #' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values.
@@ -117,22 +116,33 @@
 #' 
 #' @export
 
-distance <- function(x ,y,
+distance <- function(x ,
                      method  = "euclidean", 
                      p       = NULL, 
                      test.na = TRUE, 
                      unit    = "log"){
         
+        nrows <- NA_integer_
+        nrows <- nrow(x)
+        
+        if(nrows < 2)
+                stop("Your input matrix stores only one probability or count vector.")
+        
         if(!is.element(method,getDistMethods()))
                 stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
         
-        if(!all(is.numeric(x),is.numeric(y))){
+        if(!is.numeric(x))
                 stop("Non numeric values cannot be used to compute distances..")
                 
-        }
-        
         if(!is.element(unit,c("log","log2","log10")))
                 stop("You can only choose units: log, log2, or log10.")
+        
+        if(!is.element(class(x),c("data.frame","matrix")))
+                stop("x should be either a numeric matrix or a numeric data.frame")
+        
+        if(class(x) == "data.frame")
+                x <- as.matrix(x)
+        
         
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
@@ -140,19 +150,32 @@ distance <- function(x ,y,
 #         valid.distr(x)
 #         valid.distr(y)
         
-        # result distance
-        dist <- NA_real_
+        if(nrows == 2){
+                # result distance
+                dist <- NA_real_
+        } else {
+                dist <- matrix(NA_real_, nrows, nrows)
+        }
+        
         
         if(method == "euclidean"){
                 
-                dist <- euclidean(x,y,test.na)
+                if(nrows == 2){
+                        dist <- euclidean(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,euclidean,test.na)
+                }
                 
         }
         
         
         if(method == "manhattan"){
                 
-                dist <- manhattan(x,y,test.na)
+                if(nrows == 2){
+                        dist <- manhattan(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,manhattan,test.na)
+                }
                 
         }
            
@@ -161,7 +184,11 @@ distance <- function(x ,y,
                 
                 if(!is.null(p)){
                         
-                        dist <- minkowski(x,y, p, test.na)
+                        if(nrows == 2){
+                                dist <- minkowski(x[1, ],x[2, ],p,test.na)
+                        } else {
+                                dist <- DistMatrixMinkowski(x,p,test.na)
+                        }
                         
                 } else {
                         
@@ -420,8 +447,12 @@ distance <- function(x ,y,
                 dist <- avg(x,y,test.na)
         }
         
-        
-        names(dist) <- method
+        if(nrows == 2){
+                names(dist) <- method
+        } else {
+                colnames(dist) <- paste0("pvec.",1:nrows)
+                rownames(dist) <- paste0("pvec.",1:nrows)
+        }
         
         return(dist)
 }

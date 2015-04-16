@@ -2,15 +2,13 @@
 % Please edit documentation in R/distance.R
 \name{distance}
 \alias{distance}
-\title{Distance between Probability Density Functions}
+\title{Distances between Probability Density Functions}
 \usage{
-distance(x, y, method = "euclidean", p = NULL, test.na = TRUE,
+distance(x, method = "euclidean", p = NULL, test.na = TRUE,
   unit = "log")
 }
 \arguments{
-\item{x}{a numeric vector (probability density function), a count vector (if \code{est.prob = TRUE}), or a probability matrix (\code{data.frame} or \code{matrix}).}
-
-\item{y}{a numeric vector (probability density function), a count vector (if \code{est.prob = TRUE}).}
+\item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a count \code{data.frame} or \code{matrix} (if \code{est.prob = TRUE}).}
 
 \item{method}{a character string indicating whether the distance measure that should be computed.}
 
