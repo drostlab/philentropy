@@ -16,11 +16,16 @@
 //  http://www.r-project.org/Licenses/
 // 
 
+#ifndef PKG_PHILENTROPY_H
+#define PKG_PHILENTROPY_H
+// http://stackoverflow.com/questions/23527719/calling-a-rcpp-function-from-another-rcpp-function-while-building-an-r-package
 
 #include <Rcpp.h> 
 #include <math.h>
 using namespace Rcpp;
 using namespace std;
+
+// [[Rcpp::plugins(cpp11)]]
 
 // [[Rcpp::export]]
 double custom_log2(const double& x ){
@@ -1816,6 +1821,7 @@ double avg(const NumericVector& P, const NumericVector& Q, const bool testNA){
 
 
 
+#endif
 
 
 
