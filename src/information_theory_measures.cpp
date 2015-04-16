@@ -58,12 +58,12 @@ double JEcpp(const NumericVector& JointProbabilities){
 
 //' @export
 // [[Rcpp::export]]
-double CEcpp(NumericVector JointProbabilities,NumericVector Probabilities){
+double CEcpp(const NumericVector& JointProbabilities,const NumericVector& Probabilities, const Rcpp::String unit){
 
-  double ConditionalEntropy = 0;
+  double ConditionalEntropy = 0.0;
   // Using the chain rule: H(X | Y) = H(X,Y) - H(Y)
   // Note: it is important that the Probabilities vector corresponds to Y
-  ConditionalEntropy = JEcpp(JointProbabilities) - Ecpp(Probabilities);
+  ConditionalEntropy = JEcpp(JointProbabilities, unit) - Ecpp(Probabilities, unit);
 
   return(ConditionalEntropy);
 }
