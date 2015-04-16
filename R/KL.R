@@ -55,8 +55,8 @@
  
 KL <- function(P,Q, test.na = TRUE, unit = "log2"){
         
-        return( distance( x       = as.vector(P),
-                          y       = as.vector(Q),
+        return( distance( x       = P,
+                          y       = Q,
                           method  = "kullback-leibler",
                           test.na = test.na,
                           unit    = unit) )
