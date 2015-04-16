@@ -4,7 +4,7 @@
 \alias{MI}
 \title{Shannon's Mutual Information \eqn{I(X,Y)}}
 \usage{
-MI(x, y, xy)
+MI(x, y, xy, unit = "log2")
 }
 \arguments{
 \item{x}{a numeric probability vector \eqn{P(X)}.}
@@ -12,6 +12,8 @@ MI(x, y, xy)
 \item{y}{a numeric probability vector \eqn{P(Y)}.}
 
 \item{xy}{a numeric joint-probability vector \eqn{P(X,Y)}.}
+
+\item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 }
 \value{
 Shannon's Mutual Information in bit.
