@@ -425,6 +425,8 @@ double lorentzian(const NumericVector& P, const NumericVector& Q, const bool tes
                         
                         else if (unit == "log10"){
                                 dist += custom_log10(1.0 + diff);
+                        } else {
+                                Rcpp::stop("Please choose from units: log, log2, or log10.");
                         }
                  }
         } else {
@@ -443,6 +445,8 @@ double lorentzian(const NumericVector& P, const NumericVector& Q, const bool tes
                         
                         else if (unit == "log10"){
                                 dist += custom_log10(1.0 + diff);
+                        } else {
+                                Rcpp::stop("Please choose from units: log, log2, or log10.");
                         }
                  }
         }
@@ -1221,6 +1225,8 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q,
                                 
                                 else if (unit == "log10"){
                                         dist += P[i] * custom_log10(PQratio);
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                         }  
                 }
@@ -1249,6 +1255,8 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q,
                                 
                                 else if (unit == "log10"){
                                         dist += P[i] * custom_log10(PQratio);
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                         }  
                 }  
@@ -1295,6 +1303,8 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testN
                                 
                                 else if (unit == "log10"){
                                         dist += (P[i] - Q[i]) * custom_log10(0.00001);
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                                 
                         } else {
@@ -1308,6 +1318,8 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testN
                                 
                                 else if (unit == "log10"){
                                         dist += (P[i] - Q[i]) * custom_log10(PQrate);
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                         }     
                 }
@@ -1332,6 +1344,8 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testN
                                 
                                 else if (unit == "log10"){
                                         dist += (P[i] - Q[i]) * custom_log10(0.00001);
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                         } else {
                         
@@ -1345,6 +1359,8 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testN
                                 
                                 else if (unit == "log10"){
                                         dist += (P[i] - Q[i]) * custom_log10(PQrate);
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                         }     
                 }
@@ -1388,6 +1404,8 @@ double k_divergence(const NumericVector& P, const NumericVector& Q, const bool t
                                 
                                 else if (unit == "log10"){
                                         dist += (P[i] * custom_log10((2.0 * P[i]) / (P[i] + Q[i])));
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                         }
                 }
@@ -1409,6 +1427,8 @@ double k_divergence(const NumericVector& P, const NumericVector& Q, const bool t
                                 
                                 else if (unit == "log10"){
                                         dist += (P[i] * custom_log10((2.0 * P[i]) / (P[i] + Q[i])));
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                          }
                 }
@@ -1454,6 +1474,8 @@ double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA,
                                
                                else if (unit == "log10"){
                                        dist += ((P[i] * custom_log10((2.0 * P[i]) / PQsum )) + (Q[i] * custom_log10((2.0 * Q[i]) / PQsum ))); 
+                               } else {
+                                       Rcpp::stop("Please choose from units: log, log2, or log10.");
                                }
                         }
                 }
@@ -1477,6 +1499,8 @@ double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA,
                                
                                else if (unit == "log10"){
                                        dist += ((P[i] * custom_log10((2.0 * P[i]) / PQsum )) + (Q[i] * custom_log10((2.0 * Q[i]) / PQsum ))); 
+                               } else {
+                                       Rcpp::stop("Please choose from units: log, log2, or log10.");
                                }
                         }
                 }
@@ -1525,6 +1549,8 @@ double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool
                                 else if (unit == "log10"){
                                         sum1  +=  P[i] * custom_log10((2.0 * P[i]) / PQsum);
                                         sum1  +=  Q[i] * custom_log10((2.0 * Q[i]) / PQsum);
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                         }
                 }
@@ -1552,6 +1578,8 @@ double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool
                                 else if (unit == "log10"){
                                         sum1  +=  P[i] * custom_log10((2.0 * P[i]) / PQsum);
                                         sum1  +=  Q[i] * custom_log10((2.0 * Q[i]) / PQsum);
+                                } else {
+                                        Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                         }
                 }
@@ -1599,6 +1627,8 @@ double jensen_difference(const NumericVector& P, const NumericVector& Q, const b
                                         
                                         else if (unit == "log10"){
                                                 dist += (((P[i] * custom_log10(P[i])) + (Q[i] * custom_log10(Q[i]))) / 2.0) - ((PQsum / 2.0) * custom_log10(PQsum / 2.0)) ;
+                                        } else {
+                                                Rcpp::stop("Please choose from units: log, log2, or log10.");
                                         }
                         }
                 }
@@ -1621,6 +1651,8 @@ double jensen_difference(const NumericVector& P, const NumericVector& Q, const b
                                         
                                         else if (unit == "log10"){
                                                 dist += (((P[i] * custom_log10(P[i])) + (Q[i] * custom_log10(Q[i]))) / 2.0) - ((PQsum / 2.0) * custom_log10(PQsum / 2.0)) ;
+                                        } else {
+                                                Rcpp::stop("Please choose from units: log, log2, or log10.");
                                         }
                         }
                 }
@@ -1673,6 +1705,8 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA,
                                         
                                         else if (unit == "log10"){
                                                 dist += (PQsum / 2.0) * custom_log10(PQsum / 0.00001);
+                                        } else {
+                                                Rcpp::stop("Please choose from units: log, log2, or log10.");
                                         }
                                         
                                 } else {
@@ -1687,6 +1721,8 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA,
                                         
                                         else if (unit == "log10"){
                                                 dist += (PQsum / 2.0) * custom_log10(PQsum / denominator);
+                                        } else {
+                                                Rcpp::stop("Please choose from units: log, log2, or log10.");
                                         }
                                 }
                         }      
@@ -1714,6 +1750,8 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA,
                                         
                                         else if (unit == "log10"){
                                                 dist += (PQsum / 2.0) * custom_log10(PQsum / 0.00001);
+                                        } else {
+                                                Rcpp::stop("Please choose from units: log, log2, or log10.");
                                         }
                                         
                                 } else {
@@ -1728,6 +1766,8 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA,
                                         
                                         else if (unit == "log10"){
                                                 dist += (PQsum / 2.0) * custom_log10(PQsum / denominator);
+                                        } else {
+                                                Rcpp::stop("Please choose from units: log, log2, or log10.");
                                         }
                                 }
                         }      
