@@ -4,10 +4,12 @@
 \alias{gJSD}
 \title{Generalized Jensen-Shannon Divergence}
 \usage{
-gJSD(x, weights = NULL)
+gJSD(x, unit = "log2", weights = NULL)
 }
 \arguments{
 \item{x}{a probability matrix.}
+
+\item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 
 \item{weights}{a numeric vector specifying the weights for each distribution in \code{x}.
 
