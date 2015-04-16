@@ -112,7 +112,7 @@
 #' }
 #' @examples
 #' 
-#' distance(1:10/sum(1:10), 20:29/sum(20:29), method = "euclidean")
+#' distance(rbind(1:10/sum(1:10), 20:29/sum(20:29)), method = "euclidean")
 #' 
 #' @export
 
@@ -199,252 +199,391 @@ distance <- function(x ,
         
         if(method == "chebyshev"){
                 
-                dist <- chebyshev(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- chebyshev(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,chebyshev,test.na)
+                }
         }
         
         
         if(method == "sorensen"){
                 
-                dist <- sorensen(x,y,test.na)
+                if(nrows == 2){
+                        dist <- sorensen(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,sorensen,test.na)
+                }
         }
         
         
         if(method == "gower"){
                 
-                dist <- gower(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- gower(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,gower,test.na)
+                }
         }
         
         if(method == "soergel"){
                 
-                dist <- soergel(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- soergel(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,soergel,test.na)
+                }
         }
         
         if(method == "kulczynski_d"){
                 
-                dist <- kulczynski_d(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- kulczynski_d(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,kulczynski_d,test.na)
+                }
         }
         
         if(method == "canberra"){
                 
-                dist <- canberra(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- canberra(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,canberra,test.na)
+                }
         }
 
         if(method == "lorentzian"){
                 
-                dist <- lorentzian(x,y,test.na,unit)
-                
+                if(nrows == 2){
+                        dist <- lorentzian(x[1, ],x[2, ],test.na, unit)
+                } else {
+                        dist <- DistMatrixWithUnit(x,lorentzian,test.na, unit)
+                }
         }
         
         if(method == "intersection"){
                 
-                dist <- intersection_dist(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- intersection_dist(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,intersection_dist,test.na)
+                }
         }
         
         if(method == "non-intersection"){
                 
-                dist <- 1.0 - intersection_dist(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- 1.0 - intersection_dist(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- 1.0 - DistMatrixWithoutUnit(x,intersection_dist,test.na)
+                }
         }
         
         if(method == "wavehedges"){
                 
-                dist <- wave_hedges(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- wave_hedges(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,wave_hedges,test.na)
+                }
         }
         
         if(method == "czekanowski"){
                 
-                dist <- czekanowski(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- czekanowski(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,czekanowski,test.na)
+                }
         }
         
         if(method == "motyka"){
                 
-                dist <- motyka(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- motyka(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,motyka,test.na)
+                }
         }
         
         if(method == "kulczynski_s"){
                 
-                dist <- 1.0 / kulczynski_d(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- 1.0 / kulczynski_d(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- 1.0 / DistMatrixWithoutUnit(x,kulczynski_d,test.na)
+                }
         }
         
         if(method == "tanimoto"){
                 
-                dist <- tanimoto(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- tanimoto(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,tanimoto,test.na)
+                } 
         }
         
         if(method == "ruzicka"){
                 
-                dist <- ruzicka(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- ruzicka(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,ruzicka,test.na)
+                }
         }
         
         if(method == "inner_product"){
                 
-                dist <- inner_product(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- inner_product(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,inner_product,test.na)
+                }
         }
         
         if(method == "harmonic_mean"){
                 
-                dist <- harmonic_mean_dist(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- harmonic_mean_dist(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,harmonic_mean_dist,test.na)
+                }
         }
         
         if(method == "cosine"){
                 
-                dist <- cosine_dist(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- cosine_dist(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,cosine_dist,test.na)
+                }       
         }
         
         if(method == "hassebrook"){
                 
-                dist <- kumar_hassebrook(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- kumar_hassebrook(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,kumar_hassebrook,test.na)
+                } 
         }
         
         if(method == "jaccard"){
                 
-                dist <- jaccard(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- jaccard(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,jaccard,test.na)
+                }  
         }
         
         if(method == "dice"){
                 
-                dist <- dice_dist(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- dice_dist(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,dice_dist,test.na)
+                } 
         }
         
         if(method == "fidelity"){
                 
-                dist <- fidelity(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- fidelity(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,fidelity,test.na)
+                } 
         }
         
         if(method == "bhattacharyya"){
                 
-                dist <- bhattacharyya(x,y,test.na,unit)
-                
+                if(nrows == 2){
+                        dist <- bhattacharyya(x[1, ],x[2, ],test.na,unit)
+                } else {
+                        dist <- DistMatrixWithUnit(x,bhattacharyya,test.na,unit)
+                }
         }
         
         if(method == "hellinger"){
                 
-                dist <- hellinger(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- hellinger(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,hellinger,test.na)
+                }     
         }
         
         if(method == "matusita"){
                 
-                dist <- matusita(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- matusita(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,matusita,test.na)
+                }  
         }
         
         if(method == "squared_chord"){
                 
-                dist <- squared_chord(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- squared_chord(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,squared_chord,test.na)
+                }
         }
 
         if(method == "squared_euclidean"){
                 
-                dist <- squared_euclidean(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- squared_euclidean(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,squared_euclidean,test.na)
+                }       
         }
         
         if(method == "pearson"){
                 
-                dist <- pearson_chi_sq(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- pearson_chi_sq(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,pearson_chi_sq,test.na)
+                }
         }
         
         if(method == "neyman"){
                 
-                dist <- neyman_chi_sq(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- neyman_chi_sq(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,neyman_chi_sq,test.na)
+                } 
         }
         
         if(method == "squared_chi"){
                 
-                dist <- squared_chi_sq(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- squared_chi_sq(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,squared_chi_sq,test.na)
+                }         
         }
         
         if(method == "prob_symm"){
                 
-                dist <- prob_symm_chi_sq(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- prob_symm_chi_sq(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,prob_symm_chi_sq,test.na)
+                }      
         }
         
         if(method == "divergence"){
                 
-                dist <- divergence_sq(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- divergence_sq(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,divergence_sq,test.na)
+                }    
         }
         
         if(method == "clark"){
                 
-                dist <- clark_sq(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- clark_sq(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,clark_sq,test.na)
+                }    
         }
         
         if(method == "additive_symm"){
                 
-                dist <- additive_symm_chi_sq(x,y,test.na)
-                
+                if(nrows == 2){
+                        dist <- additive_symm_chi_sq(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,additive_symm_chi_sq,test.na)
+                }
         }
         
         if(method == "kullback-leibler"){
                 
-                dist <- kullback_leibler_distance(x,y,test.na,unit)
+                if(nrows == 2){
+                        dist <- kullback_leibler_distance(x[1, ],x[2, ],test.na,unit)
+                } else {
+                        dist <- DistMatrixWithUnit(x,kullback_leibler_distance,test.na,unit)
+                }
         }
         
         if(method == "jeffreys"){
                 
-                dist <- jeffreys(x,y,test.na,unit)
+                if(nrows == 2){
+                        dist <- jeffreys(x[1, ],x[2, ],test.na,unit)
+                } else {
+                        dist <- DistMatrixWithUnit(x,jeffreys,test.na,unit)
+                }
         }
         
         if(method == "k_divergence"){
                 
-                dist <- k_divergence(x,y,test.na,unit)
+                if(nrows == 2){
+                        dist <- k_divergence(x[1, ],x[2, ],test.na,unit)
+                } else {
+                        dist <- DistMatrixWithUnit(x,k_divergence,test.na,unit)
+                }
         }
         
         if(method == "topsoe"){
                 
-                dist <- topsoe(x,y,test.na,unit)
+                if(nrows == 2){
+                        dist <- topsoe(x[1, ],x[2, ],test.na,unit)
+                } else {
+                        dist <- DistMatrixWithUnit(x,topsoe,test.na,unit)
+                }
         }
         
         if(method == "jensen-shannon"){
                 
-                dist <- jensen_shannon(x,y,test.na,unit)
+                if(nrows == 2){
+                        dist <- jensen_shannon(x[1, ],x[2, ],test.na,unit)
+                } else {
+                        dist <- DistMatrixWithUnit(x,jensen_shannon,test.na,unit)
+                }
         }
         
         if(method == "jensen_difference"){
                 
-                dist <- jensen_difference(x,y,test.na,unit)
+                if(nrows == 2){
+                        dist <- jensen_difference(x[1, ],x[2, ],test.na,unit)
+                } else {
+                        dist <- DistMatrixWithUnit(x,jensen_difference,test.na,unit)
+                }
         }
         
         if(method == "taneja"){
                 
-                dist <- taneja(x,y,test.na,unit)
+                if(nrows == 2){
+                        dist <- taneja(x[1, ],x[2, ],test.na,unit)
+                } else {
+                        dist <- DistMatrixWithUnit(x,taneja,test.na,unit)
+                }
         }
         
         if(method == "kumar-johnson"){
                 
-                dist <- kumar_johnson(x,y,test.na)
+                if(nrows == 2){
+                        dist <- kumar_johnson(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,kumar_johnson,test.na)
+                }
         }
         
         if(method == "avg"){
                 
-                dist <- avg(x,y,test.na)
+                if(nrows == 2){
+                        dist <- avg(x[1, ],x[2, ],test.na)
+                } else {
+                        dist <- DistMatrixWithoutUnit(x,avg,test.na)
+                }
         }
         
         if(nrows == 2){
