@@ -1,4 +1,6 @@
 #include <Rcpp.h>
+#include "distances.h"
+
 // [[Rcpp::plugins(cpp11)]]
 
 using namespace Rcpp;
@@ -24,7 +26,7 @@ double Ecpp(const NumericVector& P, const Rcpp::String unit){
                     Entropy += P[i] * custom_log10(P[i]);
                     
             } else {
-                    Rcpp::stop("Please choose from units: log, log2, or log10.")
+                    Rcpp::stop("Please choose from units: log, log2, or log10.");
             }
     } else{
       Entropy += 0.0;
@@ -36,15 +38,27 @@ double Ecpp(const NumericVector& P, const Rcpp::String unit){
 
 //' @export
 // [[Rcpp::export]]
-double JEcpp(const NumericVector& JointProbabilities){
+double JEcpp(const NumericVector& JointProbabilities, const Rcpp::String unit){
   int len = JointProbabilities.size();
-  double JointEntropy = 0;
+  double JointEntropy = 0.0;
 
-     for(int i = 0; i < len; i++){
-        if(JointProbabilities[i] > 0){
-
-           JointEntropy += (JointProbabilities[i] * (log(JointProbabilities[i])/log(2)));
-
+     for (int i = 0; i < len; i++){
+        if (JointProbabilities[i] > 0){
+           
+           if (unit == "log"){
+                   JointEntropy += JointProbabilities[i] * log(JointProbabilities[i]);
+           }
+           
+           else if (unit == "log2"){
+                   JointEntropy += JointProbabilities[i] * custom_log2(JointProbabilities[i]);
+           }
+           
+           else if (unit == "log10"){
+                   JointEntropy += JointProbabilities[i] * custom_log10(JointProbabilities[i]);
+                   
+           } else {
+                   Rcpp::stop("Please choose from units: log, log2, or log10.");
+           }
         } else{
 
           JointEntropy += 0.0;
@@ -71,69 +85,12 @@ double CEcpp(const NumericVector& JointProbabilities,const NumericVector& Probab
 
 //' @export
 // [[Rcpp::export]]
-double CrossEntropy(const NumericVector& P, const NumericVector& Q, const bool& testNA) {
-     
-     double log_2 = log(2);
-     // Cross-Entropy = Kullback-Leibler Divergence
-     double CE = 0.0;
-     int Psize = P.size();
-     int Qsize = Q.size();
-     
-     if(testNA){
-               if(any(is_na(P)) | any(is_na(Q))){
-                       Rcpp::stop("Your input vector stores NA values...");
-                } 
-     }
-      
-     if(Psize == Qsize){
-         for(int i = 0; i < Psize; i++){
-            if((P[i] > 0) && (Q[i] > 0)){
-                    
-                CE += (P[i] * (log(P[i]/Q[i])/log_2));
-                
-            } else{
-              
-                CE += 0.0;
-         }
-       }
-        return CE;
-        
-     } else{       
-             
-        return -1;
-    }
-}
+double MIcpp(const NumericVector& X, const NumericVector& Y, const NumericVector& XY, const Rcpp::String unit){
 
-//' @export
-// [[Rcpp::export]]
-double MIcpp(const NumericVector& X, const NumericVector& Y, const NumericVector& XY){
-
-  double MutualInformation = 0;
+  double MutualInformation = 0.0;
   // Using the identity: I(X,Y) = H(X) + H(Y) -  H(X,Y)
-  MutualInformation = (Ecpp(X) + Ecpp(Y)) - JEcpp(XY);
+  MutualInformation = (Ecpp(X, unit) + Ecpp(Y, unit)) - JEcpp(XY, unit);
+  
   return(MutualInformation);
 }
-
-
-//' @export
-// [[Rcpp::export]]
-double JensonShannonDivergenceCpp(const NumericVector& P, const NumericVector& Q, const bool& testNA){
-  int Psize = P.size();
-  int Qsize = Q.size();
-  double jsd = -1;
-
-  if(Psize == Qsize){
-    NumericVector R(Psize);
-
-    for(int i=0; i < Psize; i++){
-      R[i] = (P[i] + Q[i])/2.0;
-    }
-
-    jsd = 0.5 * (CrossEntropy(P,R,testNA) + CrossEntropy(Q,R,testNA));
-
-  }
-
-  return jsd;
-}
-
 
