@@ -1,3 +1,6 @@
+//#ifndef PKG_PHILENTROPY_H
+//#define PKG_PHILENTROPY_H
+
 #include <Rcpp.h>
 #include "distances.h"
 
@@ -94,3 +97,4 @@ double MIcpp(const NumericVector& X, const NumericVector& Y, const NumericVector
   return(MutualInformation);
 }
 
+//#endif
