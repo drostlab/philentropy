@@ -16,7 +16,7 @@ distance(x, method = "euclidean", p = NULL, test.na = TRUE,
 
 \item{test.na}{a boolean value indicating whether input vectors should be tested for \code{NA} values.}
 
-\item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
+\item{unit}{a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.}
 }
 \value{
 The following results are returned depending on the dimension of \code{x}:

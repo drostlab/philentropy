@@ -24,7 +24,7 @@
 #' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
 #' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values.
-#' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
+#' @param unit a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.
 #' @author Hajk-Georg Drost
 #' @details The following distance measures are implemented in this function:
 #' 
