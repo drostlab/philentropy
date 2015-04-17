@@ -40,6 +40,9 @@
 
 H <- function(x, unit = "log2"){
         
+        if(anyNA(x))
+                stop("x includes NA values... ")
+        
         valid.distr(x)
         return(Ecpp(as.vector(x), unit))
         
