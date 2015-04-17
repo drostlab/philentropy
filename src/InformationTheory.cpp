@@ -1,5 +1,5 @@
-//#ifndef PKG_PHILENTROPY_H
-//#define PKG_PHILENTROPY_H
+//#ifndef philentropy_InformationTheory_H
+//#define philentropy_InformationTheory_H
 
 #include <Rcpp.h>
 #include "distances.h"
@@ -32,7 +32,7 @@ double Ecpp(const NumericVector& P, const Rcpp::String unit){
                     Rcpp::stop("Please choose from units: log, log2, or log10.");
             }
     } else{
-      Entropy += 0.0;
+            Entropy += 0.0;
     }
   }
 
