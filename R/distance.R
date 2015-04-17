@@ -112,7 +112,39 @@
 #' }
 #' @examples
 #' 
+#' # receive a list of implemented probability distance measures
+#' getDistMethods()
+#' 
+#' # Simple Examples
+#' 
+#' ## compute the euclidean distance between two probability vectors
 #' distance(rbind(1:10/sum(1:10), 20:29/sum(20:29)), method = "euclidean")
+#' 
+#' ## compute the euclidean distance between all pairwise comparisons of probability vectors
+#' ProbMatrix <- rbind(1:10/sum(1:10), 20:29/sum(20:29),30:39/sum(30:39))
+#' distance(ProbMatrix, method = "euclidean")
+#' 
+#' # compute distance matrix without testing for NA values in the input matrix
+#' distance(ProbMatrix, method = "euclidean", test.na = FALSE)
+#' @note According to the reference in some distance measure computations invalid computations can
+#' occur when dealing with 0 probabilities. 
+#' 
+#' In these cases the convention is treated as follows:
+#' 
+#' \itemize{
+#' \item division by zero - case \code{0/0}: when the divisor and dividend become zero, \code{0/0} is treated as \code{0}. 
+#' \item division by zero - case \code{n/0}: when only the divisor becomes \code{0}, the corresponsning \code{0} is replaced by a small \eqn{\epsilon = 0.00001}.
+#' \item log of zero - case \code{0 * log(0)}: is treated as \code{0}.
+#' \item log of zero - case \code{log(0)}: zero is replaced by a small \eqn{\epsilon = 0.00001}.
+#' }
+#' 
+#' @return 
+#' The following results are returned depending on the dimension of \code{x}:
+#' 
+#' \itemize{
+#' \item in case \code{nrow(x)} = 2 : a single distance value.
+#' \item in case \code{nrow(x)} > 2 : a distance \code{matrix} storing distance values for all pairwise probability vector comparisons.  
+#' }
 #' 
 #' @export
 
