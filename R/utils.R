@@ -24,10 +24,11 @@ NULL
 
 
 #' @title Check the validity of the input probability distribution
+#' @export
 valid.distr <- function(x){
         
         
-        if(any(is.na(x))){
+        if(anyNA(x)){
                 
                 stop("Your input vector includes NA values", call. = FALSE)
         }
@@ -37,14 +38,10 @@ valid.distr <- function(x){
                 stop("Your probability values are not between: [0,1].", call. = FALSE)
         }
         
-        else if(abs(1 - sum(x)) > 1E-10) {
+        else if(vectorSum(x) > 1.000001) {
                 
                 stop("Your probability distribution does not sum to 1.", call. = FALSE)
-        } else{
-                
-           return(TRUE)
-        
-        }
+        } 
 }
 
 #' @title Get method names for \code{distance}
