@@ -29,6 +29,7 @@ using namespace std;
 
 // [[Rcpp::plugins(cpp11)]]
 
+
 // [[Rcpp::export]]
 double custom_log2(const double& x ){
         return log(x)/log(2);
@@ -39,10 +40,9 @@ double custom_log10(const double& x ){
         return log(x)/log(10);
 }
 
-
 //' @export
 // [[Rcpp::export]]
-double euclidean(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double euclidean(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -73,7 +73,7 @@ double euclidean(const NumericVector& P, const NumericVector& Q, const bool test
 
 //' @export
 // [[Rcpp::export]]
-double manhattan(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double manhattan(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -105,7 +105,7 @@ double manhattan(const NumericVector& P, const NumericVector& Q, const bool test
 
 //' @export
 // [[Rcpp::export]]
-double minkowski(const NumericVector& P, const NumericVector& Q,const double& n, const bool testNA){
+double minkowski(NumericVector P, NumericVector Q,double n, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -136,7 +136,7 @@ double minkowski(const NumericVector& P, const NumericVector& Q,const double& n,
 
 //' @export
 // [[Rcpp::export]]
-double chebyshev(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double chebyshev(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -169,7 +169,7 @@ double chebyshev(const NumericVector& P, const NumericVector& Q, const bool test
 
 //' @export
 // [[Rcpp::export]]
-double sorensen(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double sorensen(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -207,7 +207,7 @@ double sorensen(const NumericVector& P, const NumericVector& Q, const bool testN
 
 //' @export
 // [[Rcpp::export]]
-double gower(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double gower(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -239,7 +239,7 @@ double gower(const NumericVector& P, const NumericVector& Q, const bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double soergel(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double soergel(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -284,7 +284,7 @@ double soergel(const NumericVector& P, const NumericVector& Q, const bool testNA
 
 //' @export
 // [[Rcpp::export]]
-double kulczynski_d(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double kulczynski_d(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -337,7 +337,7 @@ double kulczynski_d(const NumericVector& P, const NumericVector& Q, const bool t
 
 //' @export
 // [[Rcpp::export]]
-double canberra(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double canberra(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -382,7 +382,7 @@ double canberra(const NumericVector& P, const NumericVector& Q, const bool testN
 
 //' @export
 // [[Rcpp::export]]
-double lorentzian(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
+double lorentzian(NumericVector P, NumericVector Q, bool testNA, const Rcpp::String unit){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -434,7 +434,7 @@ double lorentzian(const NumericVector& P, const NumericVector& Q, const bool tes
 
 //' @export
 // [[Rcpp::export]]
-double intersection_dist(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double intersection_dist(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -473,7 +473,7 @@ double intersection_dist(const NumericVector& P, const NumericVector& Q, const b
 
 //' @export
 // [[Rcpp::export]]
-double wave_hedges(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double wave_hedges(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -523,7 +523,7 @@ double wave_hedges(const NumericVector& P, const NumericVector& Q, const bool te
 
 //' @export
 // [[Rcpp::export]]
-double czekanowski(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double czekanowski(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -561,7 +561,7 @@ double czekanowski(const NumericVector& P, const NumericVector& Q, const bool te
 
 //' @export
 // [[Rcpp::export]]
-double motyka(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double motyka(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -603,7 +603,7 @@ double motyka(const NumericVector& P, const NumericVector& Q, const bool testNA)
 
 //' @export
 // [[Rcpp::export]]
-double tanimoto(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double tanimoto(NumericVector P, NumericVector Q, bool testNA){
         
         // Soergel = Tanimoto
         return soergel(P, Q, testNA);
@@ -612,7 +612,7 @@ double tanimoto(const NumericVector& P, const NumericVector& Q, const bool testN
 
 //' @export
 // [[Rcpp::export]]
-double ruzicka(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double ruzicka(NumericVector P, NumericVector Q, bool testNA){
         
         // Ruzicka = 1 - Tanimoto = 1 - Soergel
         return (1.0 - soergel(P, Q, testNA));
@@ -621,7 +621,7 @@ double ruzicka(const NumericVector& P, const NumericVector& Q, const bool testNA
 
 //' @export
 // [[Rcpp::export]]
-double inner_product(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double inner_product(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -648,7 +648,7 @@ double inner_product(const NumericVector& P, const NumericVector& Q, const bool 
 
 //' @export
 // [[Rcpp::export]]
-double harmonic_mean_dist(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double harmonic_mean_dist(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len     = P.size();
         int    Q_len     = Q.size();
@@ -685,7 +685,7 @@ double harmonic_mean_dist(const NumericVector& P, const NumericVector& Q, const 
 
 //' @export
 // [[Rcpp::export]]
-double cosine_dist(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double cosine_dist(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len     = P.size();
         int    Q_len     = Q.size();
@@ -718,7 +718,7 @@ double cosine_dist(const NumericVector& P, const NumericVector& Q, const bool te
 
 //' @export
 // [[Rcpp::export]]
-double kumar_hassebrook(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double kumar_hassebrook(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len     = P.size();
         int    Q_len     = Q.size();
@@ -751,7 +751,7 @@ double kumar_hassebrook(const NumericVector& P, const NumericVector& Q, const bo
 
 //' @export
 // [[Rcpp::export]]
-double jaccard(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double jaccard(NumericVector P, NumericVector Q, bool testNA){
         
         return (1.0 - kumar_hassebrook(P,Q, testNA));
         
@@ -760,7 +760,7 @@ double jaccard(const NumericVector& P, const NumericVector& Q, const bool testNA
 
 //' @export
 // [[Rcpp::export]]
-double dice_dist(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double dice_dist(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len       = P.size();
         int    Q_len       = Q.size();
@@ -793,7 +793,7 @@ double dice_dist(const NumericVector& P, const NumericVector& Q, const bool test
 
 //' @export
 // [[Rcpp::export]]
-double fidelity(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double fidelity(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -820,7 +820,7 @@ double fidelity(const NumericVector& P, const NumericVector& Q, const bool testN
 
 //' @export
 // [[Rcpp::export]]
-double bhattacharyya(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
+double bhattacharyya(NumericVector P, NumericVector Q, bool testNA, const Rcpp::String unit){
         
         if (unit == "log"){
                 return -log(fidelity(P,Q, testNA));
@@ -841,21 +841,21 @@ double bhattacharyya(const NumericVector& P, const NumericVector& Q, const bool 
 
 //' @export
 // [[Rcpp::export]]
-double hellinger(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double hellinger(NumericVector P, NumericVector Q, bool testNA){
         
         return 2.0 * sqrt( 1.0 - fidelity(P,Q, testNA));
 }
 
 //' @export
 // [[Rcpp::export]]
-double matusita(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double matusita(NumericVector P, NumericVector Q, bool testNA){
         
         return sqrt( 2.0 - ( 2.0 * fidelity(P,Q, testNA)));
 }
 
 //' @export
 // [[Rcpp::export]]
-double squared_chord(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double squared_chord(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -883,7 +883,7 @@ double squared_chord(const NumericVector& P, const NumericVector& Q, const bool 
 
 //' @export
 // [[Rcpp::export]]
-double squared_euclidean(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double squared_euclidean(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -919,7 +919,7 @@ double squared_euclidean(const NumericVector& P, const NumericVector& Q, const b
 
 //' @export
 // [[Rcpp::export]]
-double pearson_chi_sq(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double pearson_chi_sq(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -966,7 +966,7 @@ double pearson_chi_sq(const NumericVector& P, const NumericVector& Q, const bool
 
 //' @export
 // [[Rcpp::export]]
-double neyman_chi_sq(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double neyman_chi_sq(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1013,7 +1013,7 @@ double neyman_chi_sq(const NumericVector& P, const NumericVector& Q, const bool 
 
 //' @export
 // [[Rcpp::export]]
-double squared_chi_sq(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double squared_chi_sq(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1050,7 +1050,7 @@ double squared_chi_sq(const NumericVector& P, const NumericVector& Q, const bool
 
 //' @export
 // [[Rcpp::export]]
-double prob_symm_chi_sq(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double prob_symm_chi_sq(NumericVector P, NumericVector Q, bool testNA){
         
         return (2.0 * squared_chi_sq(P,Q, testNA));
         
@@ -1061,7 +1061,7 @@ double prob_symm_chi_sq(const NumericVector& P, const NumericVector& Q, const bo
 
 //' @export
 // [[Rcpp::export]]
-double divergence_sq(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double divergence_sq(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1099,7 +1099,7 @@ double divergence_sq(const NumericVector& P, const NumericVector& Q, const bool 
 
 //' @export
 // [[Rcpp::export]]
-double clark_sq(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double clark_sq(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1136,7 +1136,7 @@ double clark_sq(const NumericVector& P, const NumericVector& Q, const bool testN
 
 //' @export
 // [[Rcpp::export]]
-double additive_symm_chi_sq(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double additive_symm_chi_sq(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1174,7 +1174,7 @@ double additive_symm_chi_sq(const NumericVector& P, const NumericVector& Q, cons
 
 //' @export
 // [[Rcpp::export]]
-double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
+double kullback_leibler_distance(NumericVector P, NumericVector Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1255,7 +1255,7 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q,
 
 //' @export
 // [[Rcpp::export]]
-double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
+double jeffreys(NumericVector P, NumericVector Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1361,7 +1361,7 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, const bool testN
 
 //' @export
 // [[Rcpp::export]]
-double k_divergence(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
+double k_divergence(NumericVector P, NumericVector Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1428,7 +1428,7 @@ double k_divergence(const NumericVector& P, const NumericVector& Q, const bool t
 
 //' @export
 // [[Rcpp::export]]
-double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
+double topsoe(NumericVector P, NumericVector Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1500,7 +1500,7 @@ double topsoe(const NumericVector& P, const NumericVector& Q, const bool testNA,
 
 //' @export
 // [[Rcpp::export]]
-double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
+double jensen_shannon(NumericVector P, NumericVector Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1581,7 +1581,7 @@ double jensen_shannon(const NumericVector& P, const NumericVector& Q, const bool
 
 //' @export
 // [[Rcpp::export]]
-double jensen_difference(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
+double jensen_difference(NumericVector P, NumericVector Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1655,7 +1655,7 @@ double jensen_difference(const NumericVector& P, const NumericVector& Q, const b
 
 //' @export
 // [[Rcpp::export]]
-double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA, const Rcpp::String unit){
+double taneja(NumericVector P, NumericVector Q, bool testNA, const Rcpp::String unit){
         
         int    P_len       = P.size();
         int    Q_len       = Q.size();
@@ -1768,7 +1768,7 @@ double taneja(const NumericVector& P, const NumericVector& Q, const bool testNA,
 
 //' @export
 // [[Rcpp::export]]
-double kumar_johnson(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double kumar_johnson(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1816,7 +1816,7 @@ double kumar_johnson(const NumericVector& P, const NumericVector& Q, const bool 
 
 //' @export
 // [[Rcpp::export]]
-double avg(const NumericVector& P, const NumericVector& Q, const bool testNA){
+double avg(NumericVector P, NumericVector Q, bool testNA){
         
         int    P_len       = P.size();
         int    Q_len       = Q.size();

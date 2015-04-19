@@ -9,9 +9,11 @@
 using namespace Rcpp;
 using namespace std;
 
+
+
 //' @export
 // [[Rcpp::export]]
-double Ecpp(const NumericVector& P, const Rcpp::String unit){
+double Ecpp(NumericVector P, Rcpp::String unit){
   int len = P.size();
   double Entropy = 0.0;
 
@@ -22,11 +24,11 @@ double Ecpp(const NumericVector& P, const Rcpp::String unit){
             }
             
             else if (unit == "log2"){
-                    Entropy += P[i] * custom_log2(P[i]);
+                    Entropy += P[i] * (log(P[i])/log(2));
             }
             
             else if (unit == "log10"){
-                    Entropy += P[i] * custom_log10(P[i]);
+                    Entropy += P[i] * (log(P[i])/log(10));
                     
             } else {
                     Rcpp::stop("Please choose from units: log, log2, or log10.");
@@ -41,7 +43,7 @@ double Ecpp(const NumericVector& P, const Rcpp::String unit){
 
 //' @export
 // [[Rcpp::export]]
-double JEcpp(const NumericVector& JointProbabilities, const Rcpp::String unit){
+double JEcpp(NumericVector JointProbabilities, Rcpp::String unit){
   int len = JointProbabilities.size();
   double JointEntropy = 0.0;
 
@@ -53,11 +55,11 @@ double JEcpp(const NumericVector& JointProbabilities, const Rcpp::String unit){
            }
            
            else if (unit == "log2"){
-                   JointEntropy += JointProbabilities[i] * custom_log2(JointProbabilities[i]);
+                   JointEntropy += JointProbabilities[i] * (log(JointProbabilities[i])/log(2));
            }
            
            else if (unit == "log10"){
-                   JointEntropy += JointProbabilities[i] * custom_log10(JointProbabilities[i]);
+                   JointEntropy += JointProbabilities[i] * (log(JointProbabilities[i])/log(10));
                    
            } else {
                    Rcpp::stop("Please choose from units: log, log2, or log10.");
@@ -75,7 +77,7 @@ double JEcpp(const NumericVector& JointProbabilities, const Rcpp::String unit){
 
 //' @export
 // [[Rcpp::export]]
-double CEcpp(const NumericVector& JointProbabilities,const NumericVector& Probabilities, const Rcpp::String unit){
+double CEcpp(NumericVector JointProbabilities,NumericVector Probabilities, Rcpp::String unit){
 
   double ConditionalEntropy = 0.0;
   // Using the chain rule: H(X | Y) = H(X,Y) - H(Y)
@@ -88,7 +90,7 @@ double CEcpp(const NumericVector& JointProbabilities,const NumericVector& Probab
 
 //' @export
 // [[Rcpp::export]]
-double MIcpp(const NumericVector& X, const NumericVector& Y, const NumericVector& XY, const Rcpp::String unit){
+double MIcpp(NumericVector X, NumericVector Y, NumericVector XY, Rcpp::String unit){
 
   double MutualInformation = 0.0;
   // Using the identity: I(X,Y) = H(X) + H(Y) -  H(X,Y)
