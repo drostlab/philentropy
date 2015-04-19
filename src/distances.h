@@ -16,10 +16,9 @@
 //  http://www.r-project.org/Licenses/
 // 
 
-//#ifndef philentropy_Distances_H
-//#define philentropy_Distances_H
-#ifndef PKG_PHILENTROPY_H
-#define PKG_PHILENTROPY_H
+#ifndef philentropy_Distances_H
+#define philentropy_Distances_H
+
 // http://stackoverflow.com/questions/23527719/calling-a-rcpp-function-from-another-rcpp-function-while-building-an-r-package
 
 #include <Rcpp.h> 
