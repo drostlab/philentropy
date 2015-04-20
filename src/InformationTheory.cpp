@@ -13,11 +13,14 @@ using namespace std;
 
 //' @export
 // [[Rcpp::export]]
-double Ecpp(NumericVector P, Rcpp::String unit){
+double Ecpp(const NumericVector& P, Rcpp::String unit){
   int len = P.size();
   double Entropy = 0.0;
 
   for (int i = 0; i < len; i++){
+     if (NumericVector::is_na(P[i])){
+           Rcpp::stop("Your input vector stores NA values...");
+        }
      if (P[i] > 0){
             if (unit == "log"){
                     Entropy += P[i] * log(P[i]);
@@ -43,11 +46,14 @@ double Ecpp(NumericVector P, Rcpp::String unit){
 
 //' @export
 // [[Rcpp::export]]
-double JEcpp(NumericVector JointProbabilities, Rcpp::String unit){
+double JEcpp(const NumericVector& JointProbabilities, Rcpp::String unit){
   int len = JointProbabilities.size();
   double JointEntropy = 0.0;
 
      for (int i = 0; i < len; i++){
+        if (NumericVector::is_na(JointProbabilities[i])){
+           Rcpp::stop("Your input vector stores NA values...");
+        }
         if (JointProbabilities[i] > 0){
            
            if (unit == "log"){
@@ -77,7 +83,7 @@ double JEcpp(NumericVector JointProbabilities, Rcpp::String unit){
 
 //' @export
 // [[Rcpp::export]]
-double CEcpp(NumericVector JointProbabilities,NumericVector Probabilities, Rcpp::String unit){
+double CEcpp(NumericVector JointProbabilities, NumericVector Probabilities, Rcpp::String unit){
 
   double ConditionalEntropy = 0.0;
   // Using the chain rule: H(X | Y) = H(X,Y) - H(Y)
