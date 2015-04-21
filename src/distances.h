@@ -17,15 +17,12 @@
 // 
 
 #ifndef philentropy_Distances_H
-#define philentropy_Distances_H
+#define philentropy_Distances_H philentropy_Distances_H
 
 // http://stackoverflow.com/questions/23527719/calling-a-rcpp-function-from-another-rcpp-function-while-building-an-r-package
 
 #include <Rcpp.h> 
 #include <math.h>
-
-using namespace Rcpp;
-using namespace std;
 
 // [[Rcpp::plugins(cpp11)]]
 
@@ -42,7 +39,7 @@ double custom_log10(const double& x ){
 
 //' @export
 // [[Rcpp::export]]
-double euclidean(const NumericVector& P, const NumericVector& Q, bool testNA){
+double euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -55,7 +52,7 @@ double euclidean(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){     
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff = P[i] - Q[i];
@@ -73,7 +70,7 @@ double euclidean(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double manhattan(const NumericVector& P, const NumericVector& Q, bool testNA){
+double manhattan(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -86,7 +83,7 @@ double manhattan(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff = fabs(P[i] - Q[i]);
@@ -105,7 +102,7 @@ double manhattan(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double minkowski(const NumericVector& P, const NumericVector& Q,double n, bool testNA){
+double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,double n, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -118,7 +115,7 @@ double minkowski(const NumericVector& P, const NumericVector& Q,double n, bool t
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff = pow(fabs(P[i] - Q[i]), n);
@@ -136,7 +133,7 @@ double minkowski(const NumericVector& P, const NumericVector& Q,double n, bool t
 
 //' @export
 // [[Rcpp::export]]
-double chebyshev(const NumericVector& P, const NumericVector& Q, bool testNA){
+double chebyshev(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -149,7 +146,7 @@ double chebyshev(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff = fabs(P[i] - Q[i]);
@@ -169,7 +166,7 @@ double chebyshev(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double sorensen(const NumericVector& P, const NumericVector& Q, bool testNA){
+double sorensen(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -184,7 +181,7 @@ double sorensen(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff = fabs(P[i] - Q[i]);
@@ -207,7 +204,7 @@ double sorensen(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double gower(const NumericVector& P, const NumericVector& Q, bool testNA){
+double gower(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -220,7 +217,7 @@ double gower(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         if(testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff = fabs(P[i] - Q[i]);
@@ -239,7 +236,7 @@ double gower(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double soergel(const NumericVector& P, const NumericVector& Q, bool testNA){
+double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -254,7 +251,7 @@ double soergel(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff      = fabs(P[i] - Q[i]);
@@ -284,7 +281,7 @@ double soergel(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double kulczynski_d(const NumericVector& P, const NumericVector& Q, bool testNA){
+double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -299,7 +296,7 @@ double kulczynski_d(const NumericVector& P, const NumericVector& Q, bool testNA)
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff      = fabs(P[i] - Q[i]);
@@ -337,7 +334,7 @@ double kulczynski_d(const NumericVector& P, const NumericVector& Q, bool testNA)
 
 //' @export
 // [[Rcpp::export]]
-double canberra(const NumericVector& P, const NumericVector& Q, bool testNA){
+double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -352,7 +349,7 @@ double canberra(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff = fabs(P[i] - Q[i]);
@@ -382,7 +379,7 @@ double canberra(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double lorentzian(const NumericVector& P, const NumericVector& Q, bool testNA, const Rcpp::String unit){
+double lorentzian(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -395,7 +392,7 @@ double lorentzian(const NumericVector& P, const NumericVector& Q, bool testNA, c
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff = fabs(P[i] - Q[i]);
@@ -434,7 +431,7 @@ double lorentzian(const NumericVector& P, const NumericVector& Q, bool testNA, c
 
 //' @export
 // [[Rcpp::export]]
-double intersection_dist(const NumericVector& P, const NumericVector& Q, bool testNA){
+double intersection_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -447,7 +444,7 @@ double intersection_dist(const NumericVector& P, const NumericVector& Q, bool te
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         if (P[i] <= Q[i]){
@@ -473,7 +470,7 @@ double intersection_dist(const NumericVector& P, const NumericVector& Q, bool te
 
 //' @export
 // [[Rcpp::export]]
-double wave_hedges(const NumericVector& P, const NumericVector& Q, bool testNA){
+double wave_hedges(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -487,7 +484,7 @@ double wave_hedges(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff      = fabs(P[i] - Q[i]);
@@ -523,7 +520,7 @@ double wave_hedges(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double czekanowski(const NumericVector& P, const NumericVector& Q, bool testNA){
+double czekanowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -538,7 +535,7 @@ double czekanowski(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         if (testNA){
                 for (int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff  = fabs(P[i] - Q[i]);
@@ -561,7 +558,7 @@ double czekanowski(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double motyka(const NumericVector& P, const NumericVector& Q, bool testNA){
+double motyka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -576,7 +573,7 @@ double motyka(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -603,7 +600,7 @@ double motyka(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double tanimoto(const NumericVector& P, const NumericVector& Q, bool testNA){
+double tanimoto(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         // Soergel = Tanimoto
         return soergel(P, Q, testNA);
@@ -612,7 +609,7 @@ double tanimoto(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double ruzicka(const NumericVector& P, const NumericVector& Q, bool testNA){
+double ruzicka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         // Ruzicka = 1 - Tanimoto = 1 - Soergel
         return (1.0 - soergel(P, Q, testNA));
@@ -621,7 +618,7 @@ double ruzicka(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double inner_product(const NumericVector& P, const NumericVector& Q, bool testNA){
+double inner_product(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -633,7 +630,7 @@ double inner_product(const NumericVector& P, const NumericVector& Q, bool testNA
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -648,7 +645,7 @@ double inner_product(const NumericVector& P, const NumericVector& Q, bool testNA
 
 //' @export
 // [[Rcpp::export]]
-double harmonic_mean_dist(const NumericVector& P, const NumericVector& Q, bool testNA){
+double harmonic_mean_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len     = P.size();
         int    Q_len     = Q.size();
@@ -662,7 +659,7 @@ double harmonic_mean_dist(const NumericVector& P, const NumericVector& Q, bool t
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -685,7 +682,7 @@ double harmonic_mean_dist(const NumericVector& P, const NumericVector& Q, bool t
 
 //' @export
 // [[Rcpp::export]]
-double cosine_dist(const NumericVector& P, const NumericVector& Q, bool testNA){
+double cosine_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len     = P.size();
         int    Q_len     = Q.size();
@@ -700,7 +697,7 @@ double cosine_dist(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -718,7 +715,7 @@ double cosine_dist(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double kumar_hassebrook(const NumericVector& P, const NumericVector& Q, bool testNA){
+double kumar_hassebrook(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len     = P.size();
         int    Q_len     = Q.size();
@@ -733,7 +730,7 @@ double kumar_hassebrook(const NumericVector& P, const NumericVector& Q, bool tes
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -751,7 +748,7 @@ double kumar_hassebrook(const NumericVector& P, const NumericVector& Q, bool tes
 
 //' @export
 // [[Rcpp::export]]
-double jaccard(const NumericVector& P, const NumericVector& Q, bool testNA){
+double jaccard(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         return (1.0 - kumar_hassebrook(P,Q, testNA));
         
@@ -760,7 +757,7 @@ double jaccard(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double dice_dist(const NumericVector& P, const NumericVector& Q, bool testNA){
+double dice_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len       = P.size();
         int    Q_len       = Q.size();
@@ -775,7 +772,7 @@ double dice_dist(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -793,7 +790,7 @@ double dice_dist(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double fidelity(const NumericVector& P, const NumericVector& Q, bool testNA){
+double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -805,7 +802,7 @@ double fidelity(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -820,7 +817,7 @@ double fidelity(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double bhattacharyya(const NumericVector& P, const NumericVector& Q, bool testNA, const Rcpp::String unit){
+double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         if (unit == "log"){
                 return -log(fidelity(P,Q, testNA));
@@ -841,21 +838,21 @@ double bhattacharyya(const NumericVector& P, const NumericVector& Q, bool testNA
 
 //' @export
 // [[Rcpp::export]]
-double hellinger(const NumericVector& P, const NumericVector& Q, bool testNA){
+double hellinger(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         return 2.0 * sqrt( 1.0 - fidelity(P,Q, testNA));
 }
 
 //' @export
 // [[Rcpp::export]]
-double matusita(const NumericVector& P, const NumericVector& Q, bool testNA){
+double matusita(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         return sqrt( 2.0 - ( 2.0 * fidelity(P,Q, testNA)));
 }
 
 //' @export
 // [[Rcpp::export]]
-double squared_chord(const NumericVector& P, const NumericVector& Q, bool testNA){
+double squared_chord(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -867,7 +864,7 @@ double squared_chord(const NumericVector& P, const NumericVector& Q, bool testNA
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -883,7 +880,7 @@ double squared_chord(const NumericVector& P, const NumericVector& Q, bool testNA
 
 //' @export
 // [[Rcpp::export]]
-double squared_euclidean(const NumericVector& P, const NumericVector& Q, bool testNA){
+double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -897,7 +894,7 @@ double squared_euclidean(const NumericVector& P, const NumericVector& Q, bool te
                 
                 for(int i = 0; i < P_len; i++){
                 
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                   
@@ -919,7 +916,7 @@ double squared_euclidean(const NumericVector& P, const NumericVector& Q, bool te
 
 //' @export
 // [[Rcpp::export]]
-double pearson_chi_sq(const NumericVector& P, const NumericVector& Q, bool testNA){
+double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -933,7 +930,7 @@ double pearson_chi_sq(const NumericVector& P, const NumericVector& Q, bool testN
                 
                 for(int i = 0; i < P_len; i++){
                 
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 
@@ -966,7 +963,7 @@ double pearson_chi_sq(const NumericVector& P, const NumericVector& Q, bool testN
 
 //' @export
 // [[Rcpp::export]]
-double neyman_chi_sq(const NumericVector& P, const NumericVector& Q, bool testNA){
+double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -980,7 +977,7 @@ double neyman_chi_sq(const NumericVector& P, const NumericVector& Q, bool testNA
                 
                 for(int i = 0; i < P_len; i++){
                 
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
@@ -1013,7 +1010,7 @@ double neyman_chi_sq(const NumericVector& P, const NumericVector& Q, bool testNA
 
 //' @export
 // [[Rcpp::export]]
-double squared_chi_sq(const NumericVector& P, const NumericVector& Q, bool testNA){
+double squared_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1027,7 +1024,7 @@ double squared_chi_sq(const NumericVector& P, const NumericVector& Q, bool testN
        
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -1050,7 +1047,7 @@ double squared_chi_sq(const NumericVector& P, const NumericVector& Q, bool testN
 
 //' @export
 // [[Rcpp::export]]
-double prob_symm_chi_sq(const NumericVector& P, const NumericVector& Q, bool testNA){
+double prob_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         return (2.0 * squared_chi_sq(P,Q, testNA));
         
@@ -1061,7 +1058,7 @@ double prob_symm_chi_sq(const NumericVector& P, const NumericVector& Q, bool tes
 
 //' @export
 // [[Rcpp::export]]
-double divergence_sq(const NumericVector& P, const NumericVector& Q, bool testNA){
+double divergence_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1075,7 +1072,7 @@ double divergence_sq(const NumericVector& P, const NumericVector& Q, bool testNA
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -1099,7 +1096,7 @@ double divergence_sq(const NumericVector& P, const NumericVector& Q, bool testNA
 
 //' @export
 // [[Rcpp::export]]
-double clark_sq(const NumericVector& P, const NumericVector& Q, bool testNA){
+double clark_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1113,7 +1110,7 @@ double clark_sq(const NumericVector& P, const NumericVector& Q, bool testNA){
 
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -1136,7 +1133,7 @@ double clark_sq(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-double additive_symm_chi_sq(const NumericVector& P, const NumericVector& Q, bool testNA){
+double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1150,7 +1147,7 @@ double additive_symm_chi_sq(const NumericVector& P, const NumericVector& Q, bool
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -1174,7 +1171,7 @@ double additive_symm_chi_sq(const NumericVector& P, const NumericVector& Q, bool
 
 //' @export
 // [[Rcpp::export]]
-double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q, bool testNA, const Rcpp::String unit){
+double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1188,7 +1185,7 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q,
         if(testNA){
                 for(int i = 0; i < P_len; i++){
                 
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
@@ -1255,7 +1252,7 @@ double kullback_leibler_distance(const NumericVector& P, const NumericVector& Q,
 
 //' @export
 // [[Rcpp::export]]
-double jeffreys(const NumericVector& P, const NumericVector& Q, bool testNA, const Rcpp::String unit){
+double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1270,7 +1267,7 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, bool testNA, con
                 
                 for(int i = 0; i < P_len; i++){
                 
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
@@ -1361,7 +1358,7 @@ double jeffreys(const NumericVector& P, const NumericVector& Q, bool testNA, con
 
 //' @export
 // [[Rcpp::export]]
-double k_divergence(const NumericVector& P, const NumericVector& Q, bool testNA, const Rcpp::String unit){
+double k_divergence(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1374,7 +1371,7 @@ double k_divergence(const NumericVector& P, const NumericVector& Q, bool testNA,
         if(testNA){
                 
                 for(int i = 0; i < P_len; i++){
-                        if ((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
@@ -1428,7 +1425,7 @@ double k_divergence(const NumericVector& P, const NumericVector& Q, bool testNA,
 
 //' @export
 // [[Rcpp::export]]
-double topsoe(const NumericVector& P, const NumericVector& Q, bool testNA, const Rcpp::String unit){
+double topsoe(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1442,7 +1439,7 @@ double topsoe(const NumericVector& P, const NumericVector& Q, bool testNA, const
         if(testNA){
                 for(int i = 0; i < P_len; i++){
                 
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
@@ -1500,7 +1497,7 @@ double topsoe(const NumericVector& P, const NumericVector& Q, bool testNA, const
 
 //' @export
 // [[Rcpp::export]]
-double jensen_shannon(const NumericVector& P, const NumericVector& Q, bool testNA, const Rcpp::String unit){
+double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1514,7 +1511,7 @@ double jensen_shannon(const NumericVector& P, const NumericVector& Q, bool testN
        
        if(testNA){
                for(int i = 0; i < P_len; i++){
-                       if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                       if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         if((P[i] == 0.0) && (Q[i] == 0.0)){
@@ -1581,7 +1578,7 @@ double jensen_shannon(const NumericVector& P, const NumericVector& Q, bool testN
 
 //' @export
 // [[Rcpp::export]]
-double jensen_difference(const NumericVector& P, const NumericVector& Q, bool testNA, const Rcpp::String unit){
+double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1596,7 +1593,7 @@ double jensen_difference(const NumericVector& P, const NumericVector& Q, bool te
                 
                 for(int i = 0; i < P_len; i++){
                 
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
@@ -1655,7 +1652,7 @@ double jensen_difference(const NumericVector& P, const NumericVector& Q, bool te
 
 //' @export
 // [[Rcpp::export]]
-double taneja(const NumericVector& P, const NumericVector& Q, bool testNA, const Rcpp::String unit){
+double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         int    P_len       = P.size();
         int    Q_len       = Q.size();
@@ -1671,7 +1668,7 @@ double taneja(const NumericVector& P, const NumericVector& Q, bool testNA, const
                 
                 for(int i = 0; i < P_len; i++){
                 
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
@@ -1768,7 +1765,7 @@ double taneja(const NumericVector& P, const NumericVector& Q, bool testNA, const
 
 //' @export
 // [[Rcpp::export]]
-double kumar_johnson(const NumericVector& P, const NumericVector& Q, bool testNA){
+double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len      = P.size();
         int    Q_len      = Q.size();
@@ -1783,7 +1780,7 @@ double kumar_johnson(const NumericVector& P, const NumericVector& Q, bool testNA
         if(testNA){
                 for(int i = 0; i < P_len; i++){
                 
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
@@ -1816,7 +1813,7 @@ double kumar_johnson(const NumericVector& P, const NumericVector& Q, bool testNA
 
 //' @export
 // [[Rcpp::export]]
-double avg(const NumericVector& P, const NumericVector& Q, bool testNA){
+double avg(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         int    P_len       = P.size();
         int    Q_len       = Q.size();
@@ -1830,7 +1827,7 @@ double avg(const NumericVector& P, const NumericVector& Q, bool testNA){
         
         for(int i = 0; i < P_len; i++){
                 if(testNA){
-                        if((NumericVector::is_na(P[i])) || (NumericVector::is_na(Q[i]))){
+                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                 }
@@ -1849,19 +1846,19 @@ double avg(const NumericVector& P, const NumericVector& Q, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-NumericMatrix DistMatrixWithoutUnit(NumericMatrix dists, Function DistFunc, bool testNA){
+Rcpp::NumericMatrix DistMatrixWithoutUnit(Rcpp::NumericMatrix dists, Rcpp::Function DistFunc, bool testNA){
 // http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
 
         int nrow = dists.nrow();
         double dist_value = 0.0;
-        NumericMatrix dist_matrix(nrow,nrow);
+        Rcpp::NumericMatrix dist_matrix(nrow,nrow);
         // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
-        std::fill( dist_matrix.begin(), dist_matrix.end(), NumericVector::get_na() );
+        std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
         
         for (int i = 0; i < nrow; i++){
                 for (int j = 0; j < nrow; j++){
-                        if(NumericVector::is_na(dist_matrix(i,j))){
-                                dist_value = as<double>(DistFunc(dists(i,_),dists(j,_), testNA));
+                        if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = Rcpp::as<double>(DistFunc(dists(i,Rcpp::_),dists(j,Rcpp::_), testNA));
                                 dist_matrix(i,j) = dist_value;
                                 dist_matrix(j,i) = dist_value;
                         }
@@ -1874,19 +1871,19 @@ NumericMatrix DistMatrixWithoutUnit(NumericMatrix dists, Function DistFunc, bool
 
 //' @export
 // [[Rcpp::export]]
-NumericMatrix DistMatrixMinkowski(NumericMatrix dists, double p, bool testNA){
+Rcpp::NumericMatrix DistMatrixMinkowski(Rcpp::NumericMatrix dists, double p, bool testNA){
 // http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
 
         int nrow = dists.nrow();
         double dist_value = 0.0;
-        NumericMatrix dist_matrix(nrow,nrow);
+        Rcpp::NumericMatrix dist_matrix(nrow,nrow);
         // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
-        std::fill( dist_matrix.begin(), dist_matrix.end(), NumericVector::get_na() );
+        std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
         
         for (int i = 0; i < nrow; i++){
                 for (int j = 0; j < nrow; j++){
-                        if(NumericVector::is_na(dist_matrix(i,j))){
-                                dist_value = minkowski(dists(i,_),dists(j,_),p, testNA);
+                        if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = minkowski(dists(i,Rcpp::_),dists(j,Rcpp::_),p, testNA);
                                 dist_matrix(i,j) = dist_value;
                                 dist_matrix(j,i) = dist_value;
                         }
@@ -1900,19 +1897,19 @@ NumericMatrix DistMatrixMinkowski(NumericMatrix dists, double p, bool testNA){
 
 //' @export
 // [[Rcpp::export]]
-NumericMatrix DistMatrixWithUnit(NumericMatrix dists, Function DistFunc, bool testNA, Rcpp::String unit){
+Rcpp::NumericMatrix DistMatrixWithUnit(Rcpp::NumericMatrix dists, Rcpp::Function DistFunc, bool testNA, Rcpp::String unit){
 // http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
 
         int nrow = dists.nrow();
         double dist_value = 0.0;
-        NumericMatrix dist_matrix(nrow,nrow);
+        Rcpp::NumericMatrix dist_matrix(nrow,nrow);
         // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
-        std::fill( dist_matrix.begin(), dist_matrix.end(), NumericVector::get_na() );
+        std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
         
         for (int i = 0; i < nrow; i++){
                 for (int j = 0; j < nrow; j++){
-                        if(NumericVector::is_na(dist_matrix(i,j))){
-                                dist_value = as<double>(DistFunc(dists(i,_),dists(j,_), testNA, unit));
+                        if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = Rcpp::as<double>(DistFunc(dists(i,Rcpp::_),dists(j,Rcpp::_), testNA, unit));
                                 dist_matrix(i,j) = dist_value;
                                 dist_matrix(j,i) = dist_value;
                         }
@@ -1923,7 +1920,7 @@ NumericMatrix DistMatrixWithUnit(NumericMatrix dists, Function DistFunc, bool te
 }
 
 
-#endif
+#endif // philentropy_Distances_H
 
 
 
