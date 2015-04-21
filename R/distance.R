@@ -172,13 +172,9 @@ distance <- function(x ,
         if(!is.element(class(x),c("data.frame","matrix")))
                 stop("x should be either a numeric matrix or a numeric data.frame")
         
-        if(!is.matrix(x))
-                x <- as.matrix(x)
-        
-#         x1 <-vector(mode = "numeric", length = ncol(x))
-#         x2 <-vector(mode = "numeric", length = ncol(x))
-#         x1 <- x[1, ]
-#         x2 <- x[2, ]
+#         if(!is.matrix(x))
+#                 x <- as.matrix(x)
+
                 
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
@@ -197,7 +193,7 @@ distance <- function(x ,
         if(method == "euclidean"){
                 
                 if(nrows == 2){
-                        dist <- euclidean(x[1,],x[2,],test.na)
+                        dist <- euclidean(x[1, ],x[2, ],test.na)
                 } else {
                         dist <- DistMatrixWithoutUnit(x,euclidean,test.na)
                 }
