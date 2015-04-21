@@ -15,11 +15,33 @@
 #  A copy of the GNU General Public License is available at
 #  http://www.r-project.org/Licenses/
 
+context("Test implementation of distance measures...")
+
+
 
 P <- 1:10/sum(1:10)
 Q <- 20:29/sum(20:29)
 
-context("Test implementation of distance measures...")
+
+test_that("distance() stops when nrow(x) < 2", 
+{
+        distMat <- rep(0.2,5)
+        expect_error(distance(distMat),"Your input matrix stores only one probability or count vector.")
+})
+
+test_that("'euclidien' (or any other not implemented string) is caught when wrong input string for method is entered", {
+        
+        distMat <- rbind(rep(0.2,5),rep(0.1,10))
+        expect_error(distance(distMat, method = "euclidien"),"Method 'euclidien' is not implemented in this function. Please consult getDistMethods().")
+} )
+
+test_that("Only numeric values are passed to distance()", {
+        
+        distMat <- rbind(rep("A",10),rep("B",10))
+        expect_error(distance(distMat, method = "euclidean"), "Non numeric values cannot be used to compute distances..")
+})
+
+
 
 test_that("distance(method = 'euclidean') computes the correct distance value.", {
         
