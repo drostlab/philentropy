@@ -1,24 +1,22 @@
-//#ifndef philentropy_InformationTheory_H
-//#define philentropy_InformationTheory_H
+#ifndef philentropy_InformationTheory_H
+#define philentropy_InformationTheory_H philentropy_InformationTheory_H
 
 #include <Rcpp.h>
+#include "utils.h"
 #include "distances.h"
 
 // [[Rcpp::plugins(cpp11)]]
-
-using namespace Rcpp;
-using namespace std;
 
 
 
 //' @export
 // [[Rcpp::export]]
-double Ecpp(const NumericVector& P, Rcpp::String unit){
+double Ecpp(const Rcpp::NumericVector& P, Rcpp::String unit){
   int len = P.size();
   double Entropy = 0.0;
 
   for (int i = 0; i < len; i++){
-     if (NumericVector::is_na(P[i])){
+     if (Rcpp::NumericVector::is_na(P[i])){
            Rcpp::stop("Your input vector stores NA values...");
         }
      if (P[i] > 0){
@@ -46,12 +44,12 @@ double Ecpp(const NumericVector& P, Rcpp::String unit){
 
 //' @export
 // [[Rcpp::export]]
-double JEcpp(const NumericVector& JointProbabilities, Rcpp::String unit){
+double JEcpp(const Rcpp::NumericVector& JointProbabilities, Rcpp::String unit){
   int len = JointProbabilities.size();
   double JointEntropy = 0.0;
 
      for (int i = 0; i < len; i++){
-        if (NumericVector::is_na(JointProbabilities[i])){
+        if (Rcpp::NumericVector::is_na(JointProbabilities[i])){
            Rcpp::stop("Your input vector stores NA values...");
         }
         if (JointProbabilities[i] > 0){
@@ -83,7 +81,7 @@ double JEcpp(const NumericVector& JointProbabilities, Rcpp::String unit){
 
 //' @export
 // [[Rcpp::export]]
-double CEcpp(NumericVector JointProbabilities, NumericVector Probabilities, Rcpp::String unit){
+double CEcpp(Rcpp::NumericVector JointProbabilities, Rcpp::NumericVector Probabilities, Rcpp::String unit){
 
   double ConditionalEntropy = 0.0;
   // Using the chain rule: H(X | Y) = H(X,Y) - H(Y)
@@ -96,7 +94,7 @@ double CEcpp(NumericVector JointProbabilities, NumericVector Probabilities, Rcpp
 
 //' @export
 // [[Rcpp::export]]
-double MIcpp(NumericVector X, NumericVector Y, NumericVector XY, Rcpp::String unit){
+double MIcpp(Rcpp::NumericVector X, Rcpp::NumericVector Y, Rcpp::NumericVector XY, Rcpp::String unit){
 
   double MutualInformation = 0.0;
   // Using the identity: I(X,Y) = H(X) + H(Y) -  H(X,Y)
@@ -105,4 +103,4 @@ double MIcpp(NumericVector X, NumericVector Y, NumericVector XY, Rcpp::String un
   return(MutualInformation);
 }
 
-//#endif
+#endif // philentropy_InformationTheory_H
