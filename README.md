@@ -35,28 +35,22 @@ library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
 
  - [Introduction](https://github.com/HajkD/philentropy/blob/master/vignettes/Introduction.Rmd)
  - [Distances](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd)
- -[Information Theory]()
+ - [Information Theory]()
  
 ## Important Functions
 
 ### Distance Measures
-`distance()` : implements almost all popular probability distance (or similarity) measures
+* `distance()` : implements almost all popular probability distance (or similarity) measures
 
 ### Information Theory
 
-`H()` : Shannon's Entropy H(X)
-
-`JE()` : Shannon's Joint-Entropy H(X,Y)
-
-`CE()` : Shannon's Conditional-Entropy H(X | Y)
-
-`MI()` : Shannon's Mutual Information I(X,Y)
-
-`KL()` : Kullback–Leibler Divergence
-
-`JSD()` : Jensen-Shannon Divergence
-
-`gJSD()` : Generalized Jensen-Shannon Divergence
+* `H()` : Shannon's Entropy H(X)
+* `JE()` : Shannon's Joint-Entropy H(X,Y)
+* `CE()` : Shannon's Conditional-Entropy H(X | Y)
+* `MI()` : Shannon's Mutual Information I(X,Y)
+* `KL()` : Kullback–Leibler Divergence
+* `JSD()` : Jensen-Shannon Divergence
+* `gJSD()` : Generalized Jensen-Shannon Divergence
 
 ## Discussions and Bug Reports
 
