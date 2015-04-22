@@ -5,18 +5,20 @@
 \title{Distances between Probability Density Functions}
 \usage{
 distance(x, method = "euclidean", p = NULL, test.na = TRUE,
-  unit = "log")
+  unit = "log", est.prob = NULL)
 }
 \arguments{
-\item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a count \code{data.frame} or \code{matrix} (if \code{est.prob = TRUE}).}
+\item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}).}
 
 \item{method}{a character string indicating whether the distance measure that should be computed.}
 
 \item{p}{power of the Minkowski distance.}
 
-\item{test.na}{a boolean value indicating whether input vectors should be tested for \code{NA} values.}
+\item{test.na}{a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.}
 
 \item{unit}{a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.}
+
+\item{est.prob}{method to estimate probabilities from a count vector. Default: \code{est.prob = NULL}.}
 }
 \value{
 The following results are returned depending on the dimension of \code{x}:
@@ -129,10 +131,10 @@ In these cases the convention is treated as follows:
 }
 }
 \examples{
+# Simple Examples
+
 # receive a list of implemented probability distance measures
 getDistMethods()
-
-# Simple Examples
 
 ## compute the euclidean distance between two probability vectors
 distance(rbind(1:10/sum(1:10), 20:29/sum(20:29)), method = "euclidean")

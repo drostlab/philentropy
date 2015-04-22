@@ -4,7 +4,7 @@
 \alias{valid.distr}
 \title{Check the validity of the input probability distribution}
 \usage{
-valid.distr(x)
+valid.distr(x, test.na = TRUE)
 }
 \description{
 Check the validity of the input probability distribution
