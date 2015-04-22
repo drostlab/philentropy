@@ -20,11 +20,12 @@
 
 #' @title Distances between Probability Density Functions
 #' @description This functions computes the distance/dissimilarity between two probability density functions.
-#' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a count \code{data.frame} or \code{matrix} (if \code{est.prob = TRUE}).
+#' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}).
 #' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
-#' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values.
+#' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.
 #' @param unit a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.
+#' @param est.prob method to estimate probabilities from a count vector. Default: \code{est.prob = NULL}.
 #' @author Hajk-Georg Drost
 #' @details The following distance measures are implemented in this function:
 #' 
@@ -111,11 +112,10 @@
 #' 
 #' }
 #' @examples
+#' # Simple Examples
 #' 
 #' # receive a list of implemented probability distance measures
 #' getDistMethods()
-#' 
-#' # Simple Examples
 #' 
 #' ## compute the euclidean distance between two probability vectors
 #' distance(rbind(1:10/sum(1:10), 20:29/sum(20:29)), method = "euclidean")
@@ -149,10 +149,11 @@
 #' @export
 
 distance <- function(x ,
-                     method  = "euclidean", 
-                     p       = NULL, 
-                     test.na = TRUE, 
-                     unit    = "log"){
+                     method   = "euclidean", 
+                     p        = NULL, 
+                     test.na  = TRUE, 
+                     unit     = "log",
+                     est.prob = NULL){
         
         nrows <- NA_integer_
         nrows <- nrow(x)
@@ -163,25 +164,36 @@ distance <- function(x ,
         if(!is.element(method,getDistMethods()))
                 stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
         
+        
         if(!is.element(class(x),c("data.frame","matrix")))
                 stop("x should be a data.frame or matrix.")
         
-        if(!is.numeric(x))
-                stop("Non numeric values cannot be used to compute distances..")
+        
+        if(!is.null(est.prob)){
                 
+                if(class(x) == "data.frame"){
+                        # estimate probability row-wise
+                        x <- t(apply(x,1,estimate.probability, method = est.prob))
+                }
+                
+                if(class(x) == "matrix"){
+                        x <- t(apply(x,1,estimate.probability, method = est.prob))  
+                }
+        }
+        
+#         if(!is.numeric(x))
+#                 stop("Non numeric values cannot be used to compute distances..")
+#                 
         if(!is.element(unit,c("log","log2","log10")))
                 stop("You can only choose units: log, log2, or log10.")
         
         
         
-        
-
-                
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
         # here a smarter (faster) way to validate distributions needs to be implemented
-#         valid.distr(x)
-#         valid.distr(y)
+        # check for distribution validity
+       # apply(x,1,valid.distr, test.na = test.na)
         
         
         dist <- matrix(NA_real_, nrows, nrows)
