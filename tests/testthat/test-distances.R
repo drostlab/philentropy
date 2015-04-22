@@ -42,6 +42,11 @@ test_that("Only numeric values are passed to distance()", {
 })
 
 
+test_that("Only choose from units: log, log2, or log10", {
+        
+        distMat <- rbind(rep(0.2,5),rep(0.1,10))
+        expect_error(distance(distMat, method = "euclidean", unit = "log5"), "You can only choose units: log, log2, or log10.")
+})
 
 test_that("distance(method = 'euclidean') computes the correct distance value.", {
         
