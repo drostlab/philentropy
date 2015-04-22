@@ -38,7 +38,7 @@ test_that("'euclidien' (or any other not implemented string) is caught when wron
 test_that("Only numeric values are passed to distance()", {
         
         distMat <- rbind(rep("A",10),rep("B",10))
-        expect_error(distance(distMat, method = "euclidean"), "Non numeric values cannot be used to compute distances..")
+        expect_error(distance(distMat, method = "euclidean"), paste0("Your input ",class(distMat)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
 })
 
 
