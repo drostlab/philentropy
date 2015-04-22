@@ -25,6 +25,7 @@
 #' @param p power of the Minkowski distance.
 #' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.
 #' @param unit a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.
+#' @param check.distr check \code{x} for storing valid probability density functions. This check is useful but time consuming for large \code{x}. Default: \code{check.distr = FALSE}.
 #' @param est.prob method to estimate probabilities from a count vector. Default: \code{est.prob = NULL}.
 #' @author Hajk-Georg Drost
 #' @details The following distance measures are implemented in this function:
@@ -149,11 +150,12 @@
 #' @export
 
 distance <- function(x ,
-                     method   = "euclidean", 
-                     p        = NULL, 
-                     test.na  = TRUE, 
-                     unit     = "log",
-                     est.prob = NULL){
+                     method      = "euclidean", 
+                     p           = NULL, 
+                     test.na     = TRUE, 
+                     unit        = "log",
+                     check.distr = FALSE,
+                     est.prob    = NULL){
         
         nrows <- NA_integer_
         nrows <- nrow(x)
@@ -181,20 +183,21 @@ distance <- function(x ,
                 }
         }
         
-#         if(!is.numeric(x))
-#                 stop("Non numeric values cannot be used to compute distances..")
-#                 
+        if(!is.numeric(x))
+                stop(paste0("Your input ",class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
+                
         if(!is.element(unit,c("log","log2","log10")))
                 stop("You can only choose units: log, log2, or log10.")
-        
         
         
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
         # here a smarter (faster) way to validate distributions needs to be implemented
-        # check for distribution validity
-       # apply(x,1,valid.distr, test.na = test.na)
-        
+       
+        if(check.distr){
+                # check for distribution validity
+                apply(x,1,valid.distr, test.na = test.na)
+        }
         
         dist <- matrix(NA_real_, nrows, nrows)
         
