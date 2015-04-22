@@ -34,7 +34,7 @@ library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
 ## Tutorials 
 
  - [Introduction](https://github.com/HajkD/philentropy/blob/master/vignettes/Introduction.Rmd)
- - [Distances](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd)
+ - [Distances and Similarity Measures](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd)
  - [Information Theory]()
  
 ## Important Functions
@@ -60,7 +60,7 @@ provided in this package.
 Furthermore, in case you find some bugs or need additional (more flexible) functionality of parts
 of this package, please let me know:
 
-hajk-georg.drost@informatik.uni-halle.de
+[twitter: HajkDrost](https://twitter.com/hajkdrost) or  [email ](hajk-georg.drost@informatik.uni-halle.de)
 
 
 
