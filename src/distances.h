@@ -21,6 +21,7 @@
 
 // http://stackoverflow.com/questions/23527719/calling-a-rcpp-function-from-another-rcpp-function-while-building-an-r-package
 
+#include <R.h> 
 #include <Rcpp.h> 
 #include <math.h>
 #include <iostream>
@@ -1850,7 +1851,7 @@ double avg(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool test
 
 //' @export
 // [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixWithoutUnit(Rcpp::DataFrame distsDF, Rcpp::Function DistFunc, bool testNA){
+Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF, Rcpp::Function DistFunc, bool testNA){
 // http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
         Rcpp::NumericMatrix dists = as_matrix(distsDF);
         int nrow = dists.nrow();
@@ -1872,10 +1873,57 @@ Rcpp::NumericMatrix DistMatrixWithoutUnit(Rcpp::DataFrame distsDF, Rcpp::Functio
         return dist_matrix;
 }
 
+//' @export
+// [[Rcpp::export]]
+Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Function DistFunc, bool testNA){
+// http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
+       //Rcpp::NumericMatrix dists = Rcpp::clone(distsMT);
+        int nrow = dists.nrow();
+        double dist_value;
+        Rcpp::NumericMatrix dist_matrix(nrow,nrow);
+        // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
+        std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
+        for (int i = 0; i < nrow; i++){
+                for (int j = 0; j < nrow; j++){
+                        if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
+                                
+                                dist_value = Rcpp::as<double>(DistFunc(dists(i,Rcpp::_),dists(j,Rcpp::_), testNA));
+                                dist_matrix(i,j) = dist_value;
+                                dist_matrix(j,i) = dist_value;
+                        }
+                }
+        }
+        return dist_matrix;        
+}
 
 //' @export
 // [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixMinkowski(Rcpp::NumericMatrix dists, double p, bool testNA){
+Rcpp::NumericMatrix DistMatrixMinkowskiDF(Rcpp::DataFrame distsDF, double p, bool testNA){
+// http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
+
+        Rcpp::NumericMatrix dists = as_matrix(distsDF);
+        int nrow = dists.nrow();
+        double dist_value = 0.0;
+        Rcpp::NumericMatrix dist_matrix(nrow,nrow);
+        // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
+        std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
+        
+        for (int i = 0; i < nrow; i++){
+                for (int j = 0; j < nrow; j++){
+                        if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = minkowski(dists(i,Rcpp::_),dists(j,Rcpp::_),p, testNA);
+                                dist_matrix(i,j) = dist_value;
+                                dist_matrix(j,i) = dist_value;
+                        }
+                }
+        }
+        
+        return dist_matrix;
+}
+
+//' @export
+// [[Rcpp::export]]
+Rcpp::NumericMatrix DistMatrixMinkowskiMAT(Rcpp::NumericMatrix dists, double p, bool testNA){
 // http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
 
         int nrow = dists.nrow();
@@ -1898,10 +1946,35 @@ Rcpp::NumericMatrix DistMatrixMinkowski(Rcpp::NumericMatrix dists, double p, boo
 }
 
 
+//' @export
+// [[Rcpp::export]]
+Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, Rcpp::Function DistFunc, bool testNA, Rcpp::String unit){
+// http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
+
+        Rcpp::NumericMatrix dists = as_matrix(distsDF);
+        int nrow = dists.nrow();
+        double dist_value = 0.0;
+        Rcpp::NumericMatrix dist_matrix(nrow,nrow);
+        // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
+        std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
+        
+        for (int i = 0; i < nrow; i++){
+                for (int j = 0; j < nrow; j++){
+                        if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = Rcpp::as<double>(DistFunc(dists(i,Rcpp::_),dists(j,Rcpp::_), testNA, unit));
+                                dist_matrix(i,j) = dist_value;
+                                dist_matrix(j,i) = dist_value;
+                        }
+                }
+        }
+        
+        return dist_matrix;
+}
+
 
 //' @export
 // [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixWithUnit(Rcpp::NumericMatrix dists, Rcpp::Function DistFunc, bool testNA, Rcpp::String unit){
+Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Function DistFunc, bool testNA, Rcpp::String unit){
 // http://stackoverflow.com/questions/27391472/passing-r-function-as-parameter-to-rcpp-function
 
         int nrow = dists.nrow();
@@ -1922,7 +1995,6 @@ Rcpp::NumericMatrix DistMatrixWithUnit(Rcpp::NumericMatrix dists, Rcpp::Function
         
         return dist_matrix;
 }
-
 
 #endif // philentropy_Distances_H
 
