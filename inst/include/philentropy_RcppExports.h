@@ -62,36 +62,36 @@ namespace philentropy {
         return Rcpp::as<Rcpp::DataFrame >(__result);
     }
 
-    inline double vectorSum(Rcpp::NumericVector x) {
-        typedef SEXP(*Ptr_vectorSum)(SEXP);
-        static Ptr_vectorSum p_vectorSum = NULL;
-        if (p_vectorSum == NULL) {
-            validateSignature("double(*vectorSum)(Rcpp::NumericVector)");
-            p_vectorSum = (Ptr_vectorSum)R_GetCCallable("philentropy", "philentropy_vectorSum");
+    inline SEXP sum_rcpp(SEXP vec) {
+        typedef SEXP(*Ptr_sum_rcpp)(SEXP);
+        static Ptr_sum_rcpp p_sum_rcpp = NULL;
+        if (p_sum_rcpp == NULL) {
+            validateSignature("SEXP(*sum_rcpp)(SEXP)");
+            p_sum_rcpp = (Ptr_sum_rcpp)R_GetCCallable("philentropy", "philentropy_sum_rcpp");
         }
         RObject __result;
         {
             RNGScope __rngScope;
-            __result = p_vectorSum(Rcpp::wrap(x));
+            __result = p_sum_rcpp(Rcpp::wrap(vec));
         }
         if (__result.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
         if (__result.inherits("try-error"))
             throw Rcpp::exception(as<std::string>(__result).c_str());
-        return Rcpp::as<double >(__result);
+        return Rcpp::as<SEXP >(__result);
     }
 
-    inline SEXP sum2(SEXP x_) {
-        typedef SEXP(*Ptr_sum2)(SEXP);
-        static Ptr_sum2 p_sum2 = NULL;
-        if (p_sum2 == NULL) {
-            validateSignature("SEXP(*sum2)(SEXP)");
-            p_sum2 = (Ptr_sum2)R_GetCCallable("philentropy", "philentropy_sum2");
+    inline SEXP est_prob_empirical(SEXP CountVec) {
+        typedef SEXP(*Ptr_est_prob_empirical)(SEXP);
+        static Ptr_est_prob_empirical p_est_prob_empirical = NULL;
+        if (p_est_prob_empirical == NULL) {
+            validateSignature("SEXP(*est_prob_empirical)(SEXP)");
+            p_est_prob_empirical = (Ptr_est_prob_empirical)R_GetCCallable("philentropy", "philentropy_est_prob_empirical");
         }
         RObject __result;
         {
             RNGScope __rngScope;
-            __result = p_sum2(Rcpp::wrap(x_));
+            __result = p_est_prob_empirical(Rcpp::wrap(CountVec));
         }
         if (__result.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
