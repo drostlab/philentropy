@@ -1,14 +1,14 @@
 Package: philentropy
 Type: Package
-Title: An Information Theory And Statistics Framework for Predictive Analytics
+Title: Distance Measure and Information Theory Jackknife
 Version: 0.0.1
 Date: 2014-05-03
 Authors@R: as.person(
     "Hajk-Georg Drost <hajk-georg.drost@informatik.uni-halle.de> [aut, cre]")
 Maintainer: Hajk-Georg Drost <hajk-georg.drost@informatik.uni-halle.de>
-Description: The philentropy Package Provides an Information Theory and Statistics Framework to Perform Predictive Analytics.
+Description: The philentropy package implementes popular distance/similarity measures to compute distances between probability density functions.
 Depends: R (>= 3.1.2)
-Imports: Rcpp
+Imports: Rcpp, dplyr, plyr
 License: GPL-2
 LazyData: true
 LinkingTo: Rcpp
