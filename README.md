@@ -1,9 +1,9 @@
 philentropy
 ===========
 
-## An Information Theory And Statistics Framework for Predictive Analytics
+## A Distance Measure and Information Theory Jackknife
 
-The `philentropy` Package Provides an Information Theory and Statistics Framework to Perform Predictive Analytics.
+The `philentropy` package implementes popular distance/similarity measures to compute distances between probability density functions.
 
 
 ## Fast Installation Guide
@@ -35,9 +35,7 @@ library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
 
  - [Introduction](https://github.com/HajkD/philentropy/blob/master/vignettes/Introduction.Rmd)
  - [Distances](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd)
- - [Information Theoretic Learning](https://github.com/HajkD/philentropy/blob/master/vignettes/Information%20Theory.Rmd)
- - [Modeling and Predictive Analytics](https://github.com/HajkD/philentropy/blob/master/vignettes/Predictive%20Analytics.Rmd)
-
+ 
 ## Important Functions
 
 `distance()` : implements almost all known probability distance (or similarity) measures
