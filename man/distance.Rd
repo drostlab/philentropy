@@ -5,7 +5,7 @@
 \title{Distances between Probability Density Functions}
 \usage{
 distance(x, method = "euclidean", p = NULL, test.na = TRUE,
-  unit = "log", est.prob = NULL)
+  unit = "log", check.distr = FALSE, est.prob = NULL)
 }
 \arguments{
 \item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}).}
@@ -17,6 +17,8 @@ distance(x, method = "euclidean", p = NULL, test.na = TRUE,
 \item{test.na}{a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.}
 
 \item{unit}{a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.}
+
+\item{check.distr}{check \code{x} for storing valid probability density functions. This check is useful but time consuming for large \code{x}. Default: \code{check.distr = FALSE}.}
 
 \item{est.prob}{method to estimate probabilities from a count vector. Default: \code{est.prob = NULL}.}
 }
