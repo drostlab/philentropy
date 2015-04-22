@@ -34,35 +34,30 @@ Rcpp::DataFrame as_data_frame(Rcpp::NumericMatrix mat){
   return y;
 }
 
-
 //' @export
 // [[Rcpp::export]]
-double vectorSum(Rcpp::NumericVector x) {
-        //if(is_na(x)){
-        //       Rcpp::stop("Your input vector includes NA values...");
-        // }
-        
-        // http://gallery.rcpp.org/articles/parallel-vector-sum/
-        return std::accumulate(x.begin(), x.end(), 0.0);
-}
-
-//' @export
-// [[Rcpp::export]]
-SEXP sum2( SEXP x_ ){
-   Rcpp::NumericVector x(x_) ;
-   double res = sum( x ) ;
-   return Rcpp::wrap( res ) ;
+SEXP sum_rcpp( SEXP vec ){
+   Rcpp::NumericVector x(vec);
+   double res = sum( x );
+   return Rcpp::wrap( res );
 }
 
 
- double sum3(Rcpp::NumericVector x) {
-    double total = 0;
-    
-    Rcpp::NumericVector::iterator it;
-    for(it = x.begin(); it != x.end(); ++it) {
-      total += *it;
-    }
-    return total;
-  }
+//' @export
+// [[Rcpp::export]]
+SEXP est_prob_empirical( SEXP CountVec ){
+   Rcpp::NumericVector x(CountVec);
+   double ProbMass = sum( x );
+   Rcpp::NumericVector EmpiricalProb(x.size());
+   
+   EmpiricalProb = x / ProbMass;
+   
+   //for(int i = 0; i < x.size(); i++){
+   //        EmpiricalProb[i] = static_cast<double>(x[i]/ProbMass);
+   //}
+   return Rcpp::wrap( EmpiricalProb );
+}
+
+
 
 #endif // philentropy_UTILS_H
