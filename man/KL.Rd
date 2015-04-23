@@ -4,19 +4,19 @@
 \alias{KL}
 \title{Kullback–Leibler Divergence}
 \usage{
-KL(P, Q, test.na = TRUE, unit = "log2")
+KL(x, test.na = TRUE, unit = "log2", est.prob = NULL)
 }
 \arguments{
-\item{P}{a probability distribution P.}
-
-\item{Q}{a probability distribution Q.}
+\item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}). See \code{\link{distance}} for details.}
 
 \item{test.na}{a boolean value indicating whether input vectors should be tested for NA values.}
 
 \item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
+
+\item{est.prob}{method to estimate probabilities from a count vector. Default: est.prob = NULL.}
 }
 \value{
-The Kullback–Leibler divergence of P and Q.
+The Kullback–Leibler divergence of probability vectors.
 }
 \description{
 This function computes the Kullback–Leibler divergence of two probability
@@ -39,10 +39,32 @@ divergence of two probability distributions P and Q is also named
 \emph{Cross Entropy} of two probability distributions P and Q.
 }
 \examples{
-# a general example: comparing a normal distribution with an exponential distribution
+# Kulback-Leibler Divergence between P and Q
 P <- 1:10/sum(1:10)
 Q <- 20:29/sum(20:29)
-KLD <- KL(P,Q)
+x <- rbind(P,Q)
+KL(x)
+
+# Kulback-Leibler Divergence between P and Q using different log bases
+KL(x, unit = "log2") # Default
+KL(x, unit = "log")
+KL(x, unit = "log10")
+
+# Kulback-Leibler Divergence between count vectors P.count and Q.count
+P.count <- 1:10
+Q.count <- 20:29
+x.count <- rbind(P.count,Q.count)
+KL(x, est.prob = "empirical")
+
+# Example: Distance Matrix using KL-Distance
+
+Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
+
+# compute the KL matrix of a given probability matrix
+KLMatrix <- KL(Prob)
+
+# plot a heatmap of the corresponding KL matrix
+heatmap(KLMatrix)
 }
 \author{
 Hajk-Georg Drost
@@ -52,6 +74,6 @@ Cover Thomas M. and Thomas Joy A. 2006. "Elements of Information
 Theory". \emph{John Wiley & Sons}.
 }
 \seealso{
-\code{\link{H}}, \code{\link{CE}}, \code{\link{JSD}}
+\code{\link{H}}, \code{\link{CE}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
 }
 
