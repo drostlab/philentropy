@@ -23,18 +23,15 @@ NULL
 
 
 
-#' @title Check the validity of the input probability distribution
+#' @title Check the validity of input probability distributions
 #' @export
-valid.distr <- function(x, test.na = TRUE){
+valid.distr <- function(x){
         
-        if(test.na){
-                if(anyNA(x)){
-                        stop("Your input vector includes NA values", call. = FALSE)
-                }
-        }
-        else if(!all(dplyr::between(x,0,1))){
-                
-                stop("Your probability values are not between: [0,1].", call. = FALSE)
+        sapply(x, function(vec) if(!dplyr::between(vec,0,1)) stop("Your probability values are not between: [0,1].", .call = FALSE))
+        
+        
+        if(anyNA(x)){
+                stop("Your input vector includes NA values", call. = FALSE)
         }
         
         else if(sum_rcpp(x) > 1.0000001) {
