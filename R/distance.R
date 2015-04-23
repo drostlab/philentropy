@@ -25,10 +25,14 @@
 #' @param p power of the Minkowski distance.
 #' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.
 #' @param unit a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.
-#' @param check.distr check \code{x} for storing valid probability density functions. This check is useful but time consuming for large \code{x}. Default: \code{check.distr = FALSE}.
+#' @param check.distr check \code{x} for storing valid probability density functions. This check is useful but time consuming for large \code{x}. Default: \code{check.distr = TRUE}. In case you would like to use distance measures that are also applicable to non-probability values, you can simply specify \code{check.distr = FALSE}. 
 #' @param est.prob method to estimate probabilities from a count vector. Default: \code{est.prob = NULL}.
 #' @author Hajk-Georg Drost
-#' @details The following distance measures are implemented in this function:
+#' @details 
+#' Here a distance is defined as a quantitative degree of how far two mathamatical objects are apart from eachother (Cha, 2007).
+#' 
+#' This function implements the following distance/similarity measures to quantify the distance between probability density functions:
+#' 
 #' 
 #' \itemize{
 #' \item L_p Minkowski family
@@ -111,6 +115,16 @@
 #' \item Avg(L_1, L_n) : \eqn{d = \sum | P_i - Q_i| + max{ | P_i - Q_i |} / 2}
 #' }
 #' 
+#' In cases where \code{x} specifies a count matrix, the argument \code{est.prob} can be selected to first estimate probability vectors 
+#' from input count vectors and second compute the corresponding distance measure based on the estimated probability vectors.
+#' 
+#'  The following probability estimation methods are implemented in this function:
+#'  
+#'  \itemize{
+#'  \item \code{est.prob = "empirical"} : relative frequencies of counts.
+#'  }
+#' 
+#' 
 #' }
 #' @examples
 #' # Simple Examples
@@ -127,6 +141,32 @@
 #' 
 #' # compute distance matrix without testing for NA values in the input matrix
 #' distance(ProbMatrix, method = "euclidean", test.na = FALSE)
+#' 
+#' # Specialized Examples
+#' 
+#' CountMatrix <- rbind(1:10, 20:29, 30:39)
+#' 
+#' ## estimate probabilities from a count matrix
+#' distance(CountMatrix, method = "euclidean", est.prob = "euclidean")
+#' 
+#' ## compute the euclidean distance for count data
+#' ## here: the argument: 'valid.distr = FALSE' must be specified
+#' ## to omit the check for probability values
+#' ## NOTE: some distance measures are only defined for probability values,
+#' ## so by selecting 'valid.distr = FALSE' and computing probability distances
+#' ## of count data, invalid resuts can be returned
+#' distance(CountMatrix, method = "euclidean", valid.distr = FALSE)
+#' 
+#' ## compute the Kullback-Leibler Divergence with different logarithm bases:
+#' ### case: unit = log (Default)
+#' distance(ProbMatrix, method = "kullback-leibler", unit = "log")
+#' 
+#' ### case: unit = log2 
+#' distance(ProbMatrix, method = "kullback-leibler", unit = "log2")
+#' 
+#' ### case: unit = log10 
+#' distance(ProbMatrix, method = "kullback-leibler", unit = "log10")
+#' 
 #' @note According to the reference in some distance measure computations invalid computations can
 #' occur when dealing with 0 probabilities. 
 #' 
@@ -139,6 +179,7 @@
 #' \item log of zero - case \code{log(0)}: zero is replaced by a small \eqn{\epsilon = 0.00001}.
 #' }
 #' 
+#' @references Sung-Hyuk Cha. (2007). \emph{Comprehensive Survey on Distance/Similarity Measures between Probability Density Functions}. International Journal of Mathematical Models and Methods in Applied Sciences 4: 1. 
 #' @return 
 #' The following results are returned depending on the dimension of \code{x}:
 #' 
@@ -154,7 +195,7 @@ distance <- function(x ,
                      p           = NULL, 
                      test.na     = TRUE, 
                      unit        = "log",
-                     check.distr = FALSE,
+                     check.distr = TRUE,
                      est.prob    = NULL){
         
         nrows <- NA_integer_
@@ -166,37 +207,28 @@ distance <- function(x ,
         if(!is.element(method,getDistMethods()))
                 stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
         
-        
         if(!is.element(class(x),c("data.frame","matrix")))
                 stop("x should be a data.frame or matrix.")
         
-        
         if(!is.null(est.prob)){
-                
                 if(class(x) == "data.frame"){
                         # estimate probability row-wise
                         x <- t(apply(x,1,estimate.probability, method = est.prob))
                 }
-                
                 if(class(x) == "matrix"){
                         x <- t(apply(x,1,estimate.probability, method = est.prob))  
                 }
         }
-        
-        if(!is.numeric(x))
-                stop(paste0("Your input ",class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
-                
+                        
         if(!is.element(unit,c("log","log2","log10")))
                 stop("You can only choose units: log, log2, or log10.")
-        
         
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
         # here a smarter (faster) way to validate distributions needs to be implemented
-       
         if(check.distr){
                 # check for distribution validity
-                apply(x,1,valid.distr, test.na = test.na)
+                apply(x,1,valid.distr)
         }
         
         dist <- matrix(NA_real_, nrows, nrows)
@@ -211,7 +243,6 @@ distance <- function(x ,
                 
         }
         
-        
         else if(method == "manhattan"){
                 
                 if(class(x) == "data.frame")
@@ -222,7 +253,6 @@ distance <- function(x ,
                 
         }
            
-        
         else if(method == "minkowski"){
                 
                 if(!is.null(p)){
@@ -237,7 +267,6 @@ distance <- function(x ,
                 }
         }
         
-        
         else if(method == "chebyshev"){
                 
                 if(class(x) == "data.frame")
@@ -246,7 +275,6 @@ distance <- function(x ,
                 if(class(x) == "matrix")
                         dist <- DistMatrixWithoutUnitMAT(x,chebyshev,test.na)
         }
-        
         
         else if(method == "sorensen"){
                 
@@ -257,7 +285,6 @@ distance <- function(x ,
                         dist <- DistMatrixWithoutUnitMAT(x,sorensen,test.na)
                 
         }
-        
         
         else if(method == "gower"){
                 
