@@ -1,10 +1,10 @@
 #' @title Jensen-Shannon Divergence 
-#' @description This function computes the Jensen-Shannon Divergence of two probability distributions P and Q with equal weights.
-#' @param P a probability distribution P.
-#' @param Q a probability distribution Q.
+#' @description This function computes a distance matrix or distance value based on the Jensen-Shannon Divergence with equal weights.
+#' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}). See \code{\link{distance}} for details.
 #' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
 #' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
-#' @return The Jensen-Shannon divergence  of P and Q.
+#' @param est.prob method to estimate probabilities from a count vector. Default: est.prob = NULL.
+#' @return a distance value or matrix based on JSD computations.
 #' @author Hajk-Georg Drost
 #' @details 
 #' 
@@ -35,23 +35,44 @@
 #' Endres M. and Schindelin J. E. 2003. "A new metric for probability
 #' distributions". IEEE Trans. on Info. Thy. (49) 3: 1858-1860.
 #' @examples
-#' 
+#' # Jensen-Shannon Divergence between P and Q
 #' P <- 1:10/sum(1:10)
 #' Q <- 20:29/sum(20:29)
+#' x <- rbind(P,Q)
+#' JSD(x)
 #' 
-#' JSD.Example <- JSD(P,Q)
+#' # Jensen-Shannon Divergence between P and Q using different log bases
+#' JSD(x, unit = "log2") # Default
+#' JSD(x, unit = "log")
+#' JSD(x, unit = "log10")
+#' 
+#' # Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count
+#' P.count <- 1:10
+#' Q.count <- 20:29
+#' x.count <- rbind(P.count,Q.count)
+#' JSD(x, est.prob = "empirical")
+#' 
+#' # Example: Distance Matrix using JSD-Distance
+#' 
+#' Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
+#'
+#' # compute the KL matrix of a given probability matrix
+#' JSDMatrix <- JSD(Prob)
+#'
+#' # plot a heatmap of the corresponding JSD matrix
+#' heatmap(JSDMatrix)
 #' 
 #' @seealso
 #' \code{\link{KL}}, \code{\link{H}}, \code{\link{CE}}, \code{\link{gJSD}}, \code{\link{distance}}
 #' @export
 
-JSD <- function(P,Q, test.na = TRUE, unit = "log2"){
+JSD <- function(x, test.na = TRUE, unit = "log2", est.prob = NULL){
                 
-        return( distance(x      = P,
-                         y      = Q, 
-                        method  = "jensen-shannon", 
-                        test.na = test.na, 
-                        unit    = unit) )
+        return( distance(x       = x, 
+                        method   = "jensen-shannon", 
+                        test.na  = test.na, 
+                        unit     = unit,
+                        est.prob = est.prob) )
         
 }
 
