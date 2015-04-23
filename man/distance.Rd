@@ -5,7 +5,7 @@
 \title{Distances between Probability Density Functions}
 \usage{
 distance(x, method = "euclidean", p = NULL, test.na = TRUE,
-  unit = "log", check.distr = FALSE, est.prob = NULL)
+  unit = "log", check.distr = TRUE, est.prob = NULL)
 }
 \arguments{
 \item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}).}
@@ -18,7 +18,7 @@ distance(x, method = "euclidean", p = NULL, test.na = TRUE,
 
 \item{unit}{a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.}
 
-\item{check.distr}{check \code{x} for storing valid probability density functions. This check is useful but time consuming for large \code{x}. Default: \code{check.distr = FALSE}.}
+\item{check.distr}{check \code{x} for storing valid probability density functions. This check is useful but time consuming for large \code{x}. Default: \code{check.distr = TRUE}. In case you would like to use distance measures that are also applicable to non-probability values, you can simply specify \code{check.distr = FALSE}.}
 
 \item{est.prob}{method to estimate probabilities from a count vector. Default: \code{est.prob = NULL}.}
 }
@@ -34,7 +34,10 @@ The following results are returned depending on the dimension of \code{x}:
 This functions computes the distance/dissimilarity between two probability density functions.
 }
 \details{
-The following distance measures are implemented in this function:
+Here a distance is defined as a quantitative degree of how far two mathamatical objects are apart from eachother (Cha, 2007).
+
+This function implements the following distance/similarity measures to quantify the distance between probability density functions:
+
 
 \itemize{
 \item L_p Minkowski family
@@ -117,6 +120,16 @@ The following distance measures are implemented in this function:
 \item Avg(L_1, L_n) : \eqn{d = \sum | P_i - Q_i| + max{ | P_i - Q_i |} / 2}
 }
 
+In cases where \code{x} specifies a count matrix, the argument \code{est.prob} can be selected to first estimate probability vectors
+from input count vectors and second compute the corresponding distance measure based on the estimated probability vectors.
+
+ The following probability estimation methods are implemented in this function:
+
+ \itemize{
+ \item \code{est.prob = "empirical"} : relative frequencies of counts.
+ }
+
+
 }
 }
 \note{
@@ -147,8 +160,36 @@ distance(ProbMatrix, method = "euclidean")
 
 # compute distance matrix without testing for NA values in the input matrix
 distance(ProbMatrix, method = "euclidean", test.na = FALSE)
+
+# Specialized Examples
+
+CountMatrix <- rbind(1:10, 20:29, 30:39)
+
+## estimate probabilities from a count matrix
+distance(CountMatrix, method = "euclidean", est.prob = "euclidean")
+
+## compute the euclidean distance for count data
+## here: the argument: 'valid.distr = FALSE' must be specified
+## to omit the check for probability values
+## NOTE: some distance measures are only defined for probability values,
+## so by selecting 'valid.distr = FALSE' and computing probability distances
+## of count data, invalid resuts can be returned
+distance(CountMatrix, method = "euclidean", valid.distr = FALSE)
+
+## compute the Kullback-Leibler Divergence with different logarithm bases:
+### case: unit = log (Default)
+distance(ProbMatrix, method = "kullback-leibler", unit = "log")
+
+### case: unit = log2
+distance(ProbMatrix, method = "kullback-leibler", unit = "log2")
+
+### case: unit = log10
+distance(ProbMatrix, method = "kullback-leibler", unit = "log10")
 }
 \author{
 Hajk-Georg Drost
+}
+\references{
+Sung-Hyuk Cha. (2007). \emph{Comprehensive Survey on Distance/Similarity Measures between Probability Density Functions}. International Journal of Mathematical Models and Methods in Applied Sciences 4: 1.
 }
 
