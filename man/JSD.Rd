@@ -4,22 +4,22 @@
 \alias{JSD}
 \title{Jensen-Shannon Divergence}
 \usage{
-JSD(P, Q, test.na = TRUE, unit = "log2")
+JSD(x, test.na = TRUE, unit = "log2", est.prob = NULL)
 }
 \arguments{
-\item{P}{a probability distribution P.}
-
-\item{Q}{a probability distribution Q.}
+\item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}). See \code{\link{distance}} for details.}
 
 \item{test.na}{a boolean value specifying whether input vectors shall be tested for NA values.}
 
 \item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
+
+\item{est.prob}{method to estimate probabilities from a count vector. Default: est.prob = NULL.}
 }
 \value{
-The Jensen-Shannon divergence  of P and Q.
+a distance value or matrix based on JSD computations.
 }
 \description{
-This function computes the Jensen-Shannon Divergence of two probability distributions P and Q with equal weights.
+This function computes a distance matrix or distance value based on the Jensen-Shannon Divergence with equal weights.
 }
 \details{
 Function to compute the Jensen-Shannon Divergence JSD(P || Q) between two
@@ -44,10 +44,32 @@ General properties of the Jensen-Shannon Divergence:
 3) JSD = 0, if and only if P = Q.
 }
 \examples{
+# Jensen-Shannon Divergence between P and Q
 P <- 1:10/sum(1:10)
 Q <- 20:29/sum(20:29)
+x <- rbind(P,Q)
+JSD(x)
 
-JSD.Example <- JSD(P,Q)
+# Jensen-Shannon Divergence between P and Q using different log bases
+JSD(x, unit = "log2") # Default
+JSD(x, unit = "log")
+JSD(x, unit = "log10")
+
+# Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count
+P.count <- 1:10
+Q.count <- 20:29
+x.count <- rbind(P.count,Q.count)
+JSD(x, est.prob = "empirical")
+
+# Example: Distance Matrix using JSD-Distance
+
+Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
+
+# compute the KL matrix of a given probability matrix
+JSDMatrix <- JSD(Prob)
+
+# plot a heatmap of the corresponding JSD matrix
+heatmap(JSDMatrix)
 }
 \author{
 Hajk-Georg Drost
