@@ -2,11 +2,11 @@
 % Please edit documentation in R/utils.R
 \name{valid.distr}
 \alias{valid.distr}
-\title{Check the validity of the input probability distribution}
+\title{Check the validity of input probability distributions}
 \usage{
-valid.distr(x, test.na = TRUE)
+valid.distr(x)
 }
 \description{
-Check the validity of the input probability distribution
+Check the validity of input probability distributions
 }
 
