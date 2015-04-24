@@ -28,9 +28,14 @@ binned.kernel.est(data, kernel = "normal", bandwidth = NULL,
 \item{truncate}{}
 }
 \description{
-This function implements an interface to the kernel density estimation functions provided in the \pkg{KernSmooth} package.
+This function implements an interface to the kernel density estimation functions provided by the \pkg{KernSmooth} package.
 }
 \author{
 Hajk-Georg Drost
+}
+\references{
+Matt Wand (2015). KernSmooth: Functions for Kernel Smoothing Supporting Wand & Jones (1995). R package version 2.23-14. \url{http://CRAN.R-project.org/package=KernSmooth}
+
+Henry Deng and Hadley Wickham (2011). Density estimation in R. \url{http://vita.had.co.nz/papers/density-estimation.pdf}.
 }
 
