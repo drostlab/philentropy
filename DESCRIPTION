@@ -8,7 +8,7 @@ Authors@R: as.person(
 Maintainer: Hajk-Georg Drost <hajk-georg.drost@informatik.uni-halle.de>
 Description: The philentropy package implements popular distance/similarity measures to compute distances between probability density functions.
 Depends: R (>= 3.1.2)
-Imports: Rcpp, dplyr
+Imports: Rcpp, dplyr, KernSmooth
 License: GPL-2
 LazyData: true
 LinkingTo: Rcpp
