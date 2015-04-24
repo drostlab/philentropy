@@ -1855,7 +1855,7 @@ double pearson_corr_centred(const Rcpp::NumericVector& x, const Rcpp::NumericVec
         }
         
         int VecLen = x.size();
-        // Pearson Correlation Coefficient
+        // Pearson Correlation Coefficient (Centred)
         double r = 0.0;
         double mean_x = Rcpp::mean(x);
         double mean_y = Rcpp::mean(y);
@@ -1879,7 +1879,37 @@ double pearson_corr_centred(const Rcpp::NumericVector& x, const Rcpp::NumericVec
 }
 
 
-
+//' @export
+// [[Rcpp::export]]
+double pearson_corr_uncentred(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y){
+        
+        if(x.size() != y.size()){
+                Rcpp::stop("Length of input vectors x and y differ!");
+        }
+        
+        int VecLen = x.size();
+        // Pearson Correlation Coefficient (Uncentred)
+        double r_un = 0.0;
+        double mean_x = Rcpp::mean(x);
+        double mean_y = Rcpp::mean(y);
+        Rcpp::NumericVector x_diff (VecLen);
+        Rcpp::NumericVector y_diff (VecLen);
+        Rcpp::NumericVector x_diff_sq (VecLen);
+        Rcpp::NumericVector y_diff_sq (VecLen);
+        
+        for(int i = 0; i < x.size(); i++){
+                
+                x_diff[i] = x[i] - mean_x;
+                x_diff_sq[i] = pow(x_diff[i],2);
+                y_diff[i] = y[i] - mean_y;
+                y_diff_sq[i] = pow(y_diff[i],2);
+                
+        }
+        
+        r_un = ( Rcpp::sum(Rcpp::NumericVector(x) * Rcpp::NumericVector(y)) ) / (sqrt(Rcpp::sum(x_diff_sq)) * sqrt(Rcpp::sum(y_diff_sq)));
+        
+        return r_un;
+}
 
 #endif // philentropy_Distances_H
 
