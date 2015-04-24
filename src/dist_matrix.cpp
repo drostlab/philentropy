@@ -2,6 +2,7 @@
 #include "utils.h"
 #include "distances.h"
 #include "InformationTheory.h"
+#include "correlation.h"
 
 using namespace Rcpp;
 using namespace std;
