@@ -1911,6 +1911,38 @@ double pearson_corr_uncentred(const Rcpp::NumericVector& x, const Rcpp::NumericV
         return r_un;
 }
 
+
+//' @export
+// [[Rcpp::export]]
+double squared_pearson_corr(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y){
+        
+        if(x.size() != y.size()){
+                Rcpp::stop("Length of input vectors x and y differ!");
+        }
+        
+        int VecLen = x.size();
+        // Pearson Correlation Coefficient (Uncentred)
+        double r_sq = 0.0;
+        double mean_x = Rcpp::mean(x);
+        double mean_y = Rcpp::mean(y);
+        Rcpp::NumericVector x_diff (VecLen);
+        Rcpp::NumericVector y_diff (VecLen);
+        Rcpp::NumericVector x_diff_sq (VecLen);
+        Rcpp::NumericVector y_diff_sq (VecLen);
+        
+        for(int i = 0; i < x.size(); i++){
+                
+                x_diff[i] = x[i] - mean_x;
+                x_diff_sq[i] = pow(x_diff[i],2);
+                y_diff[i] = y[i] - mean_y;
+                y_diff_sq[i] = pow(y_diff[i],2);
+                
+        }
+        
+        r_sq = ( Rcpp::sum(x_diff * y_diff) ) / (sqrt(Rcpp::sum(x * x)) * sqrt(Rcpp::sum(y * y)));
+        
+        return r_sq * r_sq;
+}
 #endif // philentropy_Distances_H
 
 
