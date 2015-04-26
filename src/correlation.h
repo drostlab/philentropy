@@ -120,7 +120,7 @@ double pearson_corr_uncentred(const Rcpp::NumericVector& x, const Rcpp::NumericV
 
 //' @export
 // [[Rcpp::export]]
-double squared_pearson_corr(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y){
+double squared_pearson_corr(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, bool testNA){
         
         if(x.size() != y.size()){
                 Rcpp::stop("Length of input vectors x and y differ!");
@@ -136,13 +136,23 @@ double squared_pearson_corr(const Rcpp::NumericVector& x, const Rcpp::NumericVec
         Rcpp::NumericVector x_diff_sq (VecLen);
         Rcpp::NumericVector y_diff_sq (VecLen);
         
-        for(int i = 0; i < x.size(); i++){
-                
-                x_diff[i] = x[i] - mean_x;
-                x_diff_sq[i] = pow(x_diff[i],2);
-                y_diff[i] = y[i] - mean_y;
-                y_diff_sq[i] = pow(y_diff[i],2);
-                
+        if(testNA){
+                for(int i = 0; i < x.size(); i++){
+                        if(Rcpp::NumericVector::is_na(x[i]) | Rcpp::NumericVector::is_na(y[i])){
+                                Rcpp::stop("Your input vectors store NA values...");
+                        } 
+                        x_diff[i] = x[i] - mean_x;
+                        x_diff_sq[i] = pow(x_diff[i],2);
+                        y_diff[i] = y[i] - mean_y;
+                        y_diff_sq[i] = pow(y_diff[i],2);
+                }
+        } else {
+                for(int i = 0; i < x.size(); i++){
+                        x_diff[i] = x[i] - mean_x;
+                        x_diff_sq[i] = pow(x_diff[i],2);
+                        y_diff[i] = y[i] - mean_y;
+                        y_diff_sq[i] = pow(y_diff[i],2); 
+                }
         }
         
         r_sq = ( Rcpp::sum(x_diff * y_diff) ) / (sqrt(Rcpp::sum(x * x)) * sqrt(Rcpp::sum(y * y)));
