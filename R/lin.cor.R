@@ -22,7 +22,7 @@
 #'  \item \emph{Pearson's correlation coefficient (centred)} : 
 #'  } 
 #'    @export 
-lin.corr <- function(x,y = NULL, method = "pearson"){
+lin.cor <- function(x,y = NULL, method = "pearson"){
         
         cor.coef <- vector("numeric",1)
                 
