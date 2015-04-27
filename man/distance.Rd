@@ -5,7 +5,7 @@
 \title{Distances between Probability Density Functions}
 \usage{
 distance(x, method = "euclidean", p = NULL, test.na = TRUE,
-  unit = "log", check.distr = TRUE, est.prob = NULL)
+  unit = "log", check.distr = FALSE, est.prob = NULL)
 }
 \arguments{
 \item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}).}
