@@ -21,13 +21,9 @@ context("Test implementation of distance measures...")
 
 P <- 1:10/sum(1:10)
 Q <- 20:29/sum(20:29)
+V <- -10:10
+W <- -20:0
 
-
-test_that("distance() stops when nrow(x) < 2", 
-{
-        distMat <- rep(0.2,5)
-        expect_error(distance(distMat),"Your input matrix stores only one probability or count vector.")
-})
 
 test_that("'euclidien' (or any other not implemented string) is caught when wrong input string for method is entered", {
         
@@ -52,6 +48,10 @@ test_that("distance(method = 'euclidean') computes the correct distance value.",
         
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "euclidean")), sqrt(sum(abs((P) - (Q))^2)))
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "euclidean")), as.vector(stats::dist(base::rbind(P,Q), method = "euclidean")))
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean")), as.vector(stats::dist(base::rbind(V,W), method = "euclidean")))
+        
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean")), sqrt(sum(abs((V) - (W))^2)))
+        
         #expect_error(philentropy::distance(1:10, 20:29, method = "euclidean"))
 })
 
