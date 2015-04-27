@@ -48,9 +48,9 @@ test_that("distance(method = 'euclidean') computes the correct distance value.",
         
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "euclidean")), sqrt(sum(abs((P) - (Q))^2)))
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "euclidean")), as.vector(stats::dist(base::rbind(P,Q), method = "euclidean")))
-        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean")), as.vector(stats::dist(base::rbind(V,W), method = "euclidean")))
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean", check.distr = FALSE)), as.vector(stats::dist(base::rbind(V,W), method = "euclidean")))
         
-        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean")), sqrt(sum(abs((V) - (W))^2)))
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean", check.distr = FALSE)), sqrt(sum(abs((V) - (W))^2)))
         
         #expect_error(philentropy::distance(1:10, 20:29, method = "euclidean"))
 })
@@ -60,6 +60,9 @@ test_that("distance(method = 'manhattan') computes the correct distance value.",
         
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "manhattan")), sum(abs((P) - (Q))))
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "manhattan")), as.vector(stats::dist(base::rbind(P,Q), method = "manhattan")))
+        
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "manhattan", check.distr = FALSE)), sum(abs((V) - (W))))
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "manhattan", check.distr = FALSE)), as.vector(stats::dist(base::rbind(V,W), method = "manhattan")))
 })
 
 
@@ -68,6 +71,10 @@ test_that("distance(method = 'minkowski') computes the correct distance value.",
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)), (sum(abs((P) - (Q))^4))^0.25)
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)), as.vector(stats::dist(base::rbind(P,Q), method = "minkowski", p = 4)))
         expect_error(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski")), "Please specify p for the Minkowski distance!")
+        
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "minkowski", p = 4, check.distr = FALSE)), (sum(abs((V) - (W))^4))^0.25)
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "minkowski", p = 4, check.distr = FALSE)), as.vector(stats::dist(base::rbind(V,W), method = "minkowski", p = 4)))
+        expect_error(as.vector(philentropy::distance(rbind(V, W), method = "minkowski")), "Please specify p for the Minkowski distance!")
 })
 
 
