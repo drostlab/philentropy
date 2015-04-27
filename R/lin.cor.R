@@ -5,6 +5,7 @@
 #'  
 #'  @param x a numeric \code{vector}, \code{matrix}, or \code{data.frame}.
 #'  @param y a numeric \code{vector} that should be correlated with \code{x}.
+#'  @param test.na a boolean value indicating whether input data should be checked for NA values.
 #'  @author Hajk-Georg Drost
 #'  @details
 #'  
@@ -22,12 +23,31 @@
 #'  \item \emph{Pearson's correlation coefficient (centred)} : 
 #'  } 
 #'    @export 
-lin.cor <- function(x,y = NULL, method = "pearson"){
+lin.cor <- function(x,y = NULL, method = "pearson", test.na = FALSE){
         
-        cor.coef <- vector("numeric",1)
+        if(is.null(y)){
+                if(!is.element(class(x), c("matrix","data.frame")))
+                   stop("x should be either a data.frame or matrix object.")
+                   
+                cor.coef <- matrix(NA_real_,ncol(x),ncol(x))
+        } else {
+                if((!is.vector(x)) && (!is.vector(y)))
+                        stop("x and y should be vectors.")
                 
+                cor.coef <- vector("numeric",1)
+        }
+              
         if(method == "pearson"){
-                cor.coef <-  pearson_corr_centred(x,y)
+                
+                if(class(x) == "matrix"){
+                        cor.coef <-  DistMatrixWithoutUnitMAT(x,pearson_corr_centred,test.na)
+                }
+                else if (class(x) == "data.frame"){
+                        cor.coef <-  DistMatrixWithoutUnitDF(x,pearson_corr_centred,test.na) 
+                }
+                else if ((is.vector(x)) & (is.vector(y))){
+                        cor.coef <- pearson_corr_centred(x,y,test.na)
+                }
         }
         
         if(method == "pearson2"){
