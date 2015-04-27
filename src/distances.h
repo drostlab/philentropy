@@ -51,18 +51,18 @@ double euclidean(const Rcpp::NumericVector& P,const Rcpp::NumericVector& Q, bool
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
-        
+
         if (testNA){
                 for (int i = 0; i < P_len; i++){     
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
-                        diff = P[i] - Q[i];
+                        diff = fabs(P[i] - Q[i]);
                         dist += diff * diff;
                 }
         } else {
               for (int i = 0; i < P_len; i++){
-                      diff = P[i] - Q[i];
+                      diff = fabs(P[i] - Q[i]);
                       dist += diff * diff;
                }  
         }
