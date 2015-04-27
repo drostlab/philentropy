@@ -4,12 +4,14 @@
 \alias{lin.cor}
 \title{Linear Correlation}
 \usage{
-lin.cor(x, y = NULL, method = "pearson")
+lin.cor(x, y = NULL, method = "pearson", test.na = FALSE)
 }
 \arguments{
 \item{x}{a numeric \code{vector}, \code{matrix}, or \code{data.frame}.}
 
 \item{y}{a numeric \code{vector} that should be correlated with \code{x}.}
+
+\item{test.na}{a boolean value indicating whether input data should be checked for NA values.}
 }
 \description{
 This function computed the linear correlation between two vectors or a correlation matrix for an input matrix.
