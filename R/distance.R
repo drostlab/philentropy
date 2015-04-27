@@ -195,29 +195,25 @@ distance <- function(x ,
                      p           = NULL, 
                      test.na     = TRUE, 
                      unit        = "log",
-                     check.distr = TRUE,
+                     check.distr = FALSE,
                      est.prob    = NULL){
-        
-        nrows <- NA_integer_
-        nrows <- nrow(x)
-        
-        if(nrows < 2)
-                stop("Your input matrix stores only one probability or count vector.")
-        
-        if(!is.element(method,getDistMethods()))
-                stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
         
         if(!is.element(class(x),c("data.frame","matrix")))
                 stop("x should be a data.frame or matrix.")
         
+        # transpose the matrix or data.frame
+        # in case of DF: DF is transformed to matrix by t()
+        x <- t(x)
+        
+        # number of input probability vectors
+        ncols <- vector("numeric",1)
+        ncols <- ncol(x)
+        
+        if(!is.element(method,getDistMethods()))
+                stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
+        
         if(!is.null(est.prob)){
-                if(class(x) == "data.frame"){
-                        # estimate probability row-wise
-                        x <- t(apply(x,1,estimate.probability, method = est.prob))
-                }
-                if(class(x) == "matrix"){
-                        x <- t(apply(x,1,estimate.probability, method = est.prob))  
-                }
+                x <- apply(x,2,estimate.probability, method = est.prob) 
         }
                         
         if(!is.element(unit,c("log","log2","log10")))
@@ -228,27 +224,30 @@ distance <- function(x ,
         # here a smarter (faster) way to validate distributions needs to be implemented
         if(check.distr){
                 # check for distribution validity
-                apply(x,1,valid.distr)
+                apply(x,2,valid.distr)
         }
         
-        dist <- matrix(NA_real_, nrows, nrows)
+        if(ncols == 2){
+                dist <- vector("numeric",1)
+        } else {
+                dist <- matrix(NA_real_, ncols, ncols)
+        }
         
         if(method == "euclidean"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,euclidean,test.na)
+                if(ncols == 2)
+                        dist <- euclidean(x[ , 1], x[ , 2],test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,euclidean,test.na)
-                
         }
         
         else if(method == "manhattan"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,manhattan,test.na)
+                if(ncols == 2)
+                        dist <- manhattan(x[ , 1], x[ , 2],test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,manhattan,test.na)
                 
         }
@@ -257,9 +256,9 @@ distance <- function(x ,
                 
                 if(!is.null(p)){
                         
-                        if(class(x) == "data.frame")
-                                dist <- DistMatrixMinkowskiDF(x,p,test.na)
-                        if(class(x) == "matrix")
+                        if(ncols == 2)
+                                dist <- minkowski(x[ , 1], x[ , 2],p,test.na)
+                        if(ncols > 2)
                                 dist <- DistMatrixMinkowskiMAT(x,p,test.na)
                 } else {
                         
@@ -269,403 +268,402 @@ distance <- function(x ,
         
         else if(method == "chebyshev"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,chebyshev,test.na)
+                if(ncols == 2)
+                        dist <- chebyshev(x[ , 1], x[ , 2],test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,chebyshev,test.na)
         }
         
         else if(method == "sorensen"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,sorensen,test.na)
+                if(ncols == 2)
+                        dist <- sorensen(x[ , 1], x[ , 2],test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,sorensen,test.na)
                 
         }
         
         else if(method == "gower"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,gower,test.na)
+                if(ncols == 2)
+                        dist <- gower(x[ , 1], x[ , 2],test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,gower,test.na)
         }
         
         else if(method == "soergel"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,soergel,test.na)
+                if(ncols == 2)
+                        dist <- soergel(x[ , 1], x[ , 2],test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,soergel,test.na)
         }
         
         else if(method == "kulczynski_d"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,kulczynski_d,test.na)
+                if(ncols == 2)
+                        dist <- kulczynski_d(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,kulczynski_d,test.na)
         }
         
         else if(method == "canberra"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,canberra,test.na)
+                if(ncols == 2)
+                        dist <- canberra(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,canberra,test.na)
         }
 
         else if(method == "lorentzian"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithUnitDF(x,lorentzian,test.na, unit)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- lorentzian(x[ , 1], x[ , 2], test.na, unit)
+                if(ncols > 2)
                         dist <- DistMatrixWithUnitMAT(x,lorentzian,test.na, unit)
         }
         
         else if(method == "intersection"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,intersection_dist,test.na)
+                if(ncols == 2)
+                        dist <- intersection_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,intersection_dist,test.na)
                 
         }
         
         else if(method == "non-intersection"){
                 
-                if(class(x) == "data.frame")
-                        dist <- 1.0 - DistMatrixWithoutUnitDF(x,intersection_dist,test.na)
+                if(ncols == 2)
+                        dist <- 1.0 - intersection_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- 1.0 - DistMatrixWithoutUnitMAT(x,intersection_dist,test.na)
         }
         
         else if(method == "wavehedges"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,wave_hedges,test.na)
+                if(ncols == 2)
+                        dist <- wave_hedges(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,wave_hedges,test.na)
                 
         }
         
         else if(method == "czekanowski"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,czekanowski,test.na)
+                if(ncols == 2)
+                        dist <- czekanowski(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,czekanowski,test.na)
         }
         
         else if(method == "motyka"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,motyka,test.na)
+                if(ncols == 2)
+                        dist <- motyka(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,motyka,test.na)
         }
         
         else if(method == "kulczynski_s"){
                 
-                if(class(x) == "data.frame")
-                        dist <- 1.0 / DistMatrixWithoutUnitDF(x,kulczynski_d,test.na)
+                if(ncols == 2)
+                        dist <- 1.0 / kulczynski_d(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- 1.0 / DistMatrixWithoutUnitMAT(x,kulczynski_d,test.na)
         }
         
         else if(method == "tanimoto"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,tanimoto,test.na)
+                if(ncols == 2)
+                        dist <- tanimoto(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,tanimoto,test.na)
         }
         
         else if(method == "ruzicka"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,ruzicka,test.na)
+                if(ncols == 2)
+                        dist <- ruzicka(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,ruzicka,test.na)
         }
         
         else if(method == "inner_product"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,inner_product,test.na)
+                if(ncols == 2)
+                        dist <- inner_product(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
-                        dist <- DistMatrixWithoutUnitMAT(x,inner_product,test.na)
+                if(ncols > 2)
+                        dist <- inner_product(x[ , 1], x[ , 2], test.na)
         }
         
         else if(method == "harmonic_mean"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,harmonic_mean_dist,test.na)
+                if(ncols == 2)
+                        dist <- harmonic_mean_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,harmonic_mean_dist,test.na)
                 
         }
         
         else if(method == "cosine"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,cosine_dist,test.na)
+                if(ncols == 2)
+                        dist <- cosine_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,cosine_dist,test.na)
                   
         }
         
         else if(method == "hassebrook"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,kumar_hassebrook,test.na)
+                if(ncols == 2)
+                        dist <- kumar_hassebrook(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,kumar_hassebrook,test.na)
                 
         }
         
         else if(method == "jaccard"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,jaccard,test.na)
+                if(ncols == 2)
+                        dist <- jaccard(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,jaccard,test.na)
 
         }
         
         else if(method == "dice"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,dice_dist,test.na)
+                if(ncols == 2)
+                        dist <- dice_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,dice_dist,test.na)
                 
         }
         
         else if(method == "fidelity"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,fidelity,test.na)
+                if(ncols == 2)
+                        dist <- fidelity(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,fidelity,test.na)
         }
         
         else if(method == "bhattacharyya"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithUnitDF(x,bhattacharyya,test.na,unit)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- bhattacharyya(x[ , 1], x[ , 2], test.na, unit)
+                if(ncols > 2)
                         dist <- DistMatrixWithUnitMAT(x,bhattacharyya,test.na,unit)
         }
         
         else if(method == "hellinger"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,hellinger,test.na)
+                if(ncols == 2)
+                        dist <- hellinger(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,hellinger,test.na)  
         }
         
         else if(method == "matusita"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,matusita,test.na)
+                if(ncols == 2)
+                        dist <- matusita(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,matusita,test.na)
         }
         
         else if(method == "squared_chord"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,squared_chord,test.na)
+                if(ncols == 2)
+                        dist <- squared_chord(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,squared_chord,test.na)
         }
 
         else if(method == "squared_euclidean"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,squared_euclidean,test.na)
+                if(ncols == 2)
+                        dist <- squared_euclidean(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,squared_euclidean,test.na)    
         }
         
         else if(method == "pearson"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,pearson_chi_sq,test.na)
+                if(ncols == 2)
+                        dist <- pearson_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,pearson_chi_sq,test.na)    
                 
         }
         
         else if(method == "neyman"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,neyman_chi_sq,test.na)
+                if(ncols == 2)
+                        dist <- neyman_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,neyman_chi_sq,test.na)
                 
         }
         
         else if(method == "squared_chi"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,squared_chi_sq,test.na)
+                if(ncols == 2)
+                        dist <- squared_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,squared_chi_sq,test.na)
                         
         }
         
         else if(method == "prob_symm"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,prob_symm_chi_sq,test.na)
+                if(ncols == 2)
+                        dist <- prob_symm_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,prob_symm_chi_sq,test.na)
                 
         }
         
         else if(method == "divergence"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,divergence_sq,test.na)
+                if(ncols == 2)
+                        dist <- divergence_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,divergence_sq,test.na)
                   
         }
         
         else if(method == "clark"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,clark_sq,test.na)
+                if(ncols == 2)
+                        dist <- clark_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,clark_sq,test.na)
                 
         }
         
         else if(method == "additive_symm"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,additive_symm_chi_sq,test.na)
+                if(ncols == 2)
+                        dist <- additive_symm_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(class(x) == "matrix")
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,additive_symm_chi_sq,test.na)
                 
         }
         
         else if(method == "kullback-leibler"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithUnitDF(x,kullback_leibler_distance,test.na,unit)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- kullback_leibler_distance(x[ , 1], x[ , 2], test.na,unit)
+                if(ncols > 2)
                         dist <- DistMatrixWithUnitMAT(x,kullback_leibler_distance,test.na,unit)
         }
         
         else if(method == "jeffreys"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithUnitDF(x,jeffreys,test.na,unit)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- jeffreys(x[ , 1], x[ , 2], test.na, unit)
+                if(ncols > 2)
                         dist <- DistMatrixWithUnitMAT(x,jeffreys,test.na,unit)
                 
         }
         
         else if(method == "k_divergence"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithUnitDF(x,k_divergence,test.na,unit)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- k_divergence(x[ , 1], x[ , 2], test.na, unit)
+                if(ncols > 2)
                         dist <- DistMatrixWithUnitMAT(x,k_divergence,test.na,unit)
         }
         
         else if(method == "topsoe"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithUnitDF(x,topsoe,test.na,unit)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- topsoe(x[ , 1], x[ , 2], test.na, unit)
+                if(ncols > 2)
                         dist <- DistMatrixWithUnitMAT(x,topsoe,test.na,unit)
                 
         }
         
         else if(method == "jensen-shannon"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithUnitDF(x,jensen_shannon,test.na,unit)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- jensen_shannon(x[ , 1], x[ , 2], test.na,unit)
+                if(ncols > 2)
                         dist <- DistMatrixWithUnitMAT(x,jensen_shannon,test.na,unit)
         }
         
         else if(method == "jensen_difference"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithUnitDF(x,jensen_difference,test.na,unit)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- jensen_difference(x[ , 1], x[ , 2], test.na,unit)
+                if(ncols > 2)
                         dist <- DistMatrixWithUnitMAT(x,jensen_difference,test.na,unit)
         }
         
         else if(method == "taneja"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithUnitDF(x,taneja,test.na,unit)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- taneja(x[ , 1], x[ , 2], test.na,unit)
+                if(ncols > 2)
                         dist <- DistMatrixWithUnitMAT(x,taneja,test.na,unit)
         }
         
         else if(method == "kumar-johnson"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,kumar_johnson,test.na)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- kumar_johnson(x[ , 1], x[ , 2], test.na)
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,kumar_johnson,test.na)
         }
         
         else if(method == "avg"){
                 
-                if(class(x) == "data.frame")
-                        dist <- DistMatrixWithoutUnitDF(x,avg,test.na)
-                if(class(x) == "matrix")
+                if(ncols == 2)
+                        dist <- avg(x[ , 1], x[ , 2], test.na)
+                if(ncols > 2)
                         dist <- DistMatrixWithoutUnitMAT(x,avg,test.na)
         }
         
-        if(nrows == 2){
-                dist <- as.vector(dist[2,1])
+        if(ncols == 2){
                 names(dist) <- method
         } else {
-                colnames(dist) <- paste0("pvec.",1:nrows)
-                rownames(dist) <- paste0("pvec.",1:nrows)
+                colnames(dist) <- paste0("vec.",1:ncols)
+                rownames(dist) <- paste0("vec.",1:ncols)
         }
         
         return(dist)
