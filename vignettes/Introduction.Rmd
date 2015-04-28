@@ -9,4 +9,31 @@ vignette: >
 
 ## Introduction to the `philentropy` Package
 
-The `philentropy` package implements a framework based on `Information Theory`, `Information Theoretic Learning`, and `Statistical Learning` to perform `Predictive Analytics`.
+Comparison is a fundamental method of scientific research leading to more general insights about the processes that might have caused similarity or dissimilarity. In statistical terms comparisons between probability functions are made to infer connections, correlations, or relationships between samples.
+
+Applying the method of comparison in statistics often means that we need to compute distances between probability functions. In this context [Sung-Hyuk Cha (2007)](http://csis.pace.edu/ctappert/dps/d861-12/session4-p2.pdf) provides a clear definition of distance : 
+
+> From the scientific and mathematical point of view, _distance_ is defined as a quantitative degree of how far apart two objects are.
+
+Cha's comprehensive review of distance/similarity measures motivated me to implement all measures that have been reviewed to better understand the nature of each of these measures. As Cha states:
+
+> The choice of distance/similarity measures depends on the measurement type or representation of objects.
+
+As a result, the `philentropy` package implements functions that are part of the following topics.
+
+
+### Distance Measures
+
+Here, the [Distance Measure Vignette](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd) introduces how to work with the main function `distance()` that implements the 46 distance measures presented in Cha's review.
+
+Furthermore, for each distance/similarity measure a short description on usage and performance is presented.
+
+### Information Theory
+
+
+
+
+### Correlation Analyses
+
+
+
