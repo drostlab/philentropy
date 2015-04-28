@@ -7,4 +7,131 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+## How to use `distance()`
+
+The `distance()` function implemented in `philentropy` is able to compute 46 different distances/similarities between probability density functions (see `?philentropy::distance` for details).
+
+### Simple Example
+
+The `distance()` function is implemented using the same _logic_ as R's base functions `stats::dist()` and takes a `matrix` or `data.frame` as input. The corresponding `matrix` or `data.frame` should store probability density functions (as rows) for which distance computations should be performed.
+
+
+```{r,eval=FALSE}
+# define a probability density function P
+P <- 1:10/sum(1:10)
+# define a probability density function Q
+Q <- 20:29/sum(20:29)
+
+# combine P and Q as matrix object
+x <- rbind(P,Q)
+```
+
+Please note that when defining a `matrix` from vectors, probability vectors should be combined as rows (`rbind()`).
+
+```{r,eval=FALSE}
+# compute the Euclidean Distance with default parameters
+distance(x, method = "euclidean")
+```
+
+```
+euclidean 
+0.1280713
+```
+
+For this simple case you can compare the results with R's base function to compute the euclidean distance `stats::dist()`.
+
+```{r,eval=FALSE}
+# compute the Euclidean Distance using R's base function
+stats::dist(x, method = "euclidean")
+```
+
+```
+          P
+Q 0.1280713
+```
+
+However, the R base function `stats::dist()` only computes the following distance measures: `"euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski"`, whereas `distance()` allows you to choose from 46 distance/similarity measures. 
+
+To find out which `method`s are implemented in `distance()` you can consult
+the `getDistMethods()` function.
+
+```{r,eval=FALSE}
+# names of implemented distance/similarity functions
+getDistMethods()
+```
+
+```
+ [1] "euclidean"         "manhattan"         "minkowski"         "chebyshev"        
+ [5] "sorensen"          "gower"             "soergel"           "kulczynski_d"     
+ [9] "canberra"          "lorentzian"        "intersection"      "non-intersection" 
+[13] "wavehedges"        "czekanowski"       "motyka"            "kulczynski_s"     
+[17] "tanimoto"          "ruzicka"           "inner_product"     "harmonic_mean"    
+[21] "cosine"            "hassebrook"        "jaccard"           "dice"             
+[25] "fidelity"          "bhattacharyya"     "hellinger"         "matusita"         
+[29] "squared_chord"     "squared_euclidean" "pearson"           "neyman"           
+[33] "squared_chi"       "prob_symm"         "divergence"        "clark"            
+[37] "additive_symm"     "kullback-leibler"  "jeffreys"          "k_divergence"     
+[41] "topsoe"            "jensen-shannon"    "jensen_difference" "taneja"           
+[45] "kumar-johnson"     "avg"
+```
+
+Now you can choose any distance/similarity `method` that serves you.
+
+```{r,eval=FALSE}
+# compute the Jaccard Distance with default parameters
+distance(x, method = "jaccard")
+```
+
+```
+ jaccard 
+0.133869
+```
+
+Analogously, in case a probability matrix is specified the following output is generated.
+
+```{r,eval=FALSE}
+# combine three probabilty vectors to a probabilty matrix 
+ProbMatrix <- rbind(1:10/sum(1:10), 20:29/sum(20:29),30:39/sum(30:39))
+
+# compute the euclidean distance between all 
+# pairwise comparisons of probability vectors
+distance(ProbMatrix, method = "euclidean")
+```
+
+```
+          vec.1      vec.2      vec.3
+vec.1 0.0000000 0.12807130 0.13881717
+vec.2 0.1280713 0.00000000 0.01074588
+vec.3 0.1388172 0.01074588 0.00000000
+```
+
+This output differs from the output of `stats::dist()`.
+
+```{r,eval=FALSE}
+# compute the euclidean distance between all 
+# pairwise comparisons of probability vectors
+# using stats::dist()
+stats::dist(ProbMatrix, method = "euclidean")
+```
+
+```
+           1          2
+2 0.12807130           
+3 0.13881717 0.01074588
+```
+
+Whereas `distance()` returns a symmetric distance matrix, `stats::dist()` returns only one part of the symmetric matrix. 
+
+### Specifying the arguments in `distance()`
+
+
+
+## Details: Distance and Similarity Measures
+
+### Euclidean Distance
+
+
+
+
+
 
