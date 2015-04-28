@@ -1,8 +1,8 @@
 ---
-title: "Information Theoretic Learning"
+title: "Information Theory"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Information Theory}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
