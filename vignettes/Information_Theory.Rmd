@@ -7,4 +7,4 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-
+## Distance Measures in `philentropy`
