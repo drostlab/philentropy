@@ -6,7 +6,7 @@ philentropy
 The `philentropy` package implements popular distance/similarity measures to compute distances between probability density functions.
 
 
-## Fast Installation Guide
+## Installation
 
 ```r
 # install.packages("devtools")
@@ -40,17 +40,21 @@ library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
 ## Important Functions
 
 ### Distance Measures
-* `distance()` : implements almost all popular probability distance (or similarity) measures
+* `distance()` : implements almost all popular probability distance (or similarity) measures (so far 46 measures)
 
 ### Information Theory
 
 * `H()` : Shannon's Entropy H(X)
-* `JE()` : Shannon's Joint-Entropy H(X,Y)
-* `CE()` : Shannon's Conditional-Entropy H(X | Y)
+* `JE()` : Joint-Entropy H(X,Y)
+* `CE()` : Conditional-Entropy H(X | Y)
 * `MI()` : Shannon's Mutual Information I(X,Y)
 * `KL()` : Kullback–Leibler Divergence
 * `JSD()` : Jensen-Shannon Divergence
 * `gJSD()` : Generalized Jensen-Shannon Divergence
+
+### Correlation Analyses
+
+* `lin.cor()` : Computes linear correlations 
 
 ## Discussions and Bug Reports
 
