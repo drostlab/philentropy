@@ -9,7 +9,7 @@ vignette: >
 
 ## Introduction to the `philentropy` Package
 
-Comparison is a fundamental method of scientific research leading to more general insights about the processes that might have caused similarity or dissimilarity. In statistical terms comparisons between probability functions are made to infer connections, correlations, or relationships between samples.
+Comparison is a fundamental method of scientific research leading to more general insights about the processes that might have caused the corresponding similarity or dissimilarity. In statistical terms comparisons between probability functions are made to infer connections, correlations, or relationships between samples.
 
 Applying the method of comparison in statistics often means that we need to compute distances between probability functions. In this context [Sung-Hyuk Cha (2007)](http://csis.pace.edu/ctappert/dps/d861-12/session4-p2.pdf) provides a clear definition of distance : 
 
@@ -27,6 +27,72 @@ As a result, the `philentropy` package implements functions that are part of the
 Here, the [Distance Measure Vignette](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd) introduces how to work with the main function `distance()` that implements the 46 distance measures presented in Cha's review.
 
 Furthermore, for each distance/similarity measure a short description on usage and performance is presented.
+
+The following probability distance/similarity measures will be described in detail:
+
+#### $L_p$ Minkowski Family
+* Euclidean : $d = sqrt( \sum | P_i - Q_i |^2)$
+* Manhattan : $d = \sum | P_i - Q_i |$
+* Minkowski : $d = ( \sum | P_i - Q_i |^p)^{1/p}$
+* Chebyshev : $d = max | P_i - Q_i |$
+
+#### $L_1$ Family
+* Sorensen : $d = \sum | P_i - Q_i | / \sum (P_i + Q_i)$
+* Gower : $d = 1/d * \sum | P_i - Q_i |$
+* Soergel : $d = \sum | P_i - Q_i | / \sum max(P_i , Q_i)$
+* Kulczynski d : $d = \sum | P_i - Q_i | / \sum min(P_i , Q_i)$
+* Canberra : $d = \sum | P_i - Q_i | / (P_i + Q_i)$
+* Lorentzian : $d = \sum ln(1 + | P_i - Q_i |)$
+
+#### Intersection Family
+* Intersection : $s = \sum min(P_i , Q_i)$
+* Non-Intersection : $d = 1 - \sum min(P_i , Q_i)$
+* Wave Hedges : $d = \sum | P_i - Q_i | / max(P_i , Q_i)$
+* Czekanowski : $d = \sum | P_i - Q_i | / \sum | P_i + Q_i |$
+* Motyka : $d = \sum min(P_i , Q_i) / (P_i + Q_i)$
+* Kulczynski s : $d = 1 / \sum | P_i - Q_i | / \sum min(P_i , Q_i)$
+* Tanimoto : $d = \sum (max(P_i , Q_i) - min(P_i , Q_i)) / \sum max(P_i , Q_i)$ ; equivalent to Soergel
+* Ruzicka : $s = \sum min(P_i , Q_i) / \sum max(P_i , Q_i)$ ; equivalent to 1 - Tanimoto = 1 - Soergel 
+
+#### Inner Product Family
+* Inner Product : $s = \sum P_i * Q_i$
+* Harmonic mean : $s = 2 * \sum (P_i * Q_i) / (P_i + Q_i)$
+* Cosine : $s = \sum (P_i * Q_i) / sqrt(\sum P_i^2) * sqrt(\sum Q_i^2)$
+* Kumar-Hassebrook (PCE) : $s = \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))$
+* Jaccard : $d = 1 - \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))$ ; equivalent to 1 - Kumar-Hassebrook
+* Dice : $d = \sum (P_i - Q_i)^2 / (\sum P_i^2 + \sum Q_i^2)$
+
+#### Squared-chord Family
+* Fidelity : $s = \sum sqrt(P_i * Q_i)$
+* Bhattacharyya : $d = - ln \sum sqrt(P_i * Q_i)$
+* Hellinger : $d = 2 * sqrt( 1 - \sum sqrt(P_i * Q_i))$
+* Matusita : $d = sqrt( 2 - 2 * \sum sqrt(P_i * Q_i))$
+* Squared-chord : $d = \sum ( sqrt(P_i) - sqrt(Q_i) )^2$
+
+#### Squared $L_2$ family ($X^2$ squared family)
+* Squared Euclidean : $d = \sum ( P_i - Q_i )^2$
+* Pearson $X^2$ : $d = \sum ( (P_i - Q_i )^2 / Q_i )$
+* Neyman $X^2$ : $d = \sum ( (P_i - Q_i )^2 / P_i )$
+* Squared $X^2$ : $d = \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )$
+* Probabilistic Symmetric $X^2$ : $d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )$
+* Divergence : $X^2$ : $d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i)^2 )$
+* Clark : $d = sqrt ( \sum (| P_i - Q_i | / (P_i + Q_i))^2 )$
+* Additive Symmetric $X^2$ : $d = \sum ( ((P_i - Q_i)^2 * (P_i + Q_i)) / (P_i * Q_i) )$
+
+#### Shannon's Entropy Family
+* Kullback-Leibler : $d = \sum P_i * log(P_i / Q_i)$
+* Jeffreys : $d = \sum (P_i - Q_i) * log(P_i / Q_i)$
+* K divergence : $d = \sum P_i * log(2 * P_i / P_i + Q_i)$
+* Topsoe : $d = \sum ( P_i * log(2 * P_i / P_i + Q_i) ) + ( Q_i * log(2 * Q_i / P_i + Q_i) )$
+* Jensen-Shannon :  $d = 0.5 * ( \sum P_i * log(2 * P_i / P_i + Q_i) + \sum Q_i * log(2 * Q_i / P_i + Q_i))$ 
+* Jensen difference : $d = \sum ( (P_i * log(P_i) + Q_i * log(Q_i) / 2) - (P_i + Q_i / 2) * log(P_i + Q_i / 2) )$
+
+#### Combinations
+* Taneja : $d = \sum ( P_i + Q_i / 2) * log( P_i + Q_i$ $/ ( 2 * sqrt( P_i * Q_i)) )$
+* Kumar-Johnson : $d = \sum (P_i^2 - Q_i^2)^2$ $/ 2 * (P_i * Q_i)^1.5$
+* Avg($L_1$, $L_n$) : $d = \sum | P_i - Q_i| + max{ | P_i - Q_i |}$ $/ 2$
+
+__Note__: $d$ refers to distance measures, whereas $s$ denotes similarity measures.
 
 ### Information Theory
 
