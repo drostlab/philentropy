@@ -64,7 +64,9 @@ provided in this package.
 Furthermore, in case you find some bugs or need additional (more flexible) functionality of parts
 of this package, please let me know:
 
-[twitter: HajkDrost](https://twitter.com/hajkdrost) or  [email ](hajk-georg.drost@informatik.uni-halle.de)
+[twitter: HajkDrost](https://twitter.com/hajkdrost) or  [email](hajk-georg.drost@informatik.uni-halle.de)
+
+For Bug Report: Please send me an [issue](https://github.com/HajkD/philentropy/issues).
 
 
 
