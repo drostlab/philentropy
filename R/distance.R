@@ -201,6 +201,19 @@ distance <- function(x ,
         if(!is.element(class(x),c("data.frame","matrix")))
                 stop("x should be a data.frame or matrix.")
         
+        dist_methods <- vector(mode = "character", length = 46)
+        dist_methods <- c("euclidean", "manhattan", "minkowski", "chebyshev",
+                          "sorensen", "gower", "soergel", "kulczynski_d",
+                          "canberra", "lorentzian", "intersection", "non-intersection",
+                          "wavehedges", "czekanowski", "motyka","kulczynski_s",
+                          "tanimoto", "ruzicka","inner_product","harmonic_mean",
+                          "cosine", "hassebrook", "jaccard", "dice","fidelity","bhattacharyya",
+                          "hellinger", "matusita", "squared_chord","squared_euclidean","pearson",
+                          "neyman", "squared_chi", "prob_symm", "divergence","clark",
+                          "additive_symm","kullback-leibler","jeffreys","k_divergence",
+                          "topsoe","jensen-shannon", "jensen_difference","taneja",
+                          "kumar-johnson","avg")
+        
         # transpose the matrix or data.frame
         # in case of DF: DF is transformed to matrix by t()
         x <- t(x)
@@ -209,7 +222,7 @@ distance <- function(x ,
         ncols <- vector("numeric",1)
         ncols <- ncol(x)
         
-        if(!is.element(method,getDistMethods()))
+        if(!is.element(method,dist_methods))
                 stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
         
         if(!is.null(est.prob)){
