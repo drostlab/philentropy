@@ -19,8 +19,13 @@ Cha's comprehensive review of distance/similarity measures motivated me to imple
 
 > The choice of distance/similarity measures depends on the measurement type or representation of objects.
 
-As a result, the `philentropy` package implements functions that are part of the following topics.
+As a result, the `philentropy` package implements functions that are part of the following topics:
 
+* Distance Measure
+* Information Theory
+* Correlation Analyses
+
+__Side Note__: I am aware that some of the functions implemented in `philentropy` can be found in base R or in published CRAN packages. However, my focus was to optimize all functions implemented in `philentropy`. For this purpose all methods are implemented in C++ using the [Rcpp](http://www.rcpp.org/) API and by writing extensive unit tests I try to reduce the number of potential bugs. I really hope that some of these functions are helpful to the R community.
 
 ### Distance Measures
 
@@ -96,10 +101,27 @@ __Note__: $d$ refers to distance measures, whereas $s$ denotes similarity measur
 
 ### Information Theory
 
-
+Modern methods for distribution comparisons have a strong [information theoretic background](http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf). This fact motivated me to name this package `philentropy` and as a result, several well established information theory measures are (and further will be) implemeted in this package. 
 
 
 ### Correlation Analyses
+
+Since my first stats class I am fascinated by the potential power of determining correlation and causality in data. For me part of the `philentropy` package it some kind of playground to better understand the diversity of methods that aim to perform [correlation detection](http://www3.nd.edu/~mclark19/learn/CorrelationComparison.pdf) and [causal inference](http://ftp.cs.ucla.edu/pub/stat_ser/r350.pdf). In detail, `philentropy` will implement classical linear and non-linear correlation methods as well as causal inference methods that aim to predict relationships between (random) variables. 
+
+#### Linear Correlation Methods
+
+* Pearson's correlation coefficient (centred)
+* Pearson's uncentred correlation coefficient
+* Squared Pearson's correlation coefficient
+* Kendall's correlation coefficient
+* Spearman's correlation coefficient
+
+#### Non-Linear Correlation Methods
+
+#### Causal Inference Methods
+
+
+
 
 
 
