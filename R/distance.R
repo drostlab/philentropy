@@ -20,12 +20,12 @@
 
 #' @title Distances between Probability Density Functions
 #' @description This functions computes the distance/dissimilarity between two probability density functions.
-#' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}).
+#' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).
 #' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
 #' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.
 #' @param unit a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.
-#' @param check.distr check \code{x} for storing valid probability density functions. This check is useful but time consuming for large \code{x}. Default: \code{check.distr = TRUE}. In case you would like to use distance measures that are also applicable to non-probability values, you can simply specify \code{check.distr = FALSE}. 
+##' @param check.distr check \code{x} for storing valid probability density functions. This check is useful but time consuming for large \code{x}. Default: \code{check.distr = TRUE}. In case you would like to use distance measures that are also applicable to non-probability values, you can simply specify \code{check.distr = FALSE}. 
 #' @param est.prob method to estimate probabilities from a count vector. Default: \code{est.prob = NULL}.
 #' @author Hajk-Georg Drost
 #' @details 
@@ -195,9 +195,10 @@ distance <- function(x ,
                      p           = NULL, 
                      test.na     = TRUE, 
                      unit        = "log",
-                     check.distr = FALSE,
                      est.prob    = NULL){
         
+        
+
         if(!is.element(class(x),c("data.frame","matrix")))
                 stop("x should be a data.frame or matrix.")
         
@@ -216,7 +217,7 @@ distance <- function(x ,
         
         # transpose the matrix or data.frame
         # in case of DF: DF is transformed to matrix by t()
-        x <- t(x)
+        x <- t(x) 
         
         # number of input probability vectors
         ncols <- vector("numeric",1)
@@ -235,10 +236,10 @@ distance <- function(x ,
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
         # here a smarter (faster) way to validate distributions needs to be implemented
-        if(check.distr){
-                # check for distribution validity
-                apply(x,2,valid.distr)
-        }
+#         if(check.distr){
+#                 # check for distribution validity
+#                 apply(x,2,valid.distr)
+#         }
         
         if(ncols == 2){
                 dist <- vector("numeric",1)
