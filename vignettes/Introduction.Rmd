@@ -106,7 +106,7 @@ Modern methods for distribution comparisons have a strong [information theoretic
 
 ### Correlation Analyses
 
-Since my first stats class I am fascinated by the potential power of determining correlation and causality in data. For me part of the `philentropy` package it some kind of playground to better understand the diversity of methods that aim to perform [correlation detection](http://www3.nd.edu/~mclark19/learn/CorrelationComparison.pdf) and [causal inference](http://ftp.cs.ucla.edu/pub/stat_ser/r350.pdf). In detail, `philentropy` will implement classical linear and non-linear correlation methods as well as causal inference methods that aim to predict relationships between (random) variables. 
+Since my first stats class I am fascinated by the potential power of determining correlation and causality in data. For me part of the `philentropy` package is some kind of playground to better understand the diversity of methods that aim to perform [correlation detection](http://www3.nd.edu/~mclark19/learn/CorrelationComparison.pdf) and [causal inference](http://ftp.cs.ucla.edu/pub/stat_ser/r350.pdf). In detail, `philentropy` will implement classical linear and non-linear correlation methods as well as causal inference methods that aim to predict relationships between (random) variables. 
 
 #### Linear Correlation Methods
 
