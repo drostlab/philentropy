@@ -26,7 +26,7 @@
 #' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @return a numeric value representing Shannon's Joint-Entropy in bit.
 #' @author Hajk-Georg Drost
-#' @seealso \code{\link{H}}, \code{\link{CE}}, \code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
+#' @seealso \code{\link{H}}, \code{\link{CE}}, \code{\link{KL}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
 #' @references Shannon, Claude E. 1948. "A Mathematical Theory of
 #' Communication". \emph{Bell System Technical Journal} \bold{27} (3): 379-423.
 #' @examples
