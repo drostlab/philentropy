@@ -15,7 +15,7 @@
 #  A copy of the GNU General Public License is available at
 #  http://www.r-project.org/Licenses/
 
-#' Kullback–Leibler Divergence
+#' Kullback-Leibler Divergence
 #' 
 #' This function computes the Kullback-Leibler divergence of two probability
 #' distributions P and Q.
@@ -31,7 +31,7 @@
 #' between two probability distributions P and Q. It only fulfills the
 #' \emph{positivity} property of a \emph{distance metric}.
 #' 
-#' Because of the relation KL(P||Q) = H(P,Q) - H(P), the Kullback–Leibler
+#' Because of the relation KL(P||Q) = H(P,Q) - H(P), the Kullback-Leibler
 #' divergence of two probability distributions P and Q is also named
 #' \emph{Cross Entropy} of two probability distributions P and Q.
 #' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}). See \code{\link{distance}} for details.

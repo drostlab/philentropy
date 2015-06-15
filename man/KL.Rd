@@ -2,7 +2,7 @@
 % Please edit documentation in R/KL.R
 \name{KL}
 \alias{KL}
-\title{Kullback–Leibler Divergence}
+\title{Kullback-Leibler Divergence}
 \usage{
 KL(x, test.na = TRUE, unit = "log2", est.prob = NULL)
 }
@@ -34,7 +34,7 @@ The KL divergence is a non-symmetric measure of the directed divergence
 between two probability distributions P and Q. It only fulfills the
 \emph{positivity} property of a \emph{distance metric}.
 
-Because of the relation KL(P||Q) = H(P,Q) - H(P), the Kullback–Leibler
+Because of the relation KL(P||Q) = H(P,Q) - H(P), the Kullback-Leibler
 divergence of two probability distributions P and Q is also named
 \emph{Cross Entropy} of two probability distributions P and Q.
 }
