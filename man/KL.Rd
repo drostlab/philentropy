@@ -16,7 +16,7 @@ KL(x, test.na = TRUE, unit = "log2", est.prob = NULL)
 \item{est.prob}{method to estimate probabilities from a count vector. Default: est.prob = NULL.}
 }
 \value{
-The Kullback–Leibler divergence of probability vectors.
+The Kullback-Leibler divergence of probability vectors.
 }
 \description{
 This function computes the Kullback–Leibler divergence of two probability

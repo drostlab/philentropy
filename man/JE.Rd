@@ -30,6 +30,6 @@ Shannon, Claude E. 1948. "A Mathematical Theory of
 Communication". \emph{Bell System Technical Journal} \bold{27} (3): 379-423.
 }
 \seealso{
-\code{\link{H}}, \code{\link{CE}}, \code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
+\code{\link{H}}, \code{\link{CE}}, \code{\link{KL}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
 }
 

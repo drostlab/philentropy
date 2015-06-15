@@ -19,8 +19,6 @@ distance(x, method = "euclidean", p = NULL, test.na = TRUE,
 \item{unit}{a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.}
 
 \item{est.prob}{method to estimate probabilities from a count vector. Default: \code{est.prob = NULL}.}
-
-\item{check.distr}{check \code{x} for storing valid probability density functions. This check is useful but time consuming for large \code{x}. Default: \code{check.distr = TRUE}. In case you would like to use distance measures that are also applicable to non-probability values, you can simply specify \code{check.distr = FALSE}.}
 }
 \value{
 The following results are returned depending on the dimension of \code{x}:

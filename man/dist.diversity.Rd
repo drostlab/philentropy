@@ -4,12 +4,10 @@
 \alias{dist.diversity}
 \title{Distance Diversity between Probability Density Functions}
 \usage{
-dist.diversity(x, y, p = 2)
+dist.diversity(x, p = 2)
 }
 \arguments{
-\item{x}{a numeric vector (probability density function).}
-
-\item{y}{a numeric vector (probability density function).}
+\item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).}
 
 \item{p}{power of the Minkowski distance.}
 }
@@ -18,7 +16,7 @@ This function computes all distance values between two probability density funct
 and returns a vector storing the corresponding distance measures. This vector is \emph{named distance diversity vector}.
 }
 \examples{
-dist.diversity(1:10/sum(1:10), 20:29/sum(20:29))
+dist.diversity(rbind(1:10/sum(1:10), 20:29/sum(20:29)))
 }
 \author{
 Hajk-Georg Drost

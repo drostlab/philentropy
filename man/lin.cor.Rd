@@ -11,7 +11,9 @@ lin.cor(x, y = NULL, method = "pearson", test.na = FALSE)
 
 \item{y}{a numeric \code{vector} that should be correlated with \code{x}.}
 
-\item{test.na}{a boolean value indicating whether input data should be checked for NA values.}
+\item{method}{the method to compute the linear correlation between \code{x} and \code{y}.}
+
+\item{test.na}{a boolean value indicating whether input data should be checked for \code{NA} values.}
 }
 \description{
 This function computed the linear correlation between two vectors or a correlation matrix for an input matrix.
