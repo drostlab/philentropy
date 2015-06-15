@@ -23,14 +23,12 @@
 #' This function computes all distance values between two probability density functions that are available in \code{\link{getDistMethods}}
 #' and returns a vector storing the corresponding distance measures. This vector is \emph{named distance diversity vector}.
 #' 
-#' @param x a numeric vector (probability density function).
-#' @param y a numeric vector (probability density function).
+#' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).
 #' @param p power of the Minkowski distance.   
-#' 
 #' @author Hajk-Georg Drost
 #' @examples
 #' 
-#' dist.diversity(1:10/sum(1:10), 20:29/sum(20:29))
+#' dist.diversity(rbind(1:10/sum(1:10), 20:29/sum(20:29)))
 #' 
 #' @export
         
