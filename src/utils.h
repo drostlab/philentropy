@@ -22,7 +22,7 @@ Rcpp::NumericMatrix as_matrix(Rcpp::DataFrame x) {
   return y;
 }
 
-//' @export
+// @export
 // [[Rcpp::export]]
 Rcpp::DataFrame as_data_frame(Rcpp::NumericMatrix mat){
  
@@ -34,7 +34,7 @@ Rcpp::DataFrame as_data_frame(Rcpp::NumericMatrix mat){
   return y;
 }
 
-//' @export
+// @export
 // [[Rcpp::export]]
 SEXP sum_rcpp( SEXP vec ){
    Rcpp::NumericVector x(vec);
@@ -43,7 +43,7 @@ SEXP sum_rcpp( SEXP vec ){
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 SEXP est_prob_empirical( SEXP CountVec ){
    Rcpp::NumericVector x(CountVec);

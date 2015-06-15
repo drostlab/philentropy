@@ -19,17 +19,13 @@
 #ifndef philentropy_Correlation_H
 #define philentropy_Correlation_H philentropy_Correlation_H
 
-#include <R.h> 
 #include <Rcpp.h> 
 #include <math.h>
 #include <iostream>
 #include "utils.h"
 #include "distances.h"
-// [[Rcpp::plugins(cpp11)]]
 
-
-
-//' @export
+// @export
 // [[Rcpp::export]]
 double pearson_corr_centred(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, bool testNA){
         
@@ -75,7 +71,7 @@ double pearson_corr_centred(const Rcpp::NumericVector& x, const Rcpp::NumericVec
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double pearson_corr_uncentred(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, bool testNA){
         
@@ -118,7 +114,7 @@ double pearson_corr_uncentred(const Rcpp::NumericVector& x, const Rcpp::NumericV
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double squared_pearson_corr(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, bool testNA){
         

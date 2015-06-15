@@ -9,7 +9,7 @@
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double Ecpp(const Rcpp::NumericVector& P, Rcpp::String unit){
   int len = P.size();
@@ -42,7 +42,7 @@ double Ecpp(const Rcpp::NumericVector& P, Rcpp::String unit){
   return -Entropy;
 }
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double JEcpp(const Rcpp::NumericVector& JointProbabilities, Rcpp::String unit){
   int len = JointProbabilities.size();
@@ -79,7 +79,7 @@ double JEcpp(const Rcpp::NumericVector& JointProbabilities, Rcpp::String unit){
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double CEcpp(Rcpp::NumericVector JointProbabilities, Rcpp::NumericVector Probabilities, Rcpp::String unit){
 
@@ -92,7 +92,7 @@ double CEcpp(Rcpp::NumericVector JointProbabilities, Rcpp::NumericVector Probabi
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double MIcpp(Rcpp::NumericVector X, Rcpp::NumericVector Y, Rcpp::NumericVector XY, Rcpp::String unit){
 

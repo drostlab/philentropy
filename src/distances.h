@@ -21,12 +21,14 @@
 
 // http://stackoverflow.com/questions/23527719/calling-a-rcpp-function-from-another-rcpp-function-while-building-an-r-package
 
-#include <R.h> 
+
+// [[Rcpp::plugins(cpp11)]]
+
+
 #include <Rcpp.h> 
 #include <math.h>
 #include <iostream>
 #include "utils.h"
-// [[Rcpp::plugins(cpp11)]]
 
 
 // [[Rcpp::export]]
@@ -39,7 +41,7 @@ double custom_log10(const double& x ){
         return log(x)/log(10);
 }
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double euclidean(const Rcpp::NumericVector& P,const Rcpp::NumericVector& Q, bool testNA){
         
@@ -69,7 +71,7 @@ double euclidean(const Rcpp::NumericVector& P,const Rcpp::NumericVector& Q, bool
         return sqrt(dist);
 }
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double manhattan(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -101,7 +103,7 @@ double manhattan(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,double n, bool testNA){
         
@@ -132,7 +134,7 @@ double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,doub
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double chebyshev(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -165,7 +167,7 @@ double chebyshev(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double sorensen(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -203,7 +205,7 @@ double sorensen(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double gower(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -235,7 +237,7 @@ double gower(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool te
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -280,7 +282,7 @@ double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -333,7 +335,7 @@ double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -378,7 +380,7 @@ double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double lorentzian(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
@@ -430,7 +432,7 @@ double lorentzian(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bo
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double intersection_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -469,7 +471,7 @@ double intersection_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double wave_hedges(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -519,7 +521,7 @@ double wave_hedges(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double czekanowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -557,7 +559,7 @@ double czekanowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double motyka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -599,7 +601,7 @@ double motyka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double tanimoto(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -608,7 +610,7 @@ double tanimoto(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double ruzicka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -617,7 +619,7 @@ double ruzicka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double inner_product(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -644,7 +646,7 @@ double inner_product(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double harmonic_mean_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -681,7 +683,7 @@ double harmonic_mean_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVecto
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double cosine_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -714,7 +716,7 @@ double cosine_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double kumar_hassebrook(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -747,7 +749,7 @@ double kumar_hassebrook(const Rcpp::NumericVector& P, const Rcpp::NumericVector&
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double jaccard(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -756,7 +758,7 @@ double jaccard(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double dice_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -789,7 +791,7 @@ double dice_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -816,7 +818,7 @@ double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
@@ -837,21 +839,21 @@ double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double hellinger(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         return 2.0 * sqrt( 1.0 - fidelity(P,Q, testNA));
 }
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double matusita(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
         return sqrt( 2.0 - ( 2.0 * fidelity(P,Q, testNA)));
 }
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double squared_chord(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -879,7 +881,7 @@ double squared_chord(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -915,7 +917,7 @@ double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -962,7 +964,7 @@ double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -1009,7 +1011,7 @@ double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double squared_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -1046,7 +1048,7 @@ double squared_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double prob_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -1057,7 +1059,7 @@ double prob_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector&
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double divergence_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -1095,7 +1097,7 @@ double divergence_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double clark_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -1132,7 +1134,7 @@ double clark_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -1170,7 +1172,7 @@ double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVec
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
@@ -1251,7 +1253,7 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
         return dist;
 }
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
@@ -1357,7 +1359,7 @@ double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double k_divergence(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
@@ -1424,7 +1426,7 @@ double k_divergence(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double topsoe(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
@@ -1496,7 +1498,7 @@ double topsoe(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
@@ -1577,7 +1579,7 @@ double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
@@ -1651,7 +1653,7 @@ double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
@@ -1764,7 +1766,7 @@ double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
 }
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
@@ -1812,7 +1814,7 @@ double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 
 
 
-//' @export
+// @export
 // [[Rcpp::export]]
 double avg(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
