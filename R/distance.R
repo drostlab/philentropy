@@ -85,16 +85,16 @@
 #' }
 #' 
 #' 
-#' \item Squared L_2 family (\eqn{\Chi}^2 squared family)
+#' \item Squared L_2 family (\eqn{X}^2 squared family)
 #' \itemize{
 #' \item Squared Euclidean : \eqn{d = \sum ( P_i - Q_i )^2}
-#' \item Pearson \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / Q_i )}
-#' \item Neyman \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / P_i )}
-#' \item Squared \eqn{\Chi}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )}
-#' \item Probabilistic Symmetric \eqn{\Chi}^2 : \eqn{d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )}
-#' \item Divergence : \eqn{\Chi}^2 : \eqn{d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i)^2 )}
+#' \item Pearson \eqn{X}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / Q_i )}
+#' \item Neyman \eqn{X}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / P_i )}
+#' \item Squared \eqn{X}^2 : \eqn{d = \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )}
+#' \item Probabilistic Symmetric \eqn{X}^2 : \eqn{d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )}
+#' \item Divergence : \eqn{X}^2 : \eqn{d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i)^2 )}
 #' \item Clark : \eqn{d = sqrt ( \sum (| P_i - Q_i | / (P_i + Q_i))^2 )}
-#' \item Additive Symmetric \eqn{\Chi}^2 : \eqn{d = \sum ( ((P_i - Q_i)^2 * (P_i + Q_i)) / (P_i * Q_i) ) }
+#' \item Additive Symmetric \eqn{X}^2 : \eqn{d = \sum ( ((P_i - Q_i)^2 * (P_i + Q_i)) / (P_i * Q_i) ) }
 #' }
 #' 
 #' \item Shannon's entropy family
