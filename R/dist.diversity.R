@@ -34,7 +34,7 @@
 #' 
 #' @export
         
-dist.diversity <- function(x,y, p = 2){
+dist.diversity <- function(x, p = 2){
         
         distMethods <- vector(mode = "character")
         nMethods <- NA_integer_
@@ -42,7 +42,7 @@ dist.diversity <- function(x,y, p = 2){
         nMethods <- length(distMethods)
         distDiversityVec <- vector(mode = "numeric", length = nMethods)
         
-        distDiversityVec <- sapply(distMethods, function(method) distance(x = x, y = y, method = method, p = p))
+        distDiversityVec <- sapply(distMethods, function(method) distance(x, method = method, p = p))
         names(distDiversityVec) <- distMethods
         
         return(distDiversityVec)
