@@ -82,7 +82,6 @@ KL <- function(x, test.na = TRUE, unit = "log2", est.prob = NULL){
                           method      = "kullback-leibler",
                           test.na     = test.na,
                           unit        = unit,
-                          check.distr = TRUE,
                           est.prob    = est.prob) )
         
 }
