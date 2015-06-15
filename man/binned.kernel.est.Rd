@@ -11,21 +11,26 @@ binned.kernel.est(data, kernel = "normal", bandwidth = NULL,
 \arguments{
 \item{data}{a numeric vector containing the sample on which the kernel density estimate is to be constructed.}
 
-\item{kernel}{}
+\item{kernel}{character string specifying the smoothing kernel}
 
-\item{bandwidth}{}
+\item{bandwidth}{the kernel bandwidth smoothing parameter.}
 
-\item{canonical}{}
+\item{canonical}{a logical value indicating whether canonically scaled kernels should be used}
 
-\item{scalest}{}
+\item{scalest}{estimate of scale.
+\itemize{
+ \item \code{"stdev"} - standard deviation is used.
+ \item \code{"iqr"} - inter-quartile range divided by 1.349 is used.
+ \item \code{"minim"} - minimum of \code{"stdev"} and \code{"iqr"} is used.
+}}
 
-\item{level}{}
+\item{level}{number of levels of functional estimation used in the plug-in rule.}
 
-\item{gridsize}{}
+\item{gridsize}{the number of equally-spaced points over which binning is performed to obtain kernel functional approximation.}
 
-\item{range.data}{}
+\item{range.data}{vector containing the minimum and maximum values of \code{data} at which to compute the estimate. The default is the minimum and maximum data values.}
 
-\item{truncate}{}
+\item{truncate}{logical value indicating whether data with x values outside the range specified by \code{range.data} should be ignored.}
 }
 \description{
 This function implements an interface to the kernel density estimation functions provided by the \pkg{KernSmooth} package.
