@@ -146,15 +146,11 @@
 #' CountMatrix <- rbind(1:10, 20:29, 30:39)
 #' 
 #' ## estimate probabilities from a count matrix
-#' distance(CountMatrix, method = "euclidean", est.prob = "euclidean")
+#' distance(CountMatrix, method = "euclidean", est.prob = "empirical")
 #' 
 #' ## compute the euclidean distance for count data
-#' ## here: the argument: 'valid.distr = FALSE' must be specified
-#' ## to omit the check for probability values
 #' ## NOTE: some distance measures are only defined for probability values,
-#' ## so by selecting 'valid.distr = FALSE' and computing probability distances
-#' ## of count data, invalid resuts can be returned
-#' distance(CountMatrix, method = "euclidean", valid.distr = FALSE)
+#' distance(CountMatrix, method = "euclidean")
 #' 
 #' ## compute the Kullback-Leibler Divergence with different logarithm bases:
 #' ### case: unit = log (Default)
