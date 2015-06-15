@@ -182,7 +182,7 @@
 #' \item in case \code{nrow(x)} = 2 : a single distance value.
 #' \item in case \code{nrow(x)} > 2 : a distance \code{matrix} storing distance values for all pairwise probability vector comparisons.  
 #' }
-#' @seealso \code{\link{getDistMethods}}, \code{\link{estimate.probability}}, \code{\link{dist.diversity}}, \code{\link{valid.distr}}
+#' @seealso \code{\link{getDistMethods}}, \code{\link{estimate.probability}}, \code{\link{dist.diversity}}
 #' @export
 
 distance <- function(x ,
