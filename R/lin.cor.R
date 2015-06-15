@@ -5,7 +5,8 @@
 #'  
 #'  @param x a numeric \code{vector}, \code{matrix}, or \code{data.frame}.
 #'  @param y a numeric \code{vector} that should be correlated with \code{x}.
-#'  @param test.na a boolean value indicating whether input data should be checked for NA values.
+#'  @param method the method to compute the linear correlation between \code{x} and \code{y}.
+#'  @param test.na a boolean value indicating whether input data should be checked for \code{NA} values.
 #'  @author Hajk-Georg Drost
 #'  @details
 #'  
