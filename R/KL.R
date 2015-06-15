@@ -38,7 +38,7 @@
 #' @param test.na a boolean value indicating whether input vectors should be tested for NA values.
 #' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @param est.prob method to estimate probabilities from a count vector. Default: est.prob = NULL.
-#' @return The Kullback–Leibler divergence of probability vectors.
+#' @return The Kullback-Leibler divergence of probability vectors.
 #' @author Hajk-Georg Drost
 #' @seealso
 #' \code{\link{H}}, \code{\link{CE}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
