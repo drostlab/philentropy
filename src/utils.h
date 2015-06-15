@@ -3,12 +3,12 @@
 #ifndef philentropy_UTILS_H
 #define philentropy_UTILS_H philentropy_UTILS_H
 
-
-#include <Rcpp.h>
-#include <algorithm>
-
 // [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::interfaces(r, cpp)]]
+
+
+// #include <Rcpp.h>
+#include <algorithm>
 
 
 //[[Rcpp::export]]
