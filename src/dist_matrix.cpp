@@ -34,7 +34,26 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF, Rcpp::Funct
 }
 
 
-
+// [[Rcpp::export]]
+Rcpp::NumericMatrix DistMatrixMinkowskiMAT(Rcpp::NumericMatrix dists, bool testNA, double p){
+        int ncols = dists.ncol();
+        double dist_value = 0.0;
+        Rcpp::NumericMatrix dist_matrix(ncols,ncols);
+        // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
+        std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
+        
+        for (int i = 0; i < ncols; i++){
+                for (int j = 0; j < ncols; j++){
+                        if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = minkowski(dists(Rcpp::_, i),dists(Rcpp::_, j), p, testNA);
+                                dist_matrix(i,j) = dist_value;
+                                dist_matrix(j,i) = dist_value;
+                        }
+                }
+        }
+        
+        return dist_matrix;
+}
 
 // @export
 // [[Rcpp::export]]
