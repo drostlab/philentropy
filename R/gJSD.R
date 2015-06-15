@@ -36,7 +36,7 @@
 #' gJSD(Prob)
 #' 
 #' @seealso
-#' \code{\link{KL}}, \code{\link{KL.Matrix}}, \code{\link{H}}, \code{\link{JSD}},
+#' \code{\link{KL}}, \code{\link{H}}, \code{\link{JSD}},
 #'  \code{\link{CE}}, \code{\link{JE}}
 #' @export
 
