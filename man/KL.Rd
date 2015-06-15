@@ -19,7 +19,7 @@ KL(x, test.na = TRUE, unit = "log2", est.prob = NULL)
 The Kullback-Leibler divergence of probability vectors.
 }
 \description{
-This function computes the Kullback–Leibler divergence of two probability
+This function computes the Kullback-Leibler divergence of two probability
 distributions P and Q.
 }
 \details{
@@ -70,8 +70,8 @@ heatmap(KLMatrix)
 Hajk-Georg Drost
 }
 \references{
-Cover Thomas M. and Thomas Joy A. 2006. "Elements of Information
-Theory". \emph{John Wiley & Sons}.
+Cover Thomas M. and Thomas Joy A. 2006. Elements of Information
+Theory. \emph{John Wiley & Sons}.
 }
 \seealso{
 \code{\link{H}}, \code{\link{CE}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}

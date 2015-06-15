@@ -17,7 +17,7 @@
 
 #' Kullback–Leibler Divergence
 #' 
-#' This function computes the Kullback–Leibler divergence of two probability
+#' This function computes the Kullback-Leibler divergence of two probability
 #' distributions P and Q.
 #' 
 #' \deqn{KL(P||Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)}
@@ -42,8 +42,8 @@
 #' @author Hajk-Georg Drost
 #' @seealso
 #' \code{\link{H}}, \code{\link{CE}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
-#' @references Cover Thomas M. and Thomas Joy A. 2006. "Elements of Information
-#' Theory". \emph{John Wiley & Sons}.
+#' @references Cover Thomas M. and Thomas Joy A. 2006. Elements of Information
+#' Theory. \emph{John Wiley & Sons}.
 #' @examples
 #'
 #' # Kulback-Leibler Divergence between P and Q
