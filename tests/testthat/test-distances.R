@@ -216,7 +216,19 @@ test_that("distance(method = 'soergel') computes the correct distance value.", {
 
 test_that("distance(method = 'kulczynski_d') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "kulczynski_d")), sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,min)))
+        test_kd_dist <- function(P,Q){
+                sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,min))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "kulczynski_d")),
+                     test_kd_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "kulczynski_d")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_kd_dist))
         
 })
 
