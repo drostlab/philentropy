@@ -610,7 +610,19 @@ test_that("distance(method = 'jaccard') computes the correct distance value.", {
 
 test_that("distance(method = 'dice') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "dice")), 1 - (2 * (sum ( (P) * (Q) )) / (sum((P)^2) + sum((Q)^2) )))
+        test_dice_dist <- function(P,Q){
+                1 - (2 * (sum ( (P) * (Q) )) / (sum((P)^2) + sum((Q)^2) ))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "dice")),
+                     test_dice_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "dice")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_dice_dist))
         
 })
 
