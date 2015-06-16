@@ -933,8 +933,20 @@ test_that("distance(method = 'divergence') computes the correct distance value i
 
 test_that("distance(method = 'clark') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "clark")), sqrt(sum((abs((P) - (Q)) / ((P) + (Q)))^2)))
+        test_clark_dist <- function(P,Q){
+                sqrt(sum((abs((P) - (Q)) / ((P) + (Q)))^2))
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "clark")),
+                     test_clark_dist(P,Q))
+        
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "clark")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_clark_dist))
 })
 
 
