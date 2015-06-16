@@ -310,7 +310,8 @@ test_that("distance(method = 'lorentzian') computes the correct distance value u
 
 test_that("distance(method = 'lorentzian') computes the correct distance value using unit = log10.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "lorentzian", unit = "log10")), sum( log10(1 + abs((P) - (Q)))))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "lorentzian",
+                                                     unit = "log10")), sum( log10(1 + abs((P) - (Q)))))
         
         
 })
@@ -318,14 +319,27 @@ test_that("distance(method = 'lorentzian') computes the correct distance value u
 
 test_that("distance(method = 'intersection') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "intersection")), sum(apply(base::rbind(P,Q),2,min)))
+        test_intersection_dist <- function(P,Q){
+                sum(apply(base::rbind(P,Q),2,min))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "intersection")),
+                     test_intersection_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "intersection")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_intersection_dist))
         
 })
 
 
 test_that("distance(method = 'non-intersection') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "non-intersection")), 1 - sum(apply(base::rbind(P,Q),2,min)))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "non-intersection")),
+                     1 - sum(apply(base::rbind(P,Q),2,min)))
         
 })
 
