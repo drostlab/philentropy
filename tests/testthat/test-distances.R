@@ -775,16 +775,37 @@ test_that("distance(method = 'pearson') computes the correct distance value.", {
 
 test_that("distance(method = 'neyman') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "neyman")), sum(((P) - (Q))^2 / (P)))
+        test_neyman_dist <- function(P,Q){
+                sum(((P - Q)^2) / P)
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "neyman")),
+                     test_neyman_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(0.5,0.1,0.7,0.9,0.5))
+        dist.vals <- distance(distMat, method = "neyman")
+        
+#         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+#                      test_dist_matrix(distMat, FUN = test_neyman_dist))
 })
 
 
 test_that("distance(method = 'squared_chi') computes the correct distance value.", {
         
+        test_sqchi_dist <- function(P,Q){
+                sum(((P) - (Q))^2 / ((P) + (Q)))
+        }
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "squared_chi")), sum(((P) - (Q))^2 / ((P) + (Q))))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "squared_chi")),
+                     test_sqchi_dist(P,Q))
         
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "squared_chi")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_sqchi_dist))
 })
 
 
