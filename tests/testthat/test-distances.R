@@ -412,14 +412,37 @@ test_that("distance(method = 'czekanowski') computes the correct distance value.
 
 test_that("distance(method = 'motyka') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "motyka")), sum(apply(base::rbind(P,Q),2,max)) / sum(P + Q))
+        test_motyka_dist <- function(P,Q){
+                sum(apply(base::rbind(P,Q),2,max)) / sum(P + Q)
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "motyka")), 
+                     test_motyka_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "motyka")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_motyka_dist))
 })
 
 
 test_that("distance(method = 'kulczynski_s') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "kulczynski_s")), 1 / (sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,min))))
+        test_ks_dist <- function(P,Q){
+                1 / (sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,min)))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "kulczynski_s")),
+                     test_ks_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "kulczynski_s")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_ks_dist))
         
 })
 
