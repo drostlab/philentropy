@@ -648,7 +648,19 @@ test_that("distance(method = 'fidelity') computes the correct distance value.", 
 
 test_that("distance(method = 'bhattacharyya') computes the correct distance value using unit = log.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "bhattacharyya")), -log(sum(sqrt(P * Q))))
+        test_b_dist <- function(P,Q){
+                -log(sum(sqrt(P * Q)))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "bhattacharyya")),
+                     test_b_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "bhattacharyya")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_b_dist))
         
 })
 
