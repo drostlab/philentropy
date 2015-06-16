@@ -346,9 +346,19 @@ test_that("distance(method = 'non-intersection') computes the correct distance v
 
 test_that("distance(method = 'wavehedges') computes the correct distance value.", {
         
+        test_wh_dist <- function(P,Q){
+                sum(abs(P - Q) / apply(base::rbind(P,Q),2,max))
+        }
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "wavehedges")), sum(abs(P - Q) / apply(base::rbind(P,Q),2,max)))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "wavehedges")),
+                     test_wh_dist(P,Q))
         
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "wavehedges")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_wh_dist))
 })
 
 
