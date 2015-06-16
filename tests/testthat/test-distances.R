@@ -178,7 +178,19 @@ test_that("distance(method = 'sorensen') computes the correct distance value.", 
 
 test_that("distance(method = 'gower') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "gower")), (1/length(1:10)) * sum(abs((P) - (Q))))
+        test_gower_dist <- function(P,Q){
+                return((1/length(P)) * sum(abs((P) - (Q))))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "gower")), 
+                     test_gower_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "gower")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_gower_dist))
         
 })
 
