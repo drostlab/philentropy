@@ -737,14 +737,38 @@ test_that("distance(method = 'squared_chord') computes the correct distance valu
 
 test_that("distance(method = 'squared_euclidean') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "squared_euclidean")), sum(((P) - (Q))^2))
+        test_sqeuclidean_dist <- function(P,Q){
+                sum(((P) - (Q))^2)
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "squared_euclidean")), 
+                     test_sqeuclidean_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "squared_euclidean")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_sqeuclidean_dist))
         
 })
 
 
 test_that("distance(method = 'pearson') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "pearson")), sum(((P) - (Q))^2 / (Q)))
+        test_pearson_dist <- function(P,Q){
+                sum((P - Q)^2 / Q)
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "pearson")),
+                     test_pearson_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(0.5,0.1,0.7,0.9,0.5))
+        dist.vals <- distance(distMat, method = "pearson")
+        
+#         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+#                      test_dist_matrix(distMat, FUN = test_pearson_dist))
         
 })
 
