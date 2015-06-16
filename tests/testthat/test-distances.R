@@ -968,8 +968,20 @@ test_that("distance(method = 'clark') computes the correct distance value in cas
 
 test_that("distance(method = 'additive_symm') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "additive_symm")), sum((((P) - (Q))^2 * ((P) + (Q))) / ((P) * (Q))))
+        test_addsymm_dist <- function(P,Q){
+                sum((((P) - (Q))^2 * ((P) + (Q))) / ((P) * (Q)))
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "additive_symm")),
+                     test_addsymm_dist(P,Q))
+        
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "additive_symm")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_addsymm_dist))
 })
 
 
