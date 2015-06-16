@@ -679,7 +679,19 @@ test_that("distance(method = 'bhattacharyya') computes the correct distance valu
 
 test_that("distance(method = 'hellinger') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "hellinger")), 2 * sqrt(1 - sum(sqrt(P * Q))))
+        test_hellinger_dist <- function(P,Q){
+                2 * sqrt(1 - sum(sqrt(P * Q)))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "hellinger")),
+                     test_hellinger_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "hellinger")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_hellinger_dist))
         
 })
 
