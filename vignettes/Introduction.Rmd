@@ -25,7 +25,7 @@ As a result, the `philentropy` package implements functions that are part of the
 * Information Theory
 * Correlation Analyses
 
-__Side Note__: I am aware that some of the functions implemented in `philentropy` can be found in base R or in published CRAN packages. However, my focus was to optimize all functions implemented in `philentropy`. For this purpose all methods are implemented in C++ using the [Rcpp](http://www.rcpp.org/) API and wroteextensive unit tests aiming to reduce the number of potential bugs. I really hope that some of these functions are helpful to the R community.
+Personally, I hope that some of these functions are helpful to the R community.
 
 ### Distance Measures
 
