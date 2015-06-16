@@ -552,7 +552,19 @@ test_that("distance(method = 'harmonic_mean') computes the correct distance valu
 
 test_that("distance(method = 'cosine') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "cosine")), ((sum ( (P) * (Q) )) / (sqrt(sum((P)^2)) * sqrt(sum((Q)^2)))))
+        test_cosine_dist <- function(P,Q){
+                ((sum ( (P) * (Q) )) / (sqrt(sum((P)^2)) * sqrt(sum((Q)^2))))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "cosine")),
+                     test_cosine_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "cosine")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_cosine_dist))
         
 })
 
