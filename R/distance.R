@@ -671,8 +671,8 @@ distance <- function(x ,
         if(ncols == 2){
                 names(dist) <- method
         } else {
-                colnames(dist) <- paste0("vec.",1:ncols)
-                rownames(dist) <- paste0("vec.",1:ncols)
+                colnames(dist) <- paste0("v",1:ncols)
+                rownames(dist) <- paste0("v",1:ncols)
         }
         
         return(dist)
