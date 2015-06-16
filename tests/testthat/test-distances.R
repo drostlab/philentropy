@@ -126,8 +126,18 @@ test_that("distance(method = 'minkowski') computes the correct distance value.",
 
 test_that("distance(method = 'chebyshev') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "chebyshev")), max(abs((P) - (Q))))
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "chebyshev")), as.vector(stats::dist(base::rbind(P,Q), method = "maximum")))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "chebyshev")),
+                     max(abs((P) - (Q))))
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "chebyshev")),
+                     as.vector(stats::dist(base::rbind(P,Q), method = "maximum")))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "chebyshev")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     as.vector(dist(distMat, method = "maximum")))
         
 })
 
