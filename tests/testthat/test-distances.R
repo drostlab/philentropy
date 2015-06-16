@@ -449,8 +449,19 @@ test_that("distance(method = 'kulczynski_s') computes the correct distance value
 
 test_that("distance(method = 'tanimoto') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "tanimoto")), sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,max)))
+        test_tanimoto_dist <- function(P,Q){
+                sum(abs((P) - (Q))) / sum(apply(rbind(P, Q),2,max))
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "tanimoto")),
+                     test_tanimoto_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "tanimoto")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_tanimoto_dist))
 })
 
 
