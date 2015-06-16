@@ -592,8 +592,19 @@ test_that("distance(method = 'hassebrook') computes the correct distance value."
 
 test_that("distance(method = 'jaccard') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jaccard")), 1 - ((sum ( (P) * (Q) )) / (sum((P)^2) + sum((Q)^2) - ((sum ( (P) * (Q) ))))))
+        test_jaccard_dist <- function(P,Q){
+                1 - ((sum ( (P) * (Q) )) / (sum((P)^2) + sum((Q)^2) - ((sum ( (P) * (Q) )))))
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jaccard")),
+                     test_jaccard_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "jaccard")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_jaccard_dist))
 })
 
 
