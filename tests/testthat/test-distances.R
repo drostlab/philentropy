@@ -487,7 +487,7 @@ test_that("distance(method = 'ruzicka') computes the correct distance value.", {
 test_that("distance(method = 'inner_product') computes the correct distance value.", {
         
         test_innerproduct_dist <- function(P,Q){
-                sum ( (P) * (Q) )
+                sum ( P*Q )
         }
         
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "inner_product")),
@@ -504,7 +504,19 @@ test_that("distance(method = 'inner_product') computes the correct distance valu
 
 test_that("distance(method = 'harmonic_mean') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "harmonic_mean")), 2 * sum ( (P) * (Q) / ((P) + (Q)) ))
+        test_harmonic_mean_dist <- function(P,Q){
+                2 * sum ( (P * Q) / (P + Q) )
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "harmonic_mean")),
+                     test_harmonic_mean_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "harmonic_mean")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_harmonic_mean_dist))
         
 })
 
