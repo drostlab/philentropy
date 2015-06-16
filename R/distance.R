@@ -418,7 +418,7 @@ distance <- function(x ,
                         dist <- inner_product(x[ , 1], x[ , 2], test.na)
                 
                 if(ncols > 2)
-                        dist <- inner_product(x[ , 1], x[ , 2], test.na)
+                        dist <- DistMatrixWithoutUnitMAT(x,inner_product,test.na)
         }
         
         else if(method == "harmonic_mean"){
