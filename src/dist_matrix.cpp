@@ -35,7 +35,7 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF, Rcpp::Funct
 
 
 // [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixMinkowskiMAT(Rcpp::NumericMatrix dists, bool testNA, double p){
+Rcpp::NumericMatrix DistMatrixMinkowskiMAT(Rcpp::NumericMatrix dists, double p, bool testNA){
         int ncols = dists.ncol();
         double dist_value = 0.0;
         Rcpp::NumericMatrix dist_matrix(ncols,ncols);
