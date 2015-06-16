@@ -486,8 +486,19 @@ test_that("distance(method = 'ruzicka') computes the correct distance value.", {
 
 test_that("distance(method = 'inner_product') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "inner_product")), sum ( (P) * (Q) ))
+        test_innerproduct_dist <- function(P,Q){
+                sum ( (P) * (Q) )
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "inner_product")),
+                     test_innerproduct_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "inner_product")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_innerproduct_dist))
 })
 
 
