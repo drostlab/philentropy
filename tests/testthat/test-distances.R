@@ -24,6 +24,20 @@ Q <- 20:29/sum(20:29)
 V <- -10:10
 W <- -20:0
 
+# function to test distance matrix functionality
+# for different distance measures
+test_dist_matrix <- function(x, FUN){
+        
+        dist.fun <- match.fun(FUN)
+        res.dist.matrix <- matrix(NA_real_,nrow(x),nrow(x))
+        
+        for(i in 1:nrow(x)){
+                for(j in 1:nrow(x)){
+                        res.dist.matrix[i,j] <- dist.fun(x[i, ],x[j, ])
+                }
+        }
+        return(res.dist.matrix[lower.tri(res.dist.matrix, diag = FALSE)])
+}
 
 test_that("'euclidien' (or any other not implemented string) is caught when wrong input string for method is entered", {
         
@@ -144,7 +158,20 @@ test_that("distance(method = 'chebyshev') computes the correct distance value.",
 
 test_that("distance(method = 'sorensen') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "sorensen")), sum(abs((P) - (Q))) / sum((P) + (Q)))
+        test_sorensen_dist <- function(P,Q){
+                sum(abs((P) - (Q))) / sum((P) + (Q))
+        }
+        
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "sorensen")),
+                     test_sorensen_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "sorensen")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_sorensen_dist))
         
 })
 
