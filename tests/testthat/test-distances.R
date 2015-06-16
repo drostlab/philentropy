@@ -235,8 +235,22 @@ test_that("distance(method = 'kulczynski_d') computes the correct distance value
 
 test_that("distance(method = 'canberra') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "canberra")), sum( abs((P) - (Q)) / ((P) + (Q))))
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "canberra")), as.vector(stats::dist(base::rbind(P,Q), method = "canberra")))
+        test_canberra_dist <- function(P,Q){
+                sum( abs((P) - (Q)) / ((P) + (Q)))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "canberra")),
+                     test_canberra_dist(P,Q))
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "canberra")),
+                     as.vector(stats::dist(base::rbind(P,Q), method = "canberra")))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "canberra")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_canberra_dist))
         
 })
 
