@@ -41,16 +41,32 @@ test_that("'euclidien' (or any other not implemented string) is caught when wron
 test_that("Only choose from units: log, log2, or log10", {
         
         distMat <- rbind(rep(0.2,5),rep(0.1,10))
-        expect_error(distance(distMat, method = "euclidean", unit = "log5"), "You can only choose units: log, log2, or log10.")
+        expect_error(distance(distMat, method = "euclidean", unit = "log5"), 
+                     "You can only choose units: log, log2, or log10.")
 })
 
 test_that("distance(method = 'euclidean') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "euclidean")), sqrt(sum(abs((P) - (Q))^2)))
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "euclidean")), as.vector(stats::dist(base::rbind(P,Q), method = "euclidean")))
-        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean")), as.vector(stats::dist(base::rbind(V,W), method = "euclidean")))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "euclidean")),
+                     sqrt(sum(abs((P) - (Q))^2)))
         
-        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean")), sqrt(sum(abs((V) - (W))^2)))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "euclidean")), 
+                     as.vector(stats::dist(base::rbind(P,Q), method = "euclidean")))
+        
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean")), 
+                     as.vector(stats::dist(base::rbind(V,W), method = "euclidean")))
+        
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "euclidean")),
+                     sqrt(sum(abs((V) - (W))^2)))
+        
+        
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "euclidean")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     as.vector(dist(distMat)))
         
         #expect_error(philentropy::distance(1:10, 20:29, method = "euclidean"))
 })
@@ -58,7 +74,9 @@ test_that("distance(method = 'euclidean') computes the correct distance value.",
 
 test_that("distance(method = 'manhattan') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "manhattan")), sum(abs((P) - (Q))))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "manhattan")),
+                     sum(abs((P) - (Q))))
+        
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "manhattan")), as.vector(stats::dist(base::rbind(P,Q), method = "manhattan")))
         
         expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "manhattan")), sum(abs((V) - (W))))
