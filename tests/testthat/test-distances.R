@@ -699,15 +699,39 @@ test_that("distance(method = 'hellinger') computes the correct distance value.",
 
 test_that("distance(method = 'matusita') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "matusita")), sqrt(sum((sqrt(P) - sqrt(Q))^2)))
+        test_matusita_dist <- function(P,Q){
+                sqrt(sum((sqrt(P) - sqrt(Q))^2))
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "matusita")),
+                     test_matusita_dist(P,Q))
+        
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(0.5,0.1,0.7,0.9,0.5))
+        dist.vals <- distance(distMat, method = "matusita")
+        
+#         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+#                      test_dist_matrix(distMat, FUN = test_matusita_dist))
 })
 
 
 test_that("distance(method = 'squared_chord') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "squared_chord")), sum((sqrt(P) - sqrt(Q))^2))
+        test_sqchord_dist <- function(P,Q){
+                sum((sqrt(P) - sqrt(Q))^2)
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "squared_chord")),
+                     test_sqchord_dist(P,Q))
+        
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "squared_chord")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_sqchord_dist))
 })
 
 
