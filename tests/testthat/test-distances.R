@@ -629,7 +629,19 @@ test_that("distance(method = 'dice') computes the correct distance value.", {
 
 test_that("distance(method = 'fidelity') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "fidelity")), sum(sqrt(P * Q)))
+        test_fidelity_dist <- function(P,Q){
+                sum(sqrt(P * Q))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "fidelity")),
+                     test_fidelity_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "fidelity")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_fidelity_dist))
         
 })
 
