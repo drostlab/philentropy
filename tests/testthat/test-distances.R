@@ -97,13 +97,30 @@ test_that("distance(method = 'manhattan') computes the correct distance value.",
 
 test_that("distance(method = 'minkowski') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)), (sum(abs((P) - (Q))^4))^0.25)
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)), as.vector(stats::dist(base::rbind(P,Q), method = "minkowski", p = 4)))
-        expect_error(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski")), "Please specify p for the Minkowski distance!")
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)),
+                     (sum(abs((P) - (Q))^4))^0.25)
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)), 
+                     as.vector(stats::dist(base::rbind(P,Q), method = "minkowski", p = 4)))
+        
+        expect_error(as.vector(philentropy::distance(rbind(P, Q), method = "minkowski")),
+                     "Please specify p for the Minkowski distance!")
         
         expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "minkowski", p = 4)), (sum(abs((V) - (W))^4))^0.25)
-        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "minkowski", p = 4)), as.vector(stats::dist(base::rbind(V,W), method = "minkowski", p = 4)))
-        expect_error(as.vector(philentropy::distance(rbind(V, W), method = "minkowski")), "Please specify p for the Minkowski distance!")
+        
+        expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "minkowski", p = 4)),
+                     as.vector(stats::dist(base::rbind(V,W), method = "minkowski", p = 4)))
+        
+        expect_error(as.vector(philentropy::distance(rbind(V, W), method = "minkowski")),
+                     "Please specify p for the Minkowski distance!")
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "minkowski", p = 4)
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     as.vector(dist(distMat, method = "minkowski", p = 4)))
+        
 })
 
 
