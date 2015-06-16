@@ -285,19 +285,33 @@ test_that("distance(method = 'canberra') computes the correct distance value whe
 
 test_that("distance(method = 'lorentzian') computes the correct distance value using unit = log.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "lorentzian")), sum( log(1 + abs((P) - (Q)))))
+        test_lorentzian_dist <- function(P,Q){
+                sum( log(1 + abs((P) - (Q))))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "lorentzian")),
+                     test_lorentzian_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "lorentzian")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_lorentzian_dist))
         
 })
 
 test_that("distance(method = 'lorentzian') computes the correct distance value using unit = log2.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "lorentzian", unit = "log2")), sum( log2(1 + abs((P) - (Q)))))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "lorentzian",
+                                                     unit = "log2")), sum( log2(1 + abs((P) - (Q)))))
         
 })
 
 test_that("distance(method = 'lorentzian') computes the correct distance value using unit = log10.", {
         
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "lorentzian", unit = "log10")), sum( log10(1 + abs((P) - (Q)))))
+        
         
 })
 
