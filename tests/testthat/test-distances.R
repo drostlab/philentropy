@@ -842,8 +842,19 @@ test_that("distance(method = 'squared_chi') computes the correct distance value 
 
 test_that("distance(method = 'prob_symm') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "prob_symm")), 2 * sum(((P) - (Q))^2 / ((P) + (Q))))
+        test_probsymm_dist <- function(P,Q){
+                2 * sum(((P) - (Q))^2 / ((P) + (Q)))
+        }  
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "prob_symm")),
+                     test_probsymm_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "prob_symm")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_probsymm_dist))
 })
 
 
