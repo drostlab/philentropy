@@ -1026,8 +1026,19 @@ test_that("distance(method = 'additive_symm') computes the correct distance valu
 
 test_that("distance(method = 'kullback-leibler') computes the correct distance value using unit = log.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "kullback-leibler")), sum((P) * log((P) / (Q))))
+        test_KL_dist <- function(P,Q){
+                sum((P) * log((P) / (Q)))
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "kullback-leibler")),
+                     test_KL_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(1:10/sum(1:10),11:20/sum(11:20), 21:30/sum(21:30))
+        dist.vals <- distance(distMat, method = "kullback-leibler")
+        
+#         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+#                      test_dist_matrix(distMat, FUN = test_KL_dist))
 })
 
 
@@ -1076,7 +1087,19 @@ test_that("distance(method = 'kullback-leibler') computes the correct distance v
 
 test_that("distance(method = 'jeffreys') computes the correct distance value using unit = log.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jeffreys")), sum(((P) - (Q)) * log((P) / (Q))))
+        test_jeffreys_dist <- function(P,Q){
+                sum(((P) - (Q)) * log((P) / (Q)))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jeffreys")),
+                     test_jeffreys_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "jeffreys")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_jeffreys_dist))
         
 })
 
