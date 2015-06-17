@@ -1393,7 +1393,20 @@ test_that("distance(method = 'jensen_difference') computes the correct distance 
 
 test_that("distance(method = 'taneja') computes the correct distance value using unit = log.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "taneja")), sum(((P + Q) / 2) * log((P+Q) / (2 * sqrt(P*Q)))) )
+        test_taneja_dist <- function(P,Q){
+                sum(((P + Q) / 2) * log((P+Q) / (2 * sqrt(P*Q))))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "taneja")),
+                     test_taneja_dist(P,Q) )
+        
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "taneja")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_taneja_dist))
         
 })
 
