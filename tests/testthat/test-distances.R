@@ -708,11 +708,14 @@ test_that("distance(method = 'matusita') computes the correct distance value.", 
         
         
         # test correct computation of distance matrix
-        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(0.5,0.1,0.7,0.9,0.5))
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        C <- c(0,0.25,0,0.25,0.25,0.25)
+        distMat <- rbind(A,B,C)
         dist.vals <- distance(distMat, method = "matusita")
         
-#         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
-#                      test_dist_matrix(distMat, FUN = test_matusita_dist))
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_matusita_dist))
 })
 
 
@@ -764,7 +767,10 @@ test_that("distance(method = 'pearson') computes the correct distance value.", {
                      test_pearson_dist(P,Q))
         
         # test correct computation of distance matrix
-        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(0.5,0.1,0.7,0.9,0.5))
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        C <- c(0,0.25,0,0.25,0.25,0.25)
+        distMat <- rbind(A,B,C)
         dist.vals <- distance(distMat, method = "pearson")
         
 #         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
@@ -783,7 +789,10 @@ test_that("distance(method = 'neyman') computes the correct distance value.", {
                      test_neyman_dist(P,Q))
         
         # test correct computation of distance matrix
-        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(0.5,0.1,0.7,0.9,0.5))
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        C <- c(0,0.25,0,0.25,0.25,0.25)
+        distMat <- rbind(A,B,C)
         dist.vals <- distance(distMat, method = "neyman")
         
 #         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
