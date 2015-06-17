@@ -1412,13 +1412,15 @@ test_that("distance(method = 'taneja') computes the correct distance value using
 
 test_that("distance(method = 'taneja') computes the correct distance value using unit = log2.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "taneja", unit = "log2")), sum(((P + Q) / 2) * log2((P+Q) / (2 * sqrt(P*Q)))) )
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "taneja", unit = "log2")),
+                     sum(((P + Q) / 2) * log2((P+Q) / (2 * sqrt(P*Q)))) )
         
 })
 
 test_that("distance(method = 'taneja') computes the correct distance value using unit = log10.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "taneja", unit = "log10")), sum(((P + Q) / 2) * log10((P+Q) / (2 * sqrt(P*Q)))) )
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "taneja", unit = "log10")),
+                     sum(((P + Q) / 2) * log10((P+Q) / (2 * sqrt(P*Q)))) )
         
 })
 
@@ -1457,8 +1459,19 @@ test_that("distance(method = 'taneja') computes the correct distance value in ca
 
 test_that("distance(method = 'kumar-johnson') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "kumar-johnson")), sum(((P^2 - Q^2)^2 / (2 * (P*Q)^1.5))) )
+        test_kumar_dist <- function(P,Q){
+                sum(((P^2 - Q^2)^2 / (2 * (P*Q)^1.5)))
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "kumar-johnson")),
+                     test_kumar_dist(P,Q) )
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "kumar-johnson")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_kumar_dist))
 })
 
 
