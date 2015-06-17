@@ -1478,7 +1478,20 @@ test_that("distance(method = 'kumar-johnson') computes the correct distance valu
 
 test_that("distance(method = 'avg') computes the correct distance value.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "avg")), (sum( abs(P-Q) ) + max( abs(P-Q))) / 2 )
+        test_avg_dist <- function(P,Q){
+                (sum( abs(P-Q) ) + max( abs(P-Q))) / 2
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "avg")),
+                     test_avg_dist(P,Q) )
+        
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "avg")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_avg_dist))
         
 })
 
