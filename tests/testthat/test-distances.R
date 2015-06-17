@@ -1231,14 +1231,16 @@ test_that("distance(method = 'topsoe') computes the correct distance value using
 
 test_that("distance(method = 'topsoe') computes the correct distance value using unit = log2.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "topsoe", unit = "log2")), sum(((P) * log2(2 * (P) / ((P) + (Q)))) + ((Q) * log2(2 * (Q) / ((P) + (Q))))))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "topsoe", unit = "log2")),
+                     sum(((P) * log2(2 * (P) / ((P) + (Q)))) + ((Q) * log2(2 * (Q) / ((P) + (Q))))))
         
 })
 
 
 test_that("distance(method = 'topsoe') computes the correct distance value using unit = log10.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "topsoe", unit = "log10")), sum(((P) * log10(2 * (P) / ((P) + (Q)))) + ((Q) * log10(2 * (Q) / ((P) + (Q))))))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "topsoe", unit = "log10")),
+                     sum(((P) * log10(2 * (P) / ((P) + (Q)))) + ((Q) * log10(2 * (Q) / ((P) + (Q))))))
         
 })
 
@@ -1272,20 +1274,37 @@ test_that("distance(method = 'topsoe') computes the correct distance value in ca
 
 test_that("distance(method = 'jensen-shannon') computes the correct distance value using unit = log.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen-shannon")), 0.5 * ((sum((P) * log((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log((2 * (Q)) / ((P) + (Q)))))))
+        test_JS_dist <- function(P,Q){
+                0.5 * ((sum((P) * log((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log((2 * (Q)) / ((P) + (Q))))))
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen-shannon")),
+                     test_JS_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        C <- c(0,0.25,0,0.25,0.25,0.25)
+        
+        distMat <- rbind(A,B,C)
+        dist.vals <- distance(distMat, method = "jensen-shannon")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_JS_dist))
 })
 
 
 test_that("distance(method = 'jensen-shannon') computes the correct distance value using unit = log2.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen-shannon", unit = "log2")), 0.5 * ((sum((P) * log2((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log2((2 * (Q)) / ((P) + (Q)))))))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen-shannon", unit = "log2")),
+                     0.5 * ((sum((P) * log2((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log2((2 * (Q)) / ((P) + (Q)))))))
         
 })
 
 test_that("distance(method = 'jensen-shannon') computes the correct distance value using unit = log10.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen-shannon", unit = "log10")), 0.5 * ((sum((P) * log10((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log10((2 * (Q)) / ((P) + (Q)))))))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen-shannon", unit = "log10")),
+                     0.5 * ((sum((P) * log10((2 * (P)) / ((P) + (Q)))))  +  (sum((Q) * log10((2 * (Q)) / ((P) + (Q)))))))
         
 })
 
@@ -1322,21 +1341,24 @@ test_that("distance(method = 'jensen-shannon') computes the correct distance val
 
 test_that("distance(method = 'jensen_difference') computes the correct distance value using unit = log.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen_difference")), sum(((((P) * log((P))) + ((Q) * log((Q)))) / 2 ) - (((P) + (Q)) / 2) * log(((P) + (Q)) / 2)))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen_difference")),
+                     sum(((((P) * log((P))) + ((Q) * log((Q)))) / 2 ) - (((P) + (Q)) / 2) * log(((P) + (Q)) / 2)))
         
 })
 
 
 test_that("distance(method = 'jensen_difference') computes the correct distance value using unit = log2.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen_difference", unit = "log2")), sum(((((P) * log2((P))) + ((Q) * log2((Q)))) / 2 ) - (((P) + (Q)) / 2) * log2(((P) + (Q)) / 2)))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen_difference", unit = "log2")),
+                     sum(((((P) * log2((P))) + ((Q) * log2((Q)))) / 2 ) - (((P) + (Q)) / 2) * log2(((P) + (Q)) / 2)))
         
 })
 
 
 test_that("distance(method = 'jensen_difference') computes the correct distance value using unit = log10.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen_difference", unit = "log10")), sum(((((P) * log10((P))) + ((Q) * log10((Q)))) / 2 ) - (((P) + (Q)) / 2) * log10(((P) + (Q)) / 2)))
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "jensen_difference", unit = "log10")),
+                     sum(((((P) * log10((P))) + ((Q) * log10((Q)))) / 2 ) - (((P) + (Q)) / 2) * log10(((P) + (Q)) / 2)))
         
 })
 
