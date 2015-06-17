@@ -1034,11 +1034,14 @@ test_that("distance(method = 'kullback-leibler') computes the correct distance v
                      test_KL_dist(P,Q))
         
         # test correct computation of distance matrix
-        distMat <- rbind(1:10/sum(1:10),11:20/sum(11:20), 21:30/sum(21:30))
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        C <- c(0,0.25,0,0.25,0.25,0.25)
+        distMat <- rbind(A,B,C)
         dist.vals <- distance(distMat, method = "kullback-leibler")
         
-#         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
-#                      test_dist_matrix(distMat, FUN = test_KL_dist))
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_KL_dist))
 })
 
 
@@ -1140,8 +1143,23 @@ test_that("distance(method = 'jeffreys') computes the correct distance value in 
 
 test_that("distance(method = 'k_divergence') computes the correct distance value using unit = log.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "k_divergence")), sum((P) * log(2 * (P) / ((P) + (Q)))))
+        test_kdivergence_dist <- function(P,Q){
+                sum((P) * log(2 * (P) / ((P) + (Q))))
+        }
         
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "k_divergence")),
+                     test_kdivergence_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        A <- c(0,0.25,0.25,0,0.25,0.25)
+        B <- c(0,0,0.25,0.25,0.25,0.25)
+        C <- c(0,0.25,0,0.25,0.25,0.25)
+                
+        distMat <- rbind(A,B,C)
+        dist.vals <- distance(distMat, method = "k_divergence")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_kdivergence_dist))
 })
 
 test_that("distance(method = 'k_divergence') computes the correct distance value using unit = log2.", {
