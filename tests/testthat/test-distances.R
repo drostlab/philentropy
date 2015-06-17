@@ -1212,7 +1212,19 @@ test_that("distance(method = 'k_divergence') computes the correct distance value
 
 test_that("distance(method = 'topsoe') computes the correct distance value using unit = log.", {
         
-        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "topsoe")), sum(((P) * log(2 * (P) / ((P) + (Q)))) + ((Q) * log(2 * (Q) / ((P) + (Q))))))
+        test_topsoe_dist <- function(P,Q){
+                sum(((P) * log(2 * (P) / ((P) + (Q)))) + ((Q) * log(2 * (Q) / ((P) + (Q)))))
+        }
+        
+        expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "topsoe")),
+                     test_topsoe_dist(P,Q))
+        
+        # test correct computation of distance matrix
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        dist.vals <- distance(distMat, method = "topsoe")
+        
+        expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+                     test_dist_matrix(distMat, FUN = test_topsoe_dist))
         
 })
 
