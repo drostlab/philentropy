@@ -1,9 +1,9 @@
 philentropy
 ===========
 
-## A Distance Measure and Information Theory Jackknife
+## Similarity and Distance Quantification between Probability Functions
 
-The `philentropy` package implements popular distance/similarity measures to compute distances between probability density functions.
+The `philentropy` package implements fundamental distance and similarity measures to quantify distances between probability density functions.
 
 
 ## Installation
@@ -40,7 +40,7 @@ library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
 ## Important Functions
 
 ### Distance Measures
-* `distance()` : implements almost all popular probability distance (or similarity) measures (so far 46 measures)
+* `distance()` : implements 46 fundamental probability distance (or similarity) measures
 
 ### Information Theory
 
@@ -64,10 +64,9 @@ provided in this package.
 Furthermore, in case you find some bugs or need additional (more flexible) functionality of parts
 of this package, please let me know:
 
-[twitter: HajkDrost](https://twitter.com/hajkdrost) or  [email](hajk-georg.drost@informatik.uni-halle.de)
+https://github.com/HajkD/philentropy/issues
 
-For Bug Report: Please send me an [issue](https://github.com/HajkD/philentropy/issues).
-
+or find me on [twitter: HajkDrost](https://twitter.com/hajkdrost) 
 
 
 
