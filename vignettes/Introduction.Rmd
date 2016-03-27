@@ -13,11 +13,11 @@ Comparison is a fundamental method of scientific research leading to more genera
 
 Applying the method of comparison in statistics often means computing distances between probability functions. In this context [Sung-Hyuk Cha (2007)](http://csis.pace.edu/ctappert/dps/d861-12/session4-p2.pdf) provides a clear definition of distance : 
 
-: From the scientific and mathematical point of view, _distance_ is defined as a quantitative degree of how far apart two objects are.
+> From the scientific and mathematical point of view, _distance_ is defined as a quantitative degree of how far apart two objects are.
 
 Cha's comprehensive review of distance/similarity measures motivated me to implement all these measures to better understand their comparative nature. As Cha states:
 
-: The choice of distance/similarity measures depends on the measurement type or representation of objects.
+> The choice of distance/similarity measures depends on the measurement type or representation of objects.
 
 As a result, the `philentropy` package implements functions that are part of the following topics:
 
