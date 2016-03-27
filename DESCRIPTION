@@ -1,12 +1,11 @@
 Package: philentropy
 Type: Package
-Title: A Distance Measure and Information Theory Jackknife
+Title: Similarity and Distance Quantification between Probability Functions
 Version: 0.0.1
 Date: 2014-05-03
-Authors@R: as.person(
-    "Hajk-Georg Drost <hajk-georg.drost@informatik.uni-halle.de> [aut, cre]")
-Maintainer: Hajk-Georg Drost <hajk-georg.drost@informatik.uni-halle.de>
-Description: The philentropy package implements popular distance/similarity measures to compute distances between probability density functions.
+Authors: Hajk-Georg Drost
+Maintainer: Hajk-Georg Drost <hgd23@cam.ac.uk>
+Description: This package implements fundamental distance and similarity measures to quantify differences between univeriate and multivariate probability density functions.
 Depends: R (>= 3.1.2)
 Imports: Rcpp, dplyr, KernSmooth
 License: GPL-2
