@@ -3,12 +3,12 @@
 #' 
 #' The following methods to compute linear correlations are implemented in this function:
 #'  
-#'  @param x a numeric \code{vector}, \code{matrix}, or \code{data.frame}.
-#'  @param y a numeric \code{vector} that should be correlated with \code{x}.
-#'  @param method the method to compute the linear correlation between \code{x} and \code{y}.
-#'  @param test.na a boolean value indicating whether input data should be checked for \code{NA} values.
-#'  @author Hajk-Georg Drost
-#'  @details
+#' @param x a numeric \code{vector}, \code{matrix}, or \code{data.frame}.
+#' @param y a numeric \code{vector} that should be correlated with \code{x}.
+#' @param method the method to compute the linear correlation between \code{x} and \code{y}.
+#' @param test.na a boolean value indicating whether input data should be checked for \code{NA} values.
+#' @author Hajk-Georg Drost
+#' @details
 #'  
 #'    \itemize{
 #'   \item \code{method = "pearson"} : Pearson's correlation coefficient (centred).
@@ -23,7 +23,7 @@
 #'  \itemize{
 #'  \item \emph{Pearson's correlation coefficient (centred)} : 
 #'  } 
-#'    @export 
+#' @export 
 lin.cor <- function(x,y = NULL, method = "pearson", test.na = FALSE){
         
         if(is.null(y)){
