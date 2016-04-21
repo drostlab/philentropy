@@ -502,6 +502,9 @@ distance <- function(x ,
         
         else if(method == "matusita"){
                 
+                if (!all(colSums(x) == 1.0))
+                        stop ("Please make sure that all vectors sum up to 1.0 ...")
+                
                 if(ncols == 2)
                         dist <- matusita(x[ , 1], x[ , 2], test.na)
                 
@@ -599,6 +602,9 @@ distance <- function(x ,
         
         else if(method == "kullback-leibler"){
                 
+                if (!all(colSums(x) == 1.0))
+                        stop ("Please make sure that all vectors sum up to 1.0 ...")
+                
                 if(ncols == 2)
                         dist <- kullback_leibler_distance(x[ , 1], x[ , 2], test.na,unit)
                 if(ncols > 2)
@@ -615,6 +621,9 @@ distance <- function(x ,
         }
         
         else if(method == "k_divergence"){
+                
+                if (!all(colSums(x) == 1.0))
+                        stop ("Please make sure that all vectors sum up to 1.0 ...")
                 
                 if(ncols == 2)
                         dist <- k_divergence(x[ , 1], x[ , 2], test.na, unit)
