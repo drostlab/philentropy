@@ -1,10 +1,9 @@
 philentropy
 ===========
 
-> Describe and understand the world through data.
-
-
 ### Similarity and Distance Quantification between Probability Functions
+
+> Describe and understand the world through data.
 
 Data collection and data comparison are the foundations of scientific research.
 This scientific method allows us to infer natural patterns and enables us to
