@@ -45,11 +45,11 @@ test_that("'euclidien' (or any other not implemented string) is caught when wron
         expect_error(distance(distMat, method = "euclidien"),"Method 'euclidien' is not implemented in this function. Please consult getDistMethods().")
 } )
 
-# test_that("Only numeric values are passed to distance()", {
-#         
-#         distMat <- rbind(rep("A",10),rep("B",10))
-#         expect_error(distance(distMat, method = "euclidean"), paste0("Your input ",class(distMat)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
-# })
+test_that("Only numeric values are passed to distance()", {
+
+        distMat <- rbind(rep("A",10),rep("B",10))
+        expect_error(distance(distMat, method = "euclidean"), paste0("Your input ",class(distMat)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
+})
 
 
 test_that("Only choose from units: log, log2, or log10", {
@@ -389,8 +389,6 @@ test_that("distance(method = 'wavehedges') computes the correct distance value i
 })
 
 
-
-
 test_that("distance(method = 'czekanowski') computes the correct distance value.", {
         
         test_czekanowski_dist <- function(P,Q){
@@ -680,14 +678,14 @@ test_that("distance(method = 'bhattacharyya') computes the correct distance valu
 test_that("distance(method = 'hellinger') computes the correct distance value.", {
         
         test_hellinger_dist <- function(P,Q){
-                2 * sqrt(1 - sum(sqrt(P * Q)))
+                2L * sqrt(1L - sum(sqrt(P * Q)))
         }
         
         expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "hellinger")),
                      test_hellinger_dist(P,Q))
         
         # test correct computation of distance matrix
-        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5))
+        distMat <- rbind(rep(0.2,5),rep(0.1,5), c(5,1,7,9,5)/sum(c(5,1,7,9,5)))
         dist.vals <- distance(distMat, method = "hellinger")
         
         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
@@ -1316,7 +1314,6 @@ test_that("distance(method = 'jensen-shannon') computes the correct distance val
         
         js <- function(x,y){
                 
-                dist <- vector(mode = "numeric", length = 1)
                 sum1 <- 0
                 sum2 <- 0
                 
