@@ -21,14 +21,13 @@
 #' vectors P and Q, and KL(P || R), KL(Q || R) denote the Kullback-Leibler
 #' Divergence of P and R, as well as Q and R.
 #' 
-#' General properties of the Jensen-Shannon Divergence:
+#' \strong{General properties of the Jensen-Shannon Divergence:}
 #' 
-#' 1) JSD is non-negative.
-#' 
-#' 2) JSD is a symmetric measure JSD(P || Q) = JSD(Q || P).
-#' 
-#' 3) JSD = 0, if and only if P = Q.
-#' 
+#' \itemize{
+#' \item \code{1)} JSD is non-negative.
+#' \item \code{2)} JSD is a symmetric measure JSD(P || Q) = JSD(Q || P).
+#' \item \code{3)} JSD = 0, if and only if P = Q.
+#' }
 #' @references Lin J. 1991. "Divergence Measures Based on the Shannon Entropy".
 #' IEEE Transactions on Information Theory. (33) 1: 145-151.
 #' 
