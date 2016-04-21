@@ -3,15 +3,23 @@ Type: Package
 Title: Similarity and Distance Quantification between Probability Functions
 Version: 0.0.1
 Date: 2014-05-03
-Authors: Hajk-Georg Drost
+Author: Hajk-Georg Drost
 Maintainer: Hajk-Georg Drost <hgd23@cam.ac.uk>
-Description: This package implements fundamental distance and similarity measures to quantify differences between univeriate and multivariate probability density functions.
-Depends: R (>= 3.1.2)
-Imports: Rcpp, dplyr, KernSmooth
+Description: This package implements fundamental distance and similarity
+    measures to quantify differences between univeriate and multivariate probability
+    density functions.
+Depends:
+    R (>= 3.1.2)
+Imports:
+    Rcpp,
+    dplyr,
+    KernSmooth
 License: GPL-2
 LazyData: true
 LinkingTo: Rcpp
 URL: https://github.com/HajkD/philentropy
-Suggests: testthat,
+Suggests:
+    testthat,
     knitr
 VignetteBuilder: knitr
+RoxygenNote: 5.0.1
