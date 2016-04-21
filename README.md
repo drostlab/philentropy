@@ -47,7 +47,7 @@ library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
 
  - [Introduction](https://github.com/HajkD/philentropy/blob/master/vignettes/Introduction.Rmd)
  - [Distances and Similarity Measures](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd)
- - [Information Theory]()
+ - [Information Theory](https://github.com/HajkD/philentropy/blob/master/vignettes/Information_Theory.Rmd)
  
 ## Important Functions
 
