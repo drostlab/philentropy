@@ -9,14 +9,14 @@ Data collection and data comparison are the foundations of scientific research.
 This scientific method allows us to infer natural patterns and enables us to
 understand the world around us. _Mathematics_ is the abstract framework in which
 we encode the patterns that we already learned from nature and _Statistics_ summarizes the
-framework which aims to quantify the uncertainty of these patterns. In statistics natural patterns
+framework aiming to quantify the uncertainty of these patterns. In statistics natural patterns
 are described in form of probability distributions which either follow a fixed pattern (parametric distributions) or more dynamic patterns (non-parametric distributions).
 
 The `philentropy` package implements fundamental distance and similarity measures to quantify distances between probability density functions. In this regard, it aims to provide a framework for comparing
 natural patterns in a statistical notation.  
 
 This project is born out of my passion for statistics and I hope that it will be useful to
-the people who share this passion with me.
+the people who share it with me.
 
 ### Installation
 
