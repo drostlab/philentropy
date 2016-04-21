@@ -194,8 +194,11 @@ distance <- function(x ,
         
         
 
-        if(!is.element(class(x),c("data.frame","matrix")))
-                stop("x should be a data.frame or matrix.")
+        if (!is.element(class(x),c("data.frame","matrix")))
+                stop ("x should be a data.frame or matrix.")
+        
+        if (is.character(x))
+                stop (paste0("Your input ",class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
         
         dist_methods <- vector(mode = "character", length = 46)
         dist_methods <- c("euclidean", "manhattan", "minkowski", "chebyshev",
