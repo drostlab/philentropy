@@ -8,3 +8,60 @@ vignette: >
 ---
 
 ## Information Theory measures in `philentropy`
+
+> The laws of probability, so true in general, so fallacious in particular.
+> 
+> \- Edward Gibbon
+
+Information theory and statistics were beautifully fused by [Solomon Kullback](https://books.google.de/books?hl=de&lr=&id=luHcCgAAQBAJ&oi=fnd&pg=PR13&dq=S+kullback+%2B+Information+Theory&ots=G0OBmsYYSW&sig=R9aJhY73UQslIePFyZ3s-0sgiPU#v=onepage&q=S%20kullback%20%2B%20Information%20Theory&f=false). This fusion allowed to quantify correlations and similarities between random variables
+from a different perspective. Modern fields such as machine learning and statistical data science build upon this fusion and the most powerful statistical techniques used today are based on an information theoretic foundation.
+
+The `philentropy` aims to follow this tradition and therefore, it implements
+the most important information theory measures.
+
+### Shannon's Entropy H(X)
+
+
+```{r,eval=FALSE}
+# define probabilities P(X)
+Prob <- 1:10/sum(1:10)
+# Compute Shannon's Entropy
+H(Prob)
+```
+
+### Shannon's Joint-Entropy H(X,Y)
+
+
+```{r,eval=FALSE}
+# define the joint distribution P(X,Y)
+P_xy <- 1:100/sum(1:100)
+# Compute Shannon's Joint-Entropy
+JE(P_xy)
+```
+
+### Shannon's Conditional-Entropy H(X | Y)
+
+```{r,eval=FALSE}
+# define the distribution P(X)
+P_x <- 1:10/sum(1:10)
+# define the distribution P(Y)
+P_y <- 11:20/sum(11:20)
+
+# Compute Shannon's Joint-Entropy
+CE(P_x,P_y)
+```
+
+
+### Mutual Information I(X,Y)
+
+### Kullback-Leibler Divergence
+
+### Jensen-Shannon Divergence
+
+### Generalized Jensen-Shannon Divergence
+
+
+
+
+
+
