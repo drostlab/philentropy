@@ -117,10 +117,6 @@ Since my first stats class I am fascinated by the potential power of determining
 * Kendall's correlation coefficient
 * Spearman's correlation coefficient
 
-#### Non-Linear Correlation Methods
-
-#### Causal Inference Methods
-
 
 
 
