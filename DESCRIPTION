@@ -1,13 +1,13 @@
 Package: philentropy
 Type: Package
-Title: Similarity and Distance Quantification between Probability Functions
+Title: Similarity and Distance Quantification Between Probability Functions
 Version: 0.0.1
-Date: 2014-05-03
+Date: 2017-04-25
 Author: Hajk-Georg Drost
 Maintainer: Hajk-Georg Drost <hgd23@cam.ac.uk>
-Description: This package implements fundamental distance and similarity
+Description: Computes 46 fundamental distance and similarity
     measures to quantify differences between univeriate and multivariate probability
-    density functions.
+    density functions. Furthermore, this package implements common information theoretic measures.
 Depends:
     R (>= 3.1.2)
 Imports:
@@ -22,4 +22,4 @@ Suggests:
     testthat,
     knitr
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
