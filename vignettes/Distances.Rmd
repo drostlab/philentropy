@@ -151,16 +151,6 @@ The advantage of `distance()` is that it implements 46 distance measures based o
 
 
 
-### Specifying the arguments in `distance()`
-
-
-
-## Details: Distance and Similarity Measures
-
-### Euclidean Distance
-
-
-
 
 
 
