@@ -32,11 +32,10 @@ Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 gJSD(Prob)
 
 }
-\author{
-Hajk-Georg Drost
-}
 \seealso{
 \code{\link{KL}}, \code{\link{H}}, \code{\link{JSD}},
  \code{\link{CE}}, \code{\link{JE}}
 }
-
+\author{
+Hajk-Georg Drost
+}

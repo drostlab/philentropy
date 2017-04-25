@@ -39,4 +39,3 @@ x.prob <- estimate.probability(x, method = "empirical")
 \author{
 Hajk-Georg Drost
 }
-

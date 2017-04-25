@@ -41,9 +41,6 @@ H(Y)}.
  CE(1:10/sum(1:10),1:10/sum(1:10))
 
 }
-\author{
-Hajk-Georg Drost
-}
 \references{
 Shannon, Claude E. 1948. "A Mathematical Theory of
 Communication". \emph{Bell System Technical Journal} \bold{27} (3): 379-423.
@@ -51,4 +48,6 @@ Communication". \emph{Bell System Technical Journal} \bold{27} (3): 379-423.
 \seealso{
 \code{\link{H}}, \code{\link{JE}}
 }
-
+\author{
+Hajk-Georg Drost
+}

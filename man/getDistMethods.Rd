@@ -19,4 +19,3 @@ getDistMethods()
 \author{
 Hajk-Georg Drost
 }
-

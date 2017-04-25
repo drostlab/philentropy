@@ -69,9 +69,6 @@ heatmap(KLMatrix)
 
 
 }
-\author{
-Hajk-Georg Drost
-}
 \references{
 Cover Thomas M. and Thomas Joy A. 2006. Elements of Information
 Theory. \emph{John Wiley & Sons}.
@@ -79,4 +76,6 @@ Theory. \emph{John Wiley & Sons}.
 \seealso{
 \code{\link{H}}, \code{\link{CE}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
 }
-
+\author{
+Hajk-Georg Drost
+}

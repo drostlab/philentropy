@@ -24,9 +24,6 @@ log2(P(X,Y))} based on a given joint-probability vector \eqn{P(X,Y)}.
 JE(1:100/sum(1:100))
 
 }
-\author{
-Hajk-Georg Drost
-}
 \references{
 Shannon, Claude E. 1948. "A Mathematical Theory of
 Communication". \emph{Bell System Technical Journal} \bold{27} (3): 379-423.
@@ -34,4 +31,6 @@ Communication". \emph{Bell System Technical Journal} \bold{27} (3): 379-423.
 \seealso{
 \code{\link{H}}, \code{\link{CE}}, \code{\link{KL}}, \code{\link{JSD}}, \code{\link{gJSD}}, \code{\link{distance}}
 }
-
+\author{
+Hajk-Georg Drost
+}

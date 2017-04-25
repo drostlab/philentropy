@@ -23,4 +23,3 @@ dist.diversity(rbind(1:10/sum(1:10), 20:29/sum(20:29)))
 \author{
 Hajk-Georg Drost
 }
-

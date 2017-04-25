@@ -72,9 +72,6 @@ JSDMatrix <- JSD(Prob)
 heatmap(JSDMatrix)
 
 }
-\author{
-Hajk-Georg Drost
-}
 \references{
 Lin J. 1991. "Divergence Measures Based on the Shannon Entropy".
 IEEE Transactions on Information Theory. (33) 1: 145-151.
@@ -85,4 +82,6 @@ distributions". IEEE Trans. on Info. Thy. (49) 3: 1858-1860.
 \seealso{
 \code{\link{KL}}, \code{\link{H}}, \code{\link{CE}}, \code{\link{gJSD}}, \code{\link{distance}}
 }
-
+\author{
+Hajk-Georg Drost
+}

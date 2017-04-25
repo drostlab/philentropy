@@ -38,4 +38,3 @@ The following methods to compute linear correlations are implemented in this fun
 \author{
 Hajk-Georg Drost
 }
-

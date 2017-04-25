@@ -181,13 +181,12 @@ distance(ProbMatrix, method = "kullback-leibler", unit = "log2")
 distance(ProbMatrix, method = "kullback-leibler", unit = "log10")
 
 }
-\author{
-Hajk-Georg Drost
-}
 \references{
 Sung-Hyuk Cha. (2007). \emph{Comprehensive Survey on Distance/Similarity Measures between Probability Density Functions}. International Journal of Mathematical Models and Methods in Applied Sciences 4: 1.
 }
 \seealso{
 \code{\link{getDistMethods}}, \code{\link{estimate.probability}}, \code{\link{dist.diversity}}
 }
-
+\author{
+Hajk-Georg Drost
+}
