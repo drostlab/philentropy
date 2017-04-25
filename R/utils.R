@@ -17,7 +17,7 @@
 
 
 
-#' @useDynLib philentropy
+#' @useDynLib philentropy, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 NULL
 
