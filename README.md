@@ -36,7 +36,10 @@ install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
 ## Important Functions
 
 ### Distance Measures
-* `distance()` : implements 46 fundamental probability distance (or similarity) measures
+* `distance()` : Implements 46 fundamental probability distance (or similarity) measures
+* `getDistMethods()` : Get available method names for 'distance'
+* `dist.diversity()` : Distance Diversity between Probability Density Functions
+* `estimate.probability()` : Estimate Probability Vectors From Count Vectors
 
 ### Information Theory
 
