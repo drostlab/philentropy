@@ -602,7 +602,7 @@ distance <- function(x ,
         
         else if(method == "kullback-leibler"){
                 
-                if (!all(colSums(x) == 1.0))
+                if (!all(colSums(x) < 1.00000001))
                         stop ("Please make sure that all vectors sum up to 1.0 ...")
                 
                 if(ncols == 2)
