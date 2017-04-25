@@ -18,7 +18,7 @@
 #' 
 #' @references
 #' 
-#' Matt Wand (2015). KernSmooth: Functions for Kernel Smoothing Supporting Wand & Jones (1995). R package version 2.23-14. \url{http://CRAN.R-project.org/package=KernSmooth}
+#' Matt Wand (2015). KernSmooth: Functions for Kernel Smoothing Supporting Wand & Jones (1995). R package version 2.23-14.
 #'
 #' Henry Deng and Hadley Wickham (2011). Density estimation in R. \url{http://vita.had.co.nz/papers/density-estimation.pdf}.
 #' @export
