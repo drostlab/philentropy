@@ -6,8 +6,7 @@ philentropy
 > Describe and understand the world through data.
 
 Data collection and data comparison are the foundations of scientific research.
-This scientific method allows us to infer natural patterns and enables us to
-understand the world around us. _Mathematics_ provides the abstract framework to encode the patterns we learned from nature and _Statistics_ provides the
+_Mathematics_ provides the abstract framework to describe patterns we observe in nature and _Statistics_ provides the
 framework to quantify the uncertainty of these patterns. In statistics natural patterns
 are described in form of probability distributions which either follow a fixed pattern (parametric distributions) or more dynamic patterns (non-parametric distributions).
 
@@ -21,25 +20,9 @@ the people who share it with me.
 
 ```r
 # install.packages("devtools")
-
 # install the current version of philentropy on your system
 library(devtools)
 install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
-
-# On Windows, this won't work - see ?build_github_devtools
-install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
-
-# When working with Windows, first you need to install the
-# R package: rtools -> install.packages("rtools")
-
-# Afterwards you can install devtools -> install.packages("devtools")
-# and then you can run:
-
-devtools::install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
-
-# and then call it from the library
-library("philentropy", lib.loc = "C:/Program Files/R/R-3.1.1/library")
-
 ```
 
 ## Tutorials 
