@@ -16,6 +16,14 @@ natural patterns in a statistical notation.
 This project is born out of my passion for statistics and I hope that it will be useful to
 the people who share it with me.
 
+
+## Tutorials 
+
+ - [Introduction](https://github.com/HajkD/philentropy/blob/master/vignettes/Introduction.Rmd)
+ - [Distances and Similarity Measures](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd)
+ - [Information Theory](https://github.com/HajkD/philentropy/blob/master/vignettes/Information_Theory.Rmd)
+ 
+ 
 ### Installation
 
 ```r
@@ -25,12 +33,6 @@ library(devtools)
 install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
 ```
 
-## Tutorials 
-
- - [Introduction](https://github.com/HajkD/philentropy/blob/master/vignettes/Introduction.Rmd)
- - [Distances and Similarity Measures](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd)
- - [Information Theory](https://github.com/HajkD/philentropy/blob/master/vignettes/Information_Theory.Rmd)
- 
 ## Important Functions
 
 ### Distance Measures
