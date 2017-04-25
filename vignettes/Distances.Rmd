@@ -124,7 +124,7 @@ stats::dist(ProbMatrix, method = "euclidean")
 
 Whereas `distance()` returns a symmetric distance matrix, `stats::dist()` returns only one part of the symmetric matrix. 
 
-Now let's compare the run times of base R and `philentropy`. For this purpose you need to install the [microbenchmark](http://cran.r-project.org/web/packages/microbenchmark/index.html) package.
+Now let's compare the run times of base R and `philentropy`. For this purpose you need to install the `microbenchmark` package.
 
 ```{r,eval=FALSE}
 # install.packages("microbenchmark")
