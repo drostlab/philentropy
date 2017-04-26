@@ -8,6 +8,57 @@
 
 using namespace Rcpp;
 
+// Ecpp
+double Ecpp(const Rcpp::NumericVector& P, Rcpp::String unit);
+RcppExport SEXP philentropy_Ecpp(SEXP PSEXP, SEXP unitSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type P(PSEXP);
+    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
+    rcpp_result_gen = Rcpp::wrap(Ecpp(P, unit));
+    return rcpp_result_gen;
+END_RCPP
+}
+// JEcpp
+double JEcpp(const Rcpp::NumericVector& JointProbabilities, Rcpp::String unit);
+RcppExport SEXP philentropy_JEcpp(SEXP JointProbabilitiesSEXP, SEXP unitSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type JointProbabilities(JointProbabilitiesSEXP);
+    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
+    rcpp_result_gen = Rcpp::wrap(JEcpp(JointProbabilities, unit));
+    return rcpp_result_gen;
+END_RCPP
+}
+// CEcpp
+double CEcpp(Rcpp::NumericVector JointProbabilities, Rcpp::NumericVector Probabilities, Rcpp::String unit);
+RcppExport SEXP philentropy_CEcpp(SEXP JointProbabilitiesSEXP, SEXP ProbabilitiesSEXP, SEXP unitSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type JointProbabilities(JointProbabilitiesSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type Probabilities(ProbabilitiesSEXP);
+    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
+    rcpp_result_gen = Rcpp::wrap(CEcpp(JointProbabilities, Probabilities, unit));
+    return rcpp_result_gen;
+END_RCPP
+}
+// MIcpp
+double MIcpp(Rcpp::NumericVector X, Rcpp::NumericVector Y, Rcpp::NumericVector XY, Rcpp::String unit);
+RcppExport SEXP philentropy_MIcpp(SEXP XSEXP, SEXP YSEXP, SEXP XYSEXP, SEXP unitSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type X(XSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type XY(XYSEXP);
+    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
+    rcpp_result_gen = Rcpp::wrap(MIcpp(X, Y, XY, unit));
+    return rcpp_result_gen;
+END_RCPP
+}
 // pearson_corr_centred
 double pearson_corr_centred(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, bool testNA);
 RcppExport SEXP philentropy_pearson_corr_centred(SEXP xSEXP, SEXP ySEXP, SEXP testNASEXP) {
@@ -715,57 +766,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     rcpp_result_gen = Rcpp::wrap(avg(P, Q, testNA));
-    return rcpp_result_gen;
-END_RCPP
-}
-// Ecpp
-double Ecpp(const Rcpp::NumericVector& P, Rcpp::String unit);
-RcppExport SEXP philentropy_Ecpp(SEXP PSEXP, SEXP unitSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type P(PSEXP);
-    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
-    rcpp_result_gen = Rcpp::wrap(Ecpp(P, unit));
-    return rcpp_result_gen;
-END_RCPP
-}
-// JEcpp
-double JEcpp(const Rcpp::NumericVector& JointProbabilities, Rcpp::String unit);
-RcppExport SEXP philentropy_JEcpp(SEXP JointProbabilitiesSEXP, SEXP unitSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type JointProbabilities(JointProbabilitiesSEXP);
-    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
-    rcpp_result_gen = Rcpp::wrap(JEcpp(JointProbabilities, unit));
-    return rcpp_result_gen;
-END_RCPP
-}
-// CEcpp
-double CEcpp(Rcpp::NumericVector JointProbabilities, Rcpp::NumericVector Probabilities, Rcpp::String unit);
-RcppExport SEXP philentropy_CEcpp(SEXP JointProbabilitiesSEXP, SEXP ProbabilitiesSEXP, SEXP unitSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type JointProbabilities(JointProbabilitiesSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type Probabilities(ProbabilitiesSEXP);
-    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
-    rcpp_result_gen = Rcpp::wrap(CEcpp(JointProbabilities, Probabilities, unit));
-    return rcpp_result_gen;
-END_RCPP
-}
-// MIcpp
-double MIcpp(Rcpp::NumericVector X, Rcpp::NumericVector Y, Rcpp::NumericVector XY, Rcpp::String unit);
-RcppExport SEXP philentropy_MIcpp(SEXP XSEXP, SEXP YSEXP, SEXP XYSEXP, SEXP unitSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type X(XSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type Y(YSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type XY(XYSEXP);
-    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
-    rcpp_result_gen = Rcpp::wrap(MIcpp(X, Y, XY, unit));
     return rcpp_result_gen;
 END_RCPP
 }
