@@ -3,6 +3,8 @@ philentropy
 
 [![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy)
 
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/philentropy)](http://cran.r-project.org/package=philentropy)
+
 
 ### Similarity and Distance Quantification between Probability Functions
 
