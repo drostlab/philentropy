@@ -1,6 +1,9 @@
 philentropy
 ===========
 
+[![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy)
+
+
 ### Similarity and Distance Quantification between Probability Functions
 
 > Describe and understand the world through data.
@@ -25,13 +28,22 @@ the people who share it with me.
  
  
 ### Installation
+```r
+# install philentropy version 0.0.1 from CRAN
+install.packages("philentropy")
+```
 
+### Install Developer Version
 ```r
 # install.packages("devtools")
 # install the current version of philentropy on your system
 library(devtools)
 install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
 ```
+
+### NEWS
+
+The current status of the package as well as a detailed history of the functionality of each version of `philentropy` can be found in the [NEWS](NEWS.md) section.
 
 ## Important Functions
 
