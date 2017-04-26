@@ -1,0 +1,7 @@
+language: r
+bioc_required: true
+warnings_are_errors: true
+sudo: required
+r_check_revdep: false
+r_check_args: "--as-cran"
+cran: http://cran.rstudio.com/
