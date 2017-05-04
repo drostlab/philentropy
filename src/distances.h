@@ -1,6 +1,6 @@
 //  Part of the philentropy package
 //
-//  Copyright (C) 2015 Hajk-Georg Drost
+//  Copyright (C) 2015-2017 Hajk-Georg Drost
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ double custom_log2(const double& x ){
 
 // [[Rcpp::export]]
 double custom_log10(const double& x ){
-        return log(x)/log(10);
+        return log(x)/log(10.0);
 }
 
 // @export
@@ -706,8 +706,8 @@ double cosine_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
                 }
                 
                 prod      = P[i] * Q[i];
-                p_square  += pow(P[i], 2);
-                q_square  += pow(Q[i], 2);
+                p_square  += pow(P[i], 2.0);
+                q_square  += pow(Q[i], 2.0);
                 dist      += prod;
                 
         }
@@ -739,8 +739,8 @@ double kumar_hassebrook(const Rcpp::NumericVector& P, const Rcpp::NumericVector&
                 }
                 
                 prod      = P[i] * Q[i];
-                p_square  += pow(P[i], 2);
-                q_square  += pow(Q[i], 2);
+                p_square  += pow(P[i], 2.0);
+                q_square  += pow(Q[i], 2.0);
                 dist      += prod;
                 
         }
@@ -780,9 +780,9 @@ double dice_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
                         }
                 }
                 
-                diff_square =  pow((P[i] - Q[i]), 2);
-                p_square    += pow(P[i], 2);
-                q_square    += pow(Q[i], 2);
+                diff_square =  pow((P[i] - Q[i]), 2.0);
+                p_square    += pow(P[i], 2.0);
+                q_square    += pow(Q[i], 2.0);
                 dist        += diff_square;
                 
         }
@@ -872,7 +872,7 @@ double squared_chord(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                         }
                 }
                 
-                dist += pow(sqrt(P[i]) - sqrt(Q[i]), 2);
+                dist += pow(sqrt(P[i]) - sqrt(Q[i]), 2.0);
                 
         }
         
@@ -901,14 +901,14 @@ double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                   
-                        dist += pow(P[i] - Q[i], 2);
+                        dist += pow(P[i] - Q[i], 2.0);
                 
                 }
         } else {
                 
                 for(int i = 0; i < P_len; i++){
                 
-                        dist += pow(P[i] - Q[i], 2);
+                        dist += pow(P[i] - Q[i], 2.0);
                 
                 }   
         }
@@ -951,10 +951,10 @@ double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
                 
                          if(Q[i] == 0.0){
                         
-                                dist += pow(P[i] - Q[i], 2) / 0.00001 ;
+                                dist += pow(P[i] - Q[i], 2.0) / 0.00001 ;
                          } else {
                         
-                                dist += pow(P[i] - Q[i], 2) / Q[i];
+                                dist += pow(P[i] - Q[i], 2.0) / Q[i];
                          }  
                 }
                 
@@ -986,10 +986,10 @@ double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                         
                         if(P[i] == 0.0){
                                 
-                                dist += pow(P[i] - Q[i], 2) / 0.00001;
+                                dist += pow(P[i] - Q[i], 2.0) / 0.00001;
                         } else {
                         
-                                dist += pow(P[i] - Q[i], 2) / P[i];
+                                dist += pow(P[i] - Q[i], 2.0) / P[i];
                         }
                 
                 }
@@ -999,10 +999,10 @@ double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                 
                         if(P[i] == 0.0){
                                 
-                                dist += pow(P[i] - Q[i], 2) / 0.00001;
+                                dist += pow(P[i] - Q[i], 2.0) / 0.00001;
                         } else {
                         
-                                dist += pow(P[i] - Q[i], 2) / P[i];
+                                dist += pow(P[i] - Q[i], 2.0) / P[i];
                         }
                 }
         }
@@ -1032,7 +1032,7 @@ double squared_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
                         }
                 }
                 
-                PQdiff = pow(P[i] - Q[i], 2);
+                PQdiff = pow(P[i] - Q[i], 2.0);
                 PQsum  = P[i] + Q[i];
                 
                 if((PQdiff == 0.0) && (PQsum == 0.0)){
@@ -1080,8 +1080,8 @@ double divergence_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                         }
                 }
                 
-                PQdiff = pow(P[i] - Q[i], 2);
-                PQsum  = pow(P[i] + Q[i], 2);
+                PQdiff = pow(P[i] - Q[i], 2.0);
+                PQsum  = pow(P[i] + Q[i], 2.0);
                 
                 if((PQdiff == 0.0) && (PQsum == 0.0)){
                         
@@ -1126,7 +1126,7 @@ double clark_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
                         dist += 0.0;
                 } else {
                         
-                        dist += pow(PQdiff / PQsum, 2);
+                        dist += pow(PQdiff / PQsum, 2.0);
                 }
         }
         
@@ -1163,7 +1163,7 @@ double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVec
                         dist += 0.0;
                 } else {
                         
-                        dist += pow(P[i] - Q[i], 2) * (PQsum / PQprod);
+                        dist += pow(P[i] - Q[i], 2.0) * (PQsum / PQprod);
                 }
         }
         
@@ -1790,9 +1790,9 @@ double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                         divisor = (2.0 * pow(P[i] * Q[i], 1.5));
                         
                         if(divisor == 0.0){
-                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2) / 0.00001;
+                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2.0) / 0.00001;
                         } else {
-                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2) / divisor;
+                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2.0) / divisor;
                         }
                 }
         } else {
@@ -1802,9 +1802,9 @@ double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                         divisor = (2.0 * pow(P[i] * Q[i], 1.5));
                         
                         if(divisor == 0.0){
-                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2) / 0.00001;
+                                dist += pow(pow(P[i], 2.0) - pow(Q[i], 2.0), 2.0) / 0.00001;
                         } else {
-                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2) / divisor;
+                                dist += pow(pow(P[i], 2.0) - pow(Q[i], 2.0), 2.0) / divisor;
                         }
                 }
         }
