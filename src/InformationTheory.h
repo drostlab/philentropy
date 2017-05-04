@@ -25,11 +25,11 @@ double Ecpp(const Rcpp::NumericVector& P, Rcpp::String unit){
             }
             
             else if (unit == "log2"){
-                    Entropy += P[i] * (log(P[i])/log(2));
+                    Entropy += P[i] * (log(P[i])/log(2.0));
             }
             
             else if (unit == "log10"){
-                    Entropy += P[i] * (log(P[i])/log(10));
+                    Entropy += P[i] * (log(P[i])/log(10.0));
                     
             } else {
                     Rcpp::stop("Please choose from units: log, log2, or log10.");
@@ -52,18 +52,18 @@ double JEcpp(const Rcpp::NumericVector& JointProbabilities, Rcpp::String unit){
         if (Rcpp::NumericVector::is_na(JointProbabilities[i])){
            Rcpp::stop("Your input vector stores NA values...");
         }
-        if (JointProbabilities[i] > 0){
+        if (JointProbabilities[i] > 0.0){
            
            if (unit == "log"){
                    JointEntropy += JointProbabilities[i] * log(JointProbabilities[i]);
            }
            
            else if (unit == "log2"){
-                   JointEntropy += JointProbabilities[i] * (log(JointProbabilities[i])/log(2));
+                   JointEntropy += JointProbabilities[i] * (log(JointProbabilities[i])/log(2.0));
            }
            
            else if (unit == "log10"){
-                   JointEntropy += JointProbabilities[i] * (log(JointProbabilities[i])/log(10));
+                   JointEntropy += JointProbabilities[i] * (log(JointProbabilities[i])/log(10.0));
                    
            } else {
                    Rcpp::stop("Please choose from units: log, log2, or log10.");
