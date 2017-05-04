@@ -269,9 +269,9 @@ distance <- function(x ,
                 if(!is.null(p)){
                         
                         if(ncols == 2)
-                                dist <- minkowski(x[ , 1], x[ , 2],p,test.na)
+                                dist <- minkowski(x[ , 1], x[ , 2], as.double(p),test.na)
                         if(ncols > 2)
-                                dist <- DistMatrixMinkowskiMAT(x,p,test.na)
+                                dist <- DistMatrixMinkowskiMAT(x, as.double(p),test.na)
                 } else {
                         
                         stop("Please specify p for the Minkowski distance!")
@@ -502,7 +502,7 @@ distance <- function(x ,
         
         else if(method == "matusita"){
                 
-                if (!all(colSums(x) == 1.0))
+                if (any(colSums(x) > 1.00001))
                         stop ("Please make sure that all vectors sum up to 1.0 ...")
                 
                 if(ncols == 2)
@@ -602,7 +602,7 @@ distance <- function(x ,
         
         else if(method == "kullback-leibler"){
                 
-                if (!all(colSums(x) < 1.00000001))
+                if (any(colSums(x) > 1.00001))
                         stop ("Please make sure that all vectors sum up to 1.0 ...")
                 
                 if(ncols == 2)
@@ -622,7 +622,7 @@ distance <- function(x ,
         
         else if(method == "k_divergence"){
                 
-                if (!all(colSums(x) == 1.0))
+                if (any(colSums(x) > 1.00001))
                         stop ("Please make sure that all vectors sum up to 1.0 ...")
                 
                 if(ncols == 2)
