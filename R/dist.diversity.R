@@ -40,7 +40,7 @@ dist.diversity <- function(x, p = 2){
         nMethods <- length(distMethods)
         distDiversityVec <- vector(mode = "numeric", length = nMethods)
         
-        distDiversityVec <- unlist(lapply(distMethods, function(method) distance(x, method = method, p = p)))
+        distDiversityVec <- unlist(lapply(distMethods, function(method) distance(x, method = method, p = as.double(p))))
         names(distDiversityVec) <- distMethods
         
         return(distDiversityVec)
