@@ -1,0 +1,9 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^cran-comments\.md$
+.Rprofile
+man-roxygen
+README.html
+README.Rmd
+^\.travis\.yml$
+^\.httr-oauth$
