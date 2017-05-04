@@ -1,6 +1,6 @@
 //  Part of the philentropy package
 //
-//  Copyright (C) 2015 Hajk-Georg Drost
+//  Copyright (C) 2015 - 2017 Hajk-Georg Drost
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -51,16 +51,16 @@ double pearson_corr_centred(const Rcpp::NumericVector& x, const Rcpp::NumericVec
                         }
                         
                         x_diff[i] = x[i] - mean_x;
-                        x_diff_sq[i] = pow(x_diff[i],2);
+                        x_diff_sq[i] = pow(x_diff[i], 2.0);
                         y_diff[i] = y[i] - mean_y;
-                        y_diff_sq[i] = pow(y_diff[i],2);      
+                        y_diff_sq[i] = pow(y_diff[i], 2.0);      
                         }
         } else {
                 for(int i = 0; i < x.size(); i++){
                         x_diff[i] = x[i] - mean_x;
-                        x_diff_sq[i] = pow(x_diff[i],2);
+                        x_diff_sq[i] = pow(x_diff[i], 2.0);
                         y_diff[i] = y[i] - mean_y;
-                        y_diff_sq[i] = pow(y_diff[i],2);
+                        y_diff_sq[i] = pow(y_diff[i], 2.0);
                 
                 }
         }
@@ -95,16 +95,16 @@ double pearson_corr_uncentred(const Rcpp::NumericVector& x, const Rcpp::NumericV
                                 Rcpp::stop("Your input vectors store NA values...");
                         } 
                         x_diff[i] = x[i] - mean_x;
-                        x_diff_sq[i] = pow(x_diff[i],2);
+                        x_diff_sq[i] = pow(x_diff[i], 2.0);
                         y_diff[i] = y[i] - mean_y;
-                        y_diff_sq[i] = pow(y_diff[i],2);
+                        y_diff_sq[i] = pow(y_diff[i], 2.0);
                 }
         } else {
                 for(int i = 0; i < x.size(); i++){
                         x_diff[i] = x[i] - mean_x;
-                        x_diff_sq[i] = pow(x_diff[i],2);
+                        x_diff_sq[i] = pow(x_diff[i], 2.0);
                         y_diff[i] = y[i] - mean_y;
-                        y_diff_sq[i] = pow(y_diff[i],2);
+                        y_diff_sq[i] = pow(y_diff[i], 2.0);
                 }
         }
         
@@ -138,16 +138,16 @@ double squared_pearson_corr(const Rcpp::NumericVector& x, const Rcpp::NumericVec
                                 Rcpp::stop("Your input vectors store NA values...");
                         } 
                         x_diff[i] = x[i] - mean_x;
-                        x_diff_sq[i] = pow(x_diff[i],2);
+                        x_diff_sq[i] = pow(x_diff[i], 2.0);
                         y_diff[i] = y[i] - mean_y;
-                        y_diff_sq[i] = pow(y_diff[i],2);
+                        y_diff_sq[i] = pow(y_diff[i], 2.0);
                 }
         } else {
                 for(int i = 0; i < x.size(); i++){
                         x_diff[i] = x[i] - mean_x;
-                        x_diff_sq[i] = pow(x_diff[i],2);
+                        x_diff_sq[i] = pow(x_diff[i], 2.0);
                         y_diff[i] = y[i] - mean_y;
-                        y_diff_sq[i] = pow(y_diff[i],2); 
+                        y_diff_sq[i] = pow(y_diff[i], 2.0); 
                 }
         }
         
