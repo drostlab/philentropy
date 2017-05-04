@@ -1,7 +1,7 @@
 philentropy
 ===========
 
-[![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/philentropy)](http://cran.r-project.org/package=philentropy)
+[![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy) 
 
 
 ### Similarity and Distance Quantification between Probability Functions
@@ -29,7 +29,7 @@ the people who share it with me.
  
 ### Installation
 ```r
-# install philentropy version 0.0.1 from CRAN
+# install philentropy version 0.0.2 from CRAN
 install.packages("philentropy")
 ```
 
