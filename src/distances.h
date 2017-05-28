@@ -33,7 +33,7 @@
 
 // [[Rcpp::export]]
 double custom_log2(const double& x ){
-        return log(x)/log(2);
+        return log(x)/log(2.0);
 }
 
 // [[Rcpp::export]]
@@ -939,10 +939,10 @@ double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
                 
                          if(Q[i] == 0.0){
                         
-                                dist += pow(P[i] - Q[i], 2) / 0.00001 ;
+                                dist += pow(P[i] - Q[i], 2.0) / 0.00001 ;
                          } else {
                         
-                                dist += pow(P[i] - Q[i], 2) / Q[i];
+                                dist += pow(P[i] - Q[i], 2.0) / Q[i];
                          }  
                 }
         } else {
@@ -1790,9 +1790,9 @@ double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                         divisor = (2.0 * pow(P[i] * Q[i], 1.5));
                         
                         if(divisor == 0.0){
-                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2.0) / 0.00001;
+                                dist += pow(pow(P[i], 2.0) - pow(Q[i], 2.0), 2.0) / 0.00001;
                         } else {
-                                dist += pow(pow(P[i],2) - pow(Q[i],2), 2.0) / divisor;
+                                dist += pow(pow(P[i], 2.0) - pow(Q[i], 2.0), 2.0) / divisor;
                         }
                 }
         } else {

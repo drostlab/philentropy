@@ -124,7 +124,7 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Funct
                                 dist_matrix(j,i) = dist_value;
                         }
                 }
-        }
+        } 
         
         return dist_matrix;
 }
