@@ -1,7 +1,7 @@
 philentropy
 ===========
 
-[![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy) 
+[![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy) [![rpackages.io rank](https://www.rpackages.io/badge/philentropy.svg)](https://www.rpackages.io/package/philentropy)
 
 
 ### Similarity and Distance Quantification between Probability Functions
