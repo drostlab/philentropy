@@ -2,251 +2,251 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 pearson_corr_centred <- function(x, y, testNA) {
-    .Call('philentropy_pearson_corr_centred', PACKAGE = 'philentropy', x, y, testNA)
+    .Call(philentropy_pearson_corr_centred, x, y, testNA)
 }
 
 pearson_corr_uncentred <- function(x, y, testNA) {
-    .Call('philentropy_pearson_corr_uncentred', PACKAGE = 'philentropy', x, y, testNA)
+    .Call(philentropy_pearson_corr_uncentred, x, y, testNA)
 }
 
 squared_pearson_corr <- function(x, y, testNA) {
-    .Call('philentropy_squared_pearson_corr', PACKAGE = 'philentropy', x, y, testNA)
+    .Call(philentropy_squared_pearson_corr, x, y, testNA)
 }
 
 DistMatrixWithoutUnitDF <- function(distsDF, DistFunc, testNA) {
-    .Call('philentropy_DistMatrixWithoutUnitDF', PACKAGE = 'philentropy', distsDF, DistFunc, testNA)
+    .Call(philentropy_DistMatrixWithoutUnitDF, distsDF, DistFunc, testNA)
 }
 
 DistMatrixMinkowskiMAT <- function(dists, p, testNA) {
-    .Call('philentropy_DistMatrixMinkowskiMAT', PACKAGE = 'philentropy', dists, p, testNA)
+    .Call(philentropy_DistMatrixMinkowskiMAT, dists, p, testNA)
 }
 
 DistMatrixWithoutUnitMAT <- function(dists, DistFunc, testNA) {
-    .Call('philentropy_DistMatrixWithoutUnitMAT', PACKAGE = 'philentropy', dists, DistFunc, testNA)
+    .Call(philentropy_DistMatrixWithoutUnitMAT, dists, DistFunc, testNA)
 }
 
 DistMatrixWithUnitDF <- function(distsDF, DistFunc, testNA, unit) {
-    .Call('philentropy_DistMatrixWithUnitDF', PACKAGE = 'philentropy', distsDF, DistFunc, testNA, unit)
+    .Call(philentropy_DistMatrixWithUnitDF, distsDF, DistFunc, testNA, unit)
 }
 
 DistMatrixWithUnitMAT <- function(dists, DistFunc, testNA, unit) {
-    .Call('philentropy_DistMatrixWithUnitMAT', PACKAGE = 'philentropy', dists, DistFunc, testNA, unit)
+    .Call(philentropy_DistMatrixWithUnitMAT, dists, DistFunc, testNA, unit)
 }
 
 custom_log2 <- function(x) {
-    .Call('philentropy_custom_log2', PACKAGE = 'philentropy', x)
+    .Call(philentropy_custom_log2, x)
 }
 
 custom_log10 <- function(x) {
-    .Call('philentropy_custom_log10', PACKAGE = 'philentropy', x)
+    .Call(philentropy_custom_log10, x)
 }
 
 euclidean <- function(P, Q, testNA) {
-    .Call('philentropy_euclidean', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_euclidean, P, Q, testNA)
 }
 
 manhattan <- function(P, Q, testNA) {
-    .Call('philentropy_manhattan', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_manhattan, P, Q, testNA)
 }
 
 minkowski <- function(P, Q, n, testNA) {
-    .Call('philentropy_minkowski', PACKAGE = 'philentropy', P, Q, n, testNA)
+    .Call(philentropy_minkowski, P, Q, n, testNA)
 }
 
 chebyshev <- function(P, Q, testNA) {
-    .Call('philentropy_chebyshev', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_chebyshev, P, Q, testNA)
 }
 
 sorensen <- function(P, Q, testNA) {
-    .Call('philentropy_sorensen', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_sorensen, P, Q, testNA)
 }
 
 gower <- function(P, Q, testNA) {
-    .Call('philentropy_gower', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_gower, P, Q, testNA)
 }
 
 soergel <- function(P, Q, testNA) {
-    .Call('philentropy_soergel', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_soergel, P, Q, testNA)
 }
 
 kulczynski_d <- function(P, Q, testNA) {
-    .Call('philentropy_kulczynski_d', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_kulczynski_d, P, Q, testNA)
 }
 
 canberra <- function(P, Q, testNA) {
-    .Call('philentropy_canberra', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_canberra, P, Q, testNA)
 }
 
 lorentzian <- function(P, Q, testNA, unit) {
-    .Call('philentropy_lorentzian', PACKAGE = 'philentropy', P, Q, testNA, unit)
+    .Call(philentropy_lorentzian, P, Q, testNA, unit)
 }
 
 intersection_dist <- function(P, Q, testNA) {
-    .Call('philentropy_intersection_dist', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_intersection_dist, P, Q, testNA)
 }
 
 wave_hedges <- function(P, Q, testNA) {
-    .Call('philentropy_wave_hedges', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_wave_hedges, P, Q, testNA)
 }
 
 czekanowski <- function(P, Q, testNA) {
-    .Call('philentropy_czekanowski', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_czekanowski, P, Q, testNA)
 }
 
 motyka <- function(P, Q, testNA) {
-    .Call('philentropy_motyka', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_motyka, P, Q, testNA)
 }
 
 tanimoto <- function(P, Q, testNA) {
-    .Call('philentropy_tanimoto', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_tanimoto, P, Q, testNA)
 }
 
 ruzicka <- function(P, Q, testNA) {
-    .Call('philentropy_ruzicka', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_ruzicka, P, Q, testNA)
 }
 
 inner_product <- function(P, Q, testNA) {
-    .Call('philentropy_inner_product', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_inner_product, P, Q, testNA)
 }
 
 harmonic_mean_dist <- function(P, Q, testNA) {
-    .Call('philentropy_harmonic_mean_dist', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_harmonic_mean_dist, P, Q, testNA)
 }
 
 cosine_dist <- function(P, Q, testNA) {
-    .Call('philentropy_cosine_dist', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_cosine_dist, P, Q, testNA)
 }
 
 kumar_hassebrook <- function(P, Q, testNA) {
-    .Call('philentropy_kumar_hassebrook', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_kumar_hassebrook, P, Q, testNA)
 }
 
 jaccard <- function(P, Q, testNA) {
-    .Call('philentropy_jaccard', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_jaccard, P, Q, testNA)
 }
 
 dice_dist <- function(P, Q, testNA) {
-    .Call('philentropy_dice_dist', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_dice_dist, P, Q, testNA)
 }
 
 fidelity <- function(P, Q, testNA) {
-    .Call('philentropy_fidelity', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_fidelity, P, Q, testNA)
 }
 
 bhattacharyya <- function(P, Q, testNA, unit) {
-    .Call('philentropy_bhattacharyya', PACKAGE = 'philentropy', P, Q, testNA, unit)
+    .Call(philentropy_bhattacharyya, P, Q, testNA, unit)
 }
 
 hellinger <- function(P, Q, testNA) {
-    .Call('philentropy_hellinger', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_hellinger, P, Q, testNA)
 }
 
 matusita <- function(P, Q, testNA) {
-    .Call('philentropy_matusita', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_matusita, P, Q, testNA)
 }
 
 squared_chord <- function(P, Q, testNA) {
-    .Call('philentropy_squared_chord', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_squared_chord, P, Q, testNA)
 }
 
 squared_euclidean <- function(P, Q, testNA) {
-    .Call('philentropy_squared_euclidean', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_squared_euclidean, P, Q, testNA)
 }
 
 pearson_chi_sq <- function(P, Q, testNA) {
-    .Call('philentropy_pearson_chi_sq', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_pearson_chi_sq, P, Q, testNA)
 }
 
 neyman_chi_sq <- function(P, Q, testNA) {
-    .Call('philentropy_neyman_chi_sq', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_neyman_chi_sq, P, Q, testNA)
 }
 
 squared_chi_sq <- function(P, Q, testNA) {
-    .Call('philentropy_squared_chi_sq', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_squared_chi_sq, P, Q, testNA)
 }
 
 prob_symm_chi_sq <- function(P, Q, testNA) {
-    .Call('philentropy_prob_symm_chi_sq', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_prob_symm_chi_sq, P, Q, testNA)
 }
 
 divergence_sq <- function(P, Q, testNA) {
-    .Call('philentropy_divergence_sq', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_divergence_sq, P, Q, testNA)
 }
 
 clark_sq <- function(P, Q, testNA) {
-    .Call('philentropy_clark_sq', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_clark_sq, P, Q, testNA)
 }
 
 additive_symm_chi_sq <- function(P, Q, testNA) {
-    .Call('philentropy_additive_symm_chi_sq', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_additive_symm_chi_sq, P, Q, testNA)
 }
 
 kullback_leibler_distance <- function(P, Q, testNA, unit) {
-    .Call('philentropy_kullback_leibler_distance', PACKAGE = 'philentropy', P, Q, testNA, unit)
+    .Call(philentropy_kullback_leibler_distance, P, Q, testNA, unit)
 }
 
 jeffreys <- function(P, Q, testNA, unit) {
-    .Call('philentropy_jeffreys', PACKAGE = 'philentropy', P, Q, testNA, unit)
+    .Call(philentropy_jeffreys, P, Q, testNA, unit)
 }
 
 k_divergence <- function(P, Q, testNA, unit) {
-    .Call('philentropy_k_divergence', PACKAGE = 'philentropy', P, Q, testNA, unit)
+    .Call(philentropy_k_divergence, P, Q, testNA, unit)
 }
 
 topsoe <- function(P, Q, testNA, unit) {
-    .Call('philentropy_topsoe', PACKAGE = 'philentropy', P, Q, testNA, unit)
+    .Call(philentropy_topsoe, P, Q, testNA, unit)
 }
 
 jensen_shannon <- function(P, Q, testNA, unit) {
-    .Call('philentropy_jensen_shannon', PACKAGE = 'philentropy', P, Q, testNA, unit)
+    .Call(philentropy_jensen_shannon, P, Q, testNA, unit)
 }
 
 jensen_difference <- function(P, Q, testNA, unit) {
-    .Call('philentropy_jensen_difference', PACKAGE = 'philentropy', P, Q, testNA, unit)
+    .Call(philentropy_jensen_difference, P, Q, testNA, unit)
 }
 
 taneja <- function(P, Q, testNA, unit) {
-    .Call('philentropy_taneja', PACKAGE = 'philentropy', P, Q, testNA, unit)
+    .Call(philentropy_taneja, P, Q, testNA, unit)
 }
 
 kumar_johnson <- function(P, Q, testNA) {
-    .Call('philentropy_kumar_johnson', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_kumar_johnson, P, Q, testNA)
 }
 
 avg <- function(P, Q, testNA) {
-    .Call('philentropy_avg', PACKAGE = 'philentropy', P, Q, testNA)
+    .Call(philentropy_avg, P, Q, testNA)
 }
 
 Ecpp <- function(P, unit) {
-    .Call('philentropy_Ecpp', PACKAGE = 'philentropy', P, unit)
+    .Call(philentropy_Ecpp, P, unit)
 }
 
 JEcpp <- function(JointProbabilities, unit) {
-    .Call('philentropy_JEcpp', PACKAGE = 'philentropy', JointProbabilities, unit)
+    .Call(philentropy_JEcpp, JointProbabilities, unit)
 }
 
 CEcpp <- function(JointProbabilities, Probabilities, unit) {
-    .Call('philentropy_CEcpp', PACKAGE = 'philentropy', JointProbabilities, Probabilities, unit)
+    .Call(philentropy_CEcpp, JointProbabilities, Probabilities, unit)
 }
 
 MIcpp <- function(X, Y, XY, unit) {
-    .Call('philentropy_MIcpp', PACKAGE = 'philentropy', X, Y, XY, unit)
+    .Call(philentropy_MIcpp, X, Y, XY, unit)
 }
 
 as_matrix <- function(x) {
-    .Call('philentropy_as_matrix', PACKAGE = 'philentropy', x)
+    .Call(philentropy_as_matrix, x)
 }
 
 as_data_frame <- function(mat) {
-    .Call('philentropy_as_data_frame', PACKAGE = 'philentropy', mat)
+    .Call(philentropy_as_data_frame, mat)
 }
 
 sum_rcpp <- function(vec) {
-    .Call('philentropy_sum_rcpp', PACKAGE = 'philentropy', vec)
+    .Call(philentropy_sum_rcpp, vec)
 }
 
 est_prob_empirical <- function(CountVec) {
-    .Call('philentropy_est_prob_empirical', PACKAGE = 'philentropy', CountVec)
+    .Call(philentropy_est_prob_empirical, CountVec)
 }
 
 # Register entry points for exported C++ functions
