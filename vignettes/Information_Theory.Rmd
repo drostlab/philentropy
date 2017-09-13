@@ -21,6 +21,7 @@ the most important information theory measures.
 
 ### Shannon's Entropy H(X)
 
+> $H(X) = -\sum\limits_{i=1}^n P(x_i) * log_b(P(x_i))$
 
 ```{r,eval=FALSE}
 # define probabilities P(X)
