@@ -1517,26 +1517,28 @@ double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
-                        if((P[i] == 0.0) && (Q[i] == 0.0)){
-                                sum1 += 0.0;
-                                sum2 += 0.0;
+                        if((P[i] == 0.0) || (Q[i] == 0.0)){
+                                if (P[i] == 0.0)
+                                        sum1 += 0.0;
+                                if (Q[i] == 0.0)
+                                        sum2 += 0.0;
                         } else {
                         
                                 PQsum =   P[i] + Q[i];
                                 
                                 if (unit == "log"){
                                         sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
-                                        sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
+                                        sum2  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
                                 }
                                 
                                 else if (unit == "log2"){
                                         sum1  +=  P[i] * custom_log2((2.0 * P[i]) / PQsum);
-                                        sum1  +=  Q[i] * custom_log2((2.0 * Q[i]) / PQsum);
+                                        sum2  +=  Q[i] * custom_log2((2.0 * Q[i]) / PQsum);
                                 }
                                 
                                 else if (unit == "log10"){
                                         sum1  +=  P[i] * custom_log10((2.0 * P[i]) / PQsum);
-                                        sum1  +=  Q[i] * custom_log10((2.0 * Q[i]) / PQsum);
+                                        sum2  +=  Q[i] * custom_log10((2.0 * Q[i]) / PQsum);
                                 } else {
                                         Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
@@ -1546,26 +1548,28 @@ double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
                 
                 for(int i = 0; i < P_len; i++){
                        
-                        if((P[i] == 0.0) && (Q[i] == 0.0)){
-                                sum1 += 0.0;
-                                sum2 += 0.0;
+                        if((P[i] == 0.0) || (Q[i] == 0.0)){
+                                if (P[i] == 0.0)
+                                        sum1 += 0.0;
+                                if (Q[i] == 0.0)
+                                        sum2 += 0.0;
                         } else {
                         
                                 PQsum =   P[i] + Q[i];
                                 
                                 if (unit == "log"){
                                         sum1  +=  P[i] * log((2.0 * P[i]) / PQsum);
-                                        sum1  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
+                                        sum2  +=  Q[i] * log((2.0 * Q[i]) / PQsum);
                                 }
                                 
                                 else if (unit == "log2"){
                                         sum1  +=  P[i] * custom_log2((2.0 * P[i]) / PQsum);
-                                        sum1  +=  Q[i] * custom_log2((2.0 * Q[i]) / PQsum);
+                                        sum2  +=  Q[i] * custom_log2((2.0 * Q[i]) / PQsum);
                                 }
                                 
                                 else if (unit == "log10"){
                                         sum1  +=  P[i] * custom_log10((2.0 * P[i]) / PQsum);
-                                        sum1  +=  Q[i] * custom_log10((2.0 * Q[i]) / PQsum);
+                                        sum2  +=  Q[i] * custom_log10((2.0 * Q[i]) / PQsum);
                                 } else {
                                         Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
