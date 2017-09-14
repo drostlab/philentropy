@@ -1,3 +1,9 @@
+## Version 0.0.3
+
+### Bug fixes
+
+- Fixing bug that caused that `JSD()` gives NaN when any probability is 0 - see https://github.com/HajkD/philentropy/issues/1 (Thanks to William Kurtis Chang)
+
 ## Version 0.0.2
 
 ### Bug fixes
