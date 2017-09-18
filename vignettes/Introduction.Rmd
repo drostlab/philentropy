@@ -43,7 +43,7 @@ The following probability distance/similarity measures will be described in deta
 
 #### $L_1$ Family
 * Sorensen : $d = \sum | P_i - Q_i | / \sum (P_i + Q_i)$
-* Gower : $d = 1/d * \sum | P_i - Q_i |$
+* Gower : $d = 1/N * \sum | P_i - Q_i |$, where $N$ is the total number of elements $i$ in $P_i$ and $Q_i$
 * Soergel : $d = \sum | P_i - Q_i | / \sum max(P_i , Q_i)$
 * Kulczynski d : $d = \sum | P_i - Q_i | / \sum min(P_i , Q_i)$
 * Canberra : $d = \sum | P_i - Q_i | / (P_i + Q_i)$
