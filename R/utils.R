@@ -35,7 +35,7 @@ valid.distr <- function(x){
                 stop("Your input vector includes NA values", call. = FALSE)
         }
         
-        else if (sum(x) > 1.0000001) {
+        else if (sum_rcpp(x) > 1.0000001) {
                 
                 stop("Your probability distribution does not sum to 1.", call. = FALSE)
         } 
