@@ -66,7 +66,9 @@
 #' @export
 
 JSD <- function(x, test.na = TRUE, unit = "log2", est.prob = NULL){
-                
+  if (!is.matrix(x))
+    stop("Please provide a matrix as input, e.g. with x <- rbind(vector1, vector2).", call. = FALSE)
+  message("Jensen-Shannon Divergence using unit '", unit, "'.")       
         return( distance(x       = x, 
                         method   = "jensen-shannon", 
                         test.na  = test.na, 
