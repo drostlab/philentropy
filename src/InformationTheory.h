@@ -103,4 +103,6 @@ double MIcpp(Rcpp::NumericVector X, Rcpp::NumericVector Y, Rcpp::NumericVector X
   return(MutualInformation);
 }
 
+
+
 #endif // philentropy_InformationTheory_H
