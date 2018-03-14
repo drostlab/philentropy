@@ -16,7 +16,7 @@ The `distance()` function implemented in `philentropy` is able to compute 46 dif
 The `distance()` function is implemented using the same _logic_ as R's base functions `stats::dist()` and takes a `matrix` or `data.frame` as input. The corresponding `matrix` or `data.frame` should store probability density functions (as rows) for which distance computations should be performed.
 
 
-```{r,eval=FALSE}
+```r
 # define a probability density function P
 P <- 1:10/sum(1:10)
 # define a probability density function Q
@@ -28,7 +28,7 @@ x <- rbind(P,Q)
 
 Please note that when defining a `matrix` from vectors, probability vectors should be combined as rows (`rbind()`).
 
-```{r,eval=FALSE}
+```r
 library(philentropy)
 
 # compute the Euclidean Distance with default parameters
@@ -42,7 +42,7 @@ euclidean
 
 For this simple case you can compare the results with R's base function to compute the euclidean distance `stats::dist()`.
 
-```{r,eval=FALSE}
+```r
 # compute the Euclidean Distance using R's base function
 stats::dist(x, method = "euclidean")
 ```
@@ -57,7 +57,7 @@ However, the R base function `stats::dist()` only computes the following distanc
 To find out which `method`s are implemented in `distance()` you can consult
 the `getDistMethods()` function.
 
-```{r,eval=FALSE}
+```r
 # names of implemented distance/similarity functions
 getDistMethods()
 ```
@@ -79,7 +79,7 @@ getDistMethods()
 
 Now you can choose any distance/similarity `method` that serves you.
 
-```{r,eval=FALSE}
+```r
 # compute the Jaccard Distance with default parameters
 distance(x, method = "jaccard")
 ```
@@ -91,7 +91,7 @@ distance(x, method = "jaccard")
 
 Analogously, in case a probability matrix is specified the following output is generated.
 
-```{r,eval=FALSE}
+```r
 # combine three probabilty vectors to a probabilty matrix 
 ProbMatrix <- rbind(1:10/sum(1:10), 20:29/sum(20:29),30:39/sum(30:39))
 
@@ -109,7 +109,7 @@ vec.3 0.1388172 0.01074588 0.00000000
 
 This output differs from the output of `stats::dist()`.
 
-```{r,eval=FALSE}
+```r
 # compute the euclidean distance between all 
 # pairwise comparisons of probability vectors
 # using stats::dist()
@@ -126,7 +126,7 @@ Whereas `distance()` returns a symmetric distance matrix, `stats::dist()` return
 
 Now let's compare the run times of base R and `philentropy`. For this purpose you need to install the `microbenchmark` package.
 
-```{r,eval=FALSE}
+```r
 # install.packages("microbenchmark")
 library(microbenchmark)
 
