@@ -104,11 +104,6 @@ __Note__: $d$ refers to distance measures, whereas $s$ denotes similarity measur
 Modern methods for distribution comparisons have a strong [information theoretic background](http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf). This fact motivated me to name this package `philentropy` and as a result, several well established information theory measures are (and further will be) implemeted in this package. 
 
 
-### Correlation Analyses
-
-Since my first stats class I am fascinated by the potential power of determining correlation and causality in data. For me part of the `philentropy` package is some kind of playground to better understand the diversity of methods that aim to perform [correlation detection](https://docs.google.com/viewer?a=v&pid=sites&srcid=dW1pY2guZWR1fG1pY2x8Z3g6MzczNDYxMjI3YzFhZDYyNw) and [causal inference](http://ftp.cs.ucla.edu/pub/stat_ser/r350.pdf). In detail, `philentropy` will implement classical linear and non-linear correlation methods as well as causal inference methods that aim to predict relationships between (random) variables. 
-
-
 #### Linear Correlation Methods
 
 * Pearson's correlation coefficient (centred)
