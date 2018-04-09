@@ -13,7 +13,7 @@ vignette: >
 > 
 > \- Edward Gibbon
 
-Information theory and statistics were beautifully fused by [Solomon Kullback](https://books.google.de/books?hl=de&lr=&id=luHcCgAAQBAJ&oi=fnd&pg=PR13&dq=S+kullback+%2B+Information+Theory&ots=G0OBmsYYSW&sig=R9aJhY73UQslIePFyZ3s-0sgiPU#v=onepage&q=S%20kullback%20%2B%20Information%20Theory&f=false). This fusion allowed to quantify correlations and similarities between random variables
+Information theory and statistics were beautifully fused by `Solomon Kullback`. This fusion allowed to quantify correlations and similarities between random variables
 using a more sophisticated toolkit. Modern fields such as machine learning and statistical data science build upon this fusion and the most powerful statistical techniques used today are based on an information theoretic foundation.
 
 The `philentropy` aims to follow this tradition and therefore, it implements
