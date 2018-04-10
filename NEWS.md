@@ -1,4 +1,9 @@
-## Version 0.0.3
+## Version 0.1.0
+
+### New Features
+
+- new message system
+- extending documentation
 
 ### Bug fixes
 
