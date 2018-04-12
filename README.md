@@ -27,9 +27,9 @@ install.packages("philentropy")
 
 ## Tutorials 
 
- - [Introduction to the philentropy package](https://github.com/HajkD/philentropy/blob/master/vignettes/Introduction.Rmd)
- - [Distance and Similarity Measures implemented in philentropy](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd)
- - [Information Theory Metrics implemented in philentropy](https://github.com/HajkD/philentropy/blob/master/vignettes/Information_Theory.Rmd)
+ - [Introduction to the philentropy package](https://hajkd.github.io/philentropy/articles/Introduction.html)
+ - [Distance and Similarity Measures implemented in philentropy](https://hajkd.github.io/philentropy/articles/Distances.html)
+ - [Information Theory Metrics implemented in philentropy](https://hajkd.github.io/philentropy/articles/Information_Theory.html)
 
 ## Examples
 
@@ -87,7 +87,7 @@ install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
 
 ### NEWS
 
-The current status of the package as well as a detailed history of the functionality of each version of `philentropy` can be found in the [NEWS](NEWS.md) section.
+The current status of the package as well as a detailed history of the functionality of each version of `philentropy` can be found in the [NEWS](https://hajkd.github.io/philentropy/news/index.html) section.
 
 ## Important Functions
 
