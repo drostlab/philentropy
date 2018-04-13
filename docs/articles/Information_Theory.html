@@ -265,7 +265,9 @@ v10 0.059728455 0.041029746 0.0282183873 0.0189657868 0.0121952203 0.0072905195 
 <h3 class="hasAnchor">
 <a href="#generalized-jensen-shannon-divergence" class="anchor"></a>Generalized Jensen-Shannon Divergence</h3>
 <p>The generalized Jensen-Shannon Divergence <span class="math inline">\(gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n)\)</span> enables distance comparisons between multiple probability distributions <span class="math inline">\(P_1,...,P_n\)</span>:</p>
+<blockquote>
 <p><span class="math inline">\(gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i*P_i) - \sum_{i = 1}^n \pi_i*H(P_i)\)</span></p>
+</blockquote>
 <p>where <span class="math inline">\(\pi_1,...,\pi_n\)</span> denote the weights selected for the probability vectors <span class="math inline">\(P_1,...,P_n\)</span> and <span class="math inline">\(H(P_i)\)</span> denotes the Shannon Entropy of probability vector <span class="math inline">\(P_i\)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate example probability matrix for comparing three probability functions</span>
 Prob &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>), <span class="dv">30</span><span class="op">:</span><span class="dv">39</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">30</span><span class="op">:</span><span class="dv">39</span>))
