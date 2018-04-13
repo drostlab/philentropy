@@ -198,7 +198,7 @@ kullback-leibler
 <p>This function computes the <code>Jensen-Shannon Divergence</code> <code><a href="../reference/JSD.html">JSD(P || Q)</a></code> between two probability distributions <code>P</code> and <code>Q</code> with equal weights <code>π_1</code> = <code>π_2</code> = 1/2.</p>
 <p>The Jensen-Shannon Divergence JSD(P || Q) between two probability distributions P and Q is defined as:</p>
 <blockquote>
-<p><span class="math inline">\(JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))\)</span></p>
+<p><span class="math inline">\(JSD(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))\)</span></p>
 </blockquote>
 <p>where <code>R = 0.5 * (P + Q)</code> denotes the mid-point of the probability vectors <code>P</code> and <code>Q</code>, and <code><a href="../reference/KL.html">KL(P || R)</a></code>, <code><a href="../reference/KL.html">KL(Q || R)</a></code> denote the <code>Kullback-Leibler Divergence</code> of <code>P</code> and <code>R</code>, as well as <code>Q</code> and <code>R</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Jensen-Shannon Divergence between P and Q</span>
