@@ -103,16 +103,13 @@ __Note__: $d$ refers to distance measures, whereas $s$ denotes similarity measur
 
 Modern methods for distribution comparisons have a strong [information theoretic background](http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf). This fact motivated me to name this package `philentropy` and as a result, several well established information theory measures are (and further will be) implemeted in this package. 
 
-
-#### Linear Correlation Methods
-
-* Pearson's correlation coefficient (centred)
-* Pearson's uncentred correlation coefficient
-* Squared Pearson's correlation coefficient
-* Kendall's correlation coefficient
-* Spearman's correlation coefficient
-
-
+- Shannon's Entropy H(X) : $H(X) = -\sum\limits_{i=1}^n P(x_i) * log_b(P(x_i))$
+- Shannon's Joint-Entropy H(X,Y) : $H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b(P(x_i, y_j))$
+- Shannon's Conditional-Entropy H(X | Y) : $H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i) / P(x_i, y_j) )$
+- Mutual Information I(X,Y) : $MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i, y_j) / ( P(x_i) * P(y_j) )$
+- Kullback-Leibler Divergence : $KL(P || Q) = \sum\limits_{i=1}^n P(p_i) * log_2(P(p_i) / P(q_i)) = H(P, Q) - H(P)$
+- Jensen-Shannon Divergence : $JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))$
+- Generalized Jensen-Shannon Divergence : $gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i*P_i) - \sum_{i = 1}^n \pi_i*H(P_i)$
 
 
 
