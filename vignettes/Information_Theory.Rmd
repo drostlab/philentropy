@@ -132,7 +132,7 @@ This function computes the `Jensen-Shannon Divergence` `JSD(P || Q)` between two
 
 The Jensen-Shannon Divergence JSD(P || Q) between two probability distributions P and Q is defined as:
 
-> $JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))$
+> $JSD(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))$
 
 where `R = 0.5 * (P + Q)` denotes the mid-point of the probability vectors `P` and `Q`, and `KL(P || R)`, `KL(Q || R)` denote the `Kullback-Leibler Divergence` of `P` and `R`, as well as `Q` and `R`.
 
