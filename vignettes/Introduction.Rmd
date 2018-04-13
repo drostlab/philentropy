@@ -108,7 +108,7 @@ Modern methods for distribution comparisons have a strong [information theoretic
 - Shannon's Conditional-Entropy H(X | Y) : $H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i) / P(x_i, y_j) )$
 - Mutual Information I(X,Y) : $MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i, y_j) / ( P(x_i) * P(y_j) )$
 - Kullback-Leibler Divergence : $KL(P || Q) = \sum\limits_{i=1}^n P(p_i) * log_2(P(p_i) / P(q_i)) = H(P, Q) - H(P)$
-- Jensen-Shannon Divergence : $JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))$
+- Jensen-Shannon Divergence : $JSD(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))$
 - Generalized Jensen-Shannon Divergence : $gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i*P_i) - \sum_{i = 1}^n \pi_i*H(P_i)$
 
 
