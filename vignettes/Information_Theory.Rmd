@@ -206,7 +206,7 @@ v9  0.051231386 0.033817029 0.0221886494 0.0140331082 0.0082858198 0.0043403270 
 v10 0.059728455 0.041029746 0.0282183873 0.0189657868 0.0121952203 0.0072905195 0.0038564737 0.0016204852 0.0003847076 0.0000000000
 ```
 
-#### General properties of the `Jensen-Shannon Divergence`:
+#### Properties of the `Jensen-Shannon Divergence`:
 
 - JSD is non-negative.
 
@@ -217,9 +217,17 @@ v10 0.059728455 0.041029746 0.0282183873 0.0189657868 0.0121952203 0.0072905195 
 
 ### Generalized Jensen-Shannon Divergence
 
+The generalized Jensen-Shannon Divergence $gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n)$ enables distance comparisons between multiple
+probability distributions $P_1,...,P_n$:
+
+$gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i*P_i) - \sum_{i = 1}^n \pi_i*H(P_i)$
+
+where $\pi_1,...,\pi_n$ denote the weights selected for the probability vectors $P_1,...,P_n$ and $H(P_i)$
+denotes the Shannon Entropy of probability vector $P_i$.
+
 
 ```r
-# generate example probability matrix
+# generate example probability matrix for comparing three probability functions
 Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 
 # compute the Generalized JSD comparing the PS probability matrix
