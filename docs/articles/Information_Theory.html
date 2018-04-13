@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -251,9 +251,9 @@ v7  0.034921734 0.020467343 0.0115291444 0.0058409350 0.0023736851 0.0005485296 
 v8  0.042948973 0.026940445 0.0165964176 0.0096238555 0.0049736265 0.0020514117 0.0004796040 0.0000000000 0.0004266772 0.0016204852
 v9  0.051231386 0.033817029 0.0221886494 0.0140331082 0.0082858198 0.0043403270 0.0018093113 0.0004266772 0.0000000000 0.0003847076
 v10 0.059728455 0.041029746 0.0282183873 0.0189657868 0.0121952203 0.0072905195 0.0038564737 0.0016204852 0.0003847076 0.0000000000</code></pre>
-<div id="general-properties-of-the-jensen-shannon-divergence" class="section level4">
+<div id="properties-of-the-jensen-shannon-divergence" class="section level4">
 <h4 class="hasAnchor">
-<a href="#general-properties-of-the-jensen-shannon-divergence" class="anchor"></a>General properties of the <code>Jensen-Shannon Divergence</code>:</h4>
+<a href="#properties-of-the-jensen-shannon-divergence" class="anchor"></a>Properties of the <code>Jensen-Shannon Divergence</code>:</h4>
 <ul>
 <li><p>JSD is non-negative.</p></li>
 <li><p>JSD is a symmetric measure JSD(P || Q) = JSD(Q || P).</p></li>
@@ -264,7 +264,10 @@ v10 0.059728455 0.041029746 0.0282183873 0.0189657868 0.0121952203 0.0072905195 
 <div id="generalized-jensen-shannon-divergence" class="section level3">
 <h3 class="hasAnchor">
 <a href="#generalized-jensen-shannon-divergence" class="anchor"></a>Generalized Jensen-Shannon Divergence</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate example probability matrix</span>
+<p>The generalized Jensen-Shannon Divergence <span class="math inline">\(gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n)\)</span> enables distance comparisons between multiple probability distributions <span class="math inline">\(P_1,...,P_n\)</span>:</p>
+<p><span class="math inline">\(gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i*P_i) - \sum_{i = 1}^n \pi_i*H(P_i)\)</span></p>
+<p>where <span class="math inline">\(\pi_1,...,\pi_n\)</span> denote the weights selected for the probability vectors <span class="math inline">\(P_1,...,P_n\)</span> and <span class="math inline">\(H(P_i)\)</span> denotes the Shannon Entropy of probability vector <span class="math inline">\(P_i\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate example probability matrix for comparing three probability functions</span>
 Prob &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>), <span class="dv">30</span><span class="op">:</span><span class="dv">39</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">30</span><span class="op">:</span><span class="dv">39</span>))
 
 <span class="co"># compute the Generalized JSD comparing the PS probability matrix</span>

@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
       </span>
     </div>
 
@@ -263,17 +263,21 @@
 <h3 class="hasAnchor">
 <a href="#information-theory" class="anchor"></a>Information Theory</h3>
 <p>Modern methods for distribution comparisons have a strong <a href="http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf">information theoretic background</a>. This fact motivated me to name this package <code>philentropy</code> and as a result, several well established information theory measures are (and further will be) implemeted in this package.</p>
-<div id="linear-correlation-methods" class="section level4">
-<h4 class="hasAnchor">
-<a href="#linear-correlation-methods" class="anchor"></a>Linear Correlation Methods</h4>
 <ul>
-<li>Pearson’s correlation coefficient (centred)</li>
-<li>Pearson’s uncentred correlation coefficient</li>
-<li>Squared Pearson’s correlation coefficient</li>
-<li>Kendall’s correlation coefficient</li>
-<li>Spearman’s correlation coefficient</li>
+<li>Shannon’s Entropy H(X) : <span class="math inline">\(H(X) = -\sum\limits_{i=1}^n P(x_i) * log_b(P(x_i))\)</span>
+</li>
+<li>Shannon’s Joint-Entropy H(X,Y) : <span class="math inline">\(H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b(P(x_i, y_j))\)</span>
+</li>
+<li>Shannon’s Conditional-Entropy H(X | Y) : <span class="math inline">\(H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i) / P(x_i, y_j) )\)</span>
+</li>
+<li>Mutual Information I(X,Y) : <span class="math inline">\(MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i, y_j) / ( P(x_i) * P(y_j) )\)</span>
+</li>
+<li>Kullback-Leibler Divergence : <span class="math inline">\(KL(P || Q) = \sum\limits_{i=1}^n P(p_i) * log_2(P(p_i) / P(q_i)) = H(P, Q) - H(P)\)</span>
+</li>
+<li>Jensen-Shannon Divergence : <span class="math inline">\(JSP(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))\)</span>
+</li>
+<li>Generalized Jensen-Shannon Divergence :</li>
 </ul>
-</div>
 </div>
 </div>
   </div>
