@@ -1,3 +1,9 @@
+## Version 0.2.0
+
+### Bug fixes
+- Fixing bug that caused `jensen-shannon` computations to compute wrong values when `0 values` were present in the input vectors (see issue #4 ; Many thanks to @wkc1986)
+
+
 ## Version 0.1.0
 
 ### New Features
