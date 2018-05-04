@@ -1556,16 +1556,24 @@ test_that(
                         sum1 <- 0
                         sum2 <- 0
                         
+                        
                         for (i in 1:length(x)) {
+                          PQsum <- x[i] + y[i]
+                          
                                 if ((x[i] == 0) | ((y[i]) == 0)) {
-                                        if (x[i] == 0)
-                                                sum1 = sum1
-                                        if (y[i] == 0)
-                                                sum2 = sum2
+                                  if (x[i] == 0.0 || PQsum == 0.0) {
+                                    sum1  = sum1
+                                  } else {
+                                    sum1  = sum1 +  (x[i] * log((2.0 * x[i]) / PQsum))
+                                  }
+                                  if (y[i] == 0.0 || PQsum == 0.0) {
+                                    sum2  = sum2
+                                  } else {
+                                    sum2  = sum2 +  (y[i] * log((2.0 * y[i]) / PQsum))
+                                  }
                                 } else {
                                         sum1 = sum1 + (x[i] * log((2 * x[i]) / (x[i] + y[i])))
-                                        sum2 = sum2 + (y[i] * log((2 * y[i]) / (x[i] +
-                                                                                        y[i])))
+                                        sum2 = sum2 + (y[i] * log((2 * y[i]) / (x[i] + y[i])))
                                 }
                                 
                         }
@@ -1678,20 +1686,43 @@ test_that(
                 A <- c(0, 0.25, 0.25, 0, 0.25, 0.25)
                 B <- c(0, 0, 0.25, 0.25, 0.25, 0.25)
                 
-                js.diff <- function(x, y) {
+                js.diff <- function(P, Q) {
                         dist <- vector(mode = "numeric", length = 1)
                         dist <- 0
                         
-                        for (i in 1:length(x)) {
-                                if ((x[i] == 0) & ((y[i]) == 0)) {
-                                        dist = dist
-                                } else {
-                                        dist = dist + ((((x[i] * log(x[i])) + (y[i] * log(y[i]))
-                                        ) / 2) - (((x[i] + y[i]) / 2
-                                        ) * log(((x[i] + y[i]) / 2
-                                        ))))
-                                        
-                                }
+                        for (i in 1:length(P)) {
+                          PQsum <- P[i] + Q[i]
+                          if (PQsum == 0.0 || P[i] == 0.0 || Q[i] == 0.0) {
+                            if (PQsum == 0.0 && P[i] == 0.0 && Q[i] == 0.0){
+                              dist = dist
+                            } 
+                            if (P[i] == 0.0 && Q[i] > 0.0 && PQsum > 0.0) {
+                              dist = dist + ((0.0 + (Q[i] * log(Q[i]))) / 2.0) - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                            }
+                            
+                            if (P[i] > 0.0 && Q[i] == 0.0 && PQsum > 0.0) {
+                              dist = dist + (((P[i] * log(P[i])) + 0.0 ) / 2.0) - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                            }
+                            
+                            if (P[i] == 0.0 && Q[i] == 0.0 && PQsum > 0.0) {
+                              dist = dist + 0.0 - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                            }
+                            
+                            if (P[i] > 0.0 && Q[i] > 0.0 && PQsum == 0.0) {
+                              dist = dist + (((P[i] * log(P[i])) + (Q[i] * log(Q[i]))) / 2.0) - 0.0 ;
+                            }
+                            
+                            if (P[i] > 0.0 && Q[i] == 0.0 && PQsum == 0.0) {
+                              dist = dist + (((P[i] * log(P[i])) + 0.0) / 2.0) - 0.0 ;
+                            }
+                            
+                            if (P[i] == 0.0 && Q[i] > 0.0 && PQsum == 0.0) {
+                              dist = dist + ((0.0 + (Q[i] * log(Q[i]))) / 2.0) - 0.0 ;
+                            }
+                            
+                          } else {
+                            dist = dist + (((P[i] * log(P[i])) + (Q[i] * log(Q[i]))) / 2.0) - ((PQsum / 2.0) * log(PQsum / 2.0)) ;
+                          }   
                                 
                         }
                         
