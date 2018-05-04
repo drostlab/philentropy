@@ -73,6 +73,7 @@ distance(x, method = "jensen-shannon")
 ```
 
 ```
+jensen-shannon using unit 'log'.
 jensen-shannon 
     0.02628933
 ```
