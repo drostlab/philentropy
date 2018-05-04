@@ -46,7 +46,7 @@ gJSD <- function(x, unit = "log2", weights = NULL){
                 x <- as.matrix(x)
         
         if(!(class(x) == "matrix"))
-                stop("Please enter a numeric probability matrix.")
+                stop("Please enter a numeric probability matrix.", call. = FALSE)
         
         # check for distribution validity
         apply(x,2,valid.distr)
