@@ -39,105 +39,6 @@ test_dist_matrix <- function(x, FUN) {
 }
 
 
-test_that("distance(method = 'minkowski') computes the correct distance value.",
-          {
-                  expect_equal(as.vector(
-                          philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)
-                  ),
-                  (sum(abs((
-                          P
-                  ) - (
-                          Q
-                  )) ^ 4)) ^ 0.25)
-                  
-                  expect_equal(as.vector(
-                          philentropy::distance(rbind(P, Q), method = "minkowski", p = 4)
-                  ),
-                  as.vector(stats::dist(
-                          base::rbind(P, Q), method = "minkowski", p = 4
-                  )))
-                  
-                  expect_error(
-                          as.vector(philentropy::distance(rbind(P, Q), method = "minkowski")),
-                          "Please specify p for the Minkowski distance!"
-                  )
-                  
-                  expect_equal(as.vector(
-                          philentropy::distance(rbind(V, W), method = "minkowski", p = 4)
-                  ), (sum(abs((
-                          V
-                  ) - (
-                          W
-                  )) ^ 4)) ^ 0.25)
-                  
-                  expect_equal(as.vector(
-                          philentropy::distance(rbind(V, W), method = "minkowski", p = 4)
-                  ),
-                  as.vector(stats::dist(
-                          base::rbind(V, W), method = "minkowski", p = 4
-                  )))
-                  
-                  expect_error(
-                          as.vector(philentropy::distance(rbind(V, W), method = "minkowski")),
-                          "Please specify p for the Minkowski distance!"
-                  )
-                  
-                  # test correct computation of distance matrix
-                  distMat <-
-                          rbind(rep(0.2, 5), rep(0.1, 5), c(5, 1, 7, 9, 5))
-                  dist.vals <-
-                          distance(distMat, method = "minkowski", p = 4)
-                  
-                  expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
-                               as.vector(dist(
-                                       distMat, method = "minkowski", p = 4
-                               )))
-                  
-          })
-
-
-test_that("distance(method = 'chebyshev') computes the correct distance value.",
-          {
-                  expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "chebyshev")),
-                               max(abs((P) - (Q))))
-                  
-                  expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "chebyshev")),
-                               as.vector(stats::dist(base::rbind(P, Q), method = "maximum")))
-                  
-                  # test correct computation of distance matrix
-                  distMat <-
-                          rbind(rep(0.2, 5), rep(0.1, 5), c(5, 1, 7, 9, 5))
-                  dist.vals <-
-                          distance(distMat, method = "chebyshev")
-                  
-                  expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
-                               as.vector(dist(distMat, method = "maximum")))
-                  
-          })
-
-
-test_that("distance(method = 'sorensen') computes the correct distance value.",
-          {
-                  test_sorensen_dist <- function(P, Q) {
-                          sum(abs((P) - (Q))) / sum((P) + (Q))
-                  }
-                  
-                  
-                  expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "sorensen")),
-                               test_sorensen_dist(P, Q))
-                  
-                  # test correct computation of distance matrix
-                  distMat <-
-                          rbind(rep(0.2, 5), rep(0.1, 5), c(5, 1, 7, 9, 5))
-                  dist.vals <-
-                          distance(distMat, method = "sorensen")
-                  
-                  expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
-                               test_dist_matrix(distMat, FUN = test_sorensen_dist))
-                  
-          })
-
-
 test_that("distance(method = 'gower') computes the correct distance value.",
           {
                   test_gower_dist <- function(P, Q) {
@@ -1091,7 +992,7 @@ test_that(
                         dist <- 0
                         
                         for (i in 1:length(x)) {
-                                if (((x[i] + y[i]) == 0) & ((x[i] * y[i]) == 0)) {
+                                if (((x[i] + y[i]) == 0) | ((x[i] * y[i]) == 0)) {
                                         dist = dist
                                 } else {
                                         dist = dist + ((x[i] - y[i]) ^ 2 * ((x[i] + y[i]) / (x[i] * y[i])))
