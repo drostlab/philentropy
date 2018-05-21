@@ -39,32 +39,6 @@ test_dist_matrix <- function(x, FUN) {
 }
 
 
-
-test_that("distance(method = 'manhattan') computes the correct distance value.",
-          {
-                  expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "manhattan")),
-                               sum(abs((P) - (Q))))
-                  
-                  expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "manhattan")),
-                               as.vector(stats::dist(base::rbind(P, Q), method = "manhattan")))
-                  
-                  expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "manhattan")),
-                               sum(abs((V) - (W))))
-                  
-                  expect_equal(as.vector(philentropy::distance(rbind(V, W), method = "manhattan")),
-                               as.vector(stats::dist(base::rbind(V, W), method = "manhattan")))
-                  
-                  # test correct computation of distance matrix
-                  distMat <-
-                          rbind(rep(0.2, 5), rep(0.1, 5), c(5, 1, 7, 9, 5))
-                  dist.vals <-
-                          distance(distMat, method = "manhattan")
-                  
-                  expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
-                               as.vector(dist(distMat, method = "manhattan")))
-          })
-
-
 test_that("distance(method = 'minkowski') computes the correct distance value.",
           {
                   expect_equal(as.vector(
