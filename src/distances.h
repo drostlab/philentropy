@@ -208,7 +208,12 @@ double sorensen(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
                         dist2 += sum;
                 }
         }
-        return dist1/dist2;
+        
+        if (dist2 == 0.0) {
+                return NAN;
+        } else {
+                return dist1/dist2;
+        }
 }
 
 
