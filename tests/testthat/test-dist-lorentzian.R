@@ -13,7 +13,7 @@ test_dist_matrix <- function(x, FUN) {
   
   for (i in 1:nrow(x)) {
     for (j in 1:nrow(x)) {
-      res.dist.matrix[i, j] <- dist.fun(x[i, ], x[j, ])
+      res.dist.matrix[i, j] <- dist.fun(x[i,], x[j,])
     }
   }
   return(res.dist.matrix[lower.tri(res.dist.matrix, diag = FALSE)])
@@ -25,8 +25,6 @@ test_lorentzian_dist <- function(P, Q) {
 
 test_that("distance(method = 'lorentzian') computes the correct distance value using unit = log.",
           {
-           
-            
             expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "lorentzian")),
                          test_lorentzian_dist(P, Q))
             
@@ -56,6 +54,22 @@ test_that(
   }
 )
 
+test_that(
+  "distance(method = 'lorentzian') computes the correct distance value using unit = log10.",
+  {
+    expect_equal(as.vector(
+      philentropy::distance(rbind(P, Q), method = "lorentzian",
+                            unit = "log10")
+    ), sum(log10(1 + abs((
+      P
+    ) - (
+      Q
+    )))))
+    
+    
+  }
+)
+
 
 test_that("Correct lorentzian distance is computed when vectors contain 0 values ...",
           {
@@ -73,4 +87,3 @@ test_that("Correct lorentzian distance is computed when vectors contain 0 values
                          test_dist_matrix(distMat, FUN = test_lorentzian_dist))
             
           })
-
