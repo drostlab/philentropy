@@ -1,6 +1,6 @@
 //  Part of the philentropy package
 //
-//  Copyright (C) 2015-2017 Hajk-Georg Drost
+//  Copyright (C) 2015-2018 Hajk-Georg Drost
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
