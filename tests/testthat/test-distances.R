@@ -38,110 +38,7 @@ test_dist_matrix <- function(x, FUN) {
         return(res.dist.matrix[lower.tri(res.dist.matrix, diag = FALSE)])
 }
 
-
-
-test_that("distance(method = 'intersection') computes the correct distance value.",
-          {
-                  test_intersection_dist <- function(P, Q) {
-                          sum(apply(base::rbind(P, Q), 2, min))
-                  }
-                  
-                  expect_equal(as.vector(
-                          philentropy::distance(rbind(P, Q), method = "intersection")
-                  ),
-                  test_intersection_dist(P, Q))
-                  
-                  # test correct computation of distance matrix
-                  distMat <-
-                          rbind(rep(0.2, 5), rep(0.1, 5), c(5, 1, 7, 9, 5))
-                  dist.vals <-
-                          distance(distMat, method = "intersection")
-                  
-                  expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
-                               test_dist_matrix(distMat, FUN = test_intersection_dist))
-                  
-          })
-
-
-test_that("distance(method = 'non-intersection') computes the correct distance value.",
-          {
-                  expect_equal(as.vector(
-                          philentropy::distance(rbind(P, Q), method = "non-intersection")
-                  ),
-                  1 - sum(apply(base::rbind(P, Q), 2, min)))
-                  
-          })
-
-
-test_that("distance(method = 'wavehedges') computes the correct distance value.",
-          {
-                  test_wh_dist <- function(P, Q) {
-                          sum(abs(P - Q) / apply(base::rbind(P, Q), 2, max))
-                  }
-                  
-                  expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "wavehedges")),
-                               test_wh_dist(P, Q))
-                  
-                  # test correct computation of distance matrix
-                  distMat <-
-                          rbind(rep(0.2, 5), rep(0.1, 5), c(5, 1, 7, 9, 5))
-                  dist.vals <-
-                          distance(distMat, method = "wavehedges")
-                  
-                  expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
-                               test_dist_matrix(distMat, FUN = test_wh_dist))
-          })
-
-
-
-test_that(
-        "distance(method = 'wavehedges') computes the correct distance value in case the input probability vectors store 0 values at the same position causing 0/0 computations.",
-        {
-                A <- c(0, 0.25, 0.25, 0, 0.25, 0.25)
-                B <- c(0, 0, 0.25, 0.25, 0.25, 0.25)
-                
-                wh <- function(x, y) {
-                        dist <- vector(mode = "numeric", length = 1)
-                        dist <- 0
-                        
-                        for (i in 1:length(x)) {
-                                if ((abs(x[i] - y[i]) == 0) & ((max(c(
-                                        x[i], y[i]
-                                ))) == 0)) {
-                                        dist = dist
-                                } else {
-                                        dist = dist + (abs(x[i] - y[i]) / max(c(x[i], y[i])))
-                                }
-                        }
-                        return(dist)
-                }
-                
-                expect_equal(as.vector(philentropy::distance(rbind(A, B), method = "wavehedges")), wh(A, B))
-                
-        }
-)
-
-
-test_that("distance(method = 'czekanowski') computes the correct distance value.",
-          {
-                  test_czekanowski_dist <- function(P, Q) {
-                          sum(abs(P - Q)) / sum(P + Q)
-                  }
-                  
-                  expect_equal(as.vector(philentropy::distance(rbind(P, Q), method = "czekanowski")),
-                               test_czekanowski_dist(P, Q))
-                  
-                  # test correct computation of distance matrix
-                  distMat <-
-                          rbind(rep(0.2, 5), rep(0.1, 5), c(5, 1, 7, 9, 5))
-                  dist.vals <-
-                          distance(distMat, method = "czekanowski")
-                  
-                  expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
-                               test_dist_matrix(distMat, FUN = test_czekanowski_dist))
-                  
-          })
-
+context("Test implementation of motyka distance ...")
 
 test_that("distance(method = 'motyka') computes the correct distance value.",
           {
@@ -161,6 +58,8 @@ test_that("distance(method = 'motyka') computes the correct distance value.",
                                test_dist_matrix(distMat, FUN = test_motyka_dist))
           })
 
+
+context("Test implementation of kulczynski_s distance ...")
 
 test_that("distance(method = 'kulczynski_s') computes the correct distance value.",
           {
@@ -186,6 +85,7 @@ test_that("distance(method = 'kulczynski_s') computes the correct distance value
                   
           })
 
+context("Test implementation of tanimoto distance ...")
 
 test_that("distance(method = 'tanimoto') computes the correct distance value.",
           {
@@ -206,6 +106,8 @@ test_that("distance(method = 'tanimoto') computes the correct distance value.",
                                test_dist_matrix(distMat, FUN = test_tanimoto_dist))
           })
 
+
+context("Test implementation of ruzicka distance ...")
 
 test_that("distance(method = 'ruzicka') computes the correct distance value.",
           {
@@ -229,6 +131,8 @@ test_that("distance(method = 'ruzicka') computes the correct distance value.",
           })
 
 
+context("Test implementation of inner_product distance ...")
+
 test_that("distance(method = 'inner_product') computes the correct distance value.",
           {
                   test_innerproduct_dist <- function(P, Q) {
@@ -250,6 +154,8 @@ test_that("distance(method = 'inner_product') computes the correct distance valu
                                test_dist_matrix(distMat, FUN = test_innerproduct_dist))
           })
 
+
+context("Test implementation of harmonic_mean distance ...")
 
 test_that("distance(method = 'harmonic_mean') computes the correct distance value.",
           {
@@ -305,6 +211,8 @@ test_that(
 )
 
 
+context("Test implementation of cosine distance ...")
+
 test_that("distance(method = 'cosine') computes the correct distance value.",
           {
                   test_cosine_dist <- function(P, Q) {
@@ -326,6 +234,8 @@ test_that("distance(method = 'cosine') computes the correct distance value.",
                   
           })
 
+
+context("Test implementation of hassebrook distance ...")
 
 test_that("distance(method = 'hassebrook') computes the correct distance value.",
           {
@@ -351,6 +261,7 @@ test_that("distance(method = 'hassebrook') computes the correct distance value."
           })
 
 
+context("Test implementation of jaccard distance ...")
 
 test_that("distance(method = 'jaccard') computes the correct distance value.",
           {
@@ -373,6 +284,8 @@ test_that("distance(method = 'jaccard') computes the correct distance value.",
           })
 
 
+context("Test implementation of dice distance ...")
+
 test_that("distance(method = 'dice') computes the correct distance value.",
           {
                   test_dice_dist <- function(P, Q) {
@@ -393,6 +306,8 @@ test_that("distance(method = 'dice') computes the correct distance value.",
           })
 
 
+context("Test implementation of fidelity distance ...")
+
 test_that("distance(method = 'fidelity') computes the correct distance value.",
           {
                   test_fidelity_dist <- function(P, Q) {
@@ -412,6 +327,9 @@ test_that("distance(method = 'fidelity') computes the correct distance value.",
                                test_dist_matrix(distMat, FUN = test_fidelity_dist))
                   
           })
+
+
+context("Test implementation of bhattacharyya distance ...")
 
 
 test_that(
@@ -438,6 +356,8 @@ test_that(
         }
 )
 
+
+
 test_that(
         "distance(method = 'bhattacharyya') computes the correct distance value using unit = log2.",
         {
@@ -458,6 +378,8 @@ test_that(
         }
 )
 
+
+context("Test implementation of hellinger distance ...")
 
 test_that("distance(method = 'hellinger') computes the correct distance value.",
           {
@@ -480,6 +402,8 @@ test_that("distance(method = 'hellinger') computes the correct distance value.",
           })
 
 
+
+context("Test implementation of matusita distance ...")
 
 test_that("distance(method = 'matusita') computes the correct distance value.",
           {
@@ -504,6 +428,9 @@ test_that("distance(method = 'matusita') computes the correct distance value.",
           })
 
 
+
+context("Test implementation of squared_chord distance ...")
+
 test_that("distance(method = 'squared_chord') computes the correct distance value.",
           {
                   test_sqchord_dist <- function(P, Q) {
@@ -526,6 +453,9 @@ test_that("distance(method = 'squared_chord') computes the correct distance valu
                                test_dist_matrix(distMat, FUN = test_sqchord_dist))
           })
 
+
+
+context("Test implementation of squared_euclidean distance ...")
 
 test_that("distance(method = 'squared_euclidean') computes the correct distance value.",
           {
@@ -550,6 +480,10 @@ test_that("distance(method = 'squared_euclidean') computes the correct distance 
           })
 
 
+
+context("Test implementation of pearson distance ...")
+
+
 test_that("distance(method = 'pearson') computes the correct distance value.",
           {
                   test_pearson_dist <- function(P, Q) {
@@ -572,6 +506,9 @@ test_that("distance(method = 'pearson') computes the correct distance value.",
           })
 
 
+context("Test implementation of neyman distance ...")
+
+
 test_that("distance(method = 'neyman') computes the correct distance value.",
           {
                   test_neyman_dist <- function(P, Q) {
@@ -591,6 +528,9 @@ test_that("distance(method = 'neyman') computes the correct distance value.",
                   #         expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
                   #                      test_dist_matrix(distMat, FUN = test_neyman_dist))
           })
+
+
+context("Test implementation of squared_chi distance ...")
 
 
 test_that("distance(method = 'squared_chi') computes the correct distance value.",
@@ -643,6 +583,7 @@ test_that(
 )
 
 
+context("Test implementation of prob_symm distance ...")
 
 test_that("distance(method = 'prob_symm') computes the correct distance value.",
           {
@@ -662,6 +603,8 @@ test_that("distance(method = 'prob_symm') computes the correct distance value.",
                   expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
                                test_dist_matrix(distMat, FUN = test_probsymm_dist))
           })
+
+
 
 
 test_that(
@@ -692,6 +635,9 @@ test_that(
                 
         }
 )
+
+
+context("Test implementation of divergence distance ...")
 
 test_that("distance(method = 'divergence') computes the correct distance value.",
           {
@@ -739,6 +685,10 @@ test_that(
                 expect_equal(as.vector(philentropy::distance(rbind(A, B), method = "divergence")), div(A, B))
         }
 )
+
+
+context("Test implementation of clark distance ...")
+
 
 test_that("distance(method = 'clark') computes the correct distance value.",
           {
@@ -791,6 +741,9 @@ test_that(
 )
 
 
+
+context("Test implementation of additive_symm distance ...")
+
 test_that("distance(method = 'additive_symm') computes the correct distance value.",
           {
                   test_addsymm_dist <- function(P, Q) {
@@ -842,6 +795,10 @@ test_that(
                 ), add(A, B))
         }
 )
+
+
+context("Test implementation of kullback-leibler distance ...")
+
 
 test_that(
         "distance(method = 'kullback-leibler') computes the correct distance value using unit = log.",
@@ -920,6 +877,7 @@ test_that(
 )
 
 
+context("Test implementation of jeffreys distance ...")
 
 
 test_that("distance(method = 'jeffreys') computes the correct distance value using unit = log.",
@@ -980,6 +938,7 @@ test_that(
 )
 
 
+context("Test implementation of k_divergence distance ...")
 
 test_that(
         "distance(method = 'k_divergence') computes the correct distance value using unit = log.",
@@ -1064,6 +1023,8 @@ test_that(
 )
 
 
+context("Test implementation of topsoe distance ...")
+
 test_that("distance(method = 'topsoe') computes the correct distance value using unit = log.",
           {
                   test_topsoe_dist <- function(P, Q) {
@@ -1142,6 +1103,10 @@ test_that(
                 
         }
 )
+
+
+context("Test implementation of jensen-shannon distance ...")
+
 
 test_that(
         "distance(method = 'jensen-shannon') computes the correct distance value using unit = log.",
@@ -1257,6 +1222,7 @@ test_that(
         }
 )
 
+context("Test implementation of jensen_difference distance ...")
 
 test_that(
         "distance(method = 'jensen_difference') computes the correct distance value using unit = log.",
@@ -1378,6 +1344,10 @@ test_that(
         }
 )
 
+
+context("Test implementation of taneja distance ...")
+
+
 test_that("distance(method = 'taneja') computes the correct distance value using unit = log.",
           {
                   test_taneja_dist <- function(P, Q) {
@@ -1462,6 +1432,9 @@ test_that(
         }
 )
 
+
+context("Test implementation of kumar-johnson distance ...")
+
 test_that("distance(method = 'kumar-johnson') computes the correct distance value.",
           {
                   test_kumar_dist <- function(P, Q) {
@@ -1486,6 +1459,7 @@ test_that("distance(method = 'kumar-johnson') computes the correct distance valu
           })
 
 
+context("Test implementation of avg distance ...")
 
 test_that("distance(method = 'avg') computes the correct distance value.", {
         test_avg_dist <- function(P, Q) {
