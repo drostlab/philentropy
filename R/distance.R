@@ -200,7 +200,7 @@ distance <- function(x ,
         if (is.character(x))
                 stop(paste0("Your input ",class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
         
-         message(method, " using unit '", unit, "'.")       
+         message("Metric: '", method, "' using unit: '", unit, "'.")       
   
   
         dist_methods <- vector(mode = "character", length = 46)

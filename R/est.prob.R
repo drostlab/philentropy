@@ -25,6 +25,7 @@
 #' 
 #' @export
 
+
 estimate.probability <- function(x, method = "empirical"){
         
         if(!is.element(method,c("empirical")))
