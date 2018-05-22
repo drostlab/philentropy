@@ -384,8 +384,8 @@ double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
                         }
                         diff = fabs(P[i] - Q[i]);
                         sum  = P[i] + Q[i];
-                        // replace 0/0 by 0 according to Sung-Hyuk Cha (2007)
-                        if ((diff == 0.0) && (sum == 0.0)){
+                        // replace 0/0 or x/0 or 0/x by 0 according to Sung-Hyuk Cha (2007)
+                        if ((diff == 0.0) || (sum == 0.0)){
                                 dist += 0.0;
                         } else {
                                 dist += diff / sum;
@@ -395,8 +395,8 @@ double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
                 for (int i = 0; i < P_len; i++){
                         diff = fabs(P[i] - Q[i]);
                         sum  = P[i] + Q[i];
-                        // replace 0/0 by 0 according to Sung-Hyuk Cha (2007)
-                        if ((diff == 0.0) && (sum == 0.0)){
+                        // replace 0/0 or x/0 or 0/x by 0 according to Sung-Hyuk Cha (2007)
+                        if ((diff == 0.0) || (sum == 0.0)){
                                 dist += 0.0;
                         } else {
                                 dist += diff / sum;
