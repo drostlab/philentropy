@@ -16,7 +16,7 @@
 #  http://www.r-project.org/Licenses/
 
 
-context("Test implementation of information theory measures...")
+context("Test implementation of gJSD() ...")
 
 test_that("Numeric computation of gJSD() : ", {
         
