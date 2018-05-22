@@ -7,3 +7,6 @@ README.html
 README.Rmd
 ^\.travis\.yml$
 ^\.httr-oauth$
+paper.md
+paper.bib
+docs
