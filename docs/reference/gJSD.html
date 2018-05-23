@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Generalized Jensen-Shannon Divergence — gJSD" />
 
 <meta property="og:description" content="This function computes the Generalized Jensen-Shannon Divergence of a probability matrix." />
@@ -38,8 +41,6 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
 
 
   </head>
@@ -57,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -115,13 +116,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Generalized Jensen-Shannon Divergence</h1>
-    <small>Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/gJSD.R'><code>R/gJSD.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/gJSD.R'><code>R/gJSD.R</code></a></small>
     <div class="hidden name"><code>gJSD.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This function computes the Generalized Jensen-Shannon Divergence of a probability matrix.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>gJSD</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
@@ -159,10 +162,10 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>Prob</span> <span class='kw'>&lt;-</span> <span class='fu'>cbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>), <span class='fl'>30</span>:<span class='fl'>39</span>/<span class='fu'>sum</span>(<span class='fl'>30</span>:<span class='fl'>39</span>))
+<span class='no'>Prob</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>), <span class='fl'>30</span>:<span class='fl'>39</span>/<span class='fu'>sum</span>(<span class='fl'>30</span>:<span class='fl'>39</span>))
 
 <span class='co'># compute the Generalized JSD comparing the PS probability matrix</span>
-<span class='fu'>gJSD</span>(<span class='no'>Prob</span>)</div><div class='output co'>#&gt; [1] 0.03512892</div><div class='input'>
+<span class='fu'>gJSD</span>(<span class='no'>Prob</span>)</div><div class='output co'>#&gt; [1] 0.023325</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

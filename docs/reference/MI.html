@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Shannon's Mutual Information \(I(X,Y)\) — MI" />
 
 <meta property="og:description" content="Compute Shannon's Mutual Information based on the identity \(I(X,Y) =
@@ -42,8 +45,6 @@ and probability vectors \(P(X)\) and \(P(Y)\)." />
 <![endif]-->
 
 
-
-
   </head>
 
   <body>
@@ -59,7 +60,7 @@ and probability vectors \(P(X)\) and \(P(Y)\)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -117,15 +118,17 @@ and probability vectors \(P(X)\) and \(P(Y)\)." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Shannon's Mutual Information \(I(X,Y)\)</h1>
-    <small>Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/MI.R'><code>R/MI.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/MI.R'><code>R/MI.R</code></a></small>
     <div class="hidden name"><code>MI.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Compute Shannon's Mutual Information based on the identity \(I(X,Y) =
 H(X) + H(Y) - H(X,Y)\) based on a given joint-probability vector \(P(X,Y)\)
 and probability vectors \(P(X)\) and \(P(Y)\).</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>MI</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>xy</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>)</pre>
     

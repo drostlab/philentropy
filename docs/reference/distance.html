@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Distances between Probability Density Functions — distance" />
 
 <meta property="og:description" content="This functions computes the distance/dissimilarity between two probability density functions." />
@@ -38,8 +41,6 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
 
 
   </head>
@@ -57,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -115,13 +116,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Distances between Probability Density Functions</h1>
-    <small>Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/distance.R'><code>R/distance.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/distance.R'><code>R/distance.R</code></a></small>
     <div class="hidden name"><code>distance.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This functions computes the distance/dissimilarity between two probability density functions.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>distance</span>(<span class='no'>x</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>test.na</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
@@ -281,16 +284,16 @@ occur when dealing with 0 probabilities.</p>
 #&gt; [43] "jensen_difference" "taneja"            "kumar-johnson"    
 #&gt; [46] "avg"              </div><div class='input'>
 <span class='co'>## compute the euclidean distance between two probability vectors</span>
-<span class='fu'>distance</span>(<span class='fu'>rbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>)), <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>)</div><div class='output co'>#&gt; euclidean 
+<span class='fu'>distance</span>(<span class='fu'>rbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>)), <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'euclidean' using unit: 'log'.</span></div><div class='output co'>#&gt; euclidean 
 #&gt; 0.1280713 </div><div class='input'>
 <span class='co'>## compute the euclidean distance between all pairwise comparisons of probability vectors</span>
 <span class='no'>ProbMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>),<span class='fl'>30</span>:<span class='fl'>39</span>/<span class='fu'>sum</span>(<span class='fl'>30</span>:<span class='fl'>39</span>))
-<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>)</div><div class='output co'>#&gt;           v1         v2         v3
+<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'euclidean' using unit: 'log'.</span></div><div class='output co'>#&gt;           v1         v2         v3
 #&gt; v1 0.0000000 0.12807130 0.13881717
 #&gt; v2 0.1280713 0.00000000 0.01074588
 #&gt; v3 0.1388172 0.01074588 0.00000000</div><div class='input'>
 <span class='co'># compute distance matrix without testing for NA values in the input matrix</span>
-<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>test.na</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;           v1         v2         v3
+<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>test.na</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'euclidean' using unit: 'log'.</span></div><div class='output co'>#&gt;           v1         v2         v3
 #&gt; v1 0.0000000 0.12807130 0.13881717
 #&gt; v2 0.1280713 0.00000000 0.01074588
 #&gt; v3 0.1388172 0.01074588 0.00000000</div><div class='input'>
@@ -299,29 +302,29 @@ occur when dealing with 0 probabilities.</p>
 <span class='no'>CountMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>, <span class='fl'>20</span>:<span class='fl'>29</span>, <span class='fl'>30</span>:<span class='fl'>39</span>)
 
 <span class='co'>## estimate probabilities from a count matrix</span>
-<span class='fu'>distance</span>(<span class='no'>CountMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='st'>"empirical"</span>)</div><div class='output co'>#&gt;           v1         v2         v3
+<span class='fu'>distance</span>(<span class='no'>CountMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='st'>"empirical"</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'euclidean' using unit: 'log'.</span></div><div class='output co'>#&gt;           v1         v2         v3
 #&gt; v1 0.0000000 0.12807130 0.13881717
 #&gt; v2 0.1280713 0.00000000 0.01074588
 #&gt; v3 0.1388172 0.01074588 0.00000000</div><div class='input'>
 <span class='co'>## compute the euclidean distance for count data</span>
 <span class='co'>## NOTE: some distance measures are only defined for probability values,</span>
-<span class='fu'>distance</span>(<span class='no'>CountMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>)</div><div class='output co'>#&gt;          v1       v2       v3
+<span class='fu'>distance</span>(<span class='no'>CountMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'euclidean' using unit: 'log'.</span></div><div class='output co'>#&gt;          v1       v2       v3
 #&gt; v1  0.00000 60.08328 91.70605
 #&gt; v2 60.08328  0.00000 31.62278
 #&gt; v3 91.70605 31.62278  0.00000</div><div class='input'>
 <span class='co'>## compute the Kullback-Leibler Divergence with different logarithm bases:</span>
 <span class='co'>### case: unit = log (Default)</span>
-<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"kullback-leibler"</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>)</div><div class='output co'>#&gt;            v1           v2           v3
+<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"kullback-leibler"</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log'.</span></div><div class='output co'>#&gt;            v1           v2           v3
 #&gt; v1 0.00000000 0.0965296706 0.1111323599
 #&gt; v2 0.09652967 0.0000000000 0.0005867893
 #&gt; v3 0.11113236 0.0005867893 0.0000000000</div><div class='input'>
 <span class='co'>### case: unit = log2 </span>
-<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"kullback-leibler"</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>)</div><div class='output co'>#&gt;           v1           v2           v3
+<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"kullback-leibler"</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'.</span></div><div class='output co'>#&gt;           v1           v2           v3
 #&gt; v1 0.0000000 0.1392628771 0.1603301045
 #&gt; v2 0.1392629 0.0000000000 0.0008465581
 #&gt; v3 0.1603301 0.0008465581 0.0000000000</div><div class='input'>
 <span class='co'>### case: unit = log10 </span>
-<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"kullback-leibler"</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log10"</span>)</div><div class='output co'>#&gt;            v1           v2           v3
+<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"kullback-leibler"</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log10"</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log10'.</span></div><div class='output co'>#&gt;            v1           v2           v3
 #&gt; v1 0.00000000 0.0419223033 0.0482641707
 #&gt; v2 0.04192230 0.0000000000 0.0002548394
 #&gt; v3 0.04826417 0.0002548394 0.0000000000</div><div class='input'>

@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Kernel Density Estimation — binned.kernel.est" />
 
 <meta property="og:description" content="This function implements an interface to the kernel density estimation functions provided by the KernSmooth package." />
@@ -38,8 +41,6 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
 
 
   </head>
@@ -57,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -115,13 +116,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Kernel Density Estimation</h1>
-    <small>Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/binned.kernel.est.R'><code>R/binned.kernel.est.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/binned.kernel.est.R'><code>R/binned.kernel.est.R</code></a></small>
     <div class="hidden name"><code>binned.kernel.est.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This function implements an interface to the kernel density estimation functions provided by the <span class="pkg">KernSmooth</span> package.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>binned.kernel.est</span>(<span class='no'>data</span>, <span class='kw'>kernel</span> <span class='kw'>=</span> <span class='st'>"normal"</span>, <span class='kw'>bandwidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>canonical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>scalest</span> <span class='kw'>=</span> <span class='st'>"minim"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>401L</span>,

@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Shannon's Conditional-Entropy \(H(X | Y)\) — CE" />
 
 <meta property="og:description" content="Compute Shannon's Conditional-Entropy based on the chain rule \(H(X | Y)
@@ -42,8 +45,6 @@ probability vector \(P(Y)\)." />
 <![endif]-->
 
 
-
-
   </head>
 
   <body>
@@ -59,7 +60,7 @@ probability vector \(P(Y)\)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -117,15 +118,17 @@ probability vector \(P(Y)\)." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Shannon's Conditional-Entropy \(H(X | Y)\)</h1>
-    <small>Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/CE.R'><code>R/CE.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/CE.R'><code>R/CE.R</code></a></small>
     <div class="hidden name"><code>CE.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Compute Shannon's Conditional-Entropy based on the chain rule \(H(X | Y)
 = H(X,Y) - H(Y)\) based on a given joint-probability vector \(P(X,Y)\) and
 probability vector \(P(Y)\).</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>CE</span>(<span class='no'>xy</span>, <span class='no'>y</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>)</pre>
     

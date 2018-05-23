@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Jensen-Shannon Divergence — JSD" />
 
 <meta property="og:description" content="This function computes a distance matrix or distance value based on the Jensen-Shannon Divergence with equal weights." />
@@ -38,8 +41,6 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
 
 
   </head>
@@ -57,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -115,13 +116,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Jensen-Shannon Divergence</h1>
-    <small>Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/JSD.R'><code>R/JSD.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/HajkD/philentropy/blob/master/R/JSD.R'><code>R/JSD.R</code></a></small>
     <div class="hidden name"><code>JSD.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This function computes a distance matrix or distance value based on the Jensen-Shannon Divergence with equal weights.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>JSD</span>(<span class='no'>x</span>, <span class='kw'>test.na</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
@@ -185,25 +188,25 @@ distributions". IEEE Trans. on Info. Thy. (49) 3: 1858-1860.</p>
 <span class='no'>P</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)
 <span class='no'>Q</span> <span class='kw'>&lt;-</span> <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='no'>P</span>,<span class='no'>Q</span>)
-<span class='fu'>JSD</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; jensen-shannon 
+<span class='fu'>JSD</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jensen-shannon' using unit: 'log2'.</span></div><div class='output co'>#&gt; jensen-shannon 
 #&gt;     0.03792749 </div><div class='input'>
 <span class='co'># Jensen-Shannon Divergence between P and Q using different log bases</span>
-<span class='fu'>JSD</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>) <span class='co'># Default</span></div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; jensen-shannon 
-#&gt;     0.03792749 </div><div class='input'><span class='fu'>JSD</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log'.</span></div><div class='output co'>#&gt; jensen-shannon 
-#&gt;     0.02628933 </div><div class='input'><span class='fu'>JSD</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log10"</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log10'.</span></div><div class='output co'>#&gt; jensen-shannon 
+<span class='fu'>JSD</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>) <span class='co'># Default</span></div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jensen-shannon' using unit: 'log2'.</span></div><div class='output co'>#&gt; jensen-shannon 
+#&gt;     0.03792749 </div><div class='input'><span class='fu'>JSD</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jensen-shannon' using unit: 'log'.</span></div><div class='output co'>#&gt; jensen-shannon 
+#&gt;     0.02628933 </div><div class='input'><span class='fu'>JSD</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log10"</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log10'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jensen-shannon' using unit: 'log10'.</span></div><div class='output co'>#&gt; jensen-shannon 
 #&gt;     0.01141731 </div><div class='input'>
 <span class='co'># Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count</span>
 <span class='no'>P.count</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>10</span>
 <span class='no'>Q.count</span> <span class='kw'>&lt;-</span> <span class='fl'>20</span>:<span class='fl'>29</span>
 <span class='no'>x.count</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='no'>P.count</span>,<span class='no'>Q.count</span>)
-<span class='fu'>JSD</span>(<span class='no'>x</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='st'>"empirical"</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; jensen-shannon 
+<span class='fu'>JSD</span>(<span class='no'>x</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='st'>"empirical"</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jensen-shannon' using unit: 'log2'.</span></div><div class='output co'>#&gt; jensen-shannon 
 #&gt;     0.03792749 </div><div class='input'>
 <span class='co'># Example: Distance Matrix using JSD-Distance</span>
 
-<span class='no'>Prob</span> <span class='kw'>&lt;-</span> <span class='fu'>cbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>), <span class='fl'>30</span>:<span class='fl'>39</span>/<span class='fu'>sum</span>(<span class='fl'>30</span>:<span class='fl'>39</span>))
+<span class='no'>Prob</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>), <span class='fl'>30</span>:<span class='fl'>39</span>/<span class='fu'>sum</span>(<span class='fl'>30</span>:<span class='fl'>39</span>))
 
 <span class='co'># compute the KL matrix of a given probability matrix</span>
-<span class='no'>JSDMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'>JSD</span>(<span class='no'>Prob</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log2'.</span></div><div class='input'>
+<span class='no'>JSDMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'>JSD</span>(<span class='no'>Prob</span>)</div><div class='output co'>#&gt; <span class='message'>Jensen-Shannon Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jensen-shannon' using unit: 'log2'.</span></div><div class='input'>
 <span class='co'># plot a heatmap of the corresponding JSD matrix</span>
 <span class='fu'>heatmap</span>(<span class='no'>JSDMatrix</span>)</div><div class='img'><img src='JSD-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
