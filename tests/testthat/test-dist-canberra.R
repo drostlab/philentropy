@@ -40,7 +40,7 @@ test_that("distance(method = 'canberra') computes the correct distance value.",
             dist.vals <-
               distance(distMat, method = "canberra")
             
-            expect_identical(dist.vals[lower.tri(dist.vals, diag = FALSE)],
+            expect_equal(dist.vals[lower.tri(dist.vals, diag = FALSE)],
                              test_dist_matrix(distMat, FUN = test_canberra_dist))
             
           })
