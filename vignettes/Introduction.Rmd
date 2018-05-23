@@ -35,67 +35,69 @@ Furthermore, for each distance/similarity measure a short description on usage a
 
 The following probability distance/similarity measures will be described in detail:
 
+### Distance and Similarity Measures 
+
 #### $L_p$ Minkowski Family
-* Euclidean : $d = sqrt( \sum | P_i - Q_i |^2)$
-* Manhattan : $d = \sum | P_i - Q_i |$
-* Minkowski : $d = ( \sum | P_i - Q_i |^p)^{1/p}$
+* Euclidean : $d = \sqrt{\sum_{i = 1}^N | P_i - Q_i |^2)}$
+* Manhattan : $d = \sum_{i = 1}^N | P_i - Q_i |$
+* Minkowski : $d = ( \sum_{i = 1}^N | P_i - Q_i |^p)^{1/p}$
 * Chebyshev : $d = max | P_i - Q_i |$
 
 #### $L_1$ Family
-* Sorensen : $d = \sum | P_i - Q_i | / \sum (P_i + Q_i)$
-* Gower : $d = 1/N * \sum | P_i - Q_i |$, where $N$ is the total number of elements $i$ in $P_i$ and $Q_i$
-* Soergel : $d = \sum | P_i - Q_i | / \sum max(P_i , Q_i)$
-* Kulczynski d : $d = \sum | P_i - Q_i | / \sum min(P_i , Q_i)$
-* Canberra : $d = \sum | P_i - Q_i | / (P_i + Q_i)$
-* Lorentzian : $d = \sum ln(1 + | P_i - Q_i |)$
+* Sorensen : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N (P_i + Q_i)}$
+* Gower : $d = \frac{1}{N} \dot \sum_{i = 1}^N | P_i - Q_i |$, where $N$ is the total number of elements $i$ in $P_i$ and $Q_i$
+* Soergel : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N max(P_i , Q_i)}$
+* Kulczynski d : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N min(P_i , Q_i)}$
+* Canberra : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{(P_i + Q_i)}$
+* Lorentzian : $d = \sum_{i = 1}^N ln(1 + | P_i - Q_i |)$
 
 #### Intersection Family
-* Intersection : $s = \sum min(P_i , Q_i)$
-* Non-Intersection : $d = 1 - \sum min(P_i , Q_i)$
-* Wave Hedges : $d = \sum | P_i - Q_i | / max(P_i , Q_i)$
-* Czekanowski : $d = \sum | P_i - Q_i | / \sum | P_i + Q_i |$
-* Motyka : $d = \sum min(P_i , Q_i) / (P_i + Q_i)$
-* Kulczynski s : $d = 1 / \sum | P_i - Q_i | / \sum min(P_i , Q_i)$
-* Tanimoto : $d = \sum (max(P_i , Q_i) - min(P_i , Q_i)) / \sum max(P_i , Q_i)$ ; equivalent to Soergel
-* Ruzicka : $s = \sum min(P_i , Q_i) / \sum max(P_i , Q_i)$ ; equivalent to 1 - Tanimoto = 1 - Soergel 
+* Intersection : $s = \sum_{i = 1}^N min(P_i , Q_i)$
+* Non-Intersection : $d = 1 - \sum_{i = 1}^N min(P_i , Q_i)$
+* Wave Hedges : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{max(P_i , Q_i)}$
+* Czekanowski : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N | P_i + Q_i |}$
+* Motyka : $d = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{(P_i + Q_i)}$
+* Kulczynski s : $d = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{\sum_{i = 1}^N | P_i - Q_i |}$
+* Tanimoto : $d = \frac{\sum_{i = 1}^N (max(P_i , Q_i) - min(P_i , Q_i))}{\sum_{i = 1}^N max(P_i , Q_i)}$ ; equivalent to Soergel
+* Ruzicka : $s = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{\sum_{i = 1}^N max(P_i , Q_i)}$ ; equivalent to 1 - Tanimoto = 1 - Soergel 
 
 #### Inner Product Family
-* Inner Product : $s = \sum P_i * Q_i$
-* Harmonic mean : $s = 2 * \sum (P_i * Q_i) / (P_i + Q_i)$
-* Cosine : $s = \sum (P_i * Q_i) / sqrt(\sum P_i^2) * sqrt(\sum Q_i^2)$
-* Kumar-Hassebrook (PCE) : $s = \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))$
-* Jaccard : $d = 1 - \sum (P_i * Q_i) / (\sum P_i^2 + \sum Q_i^2 - \sum (P_i * Q_i))$ ; equivalent to 1 - Kumar-Hassebrook
-* Dice : $d = \sum (P_i - Q_i)^2 / (\sum P_i^2 + \sum Q_i^2)$
+* Inner Product : $s = \sum_{i = 1}^N P_i \dot Q_i$
+* Harmonic mean : $s = 2 \cdot \frac{ \sum_{i = 1}^N P_i \cdot Q_i}{P_i + Q_i}$
+* Cosine : $s = \frac{\sum_{i = 1}^N P_i \cdot Q_i}{\sqrt{\sum_{i = 1}^N P_i^2} \cdot \sqrt{\sum_{i = 1}^N Q_i^2}}$
+* Kumar-Hassebrook (PCE) : $s = \frac{\sum_{i = 1}^N (P_i \cdot Q_i)}{(\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2 - \sum_{i = 1}^N (P_i \cdot Q_i))}$
+* Jaccard : $d = 1 - \frac{\sum_{i = 1}^N P_i \cdot Q_i}{\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2 - \sum_{i = 1}^N P_i \cdot Q_i}$ ; equivalent to 1 - Kumar-Hassebrook
+* Dice : $d = \frac{\sum_{i = 1}^N (P_i - Q_i)^2}{(\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2)}$
 
 #### Squared-chord Family
-* Fidelity : $s = \sum sqrt(P_i * Q_i)$
-* Bhattacharyya : $d = - ln \sum sqrt(P_i * Q_i)$
-* Hellinger : $d = 2 * sqrt( 1 - \sum sqrt(P_i * Q_i))$
-* Matusita : $d = sqrt( 2 - 2 * \sum sqrt(P_i * Q_i))$
-* Squared-chord : $d = \sum ( sqrt(P_i) - sqrt(Q_i) )^2$
+* Fidelity : $s = \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}$
+* Bhattacharyya : $d = - ln \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}$
+* Hellinger : $d = 2 \cdot \sqrt{1 - \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}}$
+* Matusita : $d = \sqrt{2 - 2 \cdot \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}}$
+* Squared-chord : $d = \sum_{i = 1}^N ( \sqrt{P_i} - \sqrt{Q_i} )^2$
 
 #### Squared $L_2$ family ($X^2$ squared family)
-* Squared Euclidean : $d = \sum ( P_i - Q_i )^2$
-* Pearson $X^2$ : $d = \sum ( (P_i - Q_i )^2 / Q_i )$
-* Neyman $X^2$ : $d = \sum ( (P_i - Q_i )^2 / P_i )$
-* Squared $X^2$ : $d = \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )$
-* Probabilistic Symmetric $X^2$ : $d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i) )$
-* Divergence : $X^2$ : $d = 2 *  \sum ( (P_i - Q_i )^2 / (P_i + Q_i)^2 )$
-* Clark : $d = sqrt ( \sum (| P_i - Q_i | / (P_i + Q_i))^2 )$
-* Additive Symmetric $X^2$ : $d = \sum ( ((P_i - Q_i)^2 * (P_i + Q_i)) / (P_i * Q_i) )$
+* Squared Euclidean : $d = \sum_{i = 1}^N ( P_i - Q_i )^2$
+* Pearson $X^2$ : $d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{Q_i} )$
+* Neyman $X^2$ : $d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{P_i} )$
+* Squared $X^2$ : $d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)} )$
+* Probabilistic Symmetric $X^2$ : $d = 2 \cdot \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)} )$
+* Divergence : $X^2$ : $d = 2 \cdot \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)^2} )$
+* Clark : $d = \sqrt{\sum_{i = 1}^N (\frac{| P_i - Q_i |}{(P_i + Q_i)^2}}$
+* Additive Symmetric $X^2$ : $d = \sum_{i = 1}^N ( \frac{((P_i - Q_i)^2 \cdot (P_i + Q_i))}{(P_i \cdot Q_i)} )$
 
 #### Shannon's Entropy Family
-* Kullback-Leibler : $d = \sum P_i * log(P_i / Q_i)$
-* Jeffreys : $d = \sum (P_i - Q_i) * log(P_i / Q_i)$
-* K divergence : $d = \sum P_i * log(2 * P_i / P_i + Q_i)$
-* Topsoe : $d = \sum ( P_i * log(2 * P_i / P_i + Q_i) ) + ( Q_i * log(2 * Q_i / P_i + Q_i) )$
-* Jensen-Shannon :  $d = 0.5 * ( \sum P_i * log(2 * P_i / P_i + Q_i) + \sum Q_i * log(2 * Q_i / P_i + Q_i))$ 
-* Jensen difference : $d = \sum ( (P_i * log(P_i) + Q_i * log(Q_i) / 2) - (P_i + Q_i / 2) * log(P_i + Q_i / 2) )$
+* Kullback-Leibler : $d = \sum_{i = 1}^N P_i \cdot log(\frac{P_i}{Q_i})$
+* Jeffreys : $d = \sum_{i = 1}^N (P_i - Q_i) \cdot log(\frac{P_i}{Q_i})$
+* K divergence : $d = \sum_{i = 1}^N P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i})$
+* Topsoe : $d = \sum_{i = 1}^N ( P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i}) ) + ( Q_i \cdot log(\frac{2 \cdot Q_i}{P_i + Q_i}) )$
+* Jensen-Shannon :  $d = 0.5 \cdot ( \sum_{i = 1}^N P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i}) + \sum_{i = 1}^N Q_i \cdot log(\frac{2 * Q_i}{P_i + Q_i}))$ 
+* Jensen difference : $d = \sum_{i = 1}^N ( (\frac{P_i \cdot log(P_i) + Q_i \cdot log(Q_i)}{2}) - (\frac{P_i + Q_i}{2}) \cdot log(\frac{P_i + Q_i}{2}) )$
 
 #### Combinations
-* Taneja : $d = \sum ( P_i + Q_i / 2) * log( P_i + Q_i$ $/ ( 2 * sqrt( P_i * Q_i)) )$
-* Kumar-Johnson : $d = \sum (P_i^2 - Q_i^2)^2$ $/ 2 * (P_i * Q_i)^1.5$
-* Avg($L_1$, $L_n$) : $d = \sum | P_i - Q_i| + max{ | P_i - Q_i |}$ $/ 2$
+* Taneja : $d = \sum_{i = 1}^N ( \frac{P_i + Q_i}{2}) \cdot log( \frac{P_i + Q_i}{( 2 \cdot \sqrt{P_i \cdot Q_i})} )$
+* Kumar-Johnson : $d = \sum_{i = 1}^N \frac{(P_i^2 - Q_i^2)^2}{2 \cdot (P_i \cdot Q_i)^{\frac{3}{2}}}$
+* Avg($L_1$, $L_n$) : $d = \frac{\sum_{i = 1}^N | P_i - Q_i| + max{ | P_i - Q_i |}}{2}$
 
 __Note__: $d$ refers to distance measures, whereas $s$ denotes similarity measures.
 
@@ -103,14 +105,12 @@ __Note__: $d$ refers to distance measures, whereas $s$ denotes similarity measur
 
 Modern methods for distribution comparisons have a strong [information theoretic background](http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf). This fact motivated me to name this package `philentropy` and as a result, several well established information theory measures are (and further will be) implemeted in this package. 
 
-- Shannon's Entropy H(X) : $H(X) = -\sum\limits_{i=1}^n P(x_i) * log_b(P(x_i))$
-- Shannon's Joint-Entropy H(X,Y) : $H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b(P(x_i, y_j))$
-- Shannon's Conditional-Entropy H(X | Y) : $H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i) / P(x_i, y_j) )$
-- Mutual Information I(X,Y) : $MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i, y_j) / ( P(x_i) * P(y_j) )$
-- Kullback-Leibler Divergence : $KL(P || Q) = \sum\limits_{i=1}^n P(p_i) * log_2(P(p_i) / P(q_i)) = H(P, Q) - H(P)$
+- Shannon's Entropy H(X) : $H(X) = -\sum\limits_{i=1}^n P(x_i) \cdot log_b(P(x_i))$
+- Shannon's Joint-Entropy H(X,Y) : $H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b(P(x_i, y_j))$
+- Shannon's Conditional-Entropy H(X | Y) : $H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b( \frac{P(x_i)}{P(x_i, y_j)})$
+- Mutual Information I(X,Y) : $MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b( \frac{P(x_i, y_j)}{( P(x_i) * P(y_j) )})$
+- Kullback-Leibler Divergence : $KL(P || Q) = \sum\limits_{i=1}^n P(p_i) \cdot log_2(\frac{P(p_i) }{P(q_i)}) = H(P, Q) - H(P)$
 - Jensen-Shannon Divergence : $JSD(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))$
-- Generalized Jensen-Shannon Divergence : $gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i*P_i) - \sum_{i = 1}^n \pi_i*H(P_i)$
-
-
+- Generalized Jensen-Shannon Divergence : $gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i \cdot P_i) - \sum_{i = 1}^n \pi_i \cdot H(P_i)$
 
 
