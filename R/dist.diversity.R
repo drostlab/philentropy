@@ -24,15 +24,22 @@
 #' and returns a vector storing the corresponding distance measures. This vector is \emph{named distance diversity vector}.
 #' 
 #' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).
-#' @param p power of the Minkowski distance.   
+#' @param p power of the Minkowski distance.
+#' @param test.na a boolean value indicating whether input vectors should be tested for NA values. Faster computations if \code{test.na = FALSE}.
+#' @param unit a character string specifying the logarithm unit that should be used to compute distances that depend on log computations. Options are:
+#' \itemize{
+#' \item \code{unit = "log"}
+#' \item \code{unit = "log2"}
+#' \item \code{unit = "log10"}
+#' }  
 #' @author Hajk-Georg Drost
 #' @examples
 #' 
-#' dist.diversity(rbind(1:10/sum(1:10), 20:29/sum(20:29)))
+#' dist.diversity(rbind(1:10/sum(1:10), 20:29/sum(20:29)), p = 2, unit = "log2")
 #' 
 #' @export
         
-dist.diversity <- function(x, p = 2){
+dist.diversity <- function(x, p, test.na = FALSE, unit = "log2"){
         
         distMethods <- vector(mode = "character")
         nMethods <- NA_integer_
@@ -40,7 +47,7 @@ dist.diversity <- function(x, p = 2){
         nMethods <- length(distMethods)
         distDiversityVec <- vector(mode = "numeric", length = nMethods)
         
-        distDiversityVec <- unlist(lapply(distMethods, function(method) distance(x, method = method, p = as.double(p))))
+        distDiversityVec <- unlist(lapply(distMethods, function(method) distance(x, method = method, p = as.double(p), test.na = test.na, unit = unit)))
         names(distDiversityVec) <- distMethods
         
         return(distDiversityVec)
