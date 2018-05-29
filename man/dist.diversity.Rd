@@ -4,12 +4,21 @@
 \alias{dist.diversity}
 \title{Distance Diversity between Probability Density Functions}
 \usage{
-dist.diversity(x, p = 2)
+dist.diversity(x, p, test.na = FALSE, unit = "log2")
 }
 \arguments{
 \item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).}
 
 \item{p}{power of the Minkowski distance.}
+
+\item{test.na}{a boolean value indicating whether input vectors should be tested for NA values. Faster computations if \code{test.na = FALSE}.}
+
+\item{unit}{a character string specifying the logarithm unit that should be used to compute distances that depend on log computations. Options are:
+\itemize{
+\item \code{unit = "log"}
+\item \code{unit = "log2"}
+\item \code{unit = "log10"}
+}}
 }
 \description{
 This function computes all distance values between two probability density functions that are available in \code{\link{getDistMethods}}
@@ -17,7 +26,7 @@ and returns a vector storing the corresponding distance measures. This vector is
 }
 \examples{
 
-dist.diversity(rbind(1:10/sum(1:10), 20:29/sum(20:29)))
+dist.diversity(rbind(1:10/sum(1:10), 20:29/sum(20:29)), p = 2, unit = "log2")
 
 }
 \author{
