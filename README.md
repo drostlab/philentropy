@@ -77,6 +77,63 @@ jensen-shannon using unit 'log'.
 jensen-shannon 
     0.02628933
 ```
+
+Alternatively, users can also retrieve values from all available distance/similarity metrics
+using `dist.diversity()`:
+
+
+```r
+dist.diversity(x, p = 2, unit = "log2")
+```
+
+```
+        euclidean         manhattan 
+       0.12807130        0.35250464 
+        minkowski         chebyshev 
+       0.12807130        0.06345083 
+         sorensen             gower 
+       0.17625232        0.03525046 
+          soergel      kulczynski_d 
+       0.29968454        0.42792793 
+         canberra        lorentzian 
+       2.09927095        0.49712136 
+     intersection  non-intersection 
+       0.82374768        0.17625232 
+       wavehedges       czekanowski 
+       3.16657887        0.17625232 
+           motyka      kulczynski_s 
+       0.58812616        2.33684211 
+         tanimoto           ruzicka 
+       0.29968454        0.70031546 
+    inner_product     harmonic_mean 
+       0.10612245        0.94948528 
+           cosine        hassebrook 
+       0.93427641        0.86613103 
+          jaccard              dice 
+       0.13386897        0.07173611 
+         fidelity     bhattacharyya 
+       0.97312397        0.03930448 
+        hellinger          matusita 
+       0.32787819        0.23184489 
+    squared_chord squared_euclidean 
+       0.05375205        0.01640226 
+          pearson            neyman 
+       0.16814418        0.36742465 
+      squared_chi         prob_symm 
+       0.10102943        0.20205886 
+       divergence             clark 
+       1.49843905        0.86557468 
+    additive_symm  kullback-leibler 
+       0.53556883        0.13926288 
+         jeffreys      k_divergence 
+       0.31761069        0.04216273 
+           topsoe    jensen-shannon 
+       0.07585498        0.03792749 
+jensen_difference            taneja 
+       0.03792749        0.04147518 
+    kumar-johnson               avg 
+       0.62779644        0.20797774
+```
  
 ### Install Developer Version
 ```r
