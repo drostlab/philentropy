@@ -5,12 +5,12 @@
 #' The following probability estimation methods are implemented in this function:
 #' 
 #' \itemize{
-#' \item \code{empirical} :
+#' \item \code{method = "empirical"} : generates the relative frequency of the data \code{x/sum(x)}.
 #' \item
 #' \item
 #' }
 #' 
-#' @param x a numeric vctor storing count values.
+#' @param x a numeric vector storing count values.
 #' @param method a character string specifying the estimation method tht should be used to estimate probabilities from input counts.
 #' @author Hajk-Georg Drost
 #' @return a numeric probability vector.
