@@ -1,3 +1,8 @@
+## Version 0.3.0
+
+- exporting all Rcpp distance measure functions individually (see issue #9), this
+enables access to much faster computations (see micro benchmarks at https://hajkd.github.io/philentropy/articles/Distances.html)
+
 ## Version 0.2.0
 
 ### Bug fixes
