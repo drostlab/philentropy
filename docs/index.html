@@ -101,8 +101,15 @@
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install philentropy version 0.1.0 from CRAN</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install philentropy version 0.2.0 from CRAN</span>
 <span class="kw">install.packages</span>(<span class="st">"philentropy"</span>)</code></pre></div>
+</div>
+<div id="citation" class="section level3">
+<h3 class="hasAnchor">
+<a href="#citation" class="anchor"></a>Citation</h3>
+<blockquote>
+<p>HG Drost, (2018). <strong>Philentropy: Information Theory and Distance Quantification with R</strong>. <em>Journal of Open Source Software</em>, 3(26), 765. 1 <a href="https://doi.org/10.21105/joss.00765" class="uri">https://doi.org/10.21105/joss.00765</a></p>
+</blockquote>
 </div>
 <div id="tutorials" class="section level2">
 <h2 class="hasAnchor">
@@ -149,6 +156,54 @@ x &lt;-<span class="st"> </span><span class="kw">rbind</span>(P,Q)
 <pre><code>jensen-shannon using unit 'log'.
 jensen-shannon 
     0.02628933</code></pre>
+<p>Alternatively, users can also retrieve values from all available distance/similarity metrics using <code><a href="reference/dist.diversity.html">dist.diversity()</a></code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dist.diversity.html">dist.diversity</a></span>(x, <span class="dt">p =</span> <span class="dv">2</span>, <span class="dt">unit =</span> <span class="st">"log2"</span>)</code></pre></div>
+<pre><code>        euclidean         manhattan 
+       0.12807130        0.35250464 
+        minkowski         chebyshev 
+       0.12807130        0.06345083 
+         sorensen             gower 
+       0.17625232        0.03525046 
+          soergel      kulczynski_d 
+       0.29968454        0.42792793 
+         canberra        lorentzian 
+       2.09927095        0.49712136 
+     intersection  non-intersection 
+       0.82374768        0.17625232 
+       wavehedges       czekanowski 
+       3.16657887        0.17625232 
+           motyka      kulczynski_s 
+       0.58812616        2.33684211 
+         tanimoto           ruzicka 
+       0.29968454        0.70031546 
+    inner_product     harmonic_mean 
+       0.10612245        0.94948528 
+           cosine        hassebrook 
+       0.93427641        0.86613103 
+          jaccard              dice 
+       0.13386897        0.07173611 
+         fidelity     bhattacharyya 
+       0.97312397        0.03930448 
+        hellinger          matusita 
+       0.32787819        0.23184489 
+    squared_chord squared_euclidean 
+       0.05375205        0.01640226 
+          pearson            neyman 
+       0.16814418        0.36742465 
+      squared_chi         prob_symm 
+       0.10102943        0.20205886 
+       divergence             clark 
+       1.49843905        0.86557468 
+    additive_symm  kullback-leibler 
+       0.53556883        0.13926288 
+         jeffreys      k_divergence 
+       0.31761069        0.04216273 
+           topsoe    jensen-shannon 
+       0.07585498        0.03792749 
+jensen_difference            taneja 
+       0.03792749        0.04147518 
+    kumar-johnson               avg 
+       0.62779644        0.20797774</code></pre>
 <div id="install-developer-version" class="section level3">
 <h3 class="hasAnchor">
 <a href="#install-developer-version" class="anchor"></a>Install Developer Version</h3>
@@ -242,6 +297,7 @@ jensen-shannon
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/HajkD/philentropy"><img src="https://travis-ci.org/HajkD/philentropy.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://www.rpackages.io/package/philentropy"><img src="https://www.rpackages.io/badge/philentropy.svg" alt="rpackages.io rank"></a></li>
+<li><a href="http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a"><img src="http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg" alt="status"></a></li>
 </ul>
 </div>
 </div>
