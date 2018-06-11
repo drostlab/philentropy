@@ -26,6 +26,10 @@ the people who share it with me.
 install.packages("philentropy")
 ```
 
+### Citation
+
+> HG Drost, (2018). __Philentropy: Information Theory and Distance Quantification with R__. _Journal of Open Source Software_, 3(26), 765. 1 https://doi.org/10.21105/joss.00765
+
 ## Tutorials 
 
  - [Introduction to the philentropy package](https://hajkd.github.io/philentropy/articles/Introduction.html)
