@@ -200,8 +200,6 @@ distance <- function(x ,
         if (is.character(x))
                 stop(paste0("Your input ",class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
         
-         message("Metric: '", method, "' using unit: '", unit, "'.")       
-  
   
         dist_methods <- vector(mode = "character", length = 46)
         dist_methods <- c("euclidean", "manhattan", "minkowski", "chebyshev",
@@ -221,18 +219,18 @@ distance <- function(x ,
         x <- t(x) 
         
         # number of input probability vectors
-        ncols <- vector("numeric",1)
+        ncols <- vector("numeric", 1)
         ncols <- ncol(x)
         
-        if(!is.element(method,dist_methods))
-                stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().")
+        if (!is.element(method,dist_methods))
+                stop("Method '",method,"' is not implemented in this function. Please consult getDistMethods().", call. = FALSE)
         
-        if(!is.null(est.prob)){
-                x <- apply(x,2,estimate.probability, method = est.prob) 
+        if (!is.null(est.prob)) {
+                x <- apply(x, 2, estimate.probability, method = est.prob) 
         }
                         
-        if(!is.element(unit,c("log","log2","log10")))
-                stop("You can only choose units: log, log2, or log10.")
+        if (!is.element(unit, c("log","log2","log10")))
+                stop("You can only choose units: log, log2, or log10.", call. = FALSE)
         
         # although validation would be great, it cost a lot of computation time
         # for large comparisons between multiple distributions
@@ -242,452 +240,460 @@ distance <- function(x ,
 #                 apply(x,2,valid.distr)
 #         }
         
-        if(ncols == 2){
-                dist <- vector("numeric",1)
+        if (ncols == 2) {
+                dist <- vector("numeric", 1)
         } else {
                 dist <- matrix(NA_real_, ncols, ncols)
         }
         
-        if(method == "euclidean"){
-                
-                if(ncols == 2)
-                        dist <- euclidean(x[ , 1], x[ , 2],test.na)
-                
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,euclidean,test.na)
+        # message("Metric: '", method, "' using unit: '", unit, "'.")       
+
+        
+        if (method == "euclidean") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+          
+          if (ncols == 2)
+            dist <- euclidean(x[, 1], x[, 2], test.na)
+          
+          if (ncols > 2)
+            dist <-
+              DistMatrixNoUnit(x, euclidean, test.na)
         }
         
-        else if(method == "manhattan"){
-                
-                if(ncols == 2)
+        else if (method == "manhattan") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+          
+                if (ncols == 2)
                         dist <- manhattan(x[ , 1], x[ , 2],test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,manhattan,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,manhattan,test.na)
                 
         }
            
-        else if(method == "minkowski"){
-                
-                if(!is.null(p)){
+        else if (method == "minkowski") {
+          message("Metric: '", method, "'; p = ",p,"; comparing: ", ncols, " vectors.")
+          
+                if (!is.null(p)) {
                         
-                        if(ncols == 2)
+                        if (ncols == 2)
                                 dist <- minkowski(x[ , 1], x[ , 2], as.double(p),test.na)
-                        if(ncols > 2)
-                                dist <- DistMatrixMinkowskiMAT(x, as.double(p),test.na)
+                        if (ncols > 2)
+                                dist <- DistMatrixMinkowski(x, as.double(p),test.na)
                 } else {
-                        
-                        stop("Please specify p for the Minkowski distance!")
+                        stop("Please specify p for the Minkowski distance.", call. = FALSE)
                 }
         }
         
-        else if(method == "chebyshev"){
-                
-                if(ncols == 2)
+        else if (method == "chebyshev") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- chebyshev(x[ , 1], x[ , 2],test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,chebyshev,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,chebyshev,test.na)
         }
         
-        else if(method == "sorensen"){
-                
-                if(ncols == 2)
+        else if (method == "sorensen") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- sorensen(x[ , 1], x[ , 2],test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,sorensen,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,sorensen,test.na)
                 
         }
         
-        else if(method == "gower"){
-                
-                if(ncols == 2)
+        else if (method == "gower") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- gower(x[ , 1], x[ , 2],test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,gower,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,gower,test.na)
         }
         
-        else if(method == "soergel"){
-                
-                if(ncols == 2)
+        else if(method == "soergel") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- soergel(x[ , 1], x[ , 2],test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,soergel,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,soergel,test.na)
         }
         
-        else if(method == "kulczynski_d"){
-                
-                if(ncols == 2)
+        else if (method == "kulczynski_d") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- kulczynski_d(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,kulczynski_d,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,kulczynski_d,test.na)
         }
         
-        else if(method == "canberra"){
-                
-                if(ncols == 2)
+        else if (method == "canberra") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.") 
+                if (ncols == 2)
                         dist <- canberra(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,canberra,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,canberra,test.na)
         }
 
-        else if(method == "lorentzian"){
-                
-                if(ncols == 2)
+        else if (method == "lorentzian") {
+          message("Metric: '", method, "' using unit: '", unit, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- lorentzian(x[ , 1], x[ , 2], test.na, unit)
-                if(ncols > 2)
-                        dist <- DistMatrixWithUnitMAT(x,lorentzian,test.na, unit)
+                if (ncols > 2)
+                        dist <- DistMatrix(x,lorentzian,test.na, unit)
         }
         
-        else if(method == "intersection"){
-                
-                if(ncols == 2)
+        else if (method == "intersection") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- intersection_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,intersection_dist,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,intersection_dist,test.na)
                 
         }
         
-        else if(method == "non-intersection"){
-                
-                if(ncols == 2)
+        else if (method == "non-intersection") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- 1.0 - intersection_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- 1.0 - DistMatrixWithoutUnitMAT(x,intersection_dist,test.na)
+                if (ncols > 2)
+                        dist <- 1.0 - DistMatrixNoUnit(x,intersection_dist,test.na)
         }
         
-        else if(method == "wavehedges"){
-                
-                if(ncols == 2)
+        else if (method == "wavehedges") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- wave_hedges(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,wave_hedges,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,wave_hedges,test.na)
                 
         }
         
-        else if(method == "czekanowski"){
-                
-                if(ncols == 2)
+        else if (method == "czekanowski") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- czekanowski(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,czekanowski,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,czekanowski,test.na)
         }
         
-        else if(method == "motyka"){
-                
-                if(ncols == 2)
+        else if (method == "motyka") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- motyka(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,motyka,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,motyka,test.na)
         }
         
-        else if(method == "kulczynski_s"){
-                
-                if(ncols == 2)
+        else if (method == "kulczynski_s") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- 1.0 / kulczynski_d(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- 1.0 / DistMatrixWithoutUnitMAT(x,kulczynski_d,test.na)
+                if (ncols > 2)
+                        dist <- 1.0 / DistMatrixNoUnit(x,kulczynski_d,test.na)
         }
         
-        else if(method == "tanimoto"){
-                
-                if(ncols == 2)
+        else if (method == "tanimoto") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.") 
+                if (ncols == 2)
                         dist <- tanimoto(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,tanimoto,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,tanimoto,test.na)
         }
         
-        else if(method == "ruzicka"){
-                
-                if(ncols == 2)
+        else if (method == "ruzicka") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.") 
+                if (ncols == 2)
                         dist <- ruzicka(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,ruzicka,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,ruzicka,test.na)
         }
         
-        else if(method == "inner_product"){
-                
-                if(ncols == 2)
+        else if (method == "inner_product") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.") 
+                if (ncols == 2)
                         dist <- inner_product(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,inner_product,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,inner_product,test.na)
         }
         
-        else if(method == "harmonic_mean"){
-                
-                if(ncols == 2)
+        else if (method == "harmonic_mean") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")   
+                if (ncols == 2)
                         dist <- harmonic_mean_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,harmonic_mean_dist,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,harmonic_mean_dist,test.na)
                 
         }
         
-        else if(method == "cosine"){
-                
-                if(ncols == 2)
+        else if (method == "cosine") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- cosine_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,cosine_dist,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,cosine_dist,test.na)
                   
         }
         
-        else if(method == "hassebrook"){
-                
-                if(ncols == 2)
+        else if (method == "hassebrook") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- kumar_hassebrook(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,kumar_hassebrook,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,kumar_hassebrook,test.na)
                 
         }
         
-        else if(method == "jaccard"){
-                
-                if(ncols == 2)
+        else if (method == "jaccard") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")   
+                if (ncols == 2)
                         dist <- jaccard(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,jaccard,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,jaccard,test.na)
 
         }
         
-        else if(method == "dice"){
-                
-                if(ncols == 2)
+        else if (method == "dice") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- dice_dist(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,dice_dist,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,dice_dist,test.na)
                 
         }
         
-        else if(method == "fidelity"){
-                
-                if(ncols == 2)
+        else if (method == "fidelity") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- fidelity(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,fidelity,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,fidelity,test.na)
         }
         
-        else if(method == "bhattacharyya"){
-                
-                if(ncols == 2)
+        else if (method == "bhattacharyya") {
+          message("Metric: '", method, "' using unit: '", unit, "'; comparing: ", ncols, " vectors.")  
+                if (ncols == 2)
                         dist <- bhattacharyya(x[ , 1], x[ , 2], test.na, unit)
-                if(ncols > 2)
-                        dist <- DistMatrixWithUnitMAT(x,bhattacharyya,test.na,unit)
+                if (ncols > 2)
+                        dist <- DistMatrix(x,bhattacharyya,test.na,unit)
         }
         
-        else if(method == "hellinger"){
-                
-                if(ncols == 2)
+        else if (method == "hellinger") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- hellinger(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,hellinger,test.na)  
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,hellinger,test.na)  
         }
         
-        else if(method == "matusita"){
-                
+        else if (method == "matusita") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+          
                 if (any(colSums(x) > 1.00001))
-                        stop ("Please make sure that all vectors sum up to 1.0 ...")
+                        stop("Please make sure that all vectors sum up to 1.0 ...", call. = FALSE)
                 
-                if(ncols == 2)
+                if (ncols == 2)
                         dist <- matusita(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,matusita,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,matusita,test.na)
         }
         
-        else if(method == "squared_chord"){
-                
-                if(ncols == 2)
+        else if (method == "squared_chord") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- squared_chord(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,squared_chord,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,squared_chord,test.na)
         }
 
-        else if(method == "squared_euclidean"){
-                
-                if(ncols == 2)
+        else if (method == "squared_euclidean") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- squared_euclidean(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,squared_euclidean,test.na)    
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,squared_euclidean,test.na)    
         }
         
-        else if(method == "pearson"){
-                
-                if(ncols == 2)
+        else if (method == "pearson") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- pearson_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,pearson_chi_sq,test.na)    
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,pearson_chi_sq,test.na)    
                 
         }
         
-        else if(method == "neyman"){
-                
-                if(ncols == 2)
+        else if (method == "neyman") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- neyman_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,neyman_chi_sq,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,neyman_chi_sq,test.na)
                 
         }
         
-        else if(method == "squared_chi"){
-                
-                if(ncols == 2)
+        else if (method == "squared_chi") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- squared_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,squared_chi_sq,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,squared_chi_sq,test.na)
                         
         }
         
-        else if(method == "prob_symm"){
-                
-                if(ncols == 2)
+        else if (method == "prob_symm") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- prob_symm_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,prob_symm_chi_sq,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,prob_symm_chi_sq,test.na)
                 
         }
         
-        else if(method == "divergence"){
-                
-                if(ncols == 2)
+        else if (method == "divergence") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- divergence_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,divergence_sq,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,divergence_sq,test.na)
                   
         }
         
-        else if(method == "clark"){
-                
-                if(ncols == 2)
+        else if (method == "clark") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- clark_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,clark_sq,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,clark_sq,test.na)
                 
         }
         
-        else if(method == "additive_symm"){
-                
-                if(ncols == 2)
+        else if (method == "additive_symm") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- additive_symm_chi_sq(x[ , 1], x[ , 2], test.na)
                 
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,additive_symm_chi_sq,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,additive_symm_chi_sq,test.na)
                 
         }
         
-        else if(method == "kullback-leibler"){
-                
+        else if (method == "kullback-leibler") {
+          message("Metric: '", method, "' using unit: '", unit, "'; comparing: ", ncols, " vectors.")
                 if (any(colSums(x) > 1.00001))
-                        stop ("Please make sure that all vectors sum up to 1.0 ...")
+                        stop("Please make sure that all vectors sum up to 1.0 ...", call. = FALSE)
                 
-                if(ncols == 2)
+                if (ncols == 2)
                         dist <- kullback_leibler_distance(x[ , 1], x[ , 2], test.na,unit)
-                if(ncols > 2)
-                        dist <- DistMatrixWithUnitMAT(x,kullback_leibler_distance,test.na,unit)
+                if (ncols > 2)
+                        dist <- DistMatrix(x,kullback_leibler_distance,test.na,unit)
         }
         
-        else if(method == "jeffreys"){
-                
-                if(ncols == 2)
+        else if (method == "jeffreys") {
+          message("Metric: '", method, "' using unit: '", unit, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- jeffreys(x[ , 1], x[ , 2], test.na, unit)
-                if(ncols > 2)
-                        dist <- DistMatrixWithUnitMAT(x,jeffreys,test.na,unit)
+                if (ncols > 2)
+                        dist <- DistMatrix(x,jeffreys,test.na,unit)
                 
         }
         
-        else if(method == "k_divergence"){
-                
+        else if (method == "k_divergence") {
+          message("Metric: '", method, "' using unit: '", unit, "'; comparing: ", ncols, " vectors.")
                 if (any(colSums(x) > 1.00001))
-                        stop ("Please make sure that all vectors sum up to 1.0 ...")
+                        stop("Please make sure that all vectors sum up to 1.0 ...", call. = FALSE)
                 
-                if(ncols == 2)
+                if (ncols == 2)
                         dist <- k_divergence(x[ , 1], x[ , 2], test.na, unit)
-                if(ncols > 2)
-                        dist <- DistMatrixWithUnitMAT(x,k_divergence,test.na,unit)
+                if (ncols > 2)
+                        dist <- DistMatrix(x,k_divergence,test.na,unit)
         }
         
-        else if(method == "topsoe"){
-                
-                if(ncols == 2)
+        else if (method == "topsoe") {
+          message("Metric: '", method, "' using unit: '", unit, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- topsoe(x[ , 1], x[ , 2], test.na, unit)
-                if(ncols > 2)
-                        dist <- DistMatrixWithUnitMAT(x,topsoe,test.na,unit)
+                if (ncols > 2)
+                        dist <- DistMatrix(x,topsoe,test.na,unit)
                 
         }
         
-        else if(method == "jensen-shannon"){
-                
-                if(ncols == 2)
+        else if (method == "jensen-shannon") {
+          message("Metric: '", method, "' using unit: '", unit, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- jensen_shannon(x[ , 1], x[ , 2], test.na,unit)
-                if(ncols > 2)
-                        dist <- DistMatrixWithUnitMAT(x,jensen_shannon,test.na,unit)
+                if (ncols > 2)
+                        dist <- DistMatrix(x,jensen_shannon, test.na, unit)
         }
         
-        else if(method == "jensen_difference"){
-                
-                if(ncols == 2)
+        else if (method == "jensen_difference") {
+          message("Metric: '", method, "' using unit: '", unit, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- jensen_difference(x[ , 1], x[ , 2], test.na,unit)
-                if(ncols > 2)
-                        dist <- DistMatrixWithUnitMAT(x,jensen_difference,test.na,unit)
+                if (ncols > 2)
+                        dist <- DistMatrix(x,jensen_difference,test.na,unit)
         }
         
-        else if(method == "taneja"){
-                
-                if(ncols == 2)
+        else if (method == "taneja") {
+          message("Metric: '", method, "' using unit: '", unit, "'; comparing: ", ncols, " vectors.")
+          
+                if (ncols == 2)
                         dist <- taneja(x[ , 1], x[ , 2], test.na,unit)
-                if(ncols > 2)
-                        dist <- DistMatrixWithUnitMAT(x,taneja,test.na,unit)
+                if (ncols > 2)
+                        dist <- DistMatrix(x,taneja,test.na,unit)
         }
         
-        else if(method == "kumar-johnson"){
-                
-                if(ncols == 2)
+        else if (method == "kumar-johnson") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- kumar_johnson(x[ , 1], x[ , 2], test.na)
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,kumar_johnson,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,kumar_johnson,test.na)
         }
         
-        else if(method == "avg"){
-                
-                if(ncols == 2)
+        else if (method == "avg") {
+          message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
+                if (ncols == 2)
                         dist <- avg(x[ , 1], x[ , 2], test.na)
-                if(ncols > 2)
-                        dist <- DistMatrixWithoutUnitMAT(x,avg,test.na)
+                if (ncols > 2)
+                        dist <- DistMatrixNoUnit(x,avg,test.na)
         }
         
-        if(ncols == 2){
+        if (ncols == 2) {
                 names(dist) <- method
         } else {
-                colnames(dist) <- paste0("v",1:ncols)
-                rownames(dist) <- paste0("v",1:ncols)
+                colnames(dist) <- paste0("v",seq_len(ncols))
+                rownames(dist) <- paste0("v",seq_len(ncols))
         }
         
         return(dist)
