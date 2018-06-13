@@ -41,7 +41,7 @@ test_that("distance(method = 'minkowski') computes the correct distance value.",
                   
                   expect_error(
                           as.vector(philentropy::distance(rbind(P, Q), method = "minkowski")),
-                          "Please specify p for the Minkowski distance!"
+                          "Please specify p for the Minkowski distance."
                   )
                   
                   expect_equal(as.vector(
@@ -61,7 +61,7 @@ test_that("distance(method = 'minkowski') computes the correct distance value.",
                   
                   expect_error(
                           as.vector(philentropy::distance(rbind(V, W), method = "minkowski")),
-                          "Please specify p for the Minkowski distance!"
+                          "Please specify p for the Minkowski distance."
                   )
                   
                   # test correct computation of distance matrix
