@@ -1,6 +1,6 @@
 #  Part of the philentropy package
 #
-#  Copyright (C) 2015 Hajk-Georg Drost
+#  Copyright (C) 2015-2018 Hajk-Georg Drost
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -313,7 +313,7 @@ distance <- function(x ,
                         dist <- DistMatrixNoUnit(x,gower,test.na)
         }
         
-        else if(method == "soergel") {
+        else if (method == "soergel") {
           message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
                 if (ncols == 2)
                         dist <- soergel(x[ , 1], x[ , 2],test.na)
