@@ -30,7 +30,6 @@
 #include <iostream>
 #include "utils.h"
 
-
 // [[Rcpp::export]]
 double custom_log2(const double& x ){
         if (x == 0.0){
@@ -1665,7 +1664,6 @@ double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
               
         return 0.5 * (sum1 + sum2);
 }
-
 
 
 //' @export
