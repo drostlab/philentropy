@@ -2,7 +2,8 @@ philentropy
 ===========
 
 [![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy) [![rpackages.io rank](https://www.rpackages.io/badge/philentropy.svg)](https://www.rpackages.io/package/philentropy) [![status](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg)](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a)
-
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/philentropy)](https://github.com/metacran/cranlogs.app)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/philentropy)](https://github.com/metacran/cranlogs.app)
 
 
 ### Similarity and Distance Quantification between Probability Functions
