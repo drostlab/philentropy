@@ -59,7 +59,7 @@ distributions P and Q." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0.9000</span>
       </span>
     </div>
 
@@ -185,25 +185,25 @@ Theory. <em>John Wiley &amp; Sons</em>.</p>
 <span class='no'>P</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)
 <span class='no'>Q</span> <span class='kw'>&lt;-</span> <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='no'>P</span>,<span class='no'>Q</span>)
-<span class='fu'>KL</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'.</span></div><div class='output co'>#&gt; kullback-leibler 
+<span class='fu'>KL</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
 #&gt;        0.1392629 </div><div class='input'>
 <span class='co'># Kulback-Leibler Divergence between P and Q using different log bases</span>
-<span class='fu'>KL</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>) <span class='co'># Default</span></div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'.</span></div><div class='output co'>#&gt; kullback-leibler 
-#&gt;        0.1392629 </div><div class='input'><span class='fu'>KL</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log'.</span></div><div class='output co'>#&gt; kullback-leibler 
-#&gt;       0.09652967 </div><div class='input'><span class='fu'>KL</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log10"</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log10'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log10'.</span></div><div class='output co'>#&gt; kullback-leibler 
+<span class='fu'>KL</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log2"</span>) <span class='co'># Default</span></div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
+#&gt;        0.1392629 </div><div class='input'><span class='fu'>KL</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
+#&gt;       0.09652967 </div><div class='input'><span class='fu'>KL</span>(<span class='no'>x</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log10"</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log10'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log10'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
 #&gt;        0.0419223 </div><div class='input'>
 <span class='co'># Kulback-Leibler Divergence between count vectors P.count and Q.count</span>
 <span class='no'>P.count</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>:<span class='fl'>10</span>
 <span class='no'>Q.count</span> <span class='kw'>&lt;-</span> <span class='fl'>20</span>:<span class='fl'>29</span>
 <span class='no'>x.count</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='no'>P.count</span>,<span class='no'>Q.count</span>)
-<span class='fu'>KL</span>(<span class='no'>x</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='st'>"empirical"</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'.</span></div><div class='output co'>#&gt; kullback-leibler 
+<span class='fu'>KL</span>(<span class='no'>x</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='st'>"empirical"</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
 #&gt;        0.1392629 </div><div class='input'>
 <span class='co'># Example: Distance Matrix using KL-Distance</span>
 
 <span class='no'>Prob</span> <span class='kw'>&lt;-</span> <span class='fu'>cbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>), <span class='fl'>30</span>:<span class='fl'>39</span>/<span class='fu'>sum</span>(<span class='fl'>30</span>:<span class='fl'>39</span>))
 
 <span class='co'># compute the KL matrix of a given probability matrix</span>
-<span class='no'>KLMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'>KL</span>(<span class='no'>Prob</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'.</span></div><div class='input'>
+<span class='no'>KLMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'>KL</span>(<span class='no'>Prob</span>)</div><div class='output co'>#&gt; <span class='message'>Kulback-Leibler Divergence using unit 'log2'.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 10 vectors.</span></div><div class='input'>
 <span class='co'># plot a heatmap of the corresponding KL matrix</span>
 <span class='fu'>heatmap</span>(<span class='no'>KLMatrix</span>)</div><div class='img'><img src='KL-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
