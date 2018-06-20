@@ -23,4 +23,5 @@ Suggests:
     testthat,
     knitr
 VignetteBuilder: knitr
+BugReports: https://github.com/HajkD/philentropy/issues
 RoxygenNote: 6.0.1
