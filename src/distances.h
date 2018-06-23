@@ -1244,7 +1244,7 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
-                        if((P[i] == 0.0) || (Q[i] == 0.0)){
+                        if((P[i] == 0.0) && (Q[i] == 0.0)){
                                 dist += 0.0;
                         } else {
                                 
