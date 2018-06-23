@@ -804,7 +804,25 @@ test_that(
         "distance(method = 'kullback-leibler') computes the correct distance value using unit = log.",
         {
                 test_KL_dist <- function(P, Q) {
-                        sum((P) * log((P) / (Q)))
+                        dist <- 0
+                        for (i in seq_len(length(P))) {
+                                
+                                if (P[i] == 0 & Q[i] == 0){
+                                        dist = dist
+                                } else {
+                                        if (P[i] == 0) {
+                                                dist <- dist + 0
+                                        } else {
+                                                if (Q[i] == 0) {
+                                                        dist <- dist + (P[i] * log(P[i] / 0.00001))
+                                                } else {
+                                                        dist <- dist + (P[i] * log(P[i] / Q[i]))
+                                                }
+                                        }
+                                }
+                                }
+                                
+                        return(dist)        
                 }
                 
                 expect_equal(as.vector(
@@ -853,20 +871,26 @@ test_that(
                 A <- c(0, 0.25, 0.25, 0, 0.25, 0.25)
                 B <- c(0, 0, 0.25, 0.25, 0.25, 0.25)
                 
-                kl <- function(x, y) {
-                        dist <- vector(mode = "numeric", length = 1)
+                kl <- function(P, Q) {
                         dist <- 0
-                        
-                        for (i in 1:length(x)) {
-                                if ((x[i] == 0) & ((y[i]) == 0)) {
+                        for (i in seq_len(length(P))) {
+                                
+                                if (P[i] == 0 & Q[i] == 0){
                                         dist = dist
                                 } else {
-                                        dist = dist + (x[i] * log(x[i] / y[i]))
+                                        if (P[i] == 0) {
+                                                dist <- dist + 0
+                                        } else {
+                                                if (Q[i] == 0) {
+                                                        dist <- dist + (P[i] * log(P[i] / 0.00001))
+                                                } else {
+                                                        dist <- dist + (P[i] * log(P[i] / Q[i]))
+                                                }
+                                        }
                                 }
-                                
                         }
                         
-                        return(dist)
+                        return(dist)        
                 }
                 
                 expect_equal(as.vector(
