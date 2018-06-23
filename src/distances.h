@@ -1244,7 +1244,7 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         
-                        if((P[i] == 0.0) && (Q[i] == 0.0)){
+                        if((P[i] == 0.0) || (Q[i] == 0.0)){
                                 dist += 0.0;
                         } else {
                                 
@@ -1256,15 +1256,27 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
                                 }
                                  
                                 if (unit == "log"){
-                                   dist += P[i] * log(PQratio);        
+                                        if (PQratio == 0.0) {
+                                                dist += 0.0;
+                                        } else {
+                                                dist += P[i] * log(PQratio); 
+                                        }         
                                 }
                                 
                                 else if (unit == "log2"){
-                                        dist += P[i] * custom_log2(PQratio);
+                                        if (PQratio == 0.0) {
+                                                dist += 0.0;
+                                        } else {
+                                                dist += P[i] * custom_log2(PQratio); 
+                                        }
                                 }
                                 
                                 else if (unit == "log10"){
-                                        dist += P[i] * custom_log10(PQratio);
+                                        if (PQratio == 0.0) {
+                                                dist += 0.0;
+                                        } else {
+                                                dist += P[i] * custom_log10(PQratio); 
+                                        }
                                 } else {
                                         Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
@@ -1286,15 +1298,27 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
                                 }
                         
                                 if (unit == "log"){
-                                   dist += P[i] * log(PQratio);        
+                                   if (PQratio == 0.0) {
+                                           dist += 0.0;
+                                   } else {
+                                           dist += P[i] * log(PQratio); 
+                                   }      
                                 }
                                 
                                 else if (unit == "log2"){
-                                        dist += P[i] * custom_log2(PQratio);
+                                        if (PQratio == 0.0) {
+                                                dist += 0.0;
+                                        } else {
+                                                dist += P[i] * custom_log2(PQratio); 
+                                        }
                                 }
                                 
                                 else if (unit == "log10"){
-                                        dist += P[i] * custom_log10(PQratio);
+                                        if (PQratio == 0.0) {
+                                                dist += 0.0;
+                                        } else {
+                                                dist += P[i] * custom_log10(PQratio); 
+                                        }
                                 } else {
                                         Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
