@@ -1,7 +1,13 @@
 ## Version 0.3.0
 
+### New functionality
 - exporting all Rcpp distance measure functions individually (see issue #9), this
 enables access to much faster computations (see micro benchmarks at https://hajkd.github.io/philentropy/articles/Distances.html)
+
+### Bug fixes
+
+- fixing bug which caused that KL distance returns NaN when P == 0 (see issue #10; Many thanks to @KaiserDominici)
+- fixing bug which caused stack overflow when computing distance matrices with many rows (see issue #7; Many thanks to @wkc1986 and @elbamos)
 
 ## Version 0.2.0
 
