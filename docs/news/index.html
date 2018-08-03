@@ -21,14 +21,17 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
 <meta property="og:title" content="Changelog" />
+
 
 
 <!-- mathjax -->
@@ -119,16 +122,28 @@
     <div id="version-0-3-0" class="section level2">
 <h2 class="hasAnchor">
 <a href="#version-0-3-0" class="anchor"></a>Version 0.3.0</h2>
+<div id="new-functionality" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-functionality" class="anchor"></a>New functionality</h3>
 <ul>
 <li>exporting all Rcpp distance measure functions individually (see issue <a href='https://github.com/HajkD/philentropy/issues/9'>#9</a>), this enables access to much faster computations (see micro benchmarks at <a href="https://hajkd.github.io/philentropy/articles/Distances.html" class="uri">https://hajkd.github.io/philentropy/articles/Distances.html</a>)</li>
 </ul>
 </div>
-    <div id="version-0-2-0" class="section level2">
-<h2 class="hasAnchor">
-<a href="#version-0-2-0" class="anchor"></a>Version 0.2.0</h2>
 <div id="bug-fixes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h3>
+<ul>
+<li>fixing bug which caused that KL distance returns NaN when P == 0 (see issue <a href='https://github.com/HajkD/philentropy/issues/10'>#10</a>; Many thanks to <a href='http://github.com/KaiserDominici'>@KaiserDominici</a>)</li>
+<li>fixing bug which caused stack overflow when computing distance matrices with many rows (see issue <a href='https://github.com/HajkD/philentropy/issues/7'>#7</a>; Many thanks to <a href='http://github.com/wkc1986'>@wkc1986</a> and <a href='http://github.com/elbamos'>@elbamos</a>)</li>
+</ul>
+</div>
+</div>
+    <div id="version-0-2-0" class="section level2">
+<h2 class="hasAnchor">
+<a href="#version-0-2-0" class="anchor"></a>Version 0.2.0</h2>
+<div id="bug-fixes-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h3>
 <ul>
 <li>Fixing bug that caused <code>jensen-shannon</code> computations to compute wrong values when <code>0 values</code> were present in the input vectors (see issue <a href='https://github.com/HajkD/philentropy/issues/4'>#4</a> ; Many thanks to <a href='http://github.com/wkc1986'>@wkc1986</a>)</li>
 <li>Fixing bug that caused <code>jensen-difference</code> computations to compute wrong values when <code>0 values</code> were present in the input vectors</li>
@@ -151,9 +166,9 @@
 <li>extending documentation</li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level3">
+<div id="bug-fixes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h3>
+<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h3>
 <ul>
 <li>Fixing bug that caused that <code><a href="../reference/JSD.html">JSD()</a></code> gives NaN when any probability is 0 - see <a href="https://github.com/HajkD/philentropy/issues/1" class="uri">https://github.com/HajkD/philentropy/issues/1</a> (Thanks to William Kurtis Chang)</li>
 </ul>
@@ -162,9 +177,9 @@
     <div id="version-0-0-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#version-0-0-2" class="anchor"></a>Version 0.0.2</h2>
-<div id="bug-fixes-2" class="section level3">
+<div id="bug-fixes-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h3>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h3>
 <ul>
 <li>Fixing C++ memory leaks in <code><a href="../reference/dist.diversity.html">dist.diversity()</a></code> and <code><a href="../reference/distance.html">distance()</a></code> when check for <code>colSums(x) &gt; 1.001</code> was peformed (leak was found with <code><a href="http://www.rdocumentation.org/packages/rhub/topics/check_shortcuts">rhub::check_with_valgrind()</a></code>)</li>
 </ul>

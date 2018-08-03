@@ -8,8 +8,8 @@
 <title>Distance Measures • philentropy</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Distance Measures">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Distance Measures">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -168,17 +168,17 @@ stats<span class="op">::</span><span class="kw"><a href="http://www.rdocumentati
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("microbenchmark")</span>
 <span class="kw">library</span>(microbenchmark)
 
-<span class="kw"><a href="http://www.rdocumentation.org/packages/microbenchmark/topics/microbenchmark">microbenchmark</a></span>(
+<span class="kw">microbenchmark</span>(
   <span class="kw"><a href="../reference/distance.html">distance</a></span>(x,<span class="dt">method =</span> <span class="st">"euclidean"</span>, <span class="dt">test.na =</span> <span class="ot">FALSE</span>),
   <span class="kw">dist</span>(x,<span class="dt">method =</span> <span class="st">"euclidean"</span>),
-  <span class="kw">euclidean</span>(x[<span class="dv">1</span> , ], x[<span class="dv">2</span> , ], <span class="ot">FALSE</span>)
+  <span class="kw"><a href="../reference/euclidean.html">euclidean</a></span>(x[<span class="dv">1</span> , ], x[<span class="dv">2</span> , ], <span class="ot">FALSE</span>)
 )</code></pre></div>
 <pre><code>Unit: microseconds
                                                expr    min      lq     mean  median      uq    max neval
  distance(x, method = "euclidean", test.na = FALSE) 26.518 28.3495 29.73174 29.2210 30.1025 62.096   100
                       dist(x, method = "euclidean") 11.073 12.9375 14.65223 14.3340 15.1710 65.130   100
                    euclidean(x[1, ], x[2, ], FALSE)  4.329  4.9605  5.72378  5.4815  6.1240 22.510   100</code></pre>
-<p>As you can see, although the <code><a href="../reference/distance.html">distance()</a></code> function is quite fast, the internal checks cause it to be 2x slower than the base <code>dist()</code> function (for the <code>euclidean</code> example). Nevertheless, in case you need to implement a faster version of the corresponding distance measure you can type <code>philentropy::</code> and then <code>TAB</code> allowing you to select the base distance computation functions (written in C++), e.g. <code>philentropy::euclidean()</code> which is almost 3x faster than the base <code>dist()</code> function.</p>
+<p>As you can see, although the <code><a href="../reference/distance.html">distance()</a></code> function is quite fast, the internal checks cause it to be 2x slower than the base <code>dist()</code> function (for the <code>euclidean</code> example). Nevertheless, in case you need to implement a faster version of the corresponding distance measure you can type <code>philentropy::</code> and then <code>TAB</code> allowing you to select the base distance computation functions (written in C++), e.g. <code><a href="../reference/euclidean.html">philentropy::euclidean()</a></code> which is almost 3x faster than the base <code>dist()</code> function.</p>
 <p>The advantage of <code><a href="../reference/distance.html">distance()</a></code> is that it implements 46 distance measures based on base C++ functions that can be accessed individually by typing <code>philentropy::</code> and then <code>TAB</code>. In future versions of <code>philentropy</code> I will optimize the <code><a href="../reference/distance.html">distance()</a></code> function so that internal checks for data type correctness and correct input data will take less termination time than the base <code>dist()</code> function.</p>
 </div>
 </div>
