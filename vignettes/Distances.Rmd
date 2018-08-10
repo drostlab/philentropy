@@ -150,7 +150,29 @@ As you can see, although the `distance()` function is quite fast, the internal c
 The advantage of `distance()` is that it implements 46 distance measures based on base C++ functions that can be accessed individually by typing `philentropy::` and then `TAB`. In future versions of `philentropy` I will optimize the `distance()` function so that internal checks for data type correctness and correct input data will take less termination time than the base `dist()` function.
 
 
+## Detailed assessment of individual similarity and distance metrics
 
 
+The vast amount of available similarity metrics raises the immediate question which metric should be used for which application. Here, I will review the origin of each individual metric and will discuss the most recent literature that aims to compare these measures. I hope that users will find valuable insights and might be stimulated to conduct their own comparative research since this is a field of ongoing research. 
 
+### $L_p$ Minkowski Family
+
+#### Euclidean distance
+
+The [euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance) is (named after [Euclid](https://en.wikipedia.org/wiki/Euclid)) a straight line distance between two points.
+Euclid argued that that the __shortest__ distance between two points is always a line.
+
+> $d = \sqrt{\sum_{i = 1}^N | P_i - Q_i |^2)}$
+
+#### Manhattan distance
+
+> $d = \sum_{i = 1}^N | P_i - Q_i |$
+
+#### Minkowski distance
+
+> $d = ( \sum_{i = 1}^N | P_i - Q_i |^p)^{1/p}$
+
+#### Chebyshev distance
+
+> $d = max | P_i - Q_i |$
 
