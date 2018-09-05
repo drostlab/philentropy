@@ -16,7 +16,7 @@ namespace philentropy {
             require("philentropy", Rcpp::Named("quietly") = true);
             typedef int(*Ptr_validate)(const char*);
             static Ptr_validate p_validate = (Ptr_validate)
-                R_GetCCallable("philentropy", "philentropy_RcppExport_validate");
+                R_GetCCallable("philentropy", "_philentropy_RcppExport_validate");
             if (!p_validate(sig)) {
                 throw Rcpp::function_not_exported(
                     "C++ function with signature '" + std::string(sig) + "' not found in philentropy");
@@ -29,17 +29,17 @@ namespace philentropy {
         static Ptr_as_matrix p_as_matrix = NULL;
         if (p_as_matrix == NULL) {
             validateSignature("Rcpp::NumericMatrix(*as_matrix)(Rcpp::DataFrame)");
-            p_as_matrix = (Ptr_as_matrix)R_GetCCallable("philentropy", "philentropy_as_matrix");
+            p_as_matrix = (Ptr_as_matrix)R_GetCCallable("philentropy", "_philentropy_as_matrix");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_as_matrix(Rcpp::wrap(x));
+            rcpp_result_gen = p_as_matrix(Shield<SEXP>(Rcpp::wrap(x)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
         if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(as<std::string>(rcpp_result_gen).c_str());
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<Rcpp::NumericMatrix >(rcpp_result_gen);
     }
 
@@ -48,17 +48,17 @@ namespace philentropy {
         static Ptr_as_data_frame p_as_data_frame = NULL;
         if (p_as_data_frame == NULL) {
             validateSignature("Rcpp::DataFrame(*as_data_frame)(Rcpp::NumericMatrix)");
-            p_as_data_frame = (Ptr_as_data_frame)R_GetCCallable("philentropy", "philentropy_as_data_frame");
+            p_as_data_frame = (Ptr_as_data_frame)R_GetCCallable("philentropy", "_philentropy_as_data_frame");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_as_data_frame(Rcpp::wrap(mat));
+            rcpp_result_gen = p_as_data_frame(Shield<SEXP>(Rcpp::wrap(mat)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
         if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(as<std::string>(rcpp_result_gen).c_str());
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<Rcpp::DataFrame >(rcpp_result_gen);
     }
 
@@ -67,17 +67,17 @@ namespace philentropy {
         static Ptr_sum_rcpp p_sum_rcpp = NULL;
         if (p_sum_rcpp == NULL) {
             validateSignature("SEXP(*sum_rcpp)(SEXP)");
-            p_sum_rcpp = (Ptr_sum_rcpp)R_GetCCallable("philentropy", "philentropy_sum_rcpp");
+            p_sum_rcpp = (Ptr_sum_rcpp)R_GetCCallable("philentropy", "_philentropy_sum_rcpp");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_sum_rcpp(Rcpp::wrap(vec));
+            rcpp_result_gen = p_sum_rcpp(Shield<SEXP>(Rcpp::wrap(vec)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
         if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(as<std::string>(rcpp_result_gen).c_str());
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<SEXP >(rcpp_result_gen);
     }
 
@@ -86,17 +86,17 @@ namespace philentropy {
         static Ptr_est_prob_empirical p_est_prob_empirical = NULL;
         if (p_est_prob_empirical == NULL) {
             validateSignature("SEXP(*est_prob_empirical)(SEXP)");
-            p_est_prob_empirical = (Ptr_est_prob_empirical)R_GetCCallable("philentropy", "philentropy_est_prob_empirical");
+            p_est_prob_empirical = (Ptr_est_prob_empirical)R_GetCCallable("philentropy", "_philentropy_est_prob_empirical");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_est_prob_empirical(Rcpp::wrap(CountVec));
+            rcpp_result_gen = p_est_prob_empirical(Shield<SEXP>(Rcpp::wrap(CountVec)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
         if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(as<std::string>(rcpp_result_gen).c_str());
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<SEXP >(rcpp_result_gen);
     }
 

@@ -10,7 +10,7 @@ using namespace Rcpp;
 
 // pearson_corr_centred
 double pearson_corr_centred(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, bool testNA);
-RcppExport SEXP philentropy_pearson_corr_centred(SEXP xSEXP, SEXP ySEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_pearson_corr_centred(SEXP xSEXP, SEXP ySEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -23,7 +23,7 @@ END_RCPP
 }
 // pearson_corr_uncentred
 double pearson_corr_uncentred(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, bool testNA);
-RcppExport SEXP philentropy_pearson_corr_uncentred(SEXP xSEXP, SEXP ySEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_pearson_corr_uncentred(SEXP xSEXP, SEXP ySEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -36,7 +36,7 @@ END_RCPP
 }
 // squared_pearson_corr
 double squared_pearson_corr(const Rcpp::NumericVector& x, const Rcpp::NumericVector& y, bool testNA);
-RcppExport SEXP philentropy_squared_pearson_corr(SEXP xSEXP, SEXP ySEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_squared_pearson_corr(SEXP xSEXP, SEXP ySEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -49,7 +49,7 @@ END_RCPP
 }
 // DistMatrixWithoutUnitDF
 Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF, Rcpp::Function DistFunc, bool testNA);
-RcppExport SEXP philentropy_DistMatrixWithoutUnitDF(SEXP distsDFSEXP, SEXP DistFuncSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_DistMatrixWithoutUnitDF(SEXP distsDFSEXP, SEXP DistFuncSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -62,7 +62,7 @@ END_RCPP
 }
 // DistMatrixMinkowskiMAT
 Rcpp::NumericMatrix DistMatrixMinkowskiMAT(Rcpp::NumericMatrix dists, double p, bool testNA);
-RcppExport SEXP philentropy_DistMatrixMinkowskiMAT(SEXP distsSEXP, SEXP pSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_DistMatrixMinkowskiMAT(SEXP distsSEXP, SEXP pSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -75,7 +75,7 @@ END_RCPP
 }
 // DistMatrixWithoutUnitMAT
 Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Function DistFunc, bool testNA);
-RcppExport SEXP philentropy_DistMatrixWithoutUnitMAT(SEXP distsSEXP, SEXP DistFuncSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_DistMatrixWithoutUnitMAT(SEXP distsSEXP, SEXP DistFuncSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -88,7 +88,7 @@ END_RCPP
 }
 // DistMatrixWithUnitDF
 Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, Rcpp::Function DistFunc, bool testNA, Rcpp::String unit);
-RcppExport SEXP philentropy_DistMatrixWithUnitDF(SEXP distsDFSEXP, SEXP DistFuncSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_DistMatrixWithUnitDF(SEXP distsDFSEXP, SEXP DistFuncSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -102,7 +102,7 @@ END_RCPP
 }
 // DistMatrixWithUnitMAT
 Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Function DistFunc, bool testNA, Rcpp::String unit);
-RcppExport SEXP philentropy_DistMatrixWithUnitMAT(SEXP distsSEXP, SEXP DistFuncSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_DistMatrixWithUnitMAT(SEXP distsSEXP, SEXP DistFuncSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -116,7 +116,7 @@ END_RCPP
 }
 // custom_log2
 double custom_log2(const double& x);
-RcppExport SEXP philentropy_custom_log2(SEXP xSEXP) {
+RcppExport SEXP _philentropy_custom_log2(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -127,7 +127,7 @@ END_RCPP
 }
 // custom_log10
 double custom_log10(const double& x);
-RcppExport SEXP philentropy_custom_log10(SEXP xSEXP) {
+RcppExport SEXP _philentropy_custom_log10(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -138,7 +138,7 @@ END_RCPP
 }
 // euclidean
 double euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_euclidean(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_euclidean(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -151,7 +151,7 @@ END_RCPP
 }
 // manhattan
 double manhattan(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_manhattan(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_manhattan(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -164,7 +164,7 @@ END_RCPP
 }
 // minkowski
 double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, double n, bool testNA);
-RcppExport SEXP philentropy_minkowski(SEXP PSEXP, SEXP QSEXP, SEXP nSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_minkowski(SEXP PSEXP, SEXP QSEXP, SEXP nSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -178,7 +178,7 @@ END_RCPP
 }
 // chebyshev
 double chebyshev(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_chebyshev(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_chebyshev(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -191,7 +191,7 @@ END_RCPP
 }
 // sorensen
 double sorensen(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_sorensen(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_sorensen(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -204,7 +204,7 @@ END_RCPP
 }
 // gower
 double gower(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_gower(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_gower(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -217,7 +217,7 @@ END_RCPP
 }
 // soergel
 double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_soergel(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_soergel(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -230,7 +230,7 @@ END_RCPP
 }
 // kulczynski_d
 double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_kulczynski_d(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_kulczynski_d(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -243,7 +243,7 @@ END_RCPP
 }
 // canberra
 double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_canberra(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_canberra(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -256,7 +256,7 @@ END_RCPP
 }
 // lorentzian
 double lorentzian(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP philentropy_lorentzian(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_lorentzian(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -270,7 +270,7 @@ END_RCPP
 }
 // intersection_dist
 double intersection_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_intersection_dist(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_intersection_dist(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -283,7 +283,7 @@ END_RCPP
 }
 // wave_hedges
 double wave_hedges(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_wave_hedges(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_wave_hedges(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -296,7 +296,7 @@ END_RCPP
 }
 // czekanowski
 double czekanowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_czekanowski(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_czekanowski(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -309,7 +309,7 @@ END_RCPP
 }
 // motyka
 double motyka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_motyka(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_motyka(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -322,7 +322,7 @@ END_RCPP
 }
 // tanimoto
 double tanimoto(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_tanimoto(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_tanimoto(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -335,7 +335,7 @@ END_RCPP
 }
 // ruzicka
 double ruzicka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_ruzicka(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_ruzicka(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -348,7 +348,7 @@ END_RCPP
 }
 // inner_product
 double inner_product(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_inner_product(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_inner_product(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -361,7 +361,7 @@ END_RCPP
 }
 // harmonic_mean_dist
 double harmonic_mean_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_harmonic_mean_dist(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_harmonic_mean_dist(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -374,7 +374,7 @@ END_RCPP
 }
 // cosine_dist
 double cosine_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_cosine_dist(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_cosine_dist(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -387,7 +387,7 @@ END_RCPP
 }
 // kumar_hassebrook
 double kumar_hassebrook(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_kumar_hassebrook(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_kumar_hassebrook(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -400,7 +400,7 @@ END_RCPP
 }
 // jaccard
 double jaccard(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_jaccard(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_jaccard(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -413,7 +413,7 @@ END_RCPP
 }
 // dice_dist
 double dice_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_dice_dist(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_dice_dist(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -426,7 +426,7 @@ END_RCPP
 }
 // fidelity
 double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_fidelity(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_fidelity(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -439,7 +439,7 @@ END_RCPP
 }
 // bhattacharyya
 double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP philentropy_bhattacharyya(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_bhattacharyya(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -453,7 +453,7 @@ END_RCPP
 }
 // hellinger
 double hellinger(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_hellinger(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_hellinger(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -466,7 +466,7 @@ END_RCPP
 }
 // matusita
 double matusita(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_matusita(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_matusita(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -479,7 +479,7 @@ END_RCPP
 }
 // squared_chord
 double squared_chord(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_squared_chord(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_squared_chord(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -492,7 +492,7 @@ END_RCPP
 }
 // squared_euclidean
 double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_squared_euclidean(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_squared_euclidean(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -505,7 +505,7 @@ END_RCPP
 }
 // pearson_chi_sq
 double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_pearson_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_pearson_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -518,7 +518,7 @@ END_RCPP
 }
 // neyman_chi_sq
 double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_neyman_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_neyman_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -531,7 +531,7 @@ END_RCPP
 }
 // squared_chi_sq
 double squared_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_squared_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_squared_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -544,7 +544,7 @@ END_RCPP
 }
 // prob_symm_chi_sq
 double prob_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_prob_symm_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_prob_symm_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -557,7 +557,7 @@ END_RCPP
 }
 // divergence_sq
 double divergence_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_divergence_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_divergence_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -570,7 +570,7 @@ END_RCPP
 }
 // clark_sq
 double clark_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_clark_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_clark_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -583,7 +583,7 @@ END_RCPP
 }
 // additive_symm_chi_sq
 double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_additive_symm_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_additive_symm_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -596,7 +596,7 @@ END_RCPP
 }
 // kullback_leibler_distance
 double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP philentropy_kullback_leibler_distance(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_kullback_leibler_distance(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -610,7 +610,7 @@ END_RCPP
 }
 // jeffreys
 double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP philentropy_jeffreys(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_jeffreys(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -624,7 +624,7 @@ END_RCPP
 }
 // k_divergence
 double k_divergence(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP philentropy_k_divergence(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_k_divergence(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -638,7 +638,7 @@ END_RCPP
 }
 // topsoe
 double topsoe(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP philentropy_topsoe(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_topsoe(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -652,7 +652,7 @@ END_RCPP
 }
 // jensen_shannon
 double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP philentropy_jensen_shannon(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_jensen_shannon(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -666,7 +666,7 @@ END_RCPP
 }
 // jensen_difference
 double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP philentropy_jensen_difference(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_jensen_difference(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -680,7 +680,7 @@ END_RCPP
 }
 // taneja
 double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP philentropy_taneja(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_taneja(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -694,7 +694,7 @@ END_RCPP
 }
 // kumar_johnson
 double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_kumar_johnson(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_kumar_johnson(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -707,7 +707,7 @@ END_RCPP
 }
 // avg
 double avg(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP philentropy_avg(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+RcppExport SEXP _philentropy_avg(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -720,7 +720,7 @@ END_RCPP
 }
 // Ecpp
 double Ecpp(const Rcpp::NumericVector& P, Rcpp::String unit);
-RcppExport SEXP philentropy_Ecpp(SEXP PSEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_Ecpp(SEXP PSEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -732,7 +732,7 @@ END_RCPP
 }
 // JEcpp
 double JEcpp(const Rcpp::NumericVector& JointProbabilities, Rcpp::String unit);
-RcppExport SEXP philentropy_JEcpp(SEXP JointProbabilitiesSEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_JEcpp(SEXP JointProbabilitiesSEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -744,7 +744,7 @@ END_RCPP
 }
 // CEcpp
 double CEcpp(Rcpp::NumericVector JointProbabilities, Rcpp::NumericVector Probabilities, Rcpp::String unit);
-RcppExport SEXP philentropy_CEcpp(SEXP JointProbabilitiesSEXP, SEXP ProbabilitiesSEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_CEcpp(SEXP JointProbabilitiesSEXP, SEXP ProbabilitiesSEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -757,7 +757,7 @@ END_RCPP
 }
 // MIcpp
 double MIcpp(Rcpp::NumericVector X, Rcpp::NumericVector Y, Rcpp::NumericVector XY, Rcpp::String unit);
-RcppExport SEXP philentropy_MIcpp(SEXP XSEXP, SEXP YSEXP, SEXP XYSEXP, SEXP unitSEXP) {
+RcppExport SEXP _philentropy_MIcpp(SEXP XSEXP, SEXP YSEXP, SEXP XYSEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -771,7 +771,7 @@ END_RCPP
 }
 // as_matrix
 Rcpp::NumericMatrix as_matrix(Rcpp::DataFrame x);
-static SEXP philentropy_as_matrix_try(SEXP xSEXP) {
+static SEXP _philentropy_as_matrix_try(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< Rcpp::DataFrame >::type x(xSEXP);
@@ -779,11 +779,11 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP philentropy_as_matrix(SEXP xSEXP) {
+RcppExport SEXP _philentropy_as_matrix(SEXP xSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(philentropy_as_matrix_try(xSEXP));
+        rcpp_result_gen = PROTECT(_philentropy_as_matrix_try(xSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -801,7 +801,7 @@ RcppExport SEXP philentropy_as_matrix(SEXP xSEXP) {
 }
 // as_data_frame
 Rcpp::DataFrame as_data_frame(Rcpp::NumericMatrix mat);
-static SEXP philentropy_as_data_frame_try(SEXP matSEXP) {
+static SEXP _philentropy_as_data_frame_try(SEXP matSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type mat(matSEXP);
@@ -809,11 +809,11 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP philentropy_as_data_frame(SEXP matSEXP) {
+RcppExport SEXP _philentropy_as_data_frame(SEXP matSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(philentropy_as_data_frame_try(matSEXP));
+        rcpp_result_gen = PROTECT(_philentropy_as_data_frame_try(matSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -831,7 +831,7 @@ RcppExport SEXP philentropy_as_data_frame(SEXP matSEXP) {
 }
 // sum_rcpp
 SEXP sum_rcpp(SEXP vec);
-static SEXP philentropy_sum_rcpp_try(SEXP vecSEXP) {
+static SEXP _philentropy_sum_rcpp_try(SEXP vecSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< SEXP >::type vec(vecSEXP);
@@ -839,11 +839,11 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP philentropy_sum_rcpp(SEXP vecSEXP) {
+RcppExport SEXP _philentropy_sum_rcpp(SEXP vecSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(philentropy_sum_rcpp_try(vecSEXP));
+        rcpp_result_gen = PROTECT(_philentropy_sum_rcpp_try(vecSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -861,7 +861,7 @@ RcppExport SEXP philentropy_sum_rcpp(SEXP vecSEXP) {
 }
 // est_prob_empirical
 SEXP est_prob_empirical(SEXP CountVec);
-static SEXP philentropy_est_prob_empirical_try(SEXP CountVecSEXP) {
+static SEXP _philentropy_est_prob_empirical_try(SEXP CountVecSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< SEXP >::type CountVec(CountVecSEXP);
@@ -869,11 +869,11 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP philentropy_est_prob_empirical(SEXP CountVecSEXP) {
+RcppExport SEXP _philentropy_est_prob_empirical(SEXP CountVecSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(philentropy_est_prob_empirical_try(CountVecSEXP));
+        rcpp_result_gen = PROTECT(_philentropy_est_prob_empirical_try(CountVecSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -891,7 +891,7 @@ RcppExport SEXP philentropy_est_prob_empirical(SEXP CountVecSEXP) {
 }
 
 // validate (ensure exported C++ functions exist before calling them)
-static int philentropy_RcppExport_validate(const char* sig) { 
+static int _philentropy_RcppExport_validate(const char* sig) { 
     static std::set<std::string> signatures;
     if (signatures.empty()) {
         signatures.insert("Rcpp::NumericMatrix(*as_matrix)(Rcpp::DataFrame)");
@@ -903,11 +903,11 @@ static int philentropy_RcppExport_validate(const char* sig) {
 }
 
 // registerCCallable (register entry points for exported C++ functions)
-RcppExport SEXP philentropy_RcppExport_registerCCallable() { 
-    R_RegisterCCallable("philentropy", "philentropy_as_matrix", (DL_FUNC)philentropy_as_matrix_try);
-    R_RegisterCCallable("philentropy", "philentropy_as_data_frame", (DL_FUNC)philentropy_as_data_frame_try);
-    R_RegisterCCallable("philentropy", "philentropy_sum_rcpp", (DL_FUNC)philentropy_sum_rcpp_try);
-    R_RegisterCCallable("philentropy", "philentropy_est_prob_empirical", (DL_FUNC)philentropy_est_prob_empirical_try);
-    R_RegisterCCallable("philentropy", "philentropy_RcppExport_validate", (DL_FUNC)philentropy_RcppExport_validate);
+RcppExport SEXP _philentropy_RcppExport_registerCCallable() { 
+    R_RegisterCCallable("philentropy", "_philentropy_as_matrix", (DL_FUNC)_philentropy_as_matrix_try);
+    R_RegisterCCallable("philentropy", "_philentropy_as_data_frame", (DL_FUNC)_philentropy_as_data_frame_try);
+    R_RegisterCCallable("philentropy", "_philentropy_sum_rcpp", (DL_FUNC)_philentropy_sum_rcpp_try);
+    R_RegisterCCallable("philentropy", "_philentropy_est_prob_empirical", (DL_FUNC)_philentropy_est_prob_empirical_try);
+    R_RegisterCCallable("philentropy", "_philentropy_RcppExport_validate", (DL_FUNC)_philentropy_RcppExport_validate);
     return R_NilValue;
 }
