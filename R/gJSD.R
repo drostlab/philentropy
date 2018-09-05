@@ -30,7 +30,7 @@
 #' 
 #' @examples
 #' 
-#' Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
+#' Prob <- rbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 #' 
 #' # compute the Generalized JSD comparing the PS probability matrix
 #' gJSD(Prob)
@@ -46,7 +46,7 @@ gJSD <- function(x, unit = "log2", weights = NULL){
                 x <- as.matrix(x)
         
         if(!(class(x) == "matrix"))
-                stop("Please enter a numeric probability matrix.")
+                stop("Please enter a numeric probability matrix.", call. = FALSE)
         
         # check for distribution validity
         apply(x,2,valid.distr)

@@ -13,7 +13,7 @@ vignette: >
 > 
 > \- Edward Gibbon
 
-Information theory and statistics were beautifully fused by [Solomon Kullback](https://books.google.de/books?hl=de&lr=&id=luHcCgAAQBAJ&oi=fnd&pg=PR13&dq=S+kullback+%2B+Information+Theory&ots=G0OBmsYYSW&sig=R9aJhY73UQslIePFyZ3s-0sgiPU#v=onepage&q=S%20kullback%20%2B%20Information%20Theory&f=false). This fusion allowed to quantify correlations and similarities between random variables
+Information theory and statistics were beautifully fused by `Solomon Kullback`. This fusion allowed to quantify correlations and similarities between random variables
 using a more sophisticated toolkit. Modern fields such as machine learning and statistical data science build upon this fusion and the most powerful statistical techniques used today are based on an information theoretic foundation.
 
 The `philentropy` aims to follow this tradition and therefore, it implements
@@ -23,46 +23,211 @@ the most important information theory measures.
 
 > $H(X) = -\sum\limits_{i=1}^n P(x_i) * log_b(P(x_i))$
 
-```{r,eval=FALSE}
+```r
 # define probabilities P(X)
 Prob <- 1:10/sum(1:10)
 # Compute Shannon's Entropy
 H(Prob)
 ```
 
+```
+[1] 3.103643
+```
+
 ### Shannon's Joint-Entropy H(X,Y)
 
+> $H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b(P(x_i, y_j))$
 
-```{r,eval=FALSE}
+```r
 # define the joint distribution P(X,Y)
 P_xy <- 1:100/sum(1:100)
 # Compute Shannon's Joint-Entropy
 JE(P_xy)
 ```
 
+```
+[1] 6.372236
+```
+
 ### Shannon's Conditional-Entropy H(X | Y)
 
-```{r,eval=FALSE}
+> $H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i) / P(x_i, y_j) )$
+
+```r
 # define the distribution P(X)
 P_x <- 1:10/sum(1:10)
 # define the distribution P(Y)
-P_y <- 11:20/sum(11:20)
+P_y <- 1:10/sum(1:10)
 
 # Compute Shannon's Joint-Entropy
-CE(P_x,P_y)
+CE(P_x, P_y)
 ```
 
+```
+[1] 0
+```
 
 ### Mutual Information I(X,Y)
 
+> $MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i, y_j) / ( P(x_i) * P(y_j) )$
+
+
+```r
+# define the distribution P(X)
+P_x <- 1:10/sum(1:10)
+# define the distribution P(Y)
+P_y <- 20:29/sum(20:29)
+# define the joint-distribution P(X,Y)
+P_xy <- 1:10/sum(1:10)
+
+# Compute Shannon's Joint-Entropy
+MI(P_x, P_y, P_xy)
+```
+
+```
+[1] 3.311973
+```
+
+
 ### Kullback-Leibler Divergence
+
+> $KL(P || Q) = \sum\limits_{i=1}^n P(p_i) * log_2(P(p_i) / P(q_i)) = H(P, Q) - H(P)$
+
+where `H(P, Q)` denotes the joint entropy of the probability distributions `P` and `Q` and `H(P)` denotes the entropy of probability distribution `P`. In case `P = Q` then `KL(P, Q) = 0` and in case `P != Q` then `KL(P, Q) > 0`.
+
+The KL divergence is a non-symmetric measure of the directed divergence between two probability distributions P and Q. It only fulfills the positivity property of a distance metric.
+
+Because of the relation `KL(P||Q) = H(P,Q) - H(P)`, the Kullback-Leibler divergence of two probability distributions `P` and `Q` is also named `Cross Entropy` of two probability distributions `P` and `Q`.
+
+```r
+# Kulback-Leibler Divergence between random variables P and Q
+P <- 1:10/sum(1:10)
+Q <- 20:29/sum(20:29)
+x <- rbind(P,Q)
+
+# Kulback-Leibler Divergence between P and Q using different log bases
+KL(x, unit = "log2") # Default
+KL(x, unit = "log")
+KL(x, unit = "log10")
+```
+
+```
+# KL(x, unit = "log2") # Default
+Kulback-Leibler Divergence using unit 'log2'.
+kullback-leibler 
+       0.1392629 
+# KL(x, unit = "log")
+Kulback-Leibler Divergence using unit 'log'.
+kullback-leibler 
+      0.09652967 
+# KL(x, unit = "log10")
+Kulback-Leibler Divergence using unit 'log10'.
+kullback-leibler 
+       0.0419223 
+```
 
 ### Jensen-Shannon Divergence
 
+This function computes the `Jensen-Shannon Divergence` `JSD(P || Q)` between two probability distributions `P` and `Q` with equal weights `π_1` = `π_2` = 1/2.
+
+The Jensen-Shannon Divergence JSD(P || Q) between two probability distributions P and Q is defined as:
+
+> $JSD(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))$
+
+where `R = 0.5 * (P + Q)` denotes the mid-point of the probability vectors `P` and `Q`, and `KL(P || R)`, `KL(Q || R)` denote the `Kullback-Leibler Divergence` of `P` and `R`, as well as `Q` and `R`.
+
+```r
+# Jensen-Shannon Divergence between P and Q
+P <- 1:10/sum(1:10)
+Q <- 20:29/sum(20:29)
+x <- rbind(P,Q)
+
+# Jensen-Shannon Divergence between P and Q using different log bases
+JSD(x, unit = "log2") # Default
+JSD(x, unit = "log")
+JSD(x, unit = "log10")
+```
+
+```
+# JSD(x, unit = "log2") # Default
+Jensen-Shannon Divergence using unit 'log2'.
+jensen-shannon 
+    0.03792749 
+# JSD(x, unit = "log")
+Jensen-Shannon Divergence using unit 'log'.
+jensen-shannon 
+    0.02628933 
+# JSD(x, unit = "log10")
+Jensen-Shannon Divergence using unit 'log10'.
+jensen-shannon 
+    0.01141731 
+```
+
+Alternatively, users can specify count data.
+
+```r
+# Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count
+P.count <- 1:10
+Q.count <- 20:29
+x.count <- rbind(P.count, Q.count)
+
+JSD(x, est.prob = "empirical")
+```
+
+```
+Jensen-Shannon Divergence using unit 'log2'.
+jensen-shannon 
+    0.03792749
+```
+
+Or users can compute distances based on a probability matrix
+
+```r
+# Example: Distance Matrix using JSD-Distance
+Prob <- rbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
+
+# compute the KL matrix of a given probability matrix
+JSDMatrix <- JSD(Prob)
+
+JSDMatrix
+```
+
+```
+           v1           v2           v3
+v1 0.00000000 0.0379274917 0.0435852218
+v2 0.03792749 0.0000000000 0.0002120578
+v3 0.04358522 0.0002120578 0.0000000000
+```
+
+#### Properties of the `Jensen-Shannon Divergence`:
+
+- JSD is non-negative.
+
+- JSD is a symmetric measure JSD(P || Q) = JSD(Q || P).
+
+- JSD = 0, if and only if P = Q.
+
+
 ### Generalized Jensen-Shannon Divergence
 
+The generalized Jensen-Shannon Divergence $gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n)$ enables distance comparisons between multiple
+probability distributions $P_1,...,P_n$:
+
+> $gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i*P_i) - \sum_{i = 1}^n \pi_i*H(P_i)$
+
+where $\pi_1,...,\pi_n$ denote the weights selected for the probability vectors $P_1,...,P_n$ and $H(P_i)$
+denotes the Shannon Entropy of probability vector $P_i$.
 
 
+```r
+# generate example probability matrix for comparing three probability functions
+Prob <- rbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 
+# compute the Generalized JSD comparing the PS probability matrix
+gJSD(Prob)
+```
 
+```
+[1] 0.023325
+```
 

@@ -49,7 +49,6 @@
 #' @export
 
 CE <- function(xy,y, unit = "log2"){
-        
         valid.distr(xy)
         valid.distr(y)
         return(CEcpp(as.vector(xy),as.vector(y), unit))

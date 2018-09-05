@@ -7,7 +7,7 @@
 estimate.probability(x, method = "empirical")
 }
 \arguments{
-\item{x}{a numeric vctor storing count values.}
+\item{x}{a numeric vector storing count values.}
 
 \item{method}{a character string specifying the estimation method tht should be used to estimate probabilities from input counts.}
 }
@@ -21,7 +21,7 @@ probabilities of the corresponding counts.
 The following probability estimation methods are implemented in this function:
 
 \itemize{
-\item \code{empirical} :
+\item \code{method = "empirical"} : generates the relative frequency of the data \code{x/sum(x)}.
 \item
 \item
 }

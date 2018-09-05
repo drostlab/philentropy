@@ -1,0 +1,8 @@
+pandoc: 1.19.2.1
+pkgdown: 1.1.0
+pkgdown_sha: ~
+articles:
+  Distances: Distances.html
+  Information_Theory: Information_Theory.html
+  Introduction: Introduction.html
+

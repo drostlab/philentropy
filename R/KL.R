@@ -77,6 +77,8 @@
 #'@export
  
 KL <- function(x, test.na = TRUE, unit = "log2", est.prob = NULL){
+        if (!is.matrix(x))
+          stop("Please provide a matrix as input, e.g. with x <- rbind(vector1, vector2).", call. = FALSE)
         
         return( distance( x           = x,
                           method      = "kullback-leibler",
