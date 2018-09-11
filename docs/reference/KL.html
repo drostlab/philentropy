@@ -21,11 +21,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
-
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -35,7 +33,6 @@
 <meta property="og:description" content="This function computes the Kullback-Leibler divergence of two probability
 distributions P and Q." />
 <meta name="twitter:card" content="summary" />
-
 
 
 <!-- mathjax -->
@@ -203,10 +200,10 @@ Theory. <em>John Wiley &amp; Sons</em>.</p>
 #&gt;        0.1392629 </div><div class='input'>
 <span class='co'># Example: Distance Matrix using KL-Distance</span>
 
-<span class='no'>Prob</span> <span class='kw'>&lt;-</span> <span class='fu'>cbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>), <span class='fl'>30</span>:<span class='fl'>39</span>/<span class='fu'>sum</span>(<span class='fl'>30</span>:<span class='fl'>39</span>))
+<span class='no'>Prob</span> <span class='kw'>&lt;-</span> <span class='fu'>rbind</span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'>sum</span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'>sum</span>(<span class='fl'>20</span>:<span class='fl'>29</span>), <span class='fl'>30</span>:<span class='fl'>39</span>/<span class='fu'>sum</span>(<span class='fl'>30</span>:<span class='fl'>39</span>))
 
 <span class='co'># compute the KL matrix of a given probability matrix</span>
-<span class='no'>KLMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'>KL</span>(<span class='no'>Prob</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 10 vectors.</span></div><div class='input'>
+<span class='no'>KLMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'>KL</span>(<span class='no'>Prob</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 3 vectors.</span></div><div class='input'>
 <span class='co'># plot a heatmap of the corresponding KL matrix</span>
 <span class='fu'>heatmap</span>(<span class='no'>KLMatrix</span>)</div><div class='img'><img src='KL-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
