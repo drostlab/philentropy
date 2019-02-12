@@ -3,7 +3,10 @@
 #' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}). See \code{\link{distance}} for details.
 #' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
 #' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
-#' @param est.prob method to estimate probabilities from a count vector. Default: est.prob = NULL.
+#' @param @param est.prob method to estimate probabilities from input count vectors such as non-probability vectors. Default: \code{est.prob = NULL}. Options are:
+#' \itemize{
+#' \item \code{est.prob = "empirical"}: The relative frequencies of each vector are computed internally. For example an input matrix \code{rbind(1:10, 11:20)} will be transformed to a probability vector \code{rbind(1:10 / sum(1:10), 11:20 / sum(11:20))}
+#' }
 #' @return a distance value or matrix based on JSD computations.
 #' @author Hajk-Georg Drost
 #' @details 
@@ -49,7 +52,7 @@
 #' P.count <- 1:10
 #' Q.count <- 20:29
 #' x.count <- rbind(P.count,Q.count)
-#' JSD(x, est.prob = "empirical")
+#' JSD(x.count, est.prob = "empirical")
 #' 
 #' # Example: Distance Matrix using JSD-Distance
 #' 
