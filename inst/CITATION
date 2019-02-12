@@ -1,0 +1,18 @@
+citHeader("To cite philentropy in publications please use:")
+
+citEntry(entry = "Article",
+  title        = "Philentropy: Information Theory and Distance Quantification with R",
+  author       = personList(as.person("Drost HG")),
+  journal      = "Journal of Open Source Software",
+  year         = "2018",
+  volume       = "3",
+  number       = "26",
+  pages        = "765",
+  url          = "http://joss.theoj.org/papers/10.21105/joss.00765",
+  
+  textVersion  =
+  paste("Drost HG.",
+  " Philentropy: Information Theory and Distance Quantification with R.",
+  " Journal of Open Source Software (2018).",
+  "doi:10.21105/joss.00765")
+)
