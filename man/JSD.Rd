@@ -13,7 +13,7 @@ JSD(x, test.na = TRUE, unit = "log2", est.prob = NULL)
 
 \item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 
-\item{@param}{est.prob method to estimate probabilities from input count vectors such as non-probability vectors. Default: \code{est.prob = NULL}. Options are:
+\item{est.prob}{method to estimate probabilities from input count vectors such as non-probability vectors. Default: \code{est.prob = NULL}. Options are:
 \itemize{
 \item \code{est.prob = "empirical"}: The relative frequencies of each vector are computed internally. For example an input matrix \code{rbind(1:10, 11:20)} will be transformed to a probability vector \code{rbind(1:10 / sum(1:10), 11:20 / sum(11:20))}
 }}
