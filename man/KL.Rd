@@ -59,7 +59,7 @@ KL(x, est.prob = "empirical")
 
 # Example: Distance Matrix using KL-Distance
 
-Prob <- cbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
+Prob <- rbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 
 # compute the KL matrix of a given probability matrix
 KLMatrix <- KL(Prob)

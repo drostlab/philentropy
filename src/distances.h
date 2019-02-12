@@ -48,6 +48,15 @@ double custom_log10(const double& x ){
   }
 }
 
+
+//' @title Euclidean distance (lowlevel function)
+//' @description The lowlevel function for computing the euclidean distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' euclidean(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double euclidean(const Rcpp::NumericVector& P,const Rcpp::NumericVector& Q, bool testNA){
@@ -78,6 +87,14 @@ double euclidean(const Rcpp::NumericVector& P,const Rcpp::NumericVector& Q, bool
         return sqrt(dist);
 }
 
+//' @title Manhattan distance (lowlevel function)
+//' @description The lowlevel function for computing the manhattan distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' manhattan(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double manhattan(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -110,9 +127,18 @@ double manhattan(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
 
 
 
+//' @title Minkowski distance (lowlevel function)
+//' @description The lowlevel function for computing the minkowski distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param n index for the minkowski exponent.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' minkowski(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), n = 2, testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
-double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,double n, bool testNA){
+double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, double n, bool testNA){
         
         int    P_len = P.size();
         int    Q_len = Q.size();
@@ -141,6 +167,14 @@ double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,doub
 }
 
 
+//' @title Chebyshev distance (lowlevel function)
+//' @description The lowlevel function for computing the chebyshev distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' chebyshev(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double chebyshev(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -174,6 +208,14 @@ double chebyshev(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
 }
 
 
+//' @title Sorensen distance (lowlevel function)
+//' @description The lowlevel function for computing the sorensen distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' sorensen(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double sorensen(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -217,6 +259,14 @@ double sorensen(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 
 
 
+//' @title Gower distance (lowlevel function)
+//' @description The lowlevel function for computing the gower distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' gower(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double gower(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -253,6 +303,14 @@ double gower(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool te
 
 
 
+//' @title Soergel distance (lowlevel function)
+//' @description The lowlevel function for computing the soergel distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' soergel(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -296,13 +354,21 @@ double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
         }
         
         if (dist2 == 0.0) {
-                return NAN;
+                return 0;
         } else {
                 return dist1/dist2;         
         }
 }
 
 
+//' @title Kulczynski_d distance (lowlevel function)
+//' @description The lowlevel function for computing the kulczynski_d distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -361,6 +427,14 @@ double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
 }
 
 
+//' @title Canberra distance (lowlevel function)
+//' @description The lowlevel function for computing the canberra distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' canberra(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -406,6 +480,20 @@ double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
+//' @title Lorentzian distance (lowlevel function)
+//' @description The lowlevel function for computing the lorentzian distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @author Hajk-Georg Drost
+//' @examples
+//' lorentzian(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 //' @export
 // [[Rcpp::export]]
 double lorentzian(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
@@ -458,6 +546,14 @@ double lorentzian(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bo
 }
 
 
+//' @title Intersection distance (lowlevel function)
+//' @description The lowlevel function for computing the intersection_dist distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' intersection_dist(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double intersection_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -497,6 +593,14 @@ double intersection_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 }
 
 
+//' @title Wave hedges distance (lowlevel function)
+//' @description The lowlevel function for computing the wave_hedges distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' wave_hedges(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double wave_hedges(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -547,6 +651,14 @@ double wave_hedges(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
 }
 
 
+//' @title Czekanowski distance (lowlevel function)
+//' @description The lowlevel function for computing the czekanowski distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' czekanowski(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double czekanowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -590,6 +702,14 @@ double czekanowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
 
 
 
+//' @title Motyka distance (lowlevel function)
+//' @description The lowlevel function for computing the motyka distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' motyka(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double motyka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -612,7 +732,7 @@ double motyka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
                         }
                 }
                 
-                sum      = P[i] + Q[i];
+                sum = P[i] + Q[i];
                 
                 if (P[i] <= Q[i]){
                         
@@ -636,6 +756,14 @@ double motyka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
 }
 
 
+//' @title Tanimoto distance (lowlevel function)
+//' @description The lowlevel function for computing the tanimoto distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' tanimoto(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double tanimoto(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -645,6 +773,14 @@ double tanimoto(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
+//' @title Ruzicka distance (lowlevel function)
+//' @description The lowlevel function for computing the ruzicka distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' ruzicka(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double ruzicka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -654,6 +790,14 @@ double ruzicka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
 }
 
 
+//' @title Inner product distance (lowlevel function)
+//' @description The lowlevel function for computing the inner_product distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' inner_product(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double inner_product(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -674,13 +818,20 @@ double inner_product(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                 }
                 
                 dist += P[i] * Q[i];
-                
         }
         
         return dist;  
 }
 
 
+//' @title Harmonic mean distance (lowlevel function)
+//' @description The lowlevel function for computing the harmonic_mean_dist distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' harmonic_mean_dist(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double harmonic_mean_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -717,6 +868,14 @@ double harmonic_mean_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVecto
 }
 
 
+//' @title Cosine distance (lowlevel function)
+//' @description The lowlevel function for computing the cosine_dist distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' cosine_dist(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double cosine_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -756,6 +915,14 @@ double cosine_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
 }
 
 
+//' @title Kumar hassebrook distance (lowlevel function)
+//' @description The lowlevel function for computing the kumar_hassebrook distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' kumar_hassebrook(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double kumar_hassebrook(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -788,13 +955,21 @@ double kumar_hassebrook(const Rcpp::NumericVector& P, const Rcpp::NumericVector&
         double dist2 = p_square + q_square - dist;
         
         if (dist2 == 0.0) {
-                return NAN;
+                return 0;
         } else {
                 return dist / dist2;
         }
 }
 
 
+//' @title Jaccard distance (lowlevel function)
+//' @description The lowlevel function for computing the jaccard distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' jaccard(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double jaccard(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -804,6 +979,14 @@ double jaccard(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
 }
 
 
+//' @title Dice distance (lowlevel function)
+//' @description The lowlevel function for computing the dice_dist distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' dice_dist(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double dice_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -843,6 +1026,14 @@ double dice_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
 }
 
 
+//' @title Fidelity distance (lowlevel function)
+//' @description The lowlevel function for computing the fidelity distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' fidelity(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -870,6 +1061,20 @@ double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
+//' @title Bhattacharyya distance (lowlevel function)
+//' @description The lowlevel function for computing the bhattacharyya distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @author Hajk-Georg Drost
+//' @examples
+//' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 //' @export
 // [[Rcpp::export]]
 double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
@@ -891,6 +1096,14 @@ double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 }
 
 
+//' @title Hellinger distance (lowlevel function)
+//' @description The lowlevel function for computing the hellinger distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' hellinger(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double hellinger(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -898,6 +1111,14 @@ double hellinger(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
         return 2.0 * sqrt( 1.0 - fidelity(P,Q, testNA));
 }
 
+//' @title Matusita distance (lowlevel function)
+//' @description The lowlevel function for computing the matusita distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' matusita(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double matusita(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -905,6 +1126,14 @@ double matusita(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
         return sqrt( 2.0 - ( 2.0 * fidelity(P,Q, testNA)));
 }
 
+//' @title Squared chord distance (lowlevel function)
+//' @description The lowlevel function for computing the squared_chord distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' squared_chord(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double squared_chord(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -933,6 +1162,14 @@ double squared_chord(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 
 
 
+//' @title Squared euclidean distance (lowlevel function)
+//' @description The lowlevel function for computing the squared_euclidean distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' squared_euclidean(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -969,6 +1206,14 @@ double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 }
 
 
+//' @title Pearson chi-squared distance (lowlevel function)
+//' @description The lowlevel function for computing the pearson_chi_sq distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -1016,6 +1261,14 @@ double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
 }
 
 
+//' @title Neyman chi-squared distance (lowlevel function)
+//' @description The lowlevel function for computing the neyman_chi_sq distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -1043,7 +1296,6 @@ double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                         
                                 dist += pow(P[i] - Q[i], 2.0) / P[i];
                         }
-                
                 }
         } else {
                 
@@ -1063,6 +1315,14 @@ double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 }
 
 
+//' @title Squared chi-squared distance (lowlevel function)
+//' @description The lowlevel function for computing the squared_chi_sq distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' squared_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double squared_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -1100,6 +1360,14 @@ double squared_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
 }
 
 
+//' @title Probability symmetric chi-squared distance (lowlevel function)
+//' @description The lowlevel function for computing the prob_symm_chi_sq distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' prob_symm_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double prob_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -1111,6 +1379,14 @@ double prob_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector&
 
 
 
+//' @title Divergence squared distance (lowlevel function)
+//' @description The lowlevel function for computing the divergence_sq distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' divergence_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double divergence_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -1149,6 +1425,14 @@ double divergence_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 
 
 
+//' @title Clark squared distance (lowlevel function)
+//' @description The lowlevel function for computing the clark_sq distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' clark_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double clark_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -1186,6 +1470,14 @@ double clark_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
+//' @title Additive symmetric chi-squared distance (lowlevel function)
+//' @description The lowlevel function for computing the additive_symm_chi_sq distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' additive_symm_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -1224,6 +1516,20 @@ double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVec
 
 
 
+//' @title kullback-Leibler distance (lowlevel function)
+//' @description The lowlevel function for computing the kullback_leibler_distance distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @author Hajk-Georg Drost
+//' @examples
+//' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 //' @export
 // [[Rcpp::export]]
 double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
@@ -1329,6 +1635,20 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
         return dist;
 }
 
+//' @title Jeffreys distance (lowlevel function)
+//' @description The lowlevel function for computing the jeffreys distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @author Hajk-Georg Drost
+//' @examples
+//' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 //' @export
 // [[Rcpp::export]]
 double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
@@ -1435,6 +1755,20 @@ double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 }
 
 
+//' @title K-Divergence (lowlevel function)
+//' @description The lowlevel function for computing the k_divergence distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @author Hajk-Georg Drost
+//' @examples
+//' k_divergence(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 //' @export
 // [[Rcpp::export]]
 double k_divergence(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
@@ -1502,6 +1836,20 @@ double k_divergence(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
 }
 
 
+//' @title Topsoe distance (lowlevel function)
+//' @description The lowlevel function for computing the topsoe distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @author Hajk-Georg Drost
+//' @examples
+//' topsoe(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 //' @export
 // [[Rcpp::export]]
 double topsoe(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
@@ -1574,6 +1922,20 @@ double topsoe(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
 }
 
 
+//' @title Jensen-Shannon distance (lowlevel function)
+//' @description The lowlevel function for computing the jensen_shannon distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @author Hajk-Georg Drost
+//' @examples
+//' jensen_shannon(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 //' @export
 // [[Rcpp::export]]
 double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
@@ -1636,7 +1998,6 @@ double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
                                         Rcpp::stop("Please choose from units: log, log2, or log10.");
                                 }
                         }
-                
         } else {
                 
                 for(int i = 0; i < P_len; i++){
@@ -1690,6 +2051,20 @@ double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
 }
 
 
+//' @title Jensen difference (lowlevel function)
+//' @description The lowlevel function for computing the jensen_difference distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @author Hajk-Georg Drost
+//' @examples
+//' jensen_difference(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 //' @export
 // [[Rcpp::export]]
 double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
@@ -1944,6 +2319,20 @@ double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 
 
 
+//' @title Taneja difference (lowlevel function)
+//' @description The lowlevel function for computing the taneja distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @author Hajk-Georg Drost
+//' @examples
+//' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 //' @export
 // [[Rcpp::export]]
 double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
@@ -2057,6 +2446,14 @@ double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
 }
 
 
+//' @title Kumar-Johnson distance (lowlevel function)
+//' @description The lowlevel function for computing the kumar_johnson distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
@@ -2105,6 +2502,14 @@ double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
 
 
 
+//' @title AVG distance (lowlevel function)
+//' @description The lowlevel function for computing the avg distance.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @author Hajk-Georg Drost
+//' @examples
+//' avg(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double avg(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){

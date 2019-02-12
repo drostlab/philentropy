@@ -25,7 +25,10 @@
 #' @param p power of the Minkowski distance.
 #' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.
 #' @param unit a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.
-#' @param est.prob method to estimate probabilities from a count vector. Default: \code{est.prob = NULL}.
+#' @param est.prob method to estimate probabilities from input count vectors such as non-probability vectors. Default: \code{est.prob = NULL}. Options are:
+#' \itemize{
+#' \item \code{est.prob = "empirical"}: The relative frequencies of each vector are computed internally. For example an input matrix \code{rbind(1:10, 11:20)} will be transformed to a probability vector \code{rbind(1:10 / sum(1:10), 11:20 / sum(11:20))}
+#' }
 #' @author Hajk-Georg Drost
 #' @details 
 #' Here a distance is defined as a quantitative degree of how far two mathamatical objects are apart from eachother (Cha, 2007).

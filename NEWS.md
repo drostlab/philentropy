@@ -7,7 +7,18 @@ enables access to much faster computations (see micro benchmarks at https://hajk
 ### Bug fixes
 
 - fixing bug which caused that KL distance returns NaN when P == 0 (see issue #10; Many thanks to @KaiserDominici)
+
 - fixing bug which caused stack overflow when computing distance matrices with many rows (see issue #7; Many thanks to @wkc1986 and @elbamos)
+
+- fixing bug in `gJSD()` where an `rbind()` input matrix is not properly transposed (Many thanks to @vrodriguezf; see issue #14) 
+
+
+### New Features
+
+- `gJSD()` receives new argument `est.prob` to enable empirical estimation of probability vectors from input count vectors (non-probabilistic vectors) 
+
+- Jaccard and Tanimoto similarity measures now return `0` instead of `NAN` when probability vectors contain zeros (Many thanks to @JonasMandel; see issue #15)
+
 
 ## Version 0.2.0
 
@@ -15,9 +26,6 @@ enables access to much faster computations (see micro benchmarks at https://hajk
 - Fixing bug that caused `jensen-shannon` computations to compute wrong values when `0 values` were present in the input vectors (see issue #4 ; Many thanks to @wkc1986)
 - Fixing bug that caused `jensen-difference` computations to compute wrong values when `0 values` were present in the input vectors
 - Fixing bugs in all distance metrics when handing 0/0, 0/x or x/0 cases
-
-### New Features
-
 
 ## Version 0.1.0
 

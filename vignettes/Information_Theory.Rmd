@@ -228,6 +228,43 @@ gJSD(Prob)
 ```
 
 ```
-[1] 0.023325
+#> No weights were specified ('weights = NULL'), thus equal weights for all
+#> distributions will be calculated and applied.
+#> Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).
+#> Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333
+[1] 0.03512892
 ```
 
+As you can see, the `gJSD` function prints out the exact number of vectors that were used to compute the generalized JSD. By default, the weights are uniformly distributed (`weights = NULL`).
+
+Users can also specify non-uniformly distributed weights via specifying the `weights` argument:
+
+```r
+# define probability matrix
+Prob <- rbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
+# compute generalized JSD with custom weights
+gJSD(Prob, weights = c(0.5, 0.25, 0.25))
+```
+
+```
+#> Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).
+#> Weights: v1 = 0.5, v2 = 0.25, v3 = 0.25
+[1] 0.04081969
+```
+
+Finally, users can use the argument `est.prob` to empirically estimate probability vectors when they wish to specify count vectors as input:
+
+```r
+P.count <- 1:10
+Q.count <- 20:29
+R.count <- 30:39
+x.count <- rbind(P.count, Q.count, R.count)
+gJSD(x.count, est.prob = "empirical")
+```
+
+```
+#> No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.
+#> Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).
+#> Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333
+[1] 0.03512892
+```

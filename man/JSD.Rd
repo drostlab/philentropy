@@ -13,7 +13,10 @@ JSD(x, test.na = TRUE, unit = "log2", est.prob = NULL)
 
 \item{unit}{a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.}
 
-\item{est.prob}{method to estimate probabilities from a count vector. Default: est.prob = NULL.}
+\item{est.prob}{method to estimate probabilities from input count vectors such as non-probability vectors. Default: \code{est.prob = NULL}. Options are:
+\itemize{
+\item \code{est.prob = "empirical"}: The relative frequencies of each vector are computed internally. For example an input matrix \code{rbind(1:10, 11:20)} will be transformed to a probability vector \code{rbind(1:10 / sum(1:10), 11:20 / sum(11:20))}
+}}
 }
 \value{
 a distance value or matrix based on JSD computations.
@@ -59,7 +62,7 @@ JSD(x, unit = "log10")
 P.count <- 1:10
 Q.count <- 20:29
 x.count <- rbind(P.count,Q.count)
-JSD(x, est.prob = "empirical")
+JSD(x.count, est.prob = "empirical")
 
 # Example: Distance Matrix using JSD-Distance
 
