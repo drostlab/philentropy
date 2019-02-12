@@ -268,7 +268,30 @@ Prob &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocume
 
 <span class="co"># compute the Generalized JSD comparing the PS probability matrix</span>
 <span class="kw"><a href="../reference/gJSD.html">gJSD</a></span>(Prob)</code></pre></div>
-<pre><code>[1] 0.023325</code></pre>
+<pre><code>#&gt; No weights were specified ('weights = NULL'), thus equal weights for all
+#&gt; distributions will be calculated and applied.
+#&gt; Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).
+#&gt; Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333
+[1] 0.03512892</code></pre>
+<p>As you can see, the <code>gJSD</code> function prints out the exact number of vectors that were used to compute the generalized JSD. By default, the weights are uniformly distributed (<code>weights = NULL</code>).</p>
+<p>Users can also specify non-uniformly distributed weights via specifying the <code>weights</code> argument:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define probability matrix</span>
+Prob &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>), <span class="dv">30</span><span class="op">:</span><span class="dv">39</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">30</span><span class="op">:</span><span class="dv">39</span>))
+<span class="co"># compute generalized JSD with custom weights</span>
+<span class="kw"><a href="../reference/gJSD.html">gJSD</a></span>(Prob, <span class="dt">weights =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>))</code></pre></div>
+<pre><code>#&gt; Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).
+#&gt; Weights: v1 = 0.5, v2 = 0.25, v3 = 0.25
+[1] 0.04081969</code></pre>
+<p>Finally, users can use the argument <code>est.prob</code> to empirically estimate probability vectors when they wish to specify count vectors as input:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">P.count &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+Q.count &lt;-<span class="st"> </span><span class="dv">20</span><span class="op">:</span><span class="dv">29</span>
+R.count &lt;-<span class="st"> </span><span class="dv">30</span><span class="op">:</span><span class="dv">39</span>
+x.count &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(P.count, Q.count, R.count)
+<span class="kw"><a href="../reference/gJSD.html">gJSD</a></span>(x.count, <span class="dt">est.prob =</span> <span class="st">"empirical"</span>)</code></pre></div>
+<pre><code>#&gt; No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.
+#&gt; Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).
+#&gt; Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333
+[1] 0.03512892</code></pre>
 </div>
 </div>
   </div>
