@@ -29,7 +29,7 @@ test_that("Numeric computation of gJSD() : ", {
         wpm <- w * x
         gjsd <- H(rowSums(wpm)) - sum((w * apply(x,2,H)))
         
-        expect_equal(gJSD(cbind(P,Q,R)), gjsd)
+        expect_equal(gJSD(rbind(P,Q,R)), gjsd)
         
 })
 
@@ -49,7 +49,7 @@ test_that("gJSD() throughs error when distributions of different lengths (a list
         wpm <- w * x
         gjsd <- H(rowSums(wpm)) - sum((w * apply(x,2,H)))
         
-        expect_error(gJSD(list(A,B,C)),"Please enter a numeric probability matrix.")
+        expect_error(gJSD(list(A,B,C)))
 })
 
 
@@ -64,7 +64,7 @@ test_that("gJSD() internally changes a data.frame to a matrix", {
         wpm <- w * x
         gjsd <- H(rowSums(wpm)) - sum((w * apply(x,2,H)))
         
-        expect_equal(gJSD(data.frame(P,Q,R)), gjsd)
+        expect_equal(gJSD(data.frame(rbind(P,Q,R))), gjsd)
         
 })
 
