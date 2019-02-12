@@ -1,8 +1,8 @@
 Package: philentropy
 Type: Package
 Title: Similarity and Distance Quantification Between Probability Functions
-Version: 0.2.0.9000
-Date: 2018-05-22
+Version: 0.3.0
+Date: 2019-02-13
 Authors@R: person("Hajk-Georg", "Drost",
                 role = c("aut", "cre"),
                 email = "hgd23@cam.ac.uk",
@@ -24,4 +24,4 @@ Suggests:
     knitr
 VignetteBuilder: knitr
 BugReports: https://github.com/HajkD/philentropy/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
