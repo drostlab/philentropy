@@ -354,7 +354,7 @@ double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
         }
         
         if (dist2 == 0.0) {
-                return NAN;
+                return 0;
         } else {
                 return dist1/dist2;         
         }
@@ -955,7 +955,7 @@ double kumar_hassebrook(const Rcpp::NumericVector& P, const Rcpp::NumericVector&
         double dist2 = p_square + q_square - dist;
         
         if (dist2 == 0.0) {
-                return NAN;
+                return 0;
         } else {
                 return dist / dist2;
         }
