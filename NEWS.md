@@ -17,6 +17,9 @@ enables access to much faster computations (see micro benchmarks at https://hajk
 
 - `gJSD()` receives new argument `est.prob` to enable empirical estimation of probability vectors from input count vectors (non-probabilistic vectors) 
 
+- Jaccard and Tanimoto similarity measures now return `0` instead of `NAN` when probability vectors contain zeros (Many thanks to @JonasMandel; see issue #15)
+
+
 ## Version 0.2.0
 
 ### Bug fixes
