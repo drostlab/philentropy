@@ -94,6 +94,7 @@ Analogously, in case a probability matrix is specified the following output is g
 ```r
 # combine three probabilty vectors to a probabilty matrix 
 ProbMatrix <- rbind(1:10/sum(1:10), 20:29/sum(20:29),30:39/sum(30:39))
+rownames(ProbMatrix) <- paste0("Example", 1:3)
 
 # compute the euclidean distance between all 
 # pairwise comparisons of probability vectors
@@ -101,10 +102,28 @@ distance(ProbMatrix, method = "euclidean")
 ```
 
 ```
-          vec.1      vec.2      vec.3
-vec.1 0.0000000 0.12807130 0.13881717
-vec.2 0.1280713 0.00000000 0.01074588
-vec.3 0.1388172 0.01074588 0.00000000
+#> Metric: 'euclidean'; comparing: 3 vectors.
+          v1         v2         v3
+v1 0.0000000 0.12807130 0.13881717
+v2 0.1280713 0.00000000 0.01074588
+v3 0.1388172 0.01074588 0.00000000
+```
+
+Alternatively, users can specify the argument `use.row.names = TRUE` to maintain the
+rownames of the input matrix and pass them as rownames and colnames to the output distance matrix.
+
+```r
+# compute the euclidean distance between all 
+# pairwise comparisons of probability vectors
+distance(ProbMatrix, method = "euclidean", use.row.names = TRUE)
+```
+
+```
+#> Metric: 'euclidean'; comparing: 3 vectors.
+          Example1   Example2   Example3
+Example1 0.0000000 0.12807130 0.13881717
+Example2 0.1280713 0.00000000 0.01074588
+Example3 0.1388172 0.01074588 0.00000000
 ```
 
 This output differs from the output of `stats::dist()`.
