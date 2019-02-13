@@ -1,3 +1,9 @@
+## Version 0.4.0
+
+### New Features
+
+- the `distance()` function receives a new argument `use.row.names` to enable passing the row names from the input probability or count matrix to the output distance matrix
+
 ## Version 0.3.0
 
 ### New functionality
