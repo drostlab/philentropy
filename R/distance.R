@@ -29,6 +29,8 @@
 #' \itemize{
 #' \item \code{est.prob = "empirical"}: The relative frequencies of each vector are computed internally. For example an input matrix \code{rbind(1:10, 11:20)} will be transformed to a probability vector \code{rbind(1:10 / sum(1:10), 11:20 / sum(11:20))}
 #' }
+#' @param use.row.names a logical value indicating whether or not row names from
+#' the input matrix shall be used as rownames and colnames of the output distance matrix. Default value is \code{use.row.names = FALSE}.
 #' @author Hajk-Georg Drost
 #' @details 
 #' Here a distance is defined as a quantitative degree of how far two mathamatical objects are apart from eachother (Cha, 2007).
@@ -144,6 +146,12 @@
 #' # compute distance matrix without testing for NA values in the input matrix
 #' distance(ProbMatrix, method = "euclidean", test.na = FALSE)
 #' 
+#' # alternatively use the colnames of the input data for the rownames and colnames
+#' # of the output distance matrix
+#' ProbMatrix <- rbind(1:10/sum(1:10), 20:29/sum(20:29),30:39/sum(30:39))
+#' rownames(ProbMatrix) <- paste0("Example", 1:3)
+#' distance(ProbMatrix, method = "euclidean", use.row.names = TRUE)
+#' 
 #' # Specialized Examples
 #' 
 #' CountMatrix <- rbind(1:10, 20:29, 30:39)
@@ -193,7 +201,9 @@ distance <- function(x ,
                      p           = NULL, 
                      test.na     = TRUE, 
                      unit        = "log",
-                     est.prob    = NULL){
+                     est.prob    = NULL,
+                     use.row.names = FALSE
+                     ){
         
         
 
@@ -695,8 +705,14 @@ distance <- function(x ,
         if (ncols == 2) {
                 names(dist) <- method
         } else {
-                colnames(dist) <- paste0("v",seq_len(ncols))
-                rownames(dist) <- paste0("v",seq_len(ncols))
+                if (!use.row.names) {
+                        colnames(dist) <- paste0("v",seq_len(ncols))
+                        rownames(dist) <- paste0("v",seq_len(ncols))  
+                }
+                if (use.row.names) {
+                        colnames(dist) <- colnames(x)
+                        rownames(dist) <- colnames(x)  
+                }
         }
         
         return(dist)
