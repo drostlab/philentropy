@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>distance</span>(<span class='no'>x</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>test.na</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use.row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,6 +162,11 @@
       <td><p>method to estimate probabilities from input count vectors such as non-probability vectors. Default: <code>est.prob = NULL</code>. Options are:</p><ul>
 <li><p><code>est.prob = "empirical"</code>: The relative frequencies of each vector are computed internally. For example an input matrix <code><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind(1:10, 11:20)</a></code> will be transformed to a probability vector <code><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind(1:10 / sum(1:10), 11:20 / sum(11:20))</a></code></p></li>
 </ul></td>
+    </tr>
+    <tr>
+      <th>use.row.names</th>
+      <td><p>a logical value indicating whether or not row names from
+the input matrix shall be used as rownames and colnames of the output distance matrix. Default value is <code>use.row.names = FALSE</code>.</p></td>
     </tr>
     </table>
     
@@ -304,6 +309,14 @@ occur when dealing with 0 probabilities.</p>
 #&gt; v1 0.0000000 0.12807130 0.13881717
 #&gt; v2 0.1280713 0.00000000 0.01074588
 #&gt; v3 0.1388172 0.01074588 0.00000000</div><div class='input'>
+<span class='co'># alternatively use the colnames of the input data for the rownames and colnames</span>
+<span class='co'># of the output distance matrix</span>
+<span class='no'>ProbMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fl'>20</span>:<span class='fl'>29</span>),<span class='fl'>30</span>:<span class='fl'>39</span>/<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='fl'>30</span>:<span class='fl'>39</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>rownames</a></span>(<span class='no'>ProbMatrix</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"Example"</span>, <span class='fl'>1</span>:<span class='fl'>3</span>)
+<span class='fu'>distance</span>(<span class='no'>ProbMatrix</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>use.row.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Metric: 'euclidean'; comparing: 3 vectors.</span></div><div class='output co'>#&gt;           Example1   Example2   Example3
+#&gt; Example1 0.0000000 0.12807130 0.13881717
+#&gt; Example2 0.1280713 0.00000000 0.01074588
+#&gt; Example3 0.1388172 0.01074588 0.00000000</div><div class='input'>
 <span class='co'># Specialized Examples</span>
 
 <span class='no'>CountMatrix</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>, <span class='fl'>20</span>:<span class='fl'>29</span>, <span class='fl'>30</span>:<span class='fl'>39</span>)
