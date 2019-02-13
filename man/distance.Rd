@@ -5,7 +5,7 @@
 \title{Distances between Probability Density Functions}
 \usage{
 distance(x, method = "euclidean", p = NULL, test.na = TRUE,
-  unit = "log", est.prob = NULL)
+  unit = "log", est.prob = NULL, use.row.names = FALSE)
 }
 \arguments{
 \item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).}
@@ -22,6 +22,9 @@ distance(x, method = "euclidean", p = NULL, test.na = TRUE,
 \itemize{
 \item \code{est.prob = "empirical"}: The relative frequencies of each vector are computed internally. For example an input matrix \code{rbind(1:10, 11:20)} will be transformed to a probability vector \code{rbind(1:10 / sum(1:10), 11:20 / sum(11:20))}
 }}
+
+\item{use.row.names}{a logical value indicating whether or not row names from
+the input matrix shall be used as rownames and colnames of the output distance matrix. Default value is \code{use.row.names = FALSE}.}
 }
 \value{
 The following results are returned depending on the dimension of \code{x}:
@@ -161,6 +164,12 @@ distance(ProbMatrix, method = "euclidean")
 
 # compute distance matrix without testing for NA values in the input matrix
 distance(ProbMatrix, method = "euclidean", test.na = FALSE)
+
+# alternatively use the colnames of the input data for the rownames and colnames
+# of the output distance matrix
+ProbMatrix <- rbind(1:10/sum(1:10), 20:29/sum(20:29),30:39/sum(30:39))
+rownames(ProbMatrix) <- paste0("Example", 1:3)
+distance(ProbMatrix, method = "euclidean", use.row.names = TRUE)
 
 # Specialized Examples
 
