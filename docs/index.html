@@ -102,12 +102,13 @@
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install philentropy version 0.3.0 from CRAN</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"philentropy"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install philentropy version 0.3.0 from CRAN</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"philentropy"</span>)</a></code></pre></div>
 </div>
 <div id="citation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h3>
+<p><strong>I am developing <code>philentropy</code> in my spare time and would be very grateful if you would consider citing the following paper in case <code>philentropy</code> was useful for your own research. I plan on maintaining and extending the <code>philentropy</code> functionality and usability in the next years and require citations to back up these efforts. Many thanks in advance :)</strong></p>
 <blockquote>
 <p>HG Drost, (2018). <strong>Philentropy: Information Theory and Distance Quantification with R</strong>. <em>Journal of Open Source Software</em>, 3(26), 765. <a href="https://doi.org/10.21105/joss.00765" class="uri">https://doi.org/10.21105/joss.00765</a></p>
 </blockquote>
@@ -124,9 +125,9 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(philentropy)
-<span class="co"># retrieve available distance metrics</span>
-<span class="kw"><a href="reference/getDistMethods.html">getDistMethods</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(philentropy)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># retrieve available distance metrics</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="reference/getDistMethods.html">getDistMethods</a></span>()</a></code></pre></div>
 <pre><code> [1] "euclidean"         "manhattan"         "minkowski"        
  [4] "chebyshev"         "sorensen"          "gower"            
  [7] "soergel"           "kulczynski_d"      "canberra"         
@@ -143,22 +144,22 @@
 [40] "k_divergence"      "topsoe"            "jensen-shannon"   
 [43] "jensen_difference" "taneja"            "kumar-johnson"    
 [46] "avg"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define a probability density function P</span>
-P &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
-<span class="co"># define a probability density function Q</span>
-Q &lt;-<span class="st"> </span><span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>)
-
-<span class="co"># combine P and Q as matrix object</span>
-x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(P,Q)
-
-<span class="co"># compute the jensen-shannon distance between</span>
-<span class="co"># probability density functions P and Q</span>
-<span class="kw"><a href="reference/distance.html">distance</a></span>(x, <span class="dt">method =</span> <span class="st">"jensen-shannon"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># define a probability density function P</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">P &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># define a probability density function Q</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">Q &lt;-<span class="st"> </span><span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># combine P and Q as matrix object</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(P,Q)</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co"># compute the jensen-shannon distance between</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co"># probability density functions P and Q</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw"><a href="reference/distance.html">distance</a></span>(x, <span class="dt">method =</span> <span class="st">"jensen-shannon"</span>)</a></code></pre></div>
 <pre><code>jensen-shannon using unit 'log'.
 jensen-shannon 
     0.02628933</code></pre>
 <p>Alternatively, users can also retrieve values from all available distance/similarity metrics using <code><a href="reference/dist.diversity.html">dist.diversity()</a></code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dist.diversity.html">dist.diversity</a></span>(x, <span class="dt">p =</span> <span class="dv">2</span>, <span class="dt">unit =</span> <span class="st">"log2"</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/dist.diversity.html">dist.diversity</a></span>(x, <span class="dt">p =</span> <span class="dv">2</span>, <span class="dt">unit =</span> <span class="st">"log2"</span>)</a></code></pre></div>
 <pre><code>        euclidean         manhattan 
        0.12807130        0.35250464 
         minkowski         chebyshev 
@@ -208,10 +209,10 @@ jensen_difference            taneja
 <div id="install-developer-version" class="section level3">
 <h3 class="hasAnchor">
 <a href="#install-developer-version" class="anchor"></a>Install Developer Version</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-<span class="co"># install the current version of philentropy on your system</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"HajkD/philentropy"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co"># install the current version of philentropy on your system</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"HajkD/philentropy"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="news" class="section level3">
 <h3 class="hasAnchor">
