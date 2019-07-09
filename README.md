@@ -29,6 +29,8 @@ install.packages("philentropy")
 
 ### Citation
 
+__I am developing `philentropy` in my spare time and would be very grateful if you would consider citing the following paper in case `philentropy` was useful for your own research. I plan on maintaining and extending the `philentropy` functionality and usability in the next years and require citations to back up these efforts. Many thanks in advance :)__
+
 > HG Drost, (2018). __Philentropy: Information Theory and Distance Quantification with R__. _Journal of Open Source Software_, 3(26), 765. https://doi.org/10.21105/joss.00765
 
 ## Tutorials 
