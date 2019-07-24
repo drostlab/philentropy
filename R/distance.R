@@ -207,8 +207,8 @@ distance <- function(x ,
         
         
 
-        if (!is.element(class(x),c("data.frame","matrix")))
-                stop("x should be a data.frame or matrix.")
+        if (!any(is.element(class(x), c("data.frame", "matrix", "data.table", "tbl_df", "tbl"))))
+                stop("x should be a data.frame, data.table, tbl, or matrix.", call. = FALSE)
         
         if (is.character(x))
                 stop(paste0("Your input ",class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
