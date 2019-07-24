@@ -4,6 +4,8 @@
 
 - the `distance()` function receives a new argument `use.row.names` to enable passing the row names from the input probability or count matrix to the output distance matrix
 
+- the `distance()` function can now handle `data.table` and `tibble` input #16
+
 ## Version 0.3.0
 
 ### New functionality
