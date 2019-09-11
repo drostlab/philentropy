@@ -53,7 +53,9 @@ test_that("gJSD() internally changes a data.frame to a matrix", {
         
 })
 
-
-
-
-
+test_that("gJSD() checks for transposed matrix column sums > 1.", {
+        
+expect_equal(gJSD(matrix(c(1, 1, 0, 0), nrow = 2)), 0)
+expect_equal(gJSD(matrix(c(1, 0, 0, 1), nrow = 2)), 1)
+        
+})
