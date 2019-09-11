@@ -90,7 +90,7 @@ gJSD <- function(x, unit = "log2", weights = NULL, est.prob = NULL) {
                 x <- apply(x, 2, estimate.probability, method = est.prob) 
         }
         # check for distribution validity
-        apply(x, 1, valid.distr)
+        apply(x, 2, valid.distr)
         
         nDistributions <- ncol(x)
         nElements <- nrow(x)
