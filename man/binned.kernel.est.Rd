@@ -5,8 +5,8 @@
 \title{Kernel Density Estimation}
 \usage{
 binned.kernel.est(data, kernel = "normal", bandwidth = NULL,
-  canonical = FALSE, scalest = "minim", level = 2L, gridsize = 401L,
-  range.data = range(data), truncate = TRUE)
+  canonical = FALSE, scalest = "minim", level = 2L,
+  gridsize = 401L, range.data = range(data), truncate = TRUE)
 }
 \arguments{
 \item{data}{a numeric vector containing the sample on which the kernel density estimate is to be constructed.}
