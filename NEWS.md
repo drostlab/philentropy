@@ -6,6 +6,10 @@
 
 - the `distance()` function can now handle `data.table` and `tibble` input #16
 
+### Bug fixes
+
+- fixing a bug in `gJSD()` which tested transposed matrix rows rather than transposed matrix columns for sum > 1 (see issue #17 ; many thanks to @wkc1986)
+
 ## Version 0.3.0
 
 ### New functionality
