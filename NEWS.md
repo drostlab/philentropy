@@ -6,6 +6,43 @@
 
 - the `distance()` function can now handle `data.table` and `tibble` input #16
 
+- adding new functionality and arguments `as.dist.obj`, `diag`, and `upper` to `philentropy::distance()` to allow users to retrieve a `stats::dist()` object when working with `philentropy::distance()` (Many thanks to Hugo Tavares #18 - see also #13)
+When using `philentropy::distance(..., as.dist.obj = TRUE)` users can now directly pass the `distance()` output into `hclust`:
+
+Before:
+```r
+ProbMatrix <- rbind(1:10/sum(1:10), 20:29/sum(20:29),30:39/sum(30:39))
+dist.mat <- distance(ProbMatrix, method = "jaccard")
+true.dist.mat <- as.dist(dist.mat)
+clust.res <- hclust(true.dist.mat, method = "complete")
+clust.res
+```
+
+```
+Call:
+hclust(d = true.dist.mat, method = "complete")
+
+Cluster method   : complete 
+Number of objects: 3 
+```
+
+Now:
+
+```r
+ProbMatrix <- rbind(1:10/sum(1:10), 20:29/sum(20:29),30:39/sum(30:39))
+dist.mat <- distance(ProbMatrix, method = "jaccard", as.dist.obj = TRUE)
+clust.res <- hclust(true.dist.mat, method = "complete")
+clust.res
+```
+
+```
+Call:
+hclust(d = true.dist.mat, method = "complete")
+
+Cluster method   : complete 
+Number of objects: 3 
+```
+
 ### Bug fixes
 
 - fixing a bug in `gJSD()` which tested transposed matrix rows rather than transposed matrix columns for sum > 1 (see issue #17 ; many thanks to @wkc1986)
