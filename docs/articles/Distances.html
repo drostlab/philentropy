@@ -176,15 +176,23 @@ Example3 0.1388172 0.01074588 0.00000000</code></pre>
 2 0.12807130           
 3 0.13881717 0.01074588</code></pre>
 <p>Whereas <code><a href="../reference/distance.html">distance()</a></code> returns a symmetric distance matrix, <code><a href="https://www.rdocumentation.org/packages/stats/topics/dist">stats::dist()</a></code> returns only one part of the symmetric matrix.</p>
+<p>However, users can also specify the argument <code>as.dist.obj = TRUE</code> in <code><a href="../reference/distance.html">philentropy::distance()</a></code> to retrieve a <code><a href="../reference/distance.html">philentropy::distance()</a></code> output which is an object of type <code><a href="https://www.rdocumentation.org/packages/stats/topics/dist">stats::dist()</a></code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">ProbMatrix &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>),<span class="dv">30</span><span class="op">:</span><span class="dv">39</span><span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(<span class="dv">30</span><span class="op">:</span><span class="dv">39</span>))</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(ProbMatrix) &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"test"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw"><a href="../reference/distance.html">distance</a></span>(ProbMatrix, <span class="dt">method =</span> <span class="st">"euclidean"</span>, <span class="dt">use.row.names =</span> <span class="ot">TRUE</span>, <span class="dt">as.dist.obj =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>Metric: 'euclidean'; comparing: 3 vectors.
+           test1      test2
+test2 0.12807130           
+test3 0.13881717 0.01074588</code></pre>
 <p>Now let’s compare the run times of base R and <code>philentropy</code>. For this purpose you need to install the <code>microbenchmark</code> package.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># install.packages("microbenchmark")</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(microbenchmark)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/microbenchmark/topics/microbenchmark">microbenchmark</a></span>(</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">  <span class="kw"><a href="../reference/distance.html">distance</a></span>(x,<span class="dt">method =</span> <span class="st">"euclidean"</span>, <span class="dt">test.na =</span> <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb16-6" data-line-number="6">  <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(x,<span class="dt">method =</span> <span class="st">"euclidean"</span>),</a>
-<a class="sourceLine" id="cb16-7" data-line-number="7">  <span class="kw"><a href="../reference/euclidean.html">euclidean</a></span>(x[<span class="dv">1</span> , ], x[<span class="dv">2</span> , ], <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb16-8" data-line-number="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># install.packages("microbenchmark")</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(microbenchmark)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/microbenchmark/topics/microbenchmark">microbenchmark</a></span>(</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">  <span class="kw"><a href="../reference/distance.html">distance</a></span>(x,<span class="dt">method =</span> <span class="st">"euclidean"</span>, <span class="dt">test.na =</span> <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">  <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(x,<span class="dt">method =</span> <span class="st">"euclidean"</span>),</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">  <span class="kw"><a href="../reference/euclidean.html">euclidean</a></span>(x[<span class="dv">1</span> , ], x[<span class="dv">2</span> , ], <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8">)</a></code></pre></div>
 <pre><code>Unit: microseconds
                                                expr    min      lq     mean  median      uq    max neval
  distance(x, method = "euclidean", test.na = FALSE) 26.518 28.3495 29.73174 29.2210 30.1025 62.096   100

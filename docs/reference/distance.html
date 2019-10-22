@@ -132,7 +132,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>distance</span>(<span class='no'>x</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"euclidean"</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>test.na</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use.row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"log"</span>, <span class='kw'>est.prob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use.row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>as.dist.obj</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>upper</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,6 +168,18 @@
       <th>use.row.names</th>
       <td><p>a logical value indicating whether or not row names from
 the input matrix shall be used as rownames and colnames of the output distance matrix. Default value is <code>use.row.names = FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>as.dist.obj</th>
+      <td><p>shall the return value or matrix be an object of class <code>link[stats]{dist}</code>? Default is <code>as.dist.obj = FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>diag</th>
+      <td><p>if <code>as.dist.obj = TRUE</code>, then this value indicates whether the diagonal of the distance matrix should be printed. Default</p></td>
+    </tr>
+    <tr>
+      <th>upper</th>
+      <td><p>if <code>as.dist.obj = TRUE</code>, then this value indicates whether the upper triangle of the distance matrix should be printed.</p></td>
     </tr>
     </table>
     
