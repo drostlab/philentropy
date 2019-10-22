@@ -5,7 +5,8 @@
 \title{Distances between Probability Density Functions}
 \usage{
 distance(x, method = "euclidean", p = NULL, test.na = TRUE,
-  unit = "log", est.prob = NULL, use.row.names = FALSE)
+  unit = "log", est.prob = NULL, use.row.names = FALSE,
+  as.dist.obj = FALSE, diag = FALSE, upper = FALSE)
 }
 \arguments{
 \item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).}
@@ -25,6 +26,12 @@ distance(x, method = "euclidean", p = NULL, test.na = TRUE,
 
 \item{use.row.names}{a logical value indicating whether or not row names from
 the input matrix shall be used as rownames and colnames of the output distance matrix. Default value is \code{use.row.names = FALSE}.}
+
+\item{as.dist.obj}{shall the return value or matrix be an object of class \code{link[stats]{dist}}? Default is \code{as.dist.obj = FALSE}.}
+
+\item{diag}{if \code{as.dist.obj = TRUE}, then this value indicates whether the diagonal of the distance matrix should be printed. Default}
+
+\item{upper}{if \code{as.dist.obj = TRUE}, then this value indicates whether the upper triangle of the distance matrix should be printed.}
 }
 \value{
 The following results are returned depending on the dimension of \code{x}:
@@ -132,8 +139,6 @@ from input count vectors and second compute the corresponding distance measure b
  \itemize{
  \item \code{est.prob = "empirical"} : relative frequencies of counts.
  }
-
-
 }
 }
 \note{

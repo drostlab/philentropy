@@ -14,7 +14,8 @@ Depends:
 Imports:
     Rcpp,
     dplyr,
-    KernSmooth
+    KernSmooth,
+    tibble
 License: GPL-2
 LazyData: true
 LinkingTo: Rcpp

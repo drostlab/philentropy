@@ -31,6 +31,9 @@
 #' }
 #' @param use.row.names a logical value indicating whether or not row names from
 #' the input matrix shall be used as rownames and colnames of the output distance matrix. Default value is \code{use.row.names = FALSE}.
+#' @param as.dist.obj shall the return value or matrix be an object of class \code{link[stats]{dist}}? Default is \code{as.dist.obj = FALSE}.
+#' @param diag if \code{as.dist.obj = TRUE}, then this value indicates whether the diagonal of the distance matrix should be printed. Default 
+#' @param upper if \code{as.dist.obj = TRUE}, then this value indicates whether the upper triangle of the distance matrix should be printed.
 #' @author Hajk-Georg Drost
 #' @details 
 #' Here a distance is defined as a quantitative degree of how far two mathamatical objects are apart from eachother (Cha, 2007).
@@ -127,8 +130,6 @@
 #'  \itemize{
 #'  \item \code{est.prob = "empirical"} : relative frequencies of counts.
 #'  }
-#' 
-#' 
 #' }
 #' @examples
 #' # Simple Examples
@@ -202,16 +203,17 @@ distance <- function(x ,
                      test.na     = TRUE, 
                      unit        = "log",
                      est.prob    = NULL,
-                     use.row.names = FALSE
+                     use.row.names = FALSE,
+                     as.dist.obj = FALSE,
+                     diag = FALSE, 
+                     upper = FALSE
                      ){
-        
-        
-
+      
         if (!any(is.element(class(x), c("data.frame", "matrix", "data.table", "tbl_df", "tbl"))))
-                stop("x should be a data.frame, data.table, tbl, or matrix.", call. = FALSE)
+                stop("x should be a data.frame, data.table, tbl, tbl_df, or matrix.", call. = FALSE)
         
         if (is.character(x))
-                stop(paste0("Your input ",class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
+                stop(paste0("Your input ", class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
         
   
         dist_methods <- vector(mode = "character", length = 46)
@@ -226,6 +228,11 @@ distance <- function(x ,
                           "additive_symm","kullback-leibler","jeffreys","k_divergence",
                           "topsoe","jensen-shannon", "jensen_difference","taneja",
                           "kumar-johnson","avg")
+        
+        # if (tibble::has_rownames(x) & use.row.names) {
+        #   remember_row_names <- row.names(x)
+        #   x <- tibble::remove_rownames(x)
+        # }
         
         # transpose the matrix or data.frame
         # in case of DF: DF is transformed to matrix by t()
@@ -715,7 +722,14 @@ distance <- function(x ,
                 }
         }
         
-        return(dist)
+        if (!as.dist.obj)
+          return(dist)
+        
+        if (as.dist.obj) {
+          dist <- stats::as.dist(dist, diag = diag, upper = upper)
+          attr(dist, "method") <- method
+          return(dist)
+        }
 }
 
 
