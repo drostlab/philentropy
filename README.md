@@ -1,7 +1,7 @@
 philentropy
 ===========
 
-[![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy) [![rpackages.io rank](https://www.rpackages.io/badge/philentropy.svg)](https://www.rpackages.io/package/philentropy) [![status](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg)](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a)
+[![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy)  [![status](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg)](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/philentropy)](https://github.com/metacran/cranlogs.app)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/philentropy)](https://github.com/metacran/cranlogs.app)
 
@@ -172,6 +172,87 @@ The current status of the package as well as a detailed history of the functiona
 * `KL()` : Kullback–Leibler Divergence
 * `JSD()` : Jensen-Shannon Divergence
 * `gJSD()` : Generalized Jensen-Shannon Divergence
+
+### Studies that successfully applied the `philentropy` package
+
+> - __Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche__
+C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
+>
+> - __Evacuees and Migrants Exhibit Different Migration Systems after the Great East Japan Earthquake and Tsunami__
+M Hauer, S Holloway, T Oda – 2019
+>
+> - __Robust comparison of similarity measures in analogy based software effort estimation__
+P Phannachitta - __11th International Conference on Software__, 2017
+>
+> - __Expression variation analysis for tumor heterogeneity in single-cell RNA-sequencing data__
+EF Davis-Marcisak, P Orugunta et al. - __BioRxiv__, 2018
+>
+> - __SEDE-GPS: socio-economic data enrichment based on GPS information__
+T Sperlea, S Füser, J Boenigk, D Heider - __BMC bioinformatics__, 2018
+>
+> - __How the Choice of Distance Measure Influences the Detection of Prior-Data Conflict__
+K Lek, R Van De Schoot - __Entropy__, 2019
+>
+> - __Concept acquisition and improved in-database similarity analysis for medical data__
+I Wiese, N Sarna, L Wiese, A Tashkandi, U Sax - __Distributed and Parallel Databases__, 2019
+>
+> - __Differential variation analysis enables detection of tumor heterogeneity using single-cell RNA-sequencing data__
+EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
+>
+> - __Dynamics of Vaginal and Rectal Microbiota over Several Menstrual Cycles in Female Cynomolgus Macaques__
+MT Nugeyre, N Tchitchek, C Adapen et al. - __Frontiers in Cellular and Infection Microbiology__, 2019
+>
+> - __Inferring the quasipotential landscape of microbial ecosystems with topological data analysis__
+WK Chang, L Kelly - __BioRxiv__, 2019
+>
+> - __Shifts in the nasal microbiota of swine in response to different dosing regimens of oxytetracycline administration__
+KT Mou, HK Allen, DP Alt, J Trachsel et al. - __Veterinary microbiology__, 2019
+>
+> - __The Patchy Distribution of Restriction–Modification System Genes and the Conservation of Orphan Methyltransferases in Halobacteria__
+MS Fullmer, M Ouellette, AS Louyakis et al. - __Genes__, 2019
+>
+> - __Genetic differentiation and intrinsic genomic features explain variation in recombination hotspots among cocoa tree populations__
+EJ Schwarzkopf, JC Motamayor, OE Cornejo - __BioRxiv__, 2019
+>
+> - __Metastable regimes and tipping points of biochemical networks with potential applications in precision medicine__
+SS Samal, J Krishnan, AH Esfahani et al. - __Reasoning for Systems Biology and Medicine__, 2019
+>
+> - __Genome‐wide characterization and developmental expression profiling of long non‐coding RNAs in Sogatella furcifera__
+ZX Chang, OE Ajayi, DY Guo, QF Wu - __Insect science__, 2019
+>
+> - __Loss of adaptive capacity in asthmatics revealed by biomarker fluctuation dynamics upon experimental rhinovirus challenge__
+A Sinha, R Lutter, B Xu, T Dekker, B Dierdorp et al. - __BioRxiv__, 2019
+>
+> - __Development of a simulation system for modeling the stock market to study its characteristics__
+P Mariya – 2018
+>
+> - __The Tug1 Locus is Essential for Male Fertility__
+JP Lewandowski, G Dumbović, AR Watson, T Hwang et al. - __BioRxiv__, 2019
+>
+> - __Microbiotyping the sinonasal microbiome__
+A Bassiouni, S Paramasivan, A Shiffer et al. - __BioRxiv__, 2019
+>
+> - __Critical search: A procedure for guided reading in large-scale textual corpora__
+J Guldi - __Journal of Cultural Analytics__, 2018
+>
+> - __A Bibliography of Publications about the R, S, and S-Plus Statistics Programming Languages__
+NHF Beebe – 2019
+>
+> - __Improved state change estimation in dynamic functional connectivity using hidden semi-Markov models__
+H Shappell, BS Caffo, JJ Pekar, MA Lindquist - __NeuroImage__, 2019
+>
+> - __A Smart Recommender Based on Hybrid Learning Methods for Personal Well-Being Services__
+RM Nouh, HH Lee, WJ Lee, JD Lee - __Sensors__, 2019
+>
+> - __Cognitive Structural Accuracy__
+V Frenz – 2019
+>
+> - __Kidney organoid reproducibility across multiple human iPSC lines and diminished off target cells after transplantation revealed by single cell transcriptomics__
+A Subramanian, EH Sidhom, M Emani et al. - __BioRxiv__, 2019
+
+
+
+
 
 
 ## Discussions and Bug Reports
