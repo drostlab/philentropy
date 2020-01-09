@@ -209,11 +209,11 @@ distance <- function(x ,
                      upper = FALSE
                      ){
       
-        if (!any(is.element(class(x), c("data.frame", "matrix", "data.table", "tbl_df", "tbl"))))
-                stop("x should be a data.frame, data.table, tbl, tbl_df, or matrix.", call. = FALSE)
+        if (!any(is.element(class(x), c("data.frame", "matrix", "data.table", "tbl_df", "tbl", "array"))))
+                stop("x should be a data.frame, data.table, tbl, tbl_df, array, or matrix.", call. = FALSE)
         
         if (is.character(x))
-                stop(paste0("Your input ", class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."))
+                stop(paste0("Your input ", class(x)," stores non-numeric values. Non numeric values cannot be used to compute distances.."), call = FALSE)
         
   
         dist_methods <- vector(mode = "character", length = 46)
