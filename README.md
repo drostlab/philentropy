@@ -175,8 +175,12 @@ The current status of the package as well as a detailed history of the functiona
 
 ### Studies that successfully applied the `philentropy` package
 
+> - __Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation__ A Subramanian et al. - __Nature Communications__, 2019
+>
 > - __Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche__
 C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
+>
+> - __Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge__ A Sinha et al. - __eLife__, 2019
 >
 > - __Evacuees and Migrants Exhibit Different Migration Systems after the Great East Japan Earthquake and Tsunami__
 M Hauer, S Holloway, T Oda – 2019
@@ -249,6 +253,8 @@ V Frenz – 2019
 >
 > - __Kidney organoid reproducibility across multiple human iPSC lines and diminished off target cells after transplantation revealed by single cell transcriptomics__
 A Subramanian, EH Sidhom, M Emani et al. - __BioRxiv__, 2019
+> - __Multi-classifier majority voting analyses in provenance studies on iron artefacts__
+G Żabiński et al. - __Journal of Archaeological Science__, 2020
 
 
 
