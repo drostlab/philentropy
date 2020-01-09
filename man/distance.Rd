@@ -4,9 +4,18 @@
 \alias{distance}
 \title{Distances between Probability Density Functions}
 \usage{
-distance(x, method = "euclidean", p = NULL, test.na = TRUE,
-  unit = "log", est.prob = NULL, use.row.names = FALSE,
-  as.dist.obj = FALSE, diag = FALSE, upper = FALSE)
+distance(
+  x,
+  method = "euclidean",
+  p = NULL,
+  test.na = TRUE,
+  unit = "log",
+  est.prob = NULL,
+  use.row.names = FALSE,
+  as.dist.obj = FALSE,
+  diag = FALSE,
+  upper = FALSE
+)
 }
 \arguments{
 \item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).}
