@@ -1,21 +1,20 @@
 Package: philentropy
 Type: Package
 Title: Similarity and Distance Quantification Between Probability Functions
-Version: 0.4.0.9000
-Date: 2019-02-12
+Version: 0.4.0
+Date: 2020-01-09
 Authors@R: person("Hajk-Georg", "Drost",
                 role = c("aut", "cre"),
-                email = "hgd23@cam.ac.uk",
+                email = "hajk-georg.drost@tuebingen.mpg.de",
                 comment = c(ORCID = "http://orcid.org/0000-0002-1567-306X"))
-Maintainer: Hajk-Georg Drost <hgd23@cam.ac.uk>
+Maintainer: Hajk-Georg Drost <hajk-georg.drost@tuebingen.mpg.de>
 Description: Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions.
 Depends:
     R (>= 3.1.2)
 Imports:
     Rcpp,
     dplyr,
-    KernSmooth,
-    tibble
+    KernSmooth
 License: GPL-2
 LazyData: true
 LinkingTo: Rcpp
@@ -25,4 +24,4 @@ Suggests:
     knitr
 VignetteBuilder: knitr
 BugReports: https://github.com/HajkD/philentropy/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
