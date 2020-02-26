@@ -1,6 +1,6 @@
 //  Part of the philentropy package
 //
-//  Copyright (C) 2015-2018 Hajk-Georg Drost
+//  Copyright (C) 2015-2020 Hajk-Georg Drost
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -1080,18 +1080,32 @@ double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit){
         
         if (unit == "log"){
-                return -log(fidelity(P,Q, testNA));
+          double fid_value = fidelity(P,Q, testNA);
+          if (fid_value == 0.0) {
+            return -log(fid_value + 0.00001);
+          } else {
+            return -log(fid_value);
+          }
         }
         
         else if (unit == "log2"){
-                return -custom_log2(fidelity(P,Q, testNA));
+          double fid_value = fidelity(P,Q, testNA);
+          if (fid_value == 0.0) {
+            return -custom_log2(fid_value + 0.00001);
+          } else {
+            return -custom_log2(fid_value);
+          }
         }
         
         else if (unit == "log10"){
-                return -custom_log10(fidelity(P,Q, testNA));
+          double fid_value = fidelity(P,Q, testNA);
+          if (fid_value == 0.0) {
+            return -custom_log10(fid_value + 0.00001);
+          } else {
+            return -custom_log10(fid_value);
+          }
         } else {
                 Rcpp::stop("Please choose from units: log, log2, or log10.");
-                return -1.0;
         }
 }
 
