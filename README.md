@@ -35,9 +35,9 @@ __I am developing `philentropy` in my spare time and would be very grateful if y
 
 ## Tutorials 
 
- - [Introduction to the philentropy package](https://hajkd.github.io/philentropy/articles/Introduction.html)
- - [Distance and Similarity Measures implemented in philentropy](https://hajkd.github.io/philentropy/articles/Distances.html)
- - [Information Theory Metrics implemented in philentropy](https://hajkd.github.io/philentropy/articles/Information_Theory.html)
+ - [Introduction to the philentropy package](https://drostlab.github.io/philentropy/articles/Introduction.html)
+ - [Distance and Similarity Measures implemented in philentropy](https://drostlab.github.io/philentropy/articles/Distances.html)
+ - [Information Theory Metrics implemented in philentropy](https://drostlab.github.io/philentropy/articles/Information_Theory.html)
 
 ## Examples
 
@@ -153,7 +153,7 @@ install_github("HajkD/philentropy", build_vignettes = TRUE, dependencies = TRUE)
 
 ### NEWS
 
-The current status of the package as well as a detailed history of the functionality of each version of `philentropy` can be found in the [NEWS](https://hajkd.github.io/philentropy/news/index.html) section.
+The current status of the package as well as a detailed history of the functionality of each version of `philentropy` can be found in the [NEWS](https://drostlab.github.io/philentropy/news/index.html) section.
 
 ## Important Functions
 
@@ -269,7 +269,7 @@ provided in this package.
 Furthermore, in case you find some bugs or need additional (more flexible) functionality of parts
 of this package, please let me know:
 
-https://github.com/HajkD/philentropy/issues
+https://github.com/drostlab/philentropy/issues
 
 or find me on [twitter: HajkDrost](https://twitter.com/hajkdrost) 
 
