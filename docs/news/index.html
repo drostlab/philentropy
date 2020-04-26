@@ -106,7 +106,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/HajkD/philentropy">
+  <a href="https://github.com/drostlab/philentropy">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -125,7 +125,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/HajkD/philentropy/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+      <small>Source: <a href='https://github.com/drostlab/philentropy/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
     <div id="version-0-5-0" class="section level2">
@@ -140,8 +140,8 @@
 <a href="#new-features" class="anchor"></a>New Features</h3>
 <ul>
 <li><p>the <code><a href="../reference/distance.html">distance()</a></code> function receives a new argument <code>use.row.names</code> to enable passing the row names from the input probability or count matrix to the output distance matrix</p></li>
-<li><p>the <code><a href="../reference/distance.html">distance()</a></code> function can now handle <code>data.table</code> and <code>tibble</code> input <a href='https://github.com/HajkD/philentropy/issues/16'>#16</a></p></li>
-<li><p>adding new functionality and arguments <code>as.dist.obj</code>, <code>diag</code>, and <code>upper</code> to <code><a href="../reference/distance.html">philentropy::distance()</a></code> to allow users to retrieve a <code><a href="https://rdrr.io/r/stats/dist.html">stats::dist()</a></code> object when working with <code><a href="../reference/distance.html">philentropy::distance()</a></code> (Many thanks to Hugo Tavares <a href='https://github.com/HajkD/philentropy/issues/18'>#18</a> - see also <a href='https://github.com/HajkD/philentropy/issues/13'>#13</a>) When using <code><a href="../reference/distance.html">philentropy::distance(..., as.dist.obj = TRUE)</a></code> users can now directly pass the <code><a href="../reference/distance.html">distance()</a></code> output into <code>hclust</code>:</p></li>
+<li><p>the <code><a href="../reference/distance.html">distance()</a></code> function can now handle <code>data.table</code> and <code>tibble</code> input <a href='https://github.com/drostlab/philentropy/issues/16'>#16</a></p></li>
+<li><p>adding new functionality and arguments <code>as.dist.obj</code>, <code>diag</code>, and <code>upper</code> to <code><a href="../reference/distance.html">philentropy::distance()</a></code> to allow users to retrieve a <code><a href="https://rdrr.io/r/stats/dist.html">stats::dist()</a></code> object when working with <code><a href="../reference/distance.html">philentropy::distance()</a></code> (Many thanks to Hugo Tavares <a href='https://github.com/drostlab/philentropy/issues/18'>#18</a> - see also <a href='https://github.com/drostlab/philentropy/issues/13'>#13</a>) When using <code><a href="../reference/distance.html">philentropy::distance(..., as.dist.obj = TRUE)</a></code> users can now directly pass the <code><a href="../reference/distance.html">distance()</a></code> output into <code>hclust</code>:</p></li>
 </ul>
 <p>Before:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">ProbMatrix &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>),<span class="dv">30</span><span class="op">:</span><span class="dv">39</span><span class="op">/</span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="dv">30</span><span class="op">:</span><span class="dv">39</span>))</a>
@@ -169,7 +169,7 @@ Number of objects: 3 </code></pre>
 <h3 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h3>
 <ul>
-<li>fixing a bug in <code><a href="../reference/gJSD.html">gJSD()</a></code> which tested transposed matrix rows rather than transposed matrix columns for sum &gt; 1 (see issue <a href='https://github.com/HajkD/philentropy/issues/17'>#17</a> ; many thanks to <a href='https://github.com/wkc1986'>@wkc1986</a>)</li>
+<li>fixing a bug in <code><a href="../reference/gJSD.html">gJSD()</a></code> which tested transposed matrix rows rather than transposed matrix columns for sum &gt; 1 (see issue <a href='https://github.com/drostlab/philentropy/issues/17'>#17</a> ; many thanks to <a href='https://github.com/wkc1986'>@wkc1986</a>)</li>
 </ul>
 </div>
 </div>
@@ -180,16 +180,16 @@ Number of objects: 3 </code></pre>
 <h3 class="hasAnchor">
 <a href="#new-functionality" class="anchor"></a>New functionality</h3>
 <ul>
-<li>exporting all Rcpp distance measure functions individually (see issue <a href='https://github.com/HajkD/philentropy/issues/9'>#9</a>), this enables access to much faster computations (see micro benchmarks at <a href="https://hajkd.github.io/philentropy/articles/Distances.html" class="uri">https://hajkd.github.io/philentropy/articles/Distances.html</a>)</li>
+<li>exporting all Rcpp distance measure functions individually (see issue <a href='https://github.com/drostlab/philentropy/issues/9'>#9</a>), this enables access to much faster computations (see micro benchmarks at <a href="https://hajkd.github.io/philentropy/articles/Distances.html" class="uri">https://hajkd.github.io/philentropy/articles/Distances.html</a>)</li>
 </ul>
 </div>
 <div id="bug-fixes-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h3>
 <ul>
-<li><p>fixing bug which caused that KL distance returns NaN when P == 0 (see issue <a href='https://github.com/HajkD/philentropy/issues/10'>#10</a>; Many thanks to <a href='https://github.com/KaiserDominici'>@KaiserDominici</a>)</p></li>
-<li><p>fixing bug which caused stack overflow when computing distance matrices with many rows (see issue <a href='https://github.com/HajkD/philentropy/issues/7'>#7</a>; Many thanks to <a href='https://github.com/wkc1986'>@wkc1986</a> and <a href='https://github.com/elbamos'>@elbamos</a>)</p></li>
-<li><p>fixing bug in <code><a href="../reference/gJSD.html">gJSD()</a></code> where an <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> input matrix is not properly transposed (Many thanks to <a href='https://github.com/vrodriguezf'>@vrodriguezf</a>; see issue <a href='https://github.com/HajkD/philentropy/issues/14'>#14</a>)</p></li>
+<li><p>fixing bug which caused that KL distance returns NaN when P == 0 (see issue <a href='https://github.com/drostlab/philentropy/issues/10'>#10</a>; Many thanks to <a href='https://github.com/KaiserDominici'>@KaiserDominici</a>)</p></li>
+<li><p>fixing bug which caused stack overflow when computing distance matrices with many rows (see issue <a href='https://github.com/drostlab/philentropy/issues/7'>#7</a>; Many thanks to <a href='https://github.com/wkc1986'>@wkc1986</a> and <a href='https://github.com/elbamos'>@elbamos</a>)</p></li>
+<li><p>fixing bug in <code><a href="../reference/gJSD.html">gJSD()</a></code> where an <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> input matrix is not properly transposed (Many thanks to <a href='https://github.com/vrodriguezf'>@vrodriguezf</a>; see issue <a href='https://github.com/drostlab/philentropy/issues/14'>#14</a>)</p></li>
 </ul>
 </div>
 <div id="new-features-1" class="section level3">
@@ -197,7 +197,7 @@ Number of objects: 3 </code></pre>
 <a href="#new-features-1" class="anchor"></a>New Features</h3>
 <ul>
 <li><p><code><a href="../reference/gJSD.html">gJSD()</a></code> receives new argument <code>est.prob</code> to enable empirical estimation of probability vectors from input count vectors (non-probabilistic vectors)</p></li>
-<li><p>Jaccard and Tanimoto similarity measures now return <code>0</code> instead of <code>NAN</code> when probability vectors contain zeros (Many thanks to <a href='https://github.com/JonasMandel'>@JonasMandel</a>; see issue <a href='https://github.com/HajkD/philentropy/issues/15'>#15</a>)</p></li>
+<li><p>Jaccard and Tanimoto similarity measures now return <code>0</code> instead of <code>NAN</code> when probability vectors contain zeros (Many thanks to <a href='https://github.com/JonasMandel'>@JonasMandel</a>; see issue <a href='https://github.com/drostlab/philentropy/issues/15'>#15</a>)</p></li>
 </ul>
 </div>
 </div>
@@ -208,7 +208,7 @@ Number of objects: 3 </code></pre>
 <h3 class="hasAnchor">
 <a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h3>
 <ul>
-<li>Fixing bug that caused <code>jensen-shannon</code> computations to compute wrong values when <code>0 values</code> were present in the input vectors (see issue <a href='https://github.com/HajkD/philentropy/issues/4'>#4</a> ; Many thanks to <a href='https://github.com/wkc1986'>@wkc1986</a>)</li>
+<li>Fixing bug that caused <code>jensen-shannon</code> computations to compute wrong values when <code>0 values</code> were present in the input vectors (see issue <a href='https://github.com/drostlab/philentropy/issues/4'>#4</a> ; Many thanks to <a href='https://github.com/wkc1986'>@wkc1986</a>)</li>
 <li>Fixing bug that caused <code>jensen-difference</code> computations to compute wrong values when <code>0 values</code> were present in the input vectors</li>
 <li>Fixing bugs in all distance metrics when handing 0/0, 0/x or x/0 cases</li>
 </ul>
