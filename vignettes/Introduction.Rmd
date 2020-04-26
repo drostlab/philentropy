@@ -29,7 +29,7 @@ Personally, I hope that some of these functions are helpful to the R community.
 
 ### Distance Measures
 
-Here, the [Distance Measure Vignette](https://github.com/HajkD/philentropy/blob/master/vignettes/Distances.Rmd) introduces how to work with the main function `distance()` that implements the 46 distance measures presented in Cha's review.
+Here, the [Distance Measure Vignette](https://github.com/drostlab/philentropy/blob/master/vignettes/Distances.Rmd) introduces how to work with the main function `distance()` that implements the 46 distance measures presented in Cha's review.
 
 Furthermore, for each distance/similarity measure a short description on usage and performance is presented.
 
