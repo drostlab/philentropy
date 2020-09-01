@@ -182,6 +182,15 @@ C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
 >
 > - __Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge__ A Sinha et al. - __eLife__, 2019
 >
+> - __Sex and hatching order modulate the association between MHC‐II diversity and fitness in early‐life stages of a wild seabird__
+M Pineaux et al - __Molecular Ecology__, 2020
+>
+> - __How the Choice of Distance Measure Influences the Detection of Prior-Data Conflict__
+K Lek, R Van De Schoot - __Entropy__, 2019
+>
+> - __Differential variation analysis enables detection of tumor heterogeneity using single-cell RNA-sequencing data__
+EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
+>
 > - __Evacuees and Migrants Exhibit Different Migration Systems after the Great East Japan Earthquake and Tsunami__
 M Hauer, S Holloway, T Oda – 2019
 >
@@ -194,14 +203,8 @@ EF Davis-Marcisak, P Orugunta et al. - __BioRxiv__, 2018
 > - __SEDE-GPS: socio-economic data enrichment based on GPS information__
 T Sperlea, S Füser, J Boenigk, D Heider - __BMC bioinformatics__, 2018
 >
-> - __How the Choice of Distance Measure Influences the Detection of Prior-Data Conflict__
-K Lek, R Van De Schoot - __Entropy__, 2019
->
 > - __Concept acquisition and improved in-database similarity analysis for medical data__
 I Wiese, N Sarna, L Wiese, A Tashkandi, U Sax - __Distributed and Parallel Databases__, 2019
->
-> - __Differential variation analysis enables detection of tumor heterogeneity using single-cell RNA-sequencing data__
-EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
 >
 > - __Dynamics of Vaginal and Rectal Microbiota over Several Menstrual Cycles in Female Cynomolgus Macaques__
 MT Nugeyre, N Tchitchek, C Adapen et al. - __Frontiers in Cellular and Infection Microbiology__, 2019
@@ -223,9 +226,6 @@ SS Samal, J Krishnan, AH Esfahani et al. - __Reasoning for Systems Biology and M
 >
 > - __Genome‐wide characterization and developmental expression profiling of long non‐coding RNAs in Sogatella furcifera__
 ZX Chang, OE Ajayi, DY Guo, QF Wu - __Insect science__, 2019
->
-> - __Loss of adaptive capacity in asthmatics revealed by biomarker fluctuation dynamics upon experimental rhinovirus challenge__
-A Sinha, R Lutter, B Xu, T Dekker, B Dierdorp et al. - __BioRxiv__, 2019
 >
 > - __Development of a simulation system for modeling the stock market to study its characteristics__
 P Mariya – 2018
@@ -253,11 +253,16 @@ V Frenz – 2019
 >
 > - __Kidney organoid reproducibility across multiple human iPSC lines and diminished off target cells after transplantation revealed by single cell transcriptomics__
 A Subramanian, EH Sidhom, M Emani et al. - __BioRxiv__, 2019
+>
 > - __Multi-classifier majority voting analyses in provenance studies on iron artefacts__
 G Żabiński et al. - __Journal of Archaeological Science__, 2020
-
-
-
+>
+> - __Identifying inhibitors of epithelial–mesenchymal plasticity using a network topology-based approach__
+K Hari et al. - __NPJ systems biology and applications__, 2020
+>
+> - __Genetic differentiation and intrinsic genomic features explain variation in recombination hotspots among cocoa tree populations__
+EJ Schwarzkopf et al. - __BMC Genomics__, 2020
+>
 
 
 
