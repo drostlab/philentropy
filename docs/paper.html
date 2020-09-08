@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="pkgdown.css" rel="stylesheet">
@@ -53,7 +57,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -106,7 +110,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/drostlab/philentropy">
+  <a href="https://github.com/drostlab/philentropy/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -150,111 +154,161 @@
 <a href="#distance-and-similarity-measures" class="anchor"></a>Distance and Similarity Measures</h3>
 <div id="l_p-minkowski-family" class="section level4">
 <h4 class="hasAnchor">
-<a href="#l_p-minkowski-family" class="anchor"></a>$L_p$ Minkowski Family</h4>
+<a href="#l_p-minkowski-family" class="anchor"></a><span class="math inline"><em>L</em><sub><em>p</em></sub></span> Minkowski Family</h4>
 <ul>
-<li>Euclidean : $d = \sqrt{\sum_{i = 1}^N | P_i - Q_i |^2)}$</li>
-<li>Manhattan : $d = \sum_{i = 1}^N | P_i - Q_i |$</li>
-<li>Minkowski : $d = ( \sum_{i = 1}^N | P_i - Q_i |^p)^{1/p}$</li>
-<li>Chebyshev : $d = max | P_i - Q_i |$</li>
+<li>Euclidean : <span class="math inline">$d = \sqrt{\sum_{i = 1}^N | P_i - Q_i |^2)}$</span>
+</li>
+<li>Manhattan : <span class="math inline">$d = \sum_{i = 1}^N | P_i - Q_i |$</span>
+</li>
+<li>Minkowski : <span class="math inline">$d = ( \sum_{i = 1}^N | P_i - Q_i |^p)^{1/p}$</span>
+</li>
+<li>Chebyshev : <span class="math inline"><em>d</em> = <em>m</em><em>a</em><em>x</em>|<em>P</em><sub><em>i</em></sub> − <em>Q</em><sub><em>i</em></sub>|</span>
+</li>
 </ul>
 </div>
 <div id="l_1-family" class="section level4">
 <h4 class="hasAnchor">
-<a href="#l_1-family" class="anchor"></a>$L_1$ Family</h4>
+<a href="#l_1-family" class="anchor"></a><span class="math inline"><em>L</em><sub>1</sub></span> Family</h4>
 <ul>
-<li>Sorensen : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N (P_i + Q_i)}$</li>
-<li>Gower : $d = \frac{1}{N} \dot \sum_{i = 1}^N | P_i - Q_i |$, where $N$ is the total number of elements $i$ in $P_i$ and $Q_i$</li>
-<li>Soergel : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N max(P_i , Q_i)}$</li>
-<li>Kulczynski d : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N min(P_i , Q_i)}$</li>
-<li>Canberra : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{(P_i + Q_i)}$</li>
-<li>Lorentzian : $d = \sum_{i = 1}^N ln(1 + | P_i - Q_i |)$</li>
+<li>Sorensen : <span class="math inline">$d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N (P_i + Q_i)}$</span>
+</li>
+<li>Gower : <span class="math inline">$d = \frac{1}{N} \dot \sum_{i = 1}^N | P_i - Q_i |$</span>, where <span class="math inline"><em>N</em></span> is the total number of elements <span class="math inline"><em>i</em></span> in <span class="math inline"><em>P</em><sub><em>i</em></sub></span> and <span class="math inline"><em>Q</em><sub><em>i</em></sub></span>
+</li>
+<li>Soergel : <span class="math inline">$d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N max(P_i , Q_i)}$</span>
+</li>
+<li>Kulczynski d : <span class="math inline">$d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N min(P_i , Q_i)}$</span>
+</li>
+<li>Canberra : <span class="math inline">$d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{(P_i + Q_i)}$</span>
+</li>
+<li>Lorentzian : <span class="math inline">$d = \sum_{i = 1}^N ln(1 + | P_i - Q_i |)$</span>
+</li>
 </ul>
 </div>
 <div id="intersection-family" class="section level4">
 <h4 class="hasAnchor">
 <a href="#intersection-family" class="anchor"></a>Intersection Family</h4>
 <ul>
-<li>Intersection : $s = \sum_{i = 1}^N min(P_i , Q_i)$</li>
-<li>Non-Intersection : $d = 1 - \sum_{i = 1}^N min(P_i , Q_i)$</li>
-<li>Wave Hedges : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{max(P_i , Q_i)}$</li>
-<li>Czekanowski : $d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N | P_i + Q_i |}$</li>
-<li>Motyka : $d = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{(P_i + Q_i)}$</li>
-<li>Kulczynski s : $d = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{\sum_{i = 1}^N | P_i - Q_i |}$</li>
-<li>Tanimoto : $d = \frac{\sum_{i = 1}^N (max(P_i , Q_i) - min(P_i , Q_i))}{\sum_{i = 1}^N max(P_i , Q_i)}$ ; equivalent to Soergel</li>
-<li>Ruzicka : $s = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{\sum_{i = 1}^N max(P_i , Q_i)}$ ; equivalent to 1 - Tanimoto = 1 - Soergel</li>
+<li>Intersection : <span class="math inline">$s = \sum_{i = 1}^N min(P_i , Q_i)$</span>
+</li>
+<li>Non-Intersection : <span class="math inline">$d = 1 - \sum_{i = 1}^N min(P_i , Q_i)$</span>
+</li>
+<li>Wave Hedges : <span class="math inline">$d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{max(P_i , Q_i)}$</span>
+</li>
+<li>Czekanowski : <span class="math inline">$d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N | P_i + Q_i |}$</span>
+</li>
+<li>Motyka : <span class="math inline">$d = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{(P_i + Q_i)}$</span>
+</li>
+<li>Kulczynski s : <span class="math inline">$d = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{\sum_{i = 1}^N | P_i - Q_i |}$</span>
+</li>
+<li>Tanimoto : <span class="math inline">$d = \frac{\sum_{i = 1}^N (max(P_i , Q_i) - min(P_i , Q_i))}{\sum_{i = 1}^N max(P_i , Q_i)}$</span> ; equivalent to Soergel</li>
+<li>Ruzicka : <span class="math inline">$s = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{\sum_{i = 1}^N max(P_i , Q_i)}$</span> ; equivalent to 1 - Tanimoto = 1 - Soergel</li>
 </ul>
 </div>
 <div id="inner-product-family" class="section level4">
 <h4 class="hasAnchor">
 <a href="#inner-product-family" class="anchor"></a>Inner Product Family</h4>
 <ul>
-<li>Inner Product : $s = \sum_{i = 1}^N P_i \dot Q_i$</li>
-<li>Harmonic mean : $s = 2 \cdot \frac{ \sum_{i = 1}^N P_i \cdot Q_i}{P_i + Q_i}$</li>
-<li>Cosine : $s = \frac{\sum_{i = 1}^N P_i \cdot Q_i}{\sqrt{\sum_{i = 1}^N P_i^2} \cdot \sqrt{\sum_{i = 1}^N Q_i^2}}$</li>
-<li>Kumar-Hassebrook (PCE) : $s = \frac{\sum_{i = 1}^N (P_i \cdot Q_i)}{(\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2 - \sum_{i = 1}^N (P_i \cdot Q_i))}$</li>
-<li>Jaccard : $d = 1 - \frac{\sum_{i = 1}^N P_i \cdot Q_i}{\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2 - \sum_{i = 1}^N P_i \cdot Q_i}$ ; equivalent to 1 - Kumar-Hassebrook</li>
-<li>Dice : $d = \frac{\sum_{i = 1}^N (P_i - Q_i)^2}{(\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2)}$</li>
+<li>Inner Product : <span class="math inline">$s = \sum_{i = 1}^N P_i \dot Q_i$</span>
+</li>
+<li>Harmonic mean : <span class="math inline">$s = 2 \cdot \frac{ \sum_{i = 1}^N P_i \cdot Q_i}{P_i + Q_i}$</span>
+</li>
+<li>Cosine : <span class="math inline">$s = \frac{\sum_{i = 1}^N P_i \cdot Q_i}{\sqrt{\sum_{i = 1}^N P_i^2} \cdot \sqrt{\sum_{i = 1}^N Q_i^2}}$</span>
+</li>
+<li>Kumar-Hassebrook (PCE) : <span class="math inline">$s = \frac{\sum_{i = 1}^N (P_i \cdot Q_i)}{(\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2 - \sum_{i = 1}^N (P_i \cdot Q_i))}$</span>
+</li>
+<li>Jaccard : <span class="math inline">$d = 1 - \frac{\sum_{i = 1}^N P_i \cdot Q_i}{\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2 - \sum_{i = 1}^N P_i \cdot Q_i}$</span> ; equivalent to 1 - Kumar-Hassebrook</li>
+<li>Dice : <span class="math inline">$d = \frac{\sum_{i = 1}^N (P_i - Q_i)^2}{(\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2)}$</span>
+</li>
 </ul>
 </div>
 <div id="squared-chord-family" class="section level4">
 <h4 class="hasAnchor">
 <a href="#squared-chord-family" class="anchor"></a>Squared-chord Family</h4>
 <ul>
-<li>Fidelity : $s = \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}$</li>
-<li>Bhattacharyya : $d = - ln \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}$</li>
-<li>Hellinger : $d = 2 \cdot \sqrt{1 - \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}}$</li>
-<li>Matusita : $d = \sqrt{2 - 2 \cdot \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}}$</li>
-<li>Squared-chord : $d = \sum_{i = 1}^N ( \sqrt{P_i} - \sqrt{Q_i} )^2$</li>
+<li>Fidelity : <span class="math inline">$s = \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}$</span>
+</li>
+<li>Bhattacharyya : <span class="math inline">$d = - ln \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}$</span>
+</li>
+<li>Hellinger : <span class="math inline">$d = 2 \cdot \sqrt{1 - \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}}$</span>
+</li>
+<li>Matusita : <span class="math inline">$d = \sqrt{2 - 2 \cdot \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}}$</span>
+</li>
+<li>Squared-chord : <span class="math inline">$d = \sum_{i = 1}^N ( \sqrt{P_i} - \sqrt{Q_i} )^2$</span>
+</li>
 </ul>
 </div>
 <div id="squared-l_2-family-x2-squared-family" class="section level4">
 <h4 class="hasAnchor">
-<a href="#squared-l_2-family-x2-squared-family" class="anchor"></a>Squared $L_2$ family ($X^2$ squared family)</h4>
+<a href="#squared-l_2-family-x2-squared-family" class="anchor"></a>Squared <span class="math inline"><em>L</em><sub>2</sub></span> family (<span class="math inline"><em>X</em><sup>2</sup></span> squared family)</h4>
 <ul>
-<li>Squared Euclidean : $d = \sum_{i = 1}^N ( P_i - Q_i )^2$</li>
-<li>Pearson $X^2$ : $d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{Q_i} )$</li>
-<li>Neyman $X^2$ : $d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{P_i} )$</li>
-<li>Squared $X^2$ : $d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)} )$</li>
-<li>Probabilistic Symmetric $X^2$ : $d = 2 \cdot \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)} )$</li>
-<li>Divergence : $X^2$ : $d = 2 \cdot \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)^2} )$</li>
-<li>Clark : $d = \sqrt{\sum_{i = 1}^N (\frac{| P_i - Q_i |}{(P_i + Q_i)^2}}$</li>
-<li>Additive Symmetric $X^2$ : $d = \sum_{i = 1}^N ( \frac{((P_i - Q_i)^2 \cdot (P_i + Q_i))}{(P_i \cdot Q_i)} )$</li>
+<li>Squared Euclidean : <span class="math inline">$d = \sum_{i = 1}^N ( P_i - Q_i )^2$</span>
+</li>
+<li>Pearson <span class="math inline"><em>X</em><sup>2</sup></span> : <span class="math inline">$d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{Q_i} )$</span>
+</li>
+<li>Neyman <span class="math inline"><em>X</em><sup>2</sup></span> : <span class="math inline">$d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{P_i} )$</span>
+</li>
+<li>Squared <span class="math inline"><em>X</em><sup>2</sup></span> : <span class="math inline">$d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)} )$</span>
+</li>
+<li>Probabilistic Symmetric <span class="math inline"><em>X</em><sup>2</sup></span> : <span class="math inline">$d = 2 \cdot \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)} )$</span>
+</li>
+<li>Divergence : <span class="math inline"><em>X</em><sup>2</sup></span> : <span class="math inline">$d = 2 \cdot \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)^2} )$</span>
+</li>
+<li>Clark : <span class="math inline">$d = \sqrt{\sum_{i = 1}^N (\frac{| P_i - Q_i |}{(P_i + Q_i)^2}}$</span>
+</li>
+<li>Additive Symmetric <span class="math inline"><em>X</em><sup>2</sup></span> : <span class="math inline">$d = \sum_{i = 1}^N ( \frac{((P_i - Q_i)^2 \cdot (P_i + Q_i))}{(P_i \cdot Q_i)} )$</span>
+</li>
 </ul>
 </div>
 <div id="shannons-entropy-family" class="section level4">
 <h4 class="hasAnchor">
 <a href="#shannons-entropy-family" class="anchor"></a>Shannon’s Entropy Family</h4>
 <ul>
-<li>Kullback-Leibler : $d = \sum_{i = 1}^N P_i \cdot log(\frac{P_i}{Q_i})$</li>
-<li>Jeffreys : $d = \sum_{i = 1}^N (P_i - Q_i) \cdot log(\frac{P_i}{Q_i})$</li>
-<li>K divergence : $d = \sum_{i = 1}^N P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i})$</li>
-<li>Topsoe : $d = \sum_{i = 1}^N ( P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i}) ) + ( Q_i \cdot log(\frac{2 \cdot Q_i}{P_i + Q_i}) )$</li>
-<li>Jensen-Shannon : $d = 0.5 \cdot ( \sum_{i = 1}^N P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i}) + \sum_{i = 1}^N Q_i \cdot log(\frac{2 * Q_i}{P_i + Q_i}))$</li>
-<li>Jensen difference : $d = \sum_{i = 1}^N ( (\frac{P_i \cdot log(P_i) + Q_i \cdot log(Q_i)}{2}) - (\frac{P_i + Q_i}{2}) \cdot log(\frac{P_i + Q_i}{2}) )$</li>
+<li>Kullback-Leibler : <span class="math inline">$d = \sum_{i = 1}^N P_i \cdot log(\frac{P_i}{Q_i})$</span>
+</li>
+<li>Jeffreys : <span class="math inline">$d = \sum_{i = 1}^N (P_i - Q_i) \cdot log(\frac{P_i}{Q_i})$</span>
+</li>
+<li>K divergence : <span class="math inline">$d = \sum_{i = 1}^N P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i})$</span>
+</li>
+<li>Topsoe : <span class="math inline">$d = \sum_{i = 1}^N ( P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i}) ) + ( Q_i \cdot log(\frac{2 \cdot Q_i}{P_i + Q_i}) )$</span>
+</li>
+<li>Jensen-Shannon : <span class="math inline">$d = 0.5 \cdot ( \sum_{i = 1}^N P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i}) + \sum_{i = 1}^N Q_i \cdot log(\frac{2 * Q_i}{P_i + Q_i}))$</span>
+</li>
+<li>Jensen difference : <span class="math inline">$d = \sum_{i = 1}^N ( (\frac{P_i \cdot log(P_i) + Q_i \cdot log(Q_i)}{2}) - (\frac{P_i + Q_i}{2}) \cdot log(\frac{P_i + Q_i}{2}) )$</span>
+</li>
 </ul>
 </div>
 <div id="combinations" class="section level4">
 <h4 class="hasAnchor">
 <a href="#combinations" class="anchor"></a>Combinations</h4>
 <ul>
-<li>Taneja : $d = \sum_{i = 1}^N ( \frac{P_i + Q_i}{2}) \cdot log( \frac{P_i + Q_i}{( 2 \cdot \sqrt{P_i \cdot Q_i})} )$</li>
-<li>Kumar-Johnson : $d = \sum_{i = 1}^N \frac{(P_i^2 - Q_i^2)^2}{2 \cdot (P_i \cdot Q_i)^{\frac{3}{2}}}$</li>
-<li>Avg($L_1$, $L_n$) : $d = \frac{\sum_{i = 1}^N | P_i - Q_i| + max{ | P_i - Q_i |}}{2}$</li>
+<li>Taneja : <span class="math inline">$d = \sum_{i = 1}^N ( \frac{P_i + Q_i}{2}) \cdot log( \frac{P_i + Q_i}{( 2 \cdot \sqrt{P_i \cdot Q_i})} )$</span>
+</li>
+<li>Kumar-Johnson : <span class="math inline">$d = \sum_{i = 1}^N \frac{(P_i^2 - Q_i^2)^2}{2 \cdot (P_i \cdot Q_i)^{\frac{3}{2}}}$</span>
+</li>
+<li>Avg(<span class="math inline"><em>L</em><sub>1</sub></span>, <span class="math inline"><em>L</em><sub><em>n</em></sub></span>) : <span class="math inline">$d = \frac{\sum_{i = 1}^N | P_i - Q_i| + max{ | P_i - Q_i |}}{2}$</span>
+</li>
 </ul>
-<p><strong>Note</strong>: $d$ refers to distance measures, whereas $s$ denotes similarity measures.</p>
+<p><strong>Note</strong>: <span class="math inline"><em>d</em></span> refers to distance measures, whereas <span class="math inline"><em>s</em></span> denotes similarity measures.</p>
 </div>
 </div>
 <div id="information-theory-measures" class="section level3">
 <h3 class="hasAnchor">
 <a href="#information-theory-measures" class="anchor"></a>Information Theory Measures</h3>
 <ul>
-<li>Shannon’s Entropy H(X) : $H(X) = -\sum\limits_{i=1}^n P(x_i) \cdot log_b(P(x_i))$</li>
-<li>Shannon’s Joint-Entropy H(X,Y) : $H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b(P(x_i, y_j))$</li>
-<li>Shannon’s Conditional-Entropy H(X | Y) : $H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b( \frac{P(x_i)}{P(x_i, y_j)})$</li>
-<li>Mutual Information I(X,Y) : $MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b( \frac{P(x_i, y_j)}{( P(x_i) * P(y_j) )})$</li>
-<li>Kullback-Leibler Divergence : $KL(P || Q) = \sum\limits_{i=1}^n P(p_i) \cdot log_2(\frac{P(p_i) }{P(q_i)}) = H(P, Q) - H(P)$</li>
-<li>Jensen-Shannon Divergence : $JSD(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))$</li>
-<li>Generalized Jensen-Shannon Divergence : $gJSD_{\pi_1,…,\pi_n}(P_1, …, P_n) = H(\sum_{i = 1}^n \pi_i \cdot P_i) - \sum_{i = 1}^n \pi_i \cdot H(P_i)$</li>
+<li>Shannon’s Entropy H(X) : <span class="math inline">$H(X) = -\sum\limits_{i=1}^n P(x_i) \cdot log_b(P(x_i))$</span>
+</li>
+<li>Shannon’s Joint-Entropy H(X,Y) : <span class="math inline">$H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b(P(x_i, y_j))$</span>
+</li>
+<li>Shannon’s Conditional-Entropy H(X | Y) : <span class="math inline">$H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b( \frac{P(x_i)}{P(x_i, y_j)})$</span>
+</li>
+<li>Mutual Information I(X,Y) : <span class="math inline">$MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b( \frac{P(x_i, y_j)}{( P(x_i) * P(y_j) )})$</span>
+</li>
+<li>Kullback-Leibler Divergence : <span class="math inline">$KL(P || Q) = \sum\limits_{i=1}^n P(p_i) \cdot log_2(\frac{P(p_i) }{P(q_i)}) = H(P, Q) - H(P)$</span>
+</li>
+<li>Jensen-Shannon Divergence : <span class="math inline"><em>J</em><em>S</em><em>D</em>(<em>P</em>||<em>Q</em>) = 0.5 * (<em>K</em><em>L</em>(<em>P</em>||<em>R</em>) + <em>K</em><em>L</em>(<em>Q</em>||<em>R</em>))</span>
+</li>
+<li>Generalized Jensen-Shannon Divergence : <span class="math inline">$gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i \cdot P_i) - \sum_{i = 1}^n \pi_i \cdot H(P_i)$</span>
+</li>
 </ul>
 <p><code>Philentropy</code> already enabled the robust comparison of similarity measures in analogy-based software effort estimation [@Phannachitta2017] as well as in evolutionary transcriptomics applications [@Drost2018]. The package aims to assist efforts to determine optimal similarity or distance measures when developing new (statistical) models or algorithms. In addition, <code>Philentropy</code> is implemented to be applicable to large-scale datasets that were previously inaccessible using other R packages. The software is open source and currently available on GitHub (<a href="https://github.com/HajkD/philentropy" class="uri">https://github.com/HajkD/philentropy</a>) and CRAN (<a href="https://cran.r-project.org/web/packages/philentropy/index.html" class="uri">https://cran.r-project.org/web/packages/philentropy/index.html</a>). A comprehensive documentation of <code>Philentropy</code> can be found at <a href="https://hajkd.github.io/philentropy/" class="uri">https://hajkd.github.io/philentropy/</a>.</p>
 </div>
@@ -272,6 +326,12 @@
 
   </div>
 
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
+  </div>
+
 </div>
 
 
@@ -282,7 +342,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

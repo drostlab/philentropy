@@ -182,6 +182,8 @@ C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
 >
 > - __Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge__ A Sinha et al. - __eLife__, 2019
 >
+> - __The Tug1 lncRNA locus is essential for male fertility__ JP Lewandowski et al. - __Genome Biology__, 2020
+>
 > - __Sex and hatching order modulate the association between MHC‐II diversity and fitness in early‐life stages of a wild seabird__
 M Pineaux et al - __Molecular Ecology__, 2020
 >
@@ -191,6 +193,9 @@ K Lek, R Van De Schoot - __Entropy__, 2019
 > - __Differential variation analysis enables detection of tumor heterogeneity using single-cell RNA-sequencing data__
 EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
 >
+> - __SEDE-GPS: socio-economic data enrichment based on GPS information__
+T Sperlea, S Füser, J Boenigk, D Heider - __BMC bioinformatics__, 2018
+>
 > - __Evacuees and Migrants Exhibit Different Migration Systems after the Great East Japan Earthquake and Tsunami__
 M Hauer, S Holloway, T Oda – 2019
 >
@@ -199,9 +204,6 @@ P Phannachitta - __11th International Conference on Software__, 2017
 >
 > - __Expression variation analysis for tumor heterogeneity in single-cell RNA-sequencing data__
 EF Davis-Marcisak, P Orugunta et al. - __BioRxiv__, 2018
->
-> - __SEDE-GPS: socio-economic data enrichment based on GPS information__
-T Sperlea, S Füser, J Boenigk, D Heider - __BMC bioinformatics__, 2018
 >
 > - __Concept acquisition and improved in-database similarity analysis for medical data__
 I Wiese, N Sarna, L Wiese, A Tashkandi, U Sax - __Distributed and Parallel Databases__, 2019
