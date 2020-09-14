@@ -193,6 +193,11 @@ K Lek, R Van De Schoot - __Entropy__, 2019
 > - __Differential variation analysis enables detection of tumor heterogeneity using single-cell RNA-sequencing data__
 EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
 >
+> - __Multi-Omics Investigation of Innate Navitoclax Resistance in Triple-Negative Breast Cancer Cells__ M Marczyk et al. - __Cancers__, 2020
+>
+> - __Impact of Gut Microbiome on Hypertensive Patients with Low-Salt Intake: Shika Study Results__
+S Nagase et al. - __Frontiers in Medicine__, 2020
+>
 > - __SEDE-GPS: socio-economic data enrichment based on GPS information__
 T Sperlea, S Füser, J Boenigk, D Heider - __BMC bioinformatics__, 2018
 >
