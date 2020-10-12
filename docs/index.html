@@ -54,7 +54,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/Distances.html">Distance Measures</a>
+      <a href="articles/Distances.html">Distances</a>
     </li>
     <li>
       <a href="articles/Information_Theory.html">Information Theory</a>
@@ -104,8 +104,10 @@
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install philentropy version 0.4.0 from CRAN</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"philentropy"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># install philentropy version 0.4.0 from CRAN</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"philentropy"</span>)
+</pre></div>
 </div>
 <div id="citation" class="section level3">
 <h3 class="hasAnchor">
@@ -127,9 +129,11 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">philentropy</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/drostlab/philentropy">philentropy</a></span>)
 <span class="co"># retrieve available distance metrics</span>
-<span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span>()</pre></div>
+<span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span>()
+</pre></div>
 <pre><code> [1] "euclidean"         "manhattan"         "minkowski"        
  [4] "chebyshev"         "sorensen"          "gower"            
  [7] "soergel"           "kulczynski_d"      "canberra"         
@@ -146,22 +150,26 @@
 [40] "k_divergence"      "topsoe"            "jensen-shannon"   
 [43] "jensen_difference" "taneja"            "kumar-johnson"    
 [46] "avg"</code></pre>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># define a probability density function P</span>
-<span class="no">P</span> <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">10</span>/<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">1</span>:<span class="fl">10</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># define a probability density function P</span>
+<span class="kw">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)
 <span class="co"># define a probability density function Q</span>
-<span class="no">Q</span> <span class="kw">&lt;-</span> <span class="fl">20</span>:<span class="fl">29</span>/<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">20</span>:<span class="fl">29</span>)
+<span class="kw">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">20</span><span class="op">:</span><span class="fl">29</span>)
 
 <span class="co"># combine P and Q as matrix object</span>
-<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="no">P</span>,<span class="no">Q</span>)
+<span class="kw">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="kw">P</span>,<span class="kw">Q</span>)
 
 <span class="co"># compute the jensen-shannon distance between</span>
 <span class="co"># probability density functions P and Q</span>
-<span class="fu"><a href="reference/distance.html">distance</a></span>(<span class="no">x</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"jensen-shannon"</span>)</pre></div>
+<span class="fu"><a href="reference/distance.html">distance</a></span>(<span class="kw">x</span>, method = <span class="st">"jensen-shannon"</span>)
+</pre></div>
 <pre><code>jensen-shannon using unit 'log'.
 jensen-shannon 
     0.02628933</code></pre>
 <p>Alternatively, users can also retrieve values from all available distance/similarity metrics using <code><a href="reference/dist.diversity.html">dist.diversity()</a></code>:</p>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span>(<span class="no">x</span>, <span class="kw">p</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">unit</span> <span class="kw">=</span> <span class="st">"log2"</span>)</pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span>(<span class="kw">x</span>, p = <span class="fl">2</span>, unit = <span class="st">"log2"</span>)
+</pre></div>
 <pre><code>        euclidean         manhattan 
        0.12807130        0.35250464 
         minkowski         chebyshev 
@@ -211,10 +219,12 @@ jensen_difference            taneja
 <div id="install-developer-version" class="section level3">
 <h3 class="hasAnchor">
 <a href="#install-developer-version" class="anchor"></a>Install Developer Version</h3>
-<div class="sourceCode" id="cb8"><pre class="r"><span class="co"># install.packages("devtools")</span>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="co"># install.packages("devtools")</span>
 <span class="co"># install the current version of philentropy on your system</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">devtools</span>)
-<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"HajkD/philentropy"</span>, <span class="kw">build_vignettes</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://devtools.r-lib.org">devtools</a></span>)
+<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"HajkD/philentropy"</span>, build_vignettes = <span class="fl">TRUE</span>, dependencies = <span class="fl">TRUE</span>)
+</pre></div>
 </div>
 <div id="news" class="section level3">
 <h3 class="hasAnchor">
@@ -264,39 +274,39 @@ jensen_difference            taneja
 <a href="#studies-that-successfully-applied-the-philentropy-package" class="anchor"></a>Studies that successfully applied the <code>philentropy</code> package</h3>
 <blockquote>
 <ul>
-<li><p><strong>Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation</strong> A Subramanian et al. - <strong>Nature Communications</strong>, 2019</p></li>
+<li><p><strong>Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation</strong> A Subramanian et al. - <strong>Nature Communications</strong>, 2019</p></li>
 <li><p><strong>Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche</strong> C Coupé, YM Oh, D Dediu, F Pellegrino - <strong>Science Advances</strong>, 2019</p></li>
-<li><p><strong>Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge</strong> A Sinha et al. - <strong>eLife</strong>, 2019</p></li>
-<li><p><strong>The Tug1 lncRNA locus is essential for male fertility</strong> JP Lewandowski et al. - <strong>Genome Biology</strong>, 2020</p></li>
+<li><p><strong>Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge</strong> A Sinha et al. - <strong>eLife</strong>, 2019</p></li>
+<li><p><strong>The Tug1 lncRNA locus is essential for male fertility</strong> JP Lewandowski et al. - <strong>Genome Biology</strong>, 2020</p></li>
 <li><p><strong>Sex and hatching order modulate the association between MHC‐II diversity and fitness in early‐life stages of a wild seabird</strong> M Pineaux et al - <strong>Molecular Ecology</strong>, 2020</p></li>
 <li><p><strong>How the Choice of Distance Measure Influences the Detection of Prior-Data Conflict</strong> K Lek, R Van De Schoot - <strong>Entropy</strong>, 2019</p></li>
-<li><p><strong>Differential variation analysis enables detection of tumor heterogeneity using single-cell RNA-sequencing data</strong> EF Davis-Marcisak, TD Sherman et al. - <strong>Cancer research</strong>, 2019</p></li>
-<li><p><strong>Multi-Omics Investigation of Innate Navitoclax Resistance in Triple-Negative Breast Cancer Cells</strong> M Marczyk et al. - <strong>Cancers</strong>, 2020</p></li>
-<li><p><strong>Impact of Gut Microbiome on Hypertensive Patients with Low-Salt Intake: Shika Study Results</strong> S Nagase et al. - <strong>Frontiers in Medicine</strong>, 2020</p></li>
+<li><p><strong>Differential variation analysis enables detection of tumor heterogeneity using single-cell RNA-sequencing data</strong> EF Davis-Marcisak, TD Sherman et al. - <strong>Cancer research</strong>, 2019</p></li>
+<li><p><strong>Multi-Omics Investigation of Innate Navitoclax Resistance in Triple-Negative Breast Cancer Cells</strong> M Marczyk et al. - <strong>Cancers</strong>, 2020</p></li>
+<li><p><strong>Impact of Gut Microbiome on Hypertensive Patients with Low-Salt Intake: Shika Study Results</strong> S Nagase et al. - <strong>Frontiers in Medicine</strong>, 2020</p></li>
 <li><p><strong>SEDE-GPS: socio-economic data enrichment based on GPS information</strong> T Sperlea, S Füser, J Boenigk, D Heider - <strong>BMC bioinformatics</strong>, 2018</p></li>
 <li><p><strong>Evacuees and Migrants Exhibit Different Migration Systems after the Great East Japan Earthquake and Tsunami</strong> M Hauer, S Holloway, T Oda – 2019</p></li>
 <li><p><strong>Robust comparison of similarity measures in analogy based software effort estimation</strong> P Phannachitta - <strong>11th International Conference on Software</strong>, 2017</p></li>
-<li><p><strong>Expression variation analysis for tumor heterogeneity in single-cell RNA-sequencing data</strong> EF Davis-Marcisak, P Orugunta et al. - <strong>BioRxiv</strong>, 2018</p></li>
+<li><p><strong>Expression variation analysis for tumor heterogeneity in single-cell RNA-sequencing data</strong> EF Davis-Marcisak, P Orugunta et al. - <strong>BioRxiv</strong>, 2018</p></li>
 <li><p><strong>Concept acquisition and improved in-database similarity analysis for medical data</strong> I Wiese, N Sarna, L Wiese, A Tashkandi, U Sax - <strong>Distributed and Parallel Databases</strong>, 2019</p></li>
-<li><p><strong>Dynamics of Vaginal and Rectal Microbiota over Several Menstrual Cycles in Female Cynomolgus Macaques</strong> MT Nugeyre, N Tchitchek, C Adapen et al. - <strong>Frontiers in Cellular and Infection Microbiology</strong>, 2019</p></li>
+<li><p><strong>Dynamics of Vaginal and Rectal Microbiota over Several Menstrual Cycles in Female Cynomolgus Macaques</strong> MT Nugeyre, N Tchitchek, C Adapen et al. - <strong>Frontiers in Cellular and Infection Microbiology</strong>, 2019</p></li>
 <li><p><strong>Inferring the quasipotential landscape of microbial ecosystems with topological data analysis</strong> WK Chang, L Kelly - <strong>BioRxiv</strong>, 2019</p></li>
-<li><p><strong>Shifts in the nasal microbiota of swine in response to different dosing regimens of oxytetracycline administration</strong> KT Mou, HK Allen, DP Alt, J Trachsel et al. - <strong>Veterinary microbiology</strong>, 2019</p></li>
-<li><p><strong>The Patchy Distribution of Restriction–Modification System Genes and the Conservation of Orphan Methyltransferases in Halobacteria</strong> MS Fullmer, M Ouellette, AS Louyakis et al. - <strong>Genes</strong>, 2019</p></li>
+<li><p><strong>Shifts in the nasal microbiota of swine in response to different dosing regimens of oxytetracycline administration</strong> KT Mou, HK Allen, DP Alt, J Trachsel et al. - <strong>Veterinary microbiology</strong>, 2019</p></li>
+<li><p><strong>The Patchy Distribution of Restriction–Modification System Genes and the Conservation of Orphan Methyltransferases in Halobacteria</strong> MS Fullmer, M Ouellette, AS Louyakis et al. - <strong>Genes</strong>, 2019</p></li>
 <li><p><strong>Genetic differentiation and intrinsic genomic features explain variation in recombination hotspots among cocoa tree populations</strong> EJ Schwarzkopf, JC Motamayor, OE Cornejo - <strong>BioRxiv</strong>, 2019</p></li>
-<li><p><strong>Metastable regimes and tipping points of biochemical networks with potential applications in precision medicine</strong> SS Samal, J Krishnan, AH Esfahani et al. - <strong>Reasoning for Systems Biology and Medicine</strong>, 2019</p></li>
+<li><p><strong>Metastable regimes and tipping points of biochemical networks with potential applications in precision medicine</strong> SS Samal, J Krishnan, AH Esfahani et al. - <strong>Reasoning for Systems Biology and Medicine</strong>, 2019</p></li>
 <li><p><strong>Genome‐wide characterization and developmental expression profiling of long non‐coding RNAs in Sogatella furcifera</strong> ZX Chang, OE Ajayi, DY Guo, QF Wu - <strong>Insect science</strong>, 2019</p></li>
 <li><p><strong>Development of a simulation system for modeling the stock market to study its characteristics</strong> P Mariya – 2018</p></li>
-<li><p><strong>The Tug1 Locus is Essential for Male Fertility</strong> JP Lewandowski, G Dumbović, AR Watson, T Hwang et al. - <strong>BioRxiv</strong>, 2019</p></li>
-<li><p><strong>Microbiotyping the sinonasal microbiome</strong> A Bassiouni, S Paramasivan, A Shiffer et al. - <strong>BioRxiv</strong>, 2019</p></li>
+<li><p><strong>The Tug1 Locus is Essential for Male Fertility</strong> JP Lewandowski, G Dumbović, AR Watson, T Hwang et al. - <strong>BioRxiv</strong>, 2019</p></li>
+<li><p><strong>Microbiotyping the sinonasal microbiome</strong> A Bassiouni, S Paramasivan, A Shiffer et al. - <strong>BioRxiv</strong>, 2019</p></li>
 <li><p><strong>Critical search: A procedure for guided reading in large-scale textual corpora</strong> J Guldi - <strong>Journal of Cultural Analytics</strong>, 2018</p></li>
 <li><p><strong>A Bibliography of Publications about the R, S, and S-Plus Statistics Programming Languages</strong> NHF Beebe – 2019</p></li>
 <li><p><strong>Improved state change estimation in dynamic functional connectivity using hidden semi-Markov models</strong> H Shappell, BS Caffo, JJ Pekar, MA Lindquist - <strong>NeuroImage</strong>, 2019</p></li>
 <li><p><strong>A Smart Recommender Based on Hybrid Learning Methods for Personal Well-Being Services</strong> RM Nouh, HH Lee, WJ Lee, JD Lee - <strong>Sensors</strong>, 2019</p></li>
 <li><p><strong>Cognitive Structural Accuracy</strong> V Frenz – 2019</p></li>
-<li><p><strong>Kidney organoid reproducibility across multiple human iPSC lines and diminished off target cells after transplantation revealed by single cell transcriptomics</strong> A Subramanian, EH Sidhom, M Emani et al. - <strong>BioRxiv</strong>, 2019</p></li>
-<li><p><strong>Multi-classifier majority voting analyses in provenance studies on iron artefacts</strong> G Żabiński et al. - <strong>Journal of Archaeological Science</strong>, 2020</p></li>
-<li><p><strong>Identifying inhibitors of epithelial–mesenchymal plasticity using a network topology-based approach</strong> K Hari et al. - <strong>NPJ systems biology and applications</strong>, 2020</p></li>
-<li><p><strong>Genetic differentiation and intrinsic genomic features explain variation in recombination hotspots among cocoa tree populations</strong> EJ Schwarzkopf et al. - <strong>BMC Genomics</strong>, 2020</p></li>
+<li><p><strong>Kidney organoid reproducibility across multiple human iPSC lines and diminished off target cells after transplantation revealed by single cell transcriptomics</strong> A Subramanian, EH Sidhom, M Emani et al. - <strong>BioRxiv</strong>, 2019</p></li>
+<li><p><strong>Multi-classifier majority voting analyses in provenance studies on iron artefacts</strong> G Żabiński et al. - <strong>Journal of Archaeological Science</strong>, 2020</p></li>
+<li><p><strong>Identifying inhibitors of epithelial–mesenchymal plasticity using a network topology-based approach</strong> K Hari et al. - <strong>NPJ systems biology and applications</strong>, 2020</p></li>
+<li><p><strong>Genetic differentiation and intrinsic genomic features explain variation in recombination hotspots among cocoa tree populations</strong> EJ Schwarzkopf et al. - <strong>BMC Genomics</strong>, 2020</p></li>
 </ul>
 </blockquote>
 </div>
@@ -361,7 +371,7 @@ jensen_difference            taneja
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
