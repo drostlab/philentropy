@@ -2,7 +2,7 @@
 % Please edit documentation in R/distance.R
 \name{distance}
 \alias{distance}
-\title{Distances between Probability Density Functions}
+\title{Distances and Similarities between Probability Density Functions}
 \usage{
 distance(
   x,
@@ -14,7 +14,8 @@ distance(
   use.row.names = FALSE,
   as.dist.obj = FALSE,
   diag = FALSE,
-  upper = FALSE
+  upper = FALSE,
+  mute_message = FALSE
 )
 }
 \arguments{
@@ -41,13 +42,15 @@ the input matrix shall be used as rownames and colnames of the output distance m
 \item{diag}{if \code{as.dist.obj = TRUE}, then this value indicates whether the diagonal of the distance matrix should be printed. Default}
 
 \item{upper}{if \code{as.dist.obj = TRUE}, then this value indicates whether the upper triangle of the distance matrix should be printed.}
+
+\item{mute_message}{a logical value indicating whether or not messages printed by \code{distance} shall be muted. Default is \code{mute_message = FALSE}.}
 }
 \value{
 The following results are returned depending on the dimension of \code{x}:
 
 \itemize{
 \item in case \code{nrow(x)} = 2 : a single distance value.
-\item in case \code{nrow(x)} > 2 : a distance \code{matrix} storing distance values for all pairwise probability vector comparisons.  
+\item in case \code{nrow(x)} > 2 : a distance \code{matrix} storing distance values for all pairwise probability vector comparisons.
 }
 }
 \description{
@@ -88,7 +91,7 @@ This function implements the following distance/similarity measures to quantify 
 \item Motyka : \eqn{d = \sum min(P_i , Q_i) / (P_i + Q_i)}
 \item Kulczynski s : \eqn{d = 1 / \sum | P_i - Q_i | / \sum min(P_i , Q_i)}
 \item Tanimoto : \eqn{d = \sum (max(P_i , Q_i) - min(P_i , Q_i)) / \sum max(P_i , Q_i)} ; equivalent to Soergel
-\item Ruzicka : \eqn{s = \sum min(P_i , Q_i) / \sum max(P_i , Q_i)} ; equivalent to 1 - Tanimoto = 1 - Soergel 
+\item Ruzicka : \eqn{s = \sum min(P_i , Q_i) / \sum max(P_i , Q_i)} ; equivalent to 1 - Tanimoto = 1 - Soergel
 }
 
 \item Inner Product family
@@ -129,7 +132,7 @@ This function implements the following distance/similarity measures to quantify 
 \item Jeffreys : \eqn{d = \sum (P_i - Q_i) * log(P_i / Q_i)}
 \item K divergence : \eqn{d = \sum P_i * log(2 * P_i / P_i + Q_i)}
 \item Topsoe : \eqn{d = \sum ( P_i * log(2 * P_i / P_i + Q_i) ) + ( Q_i * log(2 * Q_i / P_i + Q_i) )}
-\item Jensen-Shannon :  \eqn{d = 0.5 * ( \sum P_i * log(2 * P_i / P_i + Q_i) + \sum Q_i * log(2 * Q_i / P_i + Q_i))} 
+\item Jensen-Shannon :  \eqn{d = 0.5 * ( \sum P_i * log(2 * P_i / P_i + Q_i) + \sum Q_i * log(2 * Q_i / P_i + Q_i))}
 \item Jensen difference : \eqn{d = \sum ( (P_i * log(P_i) + Q_i * log(Q_i) / 2) - (P_i + Q_i / 2) * log(P_i + Q_i / 2) )}
 }
 
@@ -140,11 +143,11 @@ This function implements the following distance/similarity measures to quantify 
 \item Avg(L_1, L_n) : \eqn{d = \sum | P_i - Q_i| + max{ | P_i - Q_i |} / 2}
 }
 
-In cases where \code{x} specifies a count matrix, the argument \code{est.prob} can be selected to first estimate probability vectors 
+In cases where \code{x} specifies a count matrix, the argument \code{est.prob} can be selected to first estimate probability vectors
 from input count vectors and second compute the corresponding distance measure based on the estimated probability vectors.
 
  The following probability estimation methods are implemented in this function:
- 
+
  \itemize{
  \item \code{est.prob = "empirical"} : relative frequencies of counts.
  }
@@ -152,12 +155,12 @@ from input count vectors and second compute the corresponding distance measure b
 }
 \note{
 According to the reference in some distance measure computations invalid computations can
-occur when dealing with 0 probabilities. 
+occur when dealing with 0 probabilities.
 
 In these cases the convention is treated as follows:
 
 \itemize{
-\item division by zero - case \code{0/0}: when the divisor and dividend become zero, \code{0/0} is treated as \code{0}. 
+\item division by zero - case \code{0/0}: when the divisor and dividend become zero, \code{0/0} is treated as \code{0}.
 \item division by zero - case \code{n/0}: when only the divisor becomes \code{0}, the corresponsning \code{0} is replaced by a small \eqn{\epsilon = 0.00001}.
 \item log of zero - case \code{0 * log(0)}: is treated as \code{0}.
 \item log of zero - case \code{log(0)}: zero is replaced by a small \eqn{\epsilon = 0.00001}.
@@ -200,10 +203,10 @@ distance(CountMatrix, method = "euclidean")
 ### case: unit = log (Default)
 distance(ProbMatrix, method = "kullback-leibler", unit = "log")
 
-### case: unit = log2 
+### case: unit = log2
 distance(ProbMatrix, method = "kullback-leibler", unit = "log2")
 
-### case: unit = log10 
+### case: unit = log10
 distance(ProbMatrix, method = "kullback-leibler", unit = "log10")
 
 }

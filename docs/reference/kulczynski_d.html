@@ -95,7 +95,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Distances.html">Distance Measures</a>
+      <a href="../articles/Distances.html">Distances</a>
     </li>
     <li>
       <a href="../articles/Information_Theory.html">Information Theory</a>
@@ -138,7 +138,7 @@
     <p>The lowlevel function for computing the kulczynski_d distance.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>kulczynski_d</span>(<span class='no'>P</span>, <span class='no'>Q</span>, <span class='no'>testNA</span>)</pre>
+    <pre class="usage"><span class='fu'>kulczynski_d</span>(<span class='kw'>P</span>, <span class='kw'>Q</span>, <span class='kw'>testNA</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,9 +157,13 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Hajk-Georg Drost</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>kulczynski_d</span>(<span class='kw'>P</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>/<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>), <span class='kw'>Q</span> <span class='kw'>=</span> <span class='fl'>20</span>:<span class='fl'>29</span>/<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fl'>20</span>:<span class='fl'>29</span>), <span class='kw'>testNA</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] 0.4279279</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>kulczynski_d</span>(P = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>), Q = <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span>), testNA = <span class='fl'>FALSE</span>)
+</div><div class='output co'>#&gt; [1] 0.4279279</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -175,7 +179,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Introduction</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction</h1>
+
+
+
+<div id="introduction-to-the-philentropy-package" class="section level2">
+<h2>Introduction to the <code>philentropy</code> Package</h2>
+<p>Comparison is a fundamental method of scientific research leading to more general insights about the processes that generate similarity or dissimilarity. In statistical terms comparisons between probability functions are performed to infer connections, correlations, or relationships between samples. The <code>philentropy</code> package implements optimized distance and similarity measures for comparing probability functions. These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a base framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions.</p>
+<p>Applying the method of comparison in statistics often means computing distances between probability functions. In this context <a href="http://users.uom.gr/~kouiruki/sung.pdf">Sung-Hyuk Cha (2007)</a> provides a clear definition of distance :</p>
+<blockquote>
+<p>From the scientific and mathematical point of view, <em>distance</em> is defined as a quantitative degree of how far apart two objects are.</p>
+</blockquote>
+<p>Cha’s comprehensive review of distance/similarity measures motivated me to implement all these measures to better understand their comparative nature. As Cha states:</p>
+<blockquote>
+<p>The choice of distance/similarity measures depends on the measurement type or representation of objects.</p>
+</blockquote>
+<p>As a result, the <code>philentropy</code> package implements functions that are part of the following topics:</p>
+<ul>
+<li>Distance Measure</li>
+<li>Information Theory</li>
+<li>Correlation Analyses</li>
+</ul>
+<p>Personally, I hope that some of these functions are helpful to the R community.</p>
+<div id="distance-measures" class="section level3">
+<h3>Distance Measures</h3>
+<p>Here, the <a href="https://github.com/drostlab/philentropy/blob/master/vignettes/Distances.Rmd">Distance Measure Vignette</a> introduces how to work with the main function <code>distance()</code> that implements the 46 distance measures presented in Cha’s review.</p>
+<p>Furthermore, for each distance/similarity measure a short description on usage and performance is presented.</p>
+<p>The following probability distance/similarity measures will be described in detail:</p>
+</div>
+<div id="distance-and-similarity-measures" class="section level3">
+<h3>Distance and Similarity Measures</h3>
+<div id="l_p-minkowski-family" class="section level4">
+<h4><span class="math inline">\(L_p\)</span> Minkowski Family</h4>
+<ul>
+<li>Euclidean : <span class="math inline">\(d = \sqrt{\sum_{i = 1}^N | P_i - Q_i |^2)}\)</span></li>
+<li>Manhattan : <span class="math inline">\(d = \sum_{i = 1}^N | P_i - Q_i |\)</span></li>
+<li>Minkowski : <span class="math inline">\(d = ( \sum_{i = 1}^N | P_i - Q_i |^p)^{1/p}\)</span></li>
+<li>Chebyshev : <span class="math inline">\(d = max | P_i - Q_i |\)</span></li>
+</ul>
+</div>
+<div id="l_1-family" class="section level4">
+<h4><span class="math inline">\(L_1\)</span> Family</h4>
+<ul>
+<li>Sorensen : <span class="math inline">\(d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N (P_i + Q_i)}\)</span></li>
+<li>Gower : <span class="math inline">\(d = \frac{1}{N} \dot \sum_{i = 1}^N | P_i - Q_i |\)</span>, where <span class="math inline">\(N\)</span> is the total number of elements <span class="math inline">\(i\)</span> in <span class="math inline">\(P_i\)</span> and <span class="math inline">\(Q_i\)</span></li>
+<li>Soergel : <span class="math inline">\(d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N max(P_i , Q_i)}\)</span></li>
+<li>Kulczynski d : <span class="math inline">\(d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N min(P_i , Q_i)}\)</span></li>
+<li>Canberra : <span class="math inline">\(d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{(P_i + Q_i)}\)</span></li>
+<li>Lorentzian : <span class="math inline">\(d = \sum_{i = 1}^N ln(1 + | P_i - Q_i |)\)</span></li>
+</ul>
+</div>
+<div id="intersection-family" class="section level4">
+<h4>Intersection Family</h4>
+<ul>
+<li>Intersection : <span class="math inline">\(s = \sum_{i = 1}^N min(P_i , Q_i)\)</span></li>
+<li>Non-Intersection : <span class="math inline">\(d = 1 - \sum_{i = 1}^N min(P_i , Q_i)\)</span></li>
+<li>Wave Hedges : <span class="math inline">\(d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{max(P_i , Q_i)}\)</span></li>
+<li>Czekanowski : <span class="math inline">\(d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N | P_i + Q_i |}\)</span></li>
+<li>Motyka : <span class="math inline">\(d = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{(P_i + Q_i)}\)</span></li>
+<li>Kulczynski s : <span class="math inline">\(d = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{\sum_{i = 1}^N | P_i - Q_i |}\)</span></li>
+<li>Tanimoto : <span class="math inline">\(d = \frac{\sum_{i = 1}^N (max(P_i , Q_i) - min(P_i , Q_i))}{\sum_{i = 1}^N max(P_i , Q_i)}\)</span> ; equivalent to Soergel</li>
+<li>Ruzicka : <span class="math inline">\(s = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{\sum_{i = 1}^N max(P_i , Q_i)}\)</span> ; equivalent to 1 - Tanimoto = 1 - Soergel</li>
+</ul>
+</div>
+<div id="inner-product-family" class="section level4">
+<h4>Inner Product Family</h4>
+<ul>
+<li>Inner Product : <span class="math inline">\(s = \sum_{i = 1}^N P_i \dot Q_i\)</span></li>
+<li>Harmonic mean : <span class="math inline">\(s = 2 \cdot \frac{ \sum_{i = 1}^N P_i \cdot Q_i}{P_i + Q_i}\)</span></li>
+<li>Cosine : <span class="math inline">\(s = \frac{\sum_{i = 1}^N P_i \cdot Q_i}{\sqrt{\sum_{i = 1}^N P_i^2} \cdot \sqrt{\sum_{i = 1}^N Q_i^2}}\)</span></li>
+<li>Kumar-Hassebrook (PCE) : <span class="math inline">\(s = \frac{\sum_{i = 1}^N (P_i \cdot Q_i)}{(\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2 - \sum_{i = 1}^N (P_i \cdot Q_i))}\)</span></li>
+<li>Jaccard : <span class="math inline">\(d = 1 - \frac{\sum_{i = 1}^N P_i \cdot Q_i}{\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2 - \sum_{i = 1}^N P_i \cdot Q_i}\)</span> ; equivalent to 1 - Kumar-Hassebrook</li>
+<li>Dice : <span class="math inline">\(d = \frac{\sum_{i = 1}^N (P_i - Q_i)^2}{(\sum_{i = 1}^N P_i^2 + \sum_{i = 1}^N Q_i^2)}\)</span></li>
+</ul>
+</div>
+<div id="squared-chord-family" class="section level4">
+<h4>Squared-chord Family</h4>
+<ul>
+<li>Fidelity : <span class="math inline">\(s = \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}\)</span></li>
+<li>Bhattacharyya : <span class="math inline">\(d = - ln \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}\)</span></li>
+<li>Hellinger : <span class="math inline">\(d = 2 \cdot \sqrt{1 - \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}}\)</span></li>
+<li>Matusita : <span class="math inline">\(d = \sqrt{2 - 2 \cdot \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}}\)</span></li>
+<li>Squared-chord : <span class="math inline">\(d = \sum_{i = 1}^N ( \sqrt{P_i} - \sqrt{Q_i} )^2\)</span></li>
+</ul>
+</div>
+<div id="squared-l_2-family-x2-squared-family" class="section level4">
+<h4>Squared <span class="math inline">\(L_2\)</span> family (<span class="math inline">\(X^2\)</span> squared family)</h4>
+<ul>
+<li>Squared Euclidean : <span class="math inline">\(d = \sum_{i = 1}^N ( P_i - Q_i )^2\)</span></li>
+<li>Pearson <span class="math inline">\(X^2\)</span> : <span class="math inline">\(d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{Q_i} )\)</span></li>
+<li>Neyman <span class="math inline">\(X^2\)</span> : <span class="math inline">\(d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{P_i} )\)</span></li>
+<li>Squared <span class="math inline">\(X^2\)</span> : <span class="math inline">\(d = \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)} )\)</span></li>
+<li>Probabilistic Symmetric <span class="math inline">\(X^2\)</span> : <span class="math inline">\(d = 2 \cdot \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)} )\)</span></li>
+<li>Divergence : <span class="math inline">\(X^2\)</span> : <span class="math inline">\(d = 2 \cdot \sum_{i = 1}^N ( \frac{(P_i - Q_i )^2}{(P_i + Q_i)^2} )\)</span></li>
+<li>Clark : <span class="math inline">\(d = \sqrt{\sum_{i = 1}^N (\frac{| P_i - Q_i |}{(P_i + Q_i)^2}}\)</span></li>
+<li>Additive Symmetric <span class="math inline">\(X^2\)</span> : <span class="math inline">\(d = \sum_{i = 1}^N ( \frac{((P_i - Q_i)^2 \cdot (P_i + Q_i))}{(P_i \cdot Q_i)} )\)</span></li>
+</ul>
+</div>
+<div id="shannons-entropy-family" class="section level4">
+<h4>Shannon’s Entropy Family</h4>
+<ul>
+<li>Kullback-Leibler : <span class="math inline">\(d = \sum_{i = 1}^N P_i \cdot log(\frac{P_i}{Q_i})\)</span></li>
+<li>Jeffreys : <span class="math inline">\(d = \sum_{i = 1}^N (P_i - Q_i) \cdot log(\frac{P_i}{Q_i})\)</span></li>
+<li>K divergence : <span class="math inline">\(d = \sum_{i = 1}^N P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i})\)</span></li>
+<li>Topsoe : <span class="math inline">\(d = \sum_{i = 1}^N ( P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i}) ) + ( Q_i \cdot log(\frac{2 \cdot Q_i}{P_i + Q_i}) )\)</span></li>
+<li>Jensen-Shannon : <span class="math inline">\(d = 0.5 \cdot ( \sum_{i = 1}^N P_i \cdot log(\frac{2 \cdot P_i}{P_i + Q_i}) + \sum_{i = 1}^N Q_i \cdot log(\frac{2 * Q_i}{P_i + Q_i}))\)</span></li>
+<li>Jensen difference : <span class="math inline">\(d = \sum_{i = 1}^N ( (\frac{P_i \cdot log(P_i) + Q_i \cdot log(Q_i)}{2}) - (\frac{P_i + Q_i}{2}) \cdot log(\frac{P_i + Q_i}{2}) )\)</span></li>
+</ul>
+</div>
+<div id="combinations" class="section level4">
+<h4>Combinations</h4>
+<ul>
+<li>Taneja : <span class="math inline">\(d = \sum_{i = 1}^N ( \frac{P_i + Q_i}{2}) \cdot log( \frac{P_i + Q_i}{( 2 \cdot \sqrt{P_i \cdot Q_i})} )\)</span></li>
+<li>Kumar-Johnson : <span class="math inline">\(d = \sum_{i = 1}^N \frac{(P_i^2 - Q_i^2)^2}{2 \cdot (P_i \cdot Q_i)^{\frac{3}{2}}}\)</span></li>
+<li>Avg(<span class="math inline">\(L_1\)</span>, <span class="math inline">\(L_n\)</span>) : <span class="math inline">\(d = \frac{\sum_{i = 1}^N | P_i - Q_i| + max{ | P_i - Q_i |}}{2}\)</span></li>
+</ul>
+<p><strong>Note</strong>: <span class="math inline">\(d\)</span> refers to distance measures, whereas <span class="math inline">\(s\)</span> denotes similarity measures.</p>
+</div>
+</div>
+<div id="information-theory" class="section level3">
+<h3>Information Theory</h3>
+<p>Modern methods for distribution comparisons have a strong <a href="http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf">information theoretic background</a>. This fact motivated me to name this package <code>philentropy</code> and as a result, several well established information theory measures are (and further will be) implemeted in this package.</p>
+<ul>
+<li>Shannon’s Entropy H(X) : <span class="math inline">\(H(X) = -\sum\limits_{i=1}^n P(x_i) \cdot log_b(P(x_i))\)</span></li>
+<li>Shannon’s Joint-Entropy H(X,Y) : <span class="math inline">\(H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b(P(x_i, y_j))\)</span></li>
+<li>Shannon’s Conditional-Entropy H(X | Y) : <span class="math inline">\(H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b( \frac{P(x_i)}{P(x_i, y_j)})\)</span></li>
+<li>Mutual Information I(X,Y) : <span class="math inline">\(MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b( \frac{P(x_i, y_j)}{( P(x_i) * P(y_j) )})\)</span></li>
+<li>Kullback-Leibler Divergence : <span class="math inline">\(KL(P || Q) = \sum\limits_{i=1}^n P(p_i) \cdot log_2(\frac{P(p_i) }{P(q_i)}) = H(P, Q) - H(P)\)</span></li>
+<li>Jensen-Shannon Divergence : <span class="math inline">\(JSD(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))\)</span></li>
+<li>Generalized Jensen-Shannon Divergence : <span class="math inline">\(gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i \cdot P_i) - \sum_{i = 1}^n \pi_i \cdot H(P_i)\)</span></li>
+</ul>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
