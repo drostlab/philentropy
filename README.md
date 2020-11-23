@@ -198,6 +198,8 @@ EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
 > - __Impact of Gut Microbiome on Hypertensive Patients with Low-Salt Intake: Shika Study Results__
 S Nagase et al. - __Frontiers in Medicine__, 2020
 >
+> - __Combined TCR Repertoire Profiles and Blood Cell Phenotypes Predict Melanoma Patient Response to Personalized Neoantigen Therapy plus Anti-PD-1__ A Poran et al. - __Cell Reports Medicine__, 2020
+>
 > - __SEDE-GPS: socio-economic data enrichment based on GPS information__
 T Sperlea, S Füser, J Boenigk, D Heider - __BMC bioinformatics__, 2018
 >
