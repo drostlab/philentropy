@@ -15,7 +15,7 @@ distance(
   as.dist.obj = FALSE,
   diag = FALSE,
   upper = FALSE,
-  mute_message = FALSE
+  mute.message = FALSE
 )
 }
 \arguments{
@@ -43,7 +43,7 @@ the input matrix shall be used as rownames and colnames of the output distance m
 
 \item{upper}{if \code{as.dist.obj = TRUE}, then this value indicates whether the upper triangle of the distance matrix should be printed.}
 
-\item{mute_message}{a logical value indicating whether or not messages printed by \code{distance} shall be muted. Default is \code{mute_message = FALSE}.}
+\item{mute.message}{a logical value indicating whether or not messages printed by \code{distance} shall be muted. Default is \code{mute.message = FALSE}.}
 }
 \value{
 The following results are returned depending on the dimension of \code{x}:
@@ -57,7 +57,7 @@ The following results are returned depending on the dimension of \code{x}:
 This functions computes the distance/dissimilarity between two probability density functions.
 }
 \details{
-Here a distance is defined as a quantitative degree of how far two mathamatical objects are apart from eachother (Cha, 2007).
+Here a distance is defined as a quantitative degree of how far two mathematical objects are apart from eachother (Cha, 2007).
 
 This function implements the following distance/similarity measures to quantify the distance between probability density functions:
 

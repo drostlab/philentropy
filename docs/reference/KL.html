@@ -81,7 +81,7 @@ distributions P and Q." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -113,7 +113,7 @@ distributions P and Q." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/drostlab/philentropy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,7 +140,7 @@ distributions P and Q." />
 distributions P and Q.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>KL</span>(<span class='kw'>x</span>, test.na = <span class='fl'>TRUE</span>, unit = <span class='st'>"log2"</span>, est.prob = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, test.na <span class='op'>=</span> <span class='cn'>TRUE</span>, unit <span class='op'>=</span> <span class='st'>"log2"</span>, est.prob <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,36 +193,36 @@ Theory. <em>John Wiley &amp; Sons</em>.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Kulback-Leibler Divergence between P and Q</span>
-<span class='kw'>P</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>)
-<span class='kw'>Q</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span>)
-<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='kw'>P</span>,<span class='kw'>Q</span>)
-<span class='fu'>KL</span>(<span class='kw'>x</span>)
+<span class='va'>P</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>P</span>,<span class='va'>Q</span><span class='op'>)</span>
+<span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
 #&gt;        0.1392629 </div><div class='input'>
 <span class='co'># Kulback-Leibler Divergence between P and Q using different log bases</span>
-<span class='fu'>KL</span>(<span class='kw'>x</span>, unit = <span class='st'>"log2"</span>) <span class='co'># Default</span>
+<span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, unit <span class='op'>=</span> <span class='st'>"log2"</span><span class='op'>)</span> <span class='co'># Default</span>
 </div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
-#&gt;        0.1392629 </div><div class='input'><span class='fu'>KL</span>(<span class='kw'>x</span>, unit = <span class='st'>"log"</span>)
+#&gt;        0.1392629 </div><div class='input'><span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, unit <span class='op'>=</span> <span class='st'>"log"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
-#&gt;       0.09652967 </div><div class='input'><span class='fu'>KL</span>(<span class='kw'>x</span>, unit = <span class='st'>"log10"</span>)
+#&gt;       0.09652967 </div><div class='input'><span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, unit <span class='op'>=</span> <span class='st'>"log10"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log10'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
 #&gt;        0.0419223 </div><div class='input'>
 <span class='co'># Kulback-Leibler Divergence between count vectors P.count and Q.count</span>
-<span class='kw'>P.count</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>
-<span class='kw'>Q.count</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span>
-<span class='kw'>x.count</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='kw'>P.count</span>,<span class='kw'>Q.count</span>)
-<span class='fu'>KL</span>(<span class='kw'>x</span>, est.prob = <span class='st'>"empirical"</span>)
+<span class='va'>P.count</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>
+<span class='va'>Q.count</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span>
+<span class='va'>x.count</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>P.count</span>,<span class='va'>Q.count</span><span class='op'>)</span>
+<span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, est.prob <span class='op'>=</span> <span class='st'>"empirical"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
 #&gt;        0.1392629 </div><div class='input'>
 <span class='co'># Example: Distance Matrix using KL-Distance</span>
 
-<span class='kw'>Prob</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>), <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span>), <span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span>))
+<span class='va'>Prob</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>, <span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># compute the KL matrix of a given probability matrix</span>
-<span class='kw'>KLMatrix</span> <span class='op'>&lt;-</span> <span class='fu'>KL</span>(<span class='kw'>Prob</span>)
+<span class='va'>KLMatrix</span> <span class='op'>&lt;-</span> <span class='fu'>KL</span><span class='op'>(</span><span class='va'>Prob</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 3 vectors.</span></div><div class='input'>
 <span class='co'># plot a heatmap of the corresponding KL matrix</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/heatmap.html'>heatmap</a></span>(<span class='kw'>KLMatrix</span>)
+<span class='fu'><a href='https://rdrr.io/r/stats/heatmap.html'>heatmap</a></span><span class='op'>(</span><span class='va'>KLMatrix</span><span class='op'>)</span>
 </div><div class='img'><img src='KL-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
 </div></pre>

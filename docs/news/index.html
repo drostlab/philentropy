@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,7 +111,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/drostlab/philentropy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -139,13 +139,16 @@
 <h3 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New Features</h3>
 <ul>
-<li>the <code><a href="../reference/distance.html">distance()</a></code> function receives a new argument <code>mute_message</code> allowing users to mute message printing when running large-scale distance computations. Example:</li>
+<li>the <code><a href="../reference/distance.html">distance()</a></code> function receives a new argument <code>mute.message</code> allowing users to mute message printing when running large-scale distance computations. Example:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="../reference/distance.html">distance</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>), <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">20</span><span class="op">:</span><span class="fl">29</span>)), 
-         method = <span class="st">"euclidean"</span>, 
-         mute_message = <span class="fl">TRUE</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span><span class="op">)</span>, 
+         method <span class="op">=</span> <span class="st">"euclidean"</span>, 
+         mute_message <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<ul>
+<li>adding <code>markdown</code> dependency to <code>DESCRIPTION</code> (<a href="https://github.com/yihui/knitr/issues/1864">find details here</a>)</li>
+</ul>
 </div>
 </div>
     <div id="version-040" class="section level2">
@@ -160,25 +163,25 @@
 <li><p>adding new functionality and arguments <code>as.dist.obj</code>, <code>diag</code>, and <code>upper</code> to <code><a href="../reference/distance.html">philentropy::distance()</a></code> to allow users to retrieve a <code><a href="https://rdrr.io/r/stats/dist.html">stats::dist()</a></code> object when working with <code><a href="../reference/distance.html">philentropy::distance()</a></code> (Many thanks to Hugo Tavares <a href='https://github.com/drostlab/philentropy/issues/18'>#18</a> - see also <a href='https://github.com/drostlab/philentropy/issues/13'>#13</a>) When using <code><a href="../reference/distance.html">philentropy::distance(..., as.dist.obj = TRUE)</a></code> users can now directly pass the <code><a href="../reference/distance.html">distance()</a></code> output into <code>hclust</code>:</p></li>
 </ul>
 <p>Before:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">ProbMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>), <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">20</span><span class="op">:</span><span class="fl">29</span>),<span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">30</span><span class="op">:</span><span class="fl">39</span>))
-<span class="kw">dist.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/distance.html">distance</a></span>(<span class="kw">ProbMatrix</span>, method = <span class="st">"jaccard"</span>)
-<span class="kw">true.dist.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">as.dist</a></span>(<span class="kw">dist.mat</span>)
-<span class="kw">clust.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="kw">true.dist.mat</span>, method = <span class="st">"complete"</span>)
-<span class="kw">clust.res</span>
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">ProbMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>,<span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span>
+<span class="va">dist.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="va">ProbMatrix</span>, method <span class="op">=</span> <span class="st">"jaccard"</span><span class="op">)</span>
+<span class="va">true.dist.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">as.dist</a></span><span class="op">(</span><span class="va">dist.mat</span><span class="op">)</span>
+<span class="va">clust.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">true.dist.mat</span>, method <span class="op">=</span> <span class="st">"complete"</span><span class="op">)</span>
+<span class="va">clust.res</span></code></pre></div>
 <pre><code>Call:
 hclust(d = true.dist.mat, method = "complete")
 
 Cluster method   : complete 
 Number of objects: 3 </code></pre>
 <p>Now:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">ProbMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>), <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">20</span><span class="op">:</span><span class="fl">29</span>),<span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">30</span><span class="op">:</span><span class="fl">39</span>))
-<span class="kw">dist.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/distance.html">distance</a></span>(<span class="kw">ProbMatrix</span>, method = <span class="st">"jaccard"</span>, as.dist.obj = <span class="fl">TRUE</span>)
-<span class="kw">clust.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span>(<span class="kw">true.dist.mat</span>, method = <span class="st">"complete"</span>)
-<span class="kw">clust.res</span>
-</pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">ProbMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>,<span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span>
+<span class="va">dist.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="va">ProbMatrix</span>, method <span class="op">=</span> <span class="st">"jaccard"</span>, as.dist.obj <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">clust.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">true.dist.mat</span>, method <span class="op">=</span> <span class="st">"complete"</span><span class="op">)</span>
+<span class="va">clust.res</span></code></pre></div>
 <pre><code>Call:
 hclust(d = true.dist.mat, method = "complete")
 

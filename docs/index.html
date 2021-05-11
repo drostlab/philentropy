@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/drostlab/philentropy/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -104,10 +104,9 @@
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co"># install philentropy version 0.4.0 from CRAN</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"philentropy"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install philentropy version 0.5.0 from CRAN</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"philentropy"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="citation" class="section level3">
 <h3 class="hasAnchor">
@@ -129,11 +128,10 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/drostlab/philentropy">philentropy</a></span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/drostlab/philentropy">philentropy</a></span><span class="op">)</span>
 <span class="co"># retrieve available distance metrics</span>
-<span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span>()
-</pre></div>
+<span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code> [1] "euclidean"         "manhattan"         "minkowski"        
  [4] "chebyshev"         "sorensen"          "gower"            
  [7] "soergel"           "kulczynski_d"      "canberra"         
@@ -150,26 +148,24 @@
 [40] "k_divergence"      "topsoe"            "jensen-shannon"   
 [43] "jensen_difference" "taneja"            "kumar-johnson"    
 [46] "avg"</code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co"># define a probability density function P</span>
-<span class="kw">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># define a probability density function P</span>
+<span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
 <span class="co"># define a probability density function Q</span>
-<span class="kw">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fl">20</span><span class="op">:</span><span class="fl">29</span>)
+<span class="va">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>
 
 <span class="co"># combine P and Q as matrix object</span>
-<span class="kw">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="kw">P</span>,<span class="kw">Q</span>)
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">P</span>,<span class="va">Q</span><span class="op">)</span>
 
 <span class="co"># compute the jensen-shannon distance between</span>
 <span class="co"># probability density functions P and Q</span>
-<span class="fu"><a href="reference/distance.html">distance</a></span>(<span class="kw">x</span>, method = <span class="st">"jensen-shannon"</span>)
-</pre></div>
+<span class="fu"><a href="reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"jensen-shannon"</span><span class="op">)</span></code></pre></div>
 <pre><code>jensen-shannon using unit 'log'.
 jensen-shannon 
     0.02628933</code></pre>
 <p>Alternatively, users can also retrieve values from all available distance/similarity metrics using <code><a href="reference/dist.diversity.html">dist.diversity()</a></code>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span>(<span class="kw">x</span>, p = <span class="fl">2</span>, unit = <span class="st">"log2"</span>)
-</pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">2</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></code></pre></div>
 <pre><code>        euclidean         manhattan 
        0.12807130        0.35250464 
         minkowski         chebyshev 
@@ -219,12 +215,11 @@ jensen_difference            taneja
 <div id="install-developer-version" class="section level3">
 <h3 class="hasAnchor">
 <a href="#install-developer-version" class="anchor"></a>Install Developer Version</h3>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co"># install.packages("devtools")</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="co"># install the current version of philentropy on your system</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://devtools.r-lib.org">devtools</a></span>)
-<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"HajkD/philentropy"</span>, build_vignettes = <span class="fl">TRUE</span>, dependencies = <span class="fl">TRUE</span>)
-</pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
+<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"HajkD/philentropy"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="news" class="section level3">
 <h3 class="hasAnchor">
