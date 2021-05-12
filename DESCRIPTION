@@ -2,7 +2,7 @@ Package: philentropy
 Type: Package
 Title: Similarity and Distance Quantification Between Probability Functions
 Version: 0.5.0
-Date: 2020-10-12
+Date: 2021-05-11
 Authors@R: person("Hajk-Georg", "Drost",
                 role = c("aut", "cre"),
                 email = "hajk-georg.drost@tuebingen.mpg.de",
@@ -16,7 +16,7 @@ Imports:
     dplyr,
     KernSmooth
 License: GPL-2
-LazyData: true
+LazyData: false
 LinkingTo: Rcpp
 URL: https://github.com/drostlab/philentropy
 Suggests:
