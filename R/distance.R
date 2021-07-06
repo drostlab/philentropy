@@ -227,7 +227,7 @@ distance <- function(x ,
     stop(
       paste0(
         "Your input ",
-        class(x),
+        class(x)[1],
         " stores non-numeric values. Non numeric values cannot be used to compute distances.."
       ),
       call = FALSE
