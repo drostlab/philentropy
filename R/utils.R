@@ -28,7 +28,7 @@ NULL
 # @title Check the validity of input probability distributions
 valid.distr <- function(x){
         
-        sapply(x, function(vec) if(!dplyr::between(vec,0,1)) stop("Your probability values are not between: [0,1].", .call = FALSE))
+        sapply(x, function(vec) if(!poorman::between(vec,0,1)) stop("Your probability values are not between: [0,1].", .call = FALSE))
         
         
         if (anyNA(x)){
