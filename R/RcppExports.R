@@ -49,6 +49,18 @@ DistMatrixWithUnitMAT <- function(dists, DistFunc, testNA, unit) {
     .Call(`_philentropy_DistMatrixWithUnitMAT`, dists, DistFunc, testNA, unit)
 }
 
+single_distance <- function(P, Q, dist_fun, testNA, unit) {
+    .Call(`_philentropy_single_distance`, P, Q, dist_fun, testNA, unit)
+}
+
+dist_one_many <- function(P, dists, dist_fun, testNA, unit) {
+    .Call(`_philentropy_dist_one_many`, P, dists, dist_fun, testNA, unit)
+}
+
+dist_many_many <- function(dists1, dists2, dist_fun, testNA, unit) {
+    .Call(`_philentropy_dist_many_many`, dists1, dists2, dist_fun, testNA, unit)
+}
+
 custom_log2 <- function(x) {
     .Call(`_philentropy_custom_log2`, x)
 }

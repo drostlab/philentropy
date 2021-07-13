@@ -79,6 +79,7 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Fu
         return dist_matrix;
 }
 
+
 // @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, Rcpp::Function DistFunc, bool testNA, Rcpp::String unit){
@@ -129,4 +130,50 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Funct
         return dist_matrix;
 }
 
+// @export
+// [[Rcpp::export]]
+double single_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& dist_fun, bool testNA, Rcpp::String unit){
+        double dist_value;
+        if (dist_fun == "euclidean"){
+                dist_value = euclidean(P, Q, testNA);
+        } else if (dist_fun == "jensen_shannon"){
+                dist_value = jensen_shannon(P, Q, testNA, unit);
+        }
+        return dist_value;
+}
 
+// @export
+// [[Rcpp::export]]
+Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMatrix dists, Rcpp::String dist_fun, bool testNA, Rcpp::String unit){
+        
+        int ncols = dists.ncol();
+        Rcpp::NumericVector dist_values(ncols);
+        
+        for (int i = 0; i < ncols; i++){
+                dist_values[i] = single_distance(P, dists(i, Rcpp::_), dist_fun, testNA, unit);
+        }
+        return dist_values;
+}
+
+// @export
+// [[Rcpp::export]]
+Rcpp::NumericMatrix dist_many_many(Rcpp::NumericMatrix dists1, Rcpp::NumericMatrix dists2, Rcpp::String dist_fun, bool testNA, Rcpp::String unit){
+        int ncols1 = dists1.ncol();
+        int ncols2 = dists2.ncol();
+        double dist_value = 0.0;
+        
+        Rcpp::NumericMatrix dist_matrix(ncols1,ncols2);
+        std::fill(dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na());
+        
+        
+        for (int i = 0; i < ncols1; i++){
+                for (int j = 0; j < ncols2; j++){
+                        if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
+                                dist_value = single_distance(dists1(i, Rcpp::_), dists2(j, Rcpp::_), dist_fun, testNA, unit);
+                                dist_matrix(i,j) = dist_value;
+                                dist_matrix(j,i) = dist_value;
+                        }
+                }
+        }
+        return dist_matrix;
+}
