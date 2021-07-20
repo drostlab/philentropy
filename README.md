@@ -44,7 +44,7 @@ __I am developing `philentropy` in my spare time and would be very grateful if y
 ```r
 library(philentropy)
 # retrieve available distance metrics
-getDistMethods()
+philentropy::getDistMethods()
 ```
 
 ```
@@ -77,7 +77,7 @@ x <- rbind(P,Q)
 
 # compute the jensen-shannon distance between
 # probability density functions P and Q
-distance(x, method = "jensen-shannon")
+philentropy::distance(x, method = "jensen-shannon")
 ```
 
 ```
@@ -87,11 +87,11 @@ jensen-shannon
 ```
 
 Alternatively, users can also retrieve values from all available distance/similarity metrics
-using `dist.diversity()`:
+using `philentropy::dist.diversity()`:
 
 
 ```r
-dist.diversity(x, p = 2, unit = "log2")
+philentropy::dist.diversity(x, p = 2, unit = "log2")
 ```
 
 ```
