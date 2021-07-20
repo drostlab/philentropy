@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
       </span>
     </div>
 
@@ -132,12 +132,32 @@
       <small>Source: <a href='https://github.com/drostlab/philentropy/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="version-050" class="section level2">
+    <div id="version-060" class="section level2">
 <h2 class="hasAnchor">
-<a href="#version-050" class="anchor"></a>Version 0.5.0</h2>
+<a href="#version-060" class="anchor"></a>Version 0.6.0</h2>
 <div id="new-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-features" class="anchor"></a>New Features</h3>
+<ul>
+<li>
+<code><a href="../reference/distance.html">distance()</a></code> and all other individual information theory functions receive a new argument <code>epsilon</code> with default value <code>epsilon = 0.00001</code> to treat cases where in individual distance or similarity computations yield <code>x / 0</code> or <code>0 / 0</code>. Instead of a hard coded epsilon, users can now set <code>epsilon</code> according to their input vectors. (Many thanks to Joshua McNeill <a href='https://github.com/drostlab/philentropy/issues/26'>#26</a> for this great question).</li>
+</ul>
+</div>
+<div id="updates" class="section level3">
+<h3 class="hasAnchor">
+<a href="#updates" class="anchor"></a>Updates</h3>
+<ul>
+<li>
+<code>dplyr</code> package dependency was removed and replaced by the <code>poorman</code> due to the heavy dependency burden of <code>dplyr</code>, since <code>philentropy</code> only used <code><a href="https://dplyr.tidyverse.org/reference/between.html">dplyr::between()</a></code> which is now <code><a href="https://nathaneastwood.github.io/poorman/reference/between.html">poorman::between()</a></code> (Many thanks to Patrice Kiener for this suggestion)</li>
+</ul>
+</div>
+</div>
+    <div id="version-050" class="section level2">
+<h2 class="hasAnchor">
+<a href="#version-050" class="anchor"></a>Version 0.5.0</h2>
+<div id="new-features-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-features-1" class="anchor"></a>New Features</h3>
 <ul>
 <li>the <code><a href="../reference/distance.html">distance()</a></code> function receives a new argument <code>mute.message</code> allowing users to mute message printing when running large-scale distance computations. Example:</li>
 </ul>
@@ -145,7 +165,7 @@
 <code class="sourceCode R">
 <span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span><span class="op">)</span>, 
          method <span class="op">=</span> <span class="st">"euclidean"</span>, 
-         mute_message <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+         mute.message <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <ul>
 <li>adding <code>markdown</code> dependency to <code>DESCRIPTION</code> (<a href="https://github.com/yihui/knitr/issues/1864">find details here</a>)</li>
 </ul>
@@ -154,9 +174,9 @@
     <div id="version-040" class="section level2">
 <h2 class="hasAnchor">
 <a href="#version-040" class="anchor"></a>Version 0.4.0</h2>
-<div id="new-features-1" class="section level3">
+<div id="new-features-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-features-1" class="anchor"></a>New Features</h3>
+<a href="#new-features-2" class="anchor"></a>New Features</h3>
 <ul>
 <li><p>the <code><a href="../reference/distance.html">distance()</a></code> function receives a new argument <code>use.row.names</code> to enable passing the row names from the input probability or count matrix to the output distance matrix</p></li>
 <li><p>the <code><a href="../reference/distance.html">distance()</a></code> function can now handle <code>data.table</code> and <code>tibble</code> input <a href='https://github.com/drostlab/philentropy/issues/16'>#16</a></p></li>
@@ -215,9 +235,9 @@ Number of objects: 3 </code></pre>
 <li><p>fixing bug in <code><a href="../reference/gJSD.html">gJSD()</a></code> where an <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> input matrix is not properly transposed (Many thanks to <a href='https://github.com/vrodriguezf'>@vrodriguezf</a>; see issue <a href='https://github.com/drostlab/philentropy/issues/14'>#14</a>)</p></li>
 </ul>
 </div>
-<div id="new-features-2" class="section level3">
+<div id="new-features-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-features-2" class="anchor"></a>New Features</h3>
+<a href="#new-features-3" class="anchor"></a>New Features</h3>
 <ul>
 <li><p><code><a href="../reference/gJSD.html">gJSD()</a></code> receives new argument <code>est.prob</code> to enable empirical estimation of probability vectors from input count vectors (non-probabilistic vectors)</p></li>
 <li><p>Jaccard and Tanimoto similarity measures now return <code>0</code> instead of <code>NAN</code> when probability vectors contain zeros (Many thanks to <a href='https://github.com/JonasMandel'>@JonasMandel</a>; see issue <a href='https://github.com/drostlab/philentropy/issues/15'>#15</a>)</p></li>
@@ -240,9 +260,9 @@ Number of objects: 3 </code></pre>
     <div id="version-010" class="section level2">
 <h2 class="hasAnchor">
 <a href="#version-010" class="anchor"></a>Version 0.1.0</h2>
-<div id="new-features-3" class="section level3">
+<div id="new-features-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-features-3" class="anchor"></a>New Features</h3>
+<a href="#new-features-4" class="anchor"></a>New Features</h3>
 <ul>
 <li>new message system</li>
 <li>extending documentation</li>
