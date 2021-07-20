@@ -4,7 +4,7 @@
 \alias{kullback_leibler_distance}
 \title{kullback-Leibler distance (lowlevel function)}
 \usage{
-kullback_leibler_distance(P, Q, testNA, unit)
+kullback_leibler_distance(P, Q, testNA, unit, epsilon)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

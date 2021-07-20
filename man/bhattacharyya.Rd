@@ -4,7 +4,7 @@
 \alias{bhattacharyya}
 \title{Bhattacharyya distance (lowlevel function)}
 \usage{
-bhattacharyya(P, Q, testNA, unit)
+bhattacharyya(P, Q, testNA, unit, epsilon)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

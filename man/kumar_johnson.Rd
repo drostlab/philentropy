@@ -4,7 +4,7 @@
 \alias{kumar_johnson}
 \title{Kumar-Johnson distance (lowlevel function)}
 \usage{
-kumar_johnson(P, Q, testNA)
+kumar_johnson(P, Q, testNA, epsilon)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

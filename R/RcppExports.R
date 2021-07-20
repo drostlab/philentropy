@@ -158,8 +158,8 @@ soergel <- function(P, Q, testNA) {
 #' @examples
 #' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-kulczynski_d <- function(P, Q, testNA) {
-    .Call(`_philentropy_kulczynski_d`, P, Q, testNA)
+kulczynski_d <- function(P, Q, testNA, epsilon) {
+    .Call(`_philentropy_kulczynski_d`, P, Q, testNA, epsilon)
 }
 
 #' @title Canberra distance (lowlevel function)
@@ -378,8 +378,8 @@ fidelity <- function(P, Q, testNA) {
 #' @examples
 #' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 #' @export
-bhattacharyya <- function(P, Q, testNA, unit) {
-    .Call(`_philentropy_bhattacharyya`, P, Q, testNA, unit)
+bhattacharyya <- function(P, Q, testNA, unit, epsilon) {
+    .Call(`_philentropy_bhattacharyya`, P, Q, testNA, unit, epsilon)
 }
 
 #' @title Hellinger distance (lowlevel function)
@@ -443,8 +443,8 @@ squared_euclidean <- function(P, Q, testNA) {
 #' @examples
 #' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-pearson_chi_sq <- function(P, Q, testNA) {
-    .Call(`_philentropy_pearson_chi_sq`, P, Q, testNA)
+pearson_chi_sq <- function(P, Q, testNA, epsilon) {
+    .Call(`_philentropy_pearson_chi_sq`, P, Q, testNA, epsilon)
 }
 
 #' @title Neyman chi-squared distance (lowlevel function)
@@ -456,8 +456,8 @@ pearson_chi_sq <- function(P, Q, testNA) {
 #' @examples
 #' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-neyman_chi_sq <- function(P, Q, testNA) {
-    .Call(`_philentropy_neyman_chi_sq`, P, Q, testNA)
+neyman_chi_sq <- function(P, Q, testNA, epsilon) {
+    .Call(`_philentropy_neyman_chi_sq`, P, Q, testNA, epsilon)
 }
 
 #' @title Squared chi-squared distance (lowlevel function)
@@ -540,8 +540,8 @@ additive_symm_chi_sq <- function(P, Q, testNA) {
 #' @examples
 #' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 #' @export
-kullback_leibler_distance <- function(P, Q, testNA, unit) {
-    .Call(`_philentropy_kullback_leibler_distance`, P, Q, testNA, unit)
+kullback_leibler_distance <- function(P, Q, testNA, unit, epsilon) {
+    .Call(`_philentropy_kullback_leibler_distance`, P, Q, testNA, unit, epsilon)
 }
 
 #' @title Jeffreys distance (lowlevel function)
@@ -559,8 +559,8 @@ kullback_leibler_distance <- function(P, Q, testNA, unit) {
 #' @examples
 #' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 #' @export
-jeffreys <- function(P, Q, testNA, unit) {
-    .Call(`_philentropy_jeffreys`, P, Q, testNA, unit)
+jeffreys <- function(P, Q, testNA, unit, epsilon) {
+    .Call(`_philentropy_jeffreys`, P, Q, testNA, unit, epsilon)
 }
 
 #' @title K-Divergence (lowlevel function)
@@ -654,8 +654,8 @@ jensen_difference <- function(P, Q, testNA, unit) {
 #' @examples
 #' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 #' @export
-taneja <- function(P, Q, testNA, unit) {
-    .Call(`_philentropy_taneja`, P, Q, testNA, unit)
+taneja <- function(P, Q, testNA, unit, epsilon) {
+    .Call(`_philentropy_taneja`, P, Q, testNA, unit, epsilon)
 }
 
 #' @title Kumar-Johnson distance (lowlevel function)
@@ -667,8 +667,8 @@ taneja <- function(P, Q, testNA, unit) {
 #' @examples
 #' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-kumar_johnson <- function(P, Q, testNA) {
-    .Call(`_philentropy_kumar_johnson`, P, Q, testNA)
+kumar_johnson <- function(P, Q, testNA, epsilon) {
+    .Call(`_philentropy_kumar_johnson`, P, Q, testNA, epsilon)
 }
 
 #' @title AVG distance (lowlevel function)

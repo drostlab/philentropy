@@ -12,7 +12,7 @@ extern SEXP _philentropy_additive_symm_chi_sq(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_as_data_frame(SEXP);
 extern SEXP _philentropy_as_matrix(SEXP);
 extern SEXP _philentropy_avg(SEXP, SEXP, SEXP);
-extern SEXP _philentropy_bhattacharyya(SEXP, SEXP, SEXP, SEXP);
+extern SEXP _philentropy_bhattacharyya(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_canberra(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_CEcpp(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_chebyshev(SEXP, SEXP, SEXP);
@@ -39,22 +39,22 @@ extern SEXP _philentropy_inner_product(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_intersection_dist(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_jaccard(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_JEcpp(SEXP, SEXP);
-extern SEXP _philentropy_jeffreys(SEXP, SEXP, SEXP, SEXP);
+extern SEXP _philentropy_jeffreys(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_jensen_difference(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_jensen_shannon(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_k_divergence(SEXP, SEXP, SEXP, SEXP);
-extern SEXP _philentropy_kulczynski_d(SEXP, SEXP, SEXP);
-extern SEXP _philentropy_kullback_leibler_distance(SEXP, SEXP, SEXP, SEXP);
+extern SEXP _philentropy_kulczynski_d(SEXP, SEXP, SEXP, SEXP);
+extern SEXP _philentropy_kullback_leibler_distance(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_kumar_hassebrook(SEXP, SEXP, SEXP);
-extern SEXP _philentropy_kumar_johnson(SEXP, SEXP, SEXP);
+extern SEXP _philentropy_kumar_johnson(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_lorentzian(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_manhattan(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_matusita(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_MIcpp(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_minkowski(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_motyka(SEXP, SEXP, SEXP);
-extern SEXP _philentropy_neyman_chi_sq(SEXP, SEXP, SEXP);
-extern SEXP _philentropy_pearson_chi_sq(SEXP, SEXP, SEXP);
+extern SEXP _philentropy_neyman_chi_sq(SEXP, SEXP, SEXP, SEXP);
+extern SEXP _philentropy_pearson_chi_sq(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_pearson_corr_centred(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_pearson_corr_uncentred(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_prob_symm_chi_sq(SEXP, SEXP, SEXP);
@@ -67,7 +67,7 @@ extern SEXP _philentropy_squared_chord(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_squared_euclidean(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_squared_pearson_corr(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_sum_rcpp(SEXP);
-extern SEXP _philentropy_taneja(SEXP, SEXP, SEXP, SEXP);
+extern SEXP _philentropy_taneja(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_tanimoto(SEXP, SEXP, SEXP);
 extern SEXP _philentropy_topsoe(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _philentropy_wave_hedges(SEXP, SEXP, SEXP);
@@ -77,7 +77,7 @@ static const R_CallMethodDef CallEntries[] = {
   {"_philentropy_as_data_frame",                (DL_FUNC) &_philentropy_as_data_frame,                1},
   {"_philentropy_as_matrix",                    (DL_FUNC) &_philentropy_as_matrix,                    1},
   {"_philentropy_avg",                          (DL_FUNC) &_philentropy_avg,                          3},
-  {"_philentropy_bhattacharyya",                (DL_FUNC) &_philentropy_bhattacharyya,                4},
+  {"_philentropy_bhattacharyya",                (DL_FUNC) &_philentropy_bhattacharyya,                5},
   {"_philentropy_canberra",                     (DL_FUNC) &_philentropy_canberra,                     3},
   {"_philentropy_CEcpp",                        (DL_FUNC) &_philentropy_CEcpp,                        3},
   {"_philentropy_chebyshev",                    (DL_FUNC) &_philentropy_chebyshev,                    3},
@@ -104,22 +104,22 @@ static const R_CallMethodDef CallEntries[] = {
   {"_philentropy_intersection_dist",            (DL_FUNC) &_philentropy_intersection_dist,            3},
   {"_philentropy_jaccard",                      (DL_FUNC) &_philentropy_jaccard,                      3},
   {"_philentropy_JEcpp",                        (DL_FUNC) &_philentropy_JEcpp,                        2},
-  {"_philentropy_jeffreys",                     (DL_FUNC) &_philentropy_jeffreys,                     4},
+  {"_philentropy_jeffreys",                     (DL_FUNC) &_philentropy_jeffreys,                     5},
   {"_philentropy_jensen_difference",            (DL_FUNC) &_philentropy_jensen_difference,            4},
   {"_philentropy_jensen_shannon",               (DL_FUNC) &_philentropy_jensen_shannon,               4},
   {"_philentropy_k_divergence",                 (DL_FUNC) &_philentropy_k_divergence,                 4},
-  {"_philentropy_kulczynski_d",                 (DL_FUNC) &_philentropy_kulczynski_d,                 3},
-  {"_philentropy_kullback_leibler_distance",    (DL_FUNC) &_philentropy_kullback_leibler_distance,    4},
+  {"_philentropy_kulczynski_d",                 (DL_FUNC) &_philentropy_kulczynski_d,                 4},
+  {"_philentropy_kullback_leibler_distance",    (DL_FUNC) &_philentropy_kullback_leibler_distance,    5},
   {"_philentropy_kumar_hassebrook",             (DL_FUNC) &_philentropy_kumar_hassebrook,             3},
-  {"_philentropy_kumar_johnson",                (DL_FUNC) &_philentropy_kumar_johnson,                3},
+  {"_philentropy_kumar_johnson",                (DL_FUNC) &_philentropy_kumar_johnson,                4},
   {"_philentropy_lorentzian",                   (DL_FUNC) &_philentropy_lorentzian,                   4},
   {"_philentropy_manhattan",                    (DL_FUNC) &_philentropy_manhattan,                    3},
   {"_philentropy_matusita",                     (DL_FUNC) &_philentropy_matusita,                     3},
   {"_philentropy_MIcpp",                        (DL_FUNC) &_philentropy_MIcpp,                        4},
   {"_philentropy_minkowski",                    (DL_FUNC) &_philentropy_minkowski,                    4},
   {"_philentropy_motyka",                       (DL_FUNC) &_philentropy_motyka,                       3},
-  {"_philentropy_neyman_chi_sq",                (DL_FUNC) &_philentropy_neyman_chi_sq,                3},
-  {"_philentropy_pearson_chi_sq",               (DL_FUNC) &_philentropy_pearson_chi_sq,               3},
+  {"_philentropy_neyman_chi_sq",                (DL_FUNC) &_philentropy_neyman_chi_sq,                4},
+  {"_philentropy_pearson_chi_sq",               (DL_FUNC) &_philentropy_pearson_chi_sq,               4},
   {"_philentropy_pearson_corr_centred",         (DL_FUNC) &_philentropy_pearson_corr_centred,         3},
   {"_philentropy_pearson_corr_uncentred",       (DL_FUNC) &_philentropy_pearson_corr_uncentred,       3},
   {"_philentropy_prob_symm_chi_sq",             (DL_FUNC) &_philentropy_prob_symm_chi_sq,             3},
@@ -132,7 +132,7 @@ static const R_CallMethodDef CallEntries[] = {
   {"_philentropy_squared_euclidean",            (DL_FUNC) &_philentropy_squared_euclidean,            3},
   {"_philentropy_squared_pearson_corr",         (DL_FUNC) &_philentropy_squared_pearson_corr,         3},
   {"_philentropy_sum_rcpp",                     (DL_FUNC) &_philentropy_sum_rcpp,                     1},
-  {"_philentropy_taneja",                       (DL_FUNC) &_philentropy_taneja,                       4},
+  {"_philentropy_taneja",                       (DL_FUNC) &_philentropy_taneja,                       5},
   {"_philentropy_tanimoto",                     (DL_FUNC) &_philentropy_tanimoto,                     3},
   {"_philentropy_topsoe",                       (DL_FUNC) &_philentropy_topsoe,                       4},
   {"_philentropy_wave_hedges",                  (DL_FUNC) &_philentropy_wave_hedges,                  3},

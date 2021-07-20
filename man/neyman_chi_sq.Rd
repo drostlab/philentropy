@@ -4,7 +4,7 @@
 \alias{neyman_chi_sq}
 \title{Neyman chi-squared distance (lowlevel function)}
 \usage{
-neyman_chi_sq(P, Q, testNA)
+neyman_chi_sq(P, Q, testNA, epsilon)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}
