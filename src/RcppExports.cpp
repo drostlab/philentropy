@@ -171,7 +171,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // single_distance
-double single_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& dist_fun, bool testNA, Rcpp::String unit);
+double single_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& dist_fun, const bool& testNA, const Rcpp::String& unit);
 RcppExport SEXP _philentropy_single_distance(SEXP PSEXP, SEXP QSEXP, SEXP dist_funSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -179,8 +179,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type P(PSEXP);
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< const Rcpp::String& >::type dist_fun(dist_funSEXP);
-    Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
+    Rcpp::traits::input_parameter< const bool& >::type testNA(testNASEXP);
+    Rcpp::traits::input_parameter< const Rcpp::String& >::type unit(unitSEXP);
     rcpp_result_gen = Rcpp::wrap(single_distance(P, Q, dist_fun, testNA, unit));
     return rcpp_result_gen;
 END_RCPP
