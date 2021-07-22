@@ -4,7 +4,7 @@
 \alias{pearson_chi_sq}
 \title{Pearson chi-squared distance (lowlevel function)}
 \usage{
-pearson_chi_sq(P, Q, testNA)
+pearson_chi_sq(P, Q, testNA, epsilon)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

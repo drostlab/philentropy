@@ -38,6 +38,19 @@
 #' @param test.na a boolean value indicating whether input vectors should be tested for NA values.
 #' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
 #' @param est.prob method to estimate probabilities from a count vector. Default: est.prob = NULL.
+#' @param epsilon a small value to address cases in the KL computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing \code{x / 0} or \code(0 / 0) cases. 
 #' @return The Kullback-Leibler divergence of probability vectors.
 #' @author Hajk-Georg Drost
 #' @seealso
@@ -76,7 +89,7 @@
 #' 
 #'@export
  
-KL <- function(x, test.na = TRUE, unit = "log2", est.prob = NULL){
+KL <- function(x, test.na = TRUE, unit = "log2", est.prob = NULL, epsilon = 0.00001){
         if (!is.matrix(x))
           stop("Please provide a matrix as input, e.g. with x <- rbind(vector1, vector2).", call. = FALSE)
         
@@ -84,6 +97,7 @@ KL <- function(x, test.na = TRUE, unit = "log2", est.prob = NULL){
                           method      = "kullback-leibler",
                           test.na     = test.na,
                           unit        = unit,
-                          est.prob    = est.prob) )
+                          est.prob    = est.prob,
+                          epsilon     = epsilon) )
         
 }

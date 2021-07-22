@@ -330,15 +330,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // kulczynski_d
-double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP _philentropy_kulczynski_d(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon);
+RcppExport SEXP _philentropy_kulczynski_d(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type P(PSEXP);
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    rcpp_result_gen = Rcpp::wrap(kulczynski_d(P, Q, testNA));
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    rcpp_result_gen = Rcpp::wrap(kulczynski_d(P, Q, testNA, epsilon));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -539,8 +540,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // bhattacharyya
-double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP _philentropy_bhattacharyya(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon);
+RcppExport SEXP _philentropy_bhattacharyya(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -548,7 +549,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< const Rcpp::String >::type unit(unitSEXP);
-    rcpp_result_gen = Rcpp::wrap(bhattacharyya(P, Q, testNA, unit));
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    rcpp_result_gen = Rcpp::wrap(bhattacharyya(P, Q, testNA, unit, epsilon));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -605,28 +607,30 @@ BEGIN_RCPP
 END_RCPP
 }
 // pearson_chi_sq
-double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP _philentropy_pearson_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon);
+RcppExport SEXP _philentropy_pearson_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type P(PSEXP);
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    rcpp_result_gen = Rcpp::wrap(pearson_chi_sq(P, Q, testNA));
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    rcpp_result_gen = Rcpp::wrap(pearson_chi_sq(P, Q, testNA, epsilon));
     return rcpp_result_gen;
 END_RCPP
 }
 // neyman_chi_sq
-double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP _philentropy_neyman_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon);
+RcppExport SEXP _philentropy_neyman_chi_sq(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type P(PSEXP);
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    rcpp_result_gen = Rcpp::wrap(neyman_chi_sq(P, Q, testNA));
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    rcpp_result_gen = Rcpp::wrap(neyman_chi_sq(P, Q, testNA, epsilon));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -696,8 +700,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // kullback_leibler_distance
-double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP _philentropy_kullback_leibler_distance(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon);
+RcppExport SEXP _philentropy_kullback_leibler_distance(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -705,13 +709,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< const Rcpp::String >::type unit(unitSEXP);
-    rcpp_result_gen = Rcpp::wrap(kullback_leibler_distance(P, Q, testNA, unit));
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    rcpp_result_gen = Rcpp::wrap(kullback_leibler_distance(P, Q, testNA, unit, epsilon));
     return rcpp_result_gen;
 END_RCPP
 }
 // jeffreys
-double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP _philentropy_jeffreys(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon);
+RcppExport SEXP _philentropy_jeffreys(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -719,7 +724,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< const Rcpp::String >::type unit(unitSEXP);
-    rcpp_result_gen = Rcpp::wrap(jeffreys(P, Q, testNA, unit));
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    rcpp_result_gen = Rcpp::wrap(jeffreys(P, Q, testNA, unit, epsilon));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -780,8 +786,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // taneja
-double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit);
-RcppExport SEXP _philentropy_taneja(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP) {
+double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon);
+RcppExport SEXP _philentropy_taneja(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP unitSEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -789,20 +795,22 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< const Rcpp::String >::type unit(unitSEXP);
-    rcpp_result_gen = Rcpp::wrap(taneja(P, Q, testNA, unit));
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    rcpp_result_gen = Rcpp::wrap(taneja(P, Q, testNA, unit, epsilon));
     return rcpp_result_gen;
 END_RCPP
 }
 // kumar_johnson
-double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA);
-RcppExport SEXP _philentropy_kumar_johnson(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP) {
+double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon);
+RcppExport SEXP _philentropy_kumar_johnson(SEXP PSEXP, SEXP QSEXP, SEXP testNASEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type P(PSEXP);
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    rcpp_result_gen = Rcpp::wrap(kumar_johnson(P, Q, testNA));
+    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
+    rcpp_result_gen = Rcpp::wrap(kumar_johnson(P, Q, testNA, epsilon));
     return rcpp_result_gen;
 END_RCPP
 }

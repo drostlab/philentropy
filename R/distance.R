@@ -25,6 +25,19 @@
 #' @param p power of the Minkowski distance.
 #' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.
 #' @param unit a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.
+#' @param epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing \code{x / 0} or \code(0 / 0) cases.
 #' @param est.prob method to estimate probabilities from input count vectors such as non-probability vectors. Default: \code{est.prob = NULL}. Options are:
 #' \itemize{
 #' \item \code{est.prob = "empirical"}: The relative frequencies of each vector are computed internally. For example an input matrix \code{rbind(1:10, 11:20)} will be transformed to a probability vector \code{rbind(1:10 / sum(1:10), 11:20 / sum(11:20))}
@@ -203,6 +216,7 @@ distance <- function(x ,
                      p           = NULL,
                      test.na     = TRUE,
                      unit        = "log",
+                     epsilon     = 0.00001,
                      est.prob    = NULL,
                      use.row.names = FALSE,
                      as.dist.obj = FALSE,
@@ -424,11 +438,11 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        kulczynski_d(x[, 1], x[, 2], test.na)
+        kulczynski_d(x[, 1], x[, 2], test.na, epsilon)
     
     if (ncols > 2)
       dist <-
-        DistMatrixNoUnit(x, kulczynski_d, test.na)
+        DistMatrixNoUnit_epsilon(x, kulczynski_d, test.na, epsilon)
   }
   
   else if (method == "canberra") {
@@ -523,11 +537,11 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        1.0 / kulczynski_d(x[, 1], x[, 2], test.na)
+        1.0 / kulczynski_d(x[, 1], x[, 2], test.na, epsilon)
     
     if (ncols > 2)
       dist <-
-        1.0 / DistMatrixNoUnit(x, kulczynski_d, test.na)
+        1.0 / DistMatrixNoUnit_epsilon(x, kulczynski_d, test.na, epsilon)
   }
   
   else if (method == "tanimoto") {
@@ -645,10 +659,10 @@ distance <- function(x ,
               " vectors.")
     if (ncols == 2)
       dist <-
-        bhattacharyya(x[, 1], x[, 2], test.na, unit)
+        bhattacharyya(x[, 1], x[, 2], test.na, unit, epsilon)
     if (ncols > 2)
       dist <-
-        DistMatrix(x, bhattacharyya, test.na, unit)
+        DistMatrix_epsilon(x, bhattacharyya, test.na, unit, epsilon)
   }
   
   else if (method == "hellinger") {
@@ -705,11 +719,11 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        pearson_chi_sq(x[, 1], x[, 2], test.na)
+        pearson_chi_sq(x[, 1], x[, 2], test.na, epsilon)
     
     if (ncols > 2)
       dist <-
-        DistMatrixNoUnit(x, pearson_chi_sq, test.na)
+        DistMatrixNoUnit_epsilon(x, pearson_chi_sq, test.na, epsilon)
     
   }
   
@@ -718,11 +732,11 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        neyman_chi_sq(x[, 1], x[, 2], test.na)
+        neyman_chi_sq(x[, 1], x[, 2], test.na, epsilon)
     
     if (ncols > 2)
       dist <-
-        DistMatrixNoUnit(x, neyman_chi_sq, test.na)
+        DistMatrixNoUnit_epsilon(x, neyman_chi_sq, test.na, epsilon)
     
   }
   
@@ -803,10 +817,10 @@ distance <- function(x ,
     
     if (ncols == 2)
       dist <-
-        kullback_leibler_distance(x[, 1], x[, 2], test.na, unit)
+        kullback_leibler_distance(x[, 1], x[, 2], test.na, unit, epsilon)
     if (ncols > 2)
       dist <-
-        DistMatrix(x, kullback_leibler_distance, test.na, unit)
+        DistMatrix_epsilon(x, kullback_leibler_distance, test.na, unit, epsilon)
   }
   
   else if (method == "jeffreys") {
@@ -820,9 +834,9 @@ distance <- function(x ,
               " vectors.")
     if (ncols == 2)
       dist <-
-        jeffreys(x[, 1], x[, 2], test.na, unit)
+        jeffreys(x[, 1], x[, 2], test.na, unit, epsilon)
     if (ncols > 2)
-      dist <- DistMatrix(x, jeffreys, test.na, unit)
+      dist <- DistMatrix_epsilon(x, jeffreys, test.na, unit, epsilon)
     
   }
   
@@ -909,9 +923,9 @@ distance <- function(x ,
     
     if (ncols == 2)
       dist <-
-        taneja(x[, 1], x[, 2], test.na, unit)
+        taneja(x[, 1], x[, 2], test.na, unit, epsilon)
     if (ncols > 2)
-      dist <- DistMatrix(x, taneja, test.na, unit)
+      dist <- DistMatrix_epsilon(x, taneja, test.na, unit, epsilon)
   }
   
   else if (method == "kumar-johnson") {
@@ -919,10 +933,10 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        kumar_johnson(x[, 1], x[, 2], test.na)
+        kumar_johnson(x[, 1], x[, 2], test.na, epsilon)
     if (ncols > 2)
       dist <-
-        DistMatrixNoUnit(x, kumar_johnson, test.na)
+        DistMatrixNoUnit_epsilon(x, kumar_johnson, test.na, epsilon)
   }
   
   else if (method == "avg") {

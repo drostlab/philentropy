@@ -10,6 +10,7 @@ distance(
   p = NULL,
   test.na = TRUE,
   unit = "log",
+  epsilon = 1e-05,
   est.prob = NULL,
   use.row.names = FALSE,
   as.dist.obj = FALSE,
@@ -28,6 +29,20 @@ distance(
 \item{test.na}{a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.}
 
 \item{unit}{a character string specifying the logarithm unit that should be used to compute distances that depend on log computations.}
+
+\item{epsilon}{a small value to address cases in the distance computation where division by zero occurs. In
+these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+the expected similarity between compared probability density functions and 
+whether or not many 0 values are present within the compared vectors.
+As a rough rule of thumb we suggest that when dealing with very large 
+input vectors which are very similar and contain many \code{0} values,
+the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+whereas when vector sizes are small or distributions very divergent then
+higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+return negative values which are not defined and only occur due to the
+technical issues of computing \code{x / 0} or \code(0 / 0) cases.}
 
 \item{est.prob}{method to estimate probabilities from input count vectors such as non-probability vectors. Default: \code{est.prob = NULL}. Options are:
 \itemize{

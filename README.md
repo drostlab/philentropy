@@ -44,7 +44,7 @@ __I am developing `philentropy` in my spare time and would be very grateful if y
 ```r
 library(philentropy)
 # retrieve available distance metrics
-getDistMethods()
+philentropy::getDistMethods()
 ```
 
 ```
@@ -77,7 +77,7 @@ x <- rbind(P,Q)
 
 # compute the jensen-shannon distance between
 # probability density functions P and Q
-distance(x, method = "jensen-shannon")
+philentropy::distance(x, method = "jensen-shannon")
 ```
 
 ```
@@ -87,11 +87,11 @@ jensen-shannon
 ```
 
 Alternatively, users can also retrieve values from all available distance/similarity metrics
-using `dist.diversity()`:
+using `philentropy::dist.diversity()`:
 
 
 ```r
-dist.diversity(x, p = 2, unit = "log2")
+philentropy::dist.diversity(x, p = 2, unit = "log2")
 ```
 
 ```
@@ -175,6 +175,12 @@ The current status of the package as well as a detailed history of the functiona
 
 ### Studies that successfully applied the `philentropy` package
 
+> - __High-content single-cell combinatorial indexing__ R Mulqueen et al. - __Nature Biotechnology__, 2021 
+>
+> - __Extinction at the end-Cretaceous and the origin of modern Neotropical rainforests__ MR Carvalho, C Jaramillo et al. - __Science__, 2021
+>
+> - __The genetic architecture of temperature adaptation is shaped by population ancestry and not by selection regime__ KA Otte, V Nolte, F Mallard et al. - __Genome Biology__, 2021
+> 
 > - __Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation__ A Subramanian et al. - __Nature Communications__, 2019
 >
 > - __Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche__
@@ -272,7 +278,8 @@ K Hari et al. - __NPJ systems biology and applications__, 2020
 > - __Genetic differentiation and intrinsic genomic features explain variation in recombination hotspots among cocoa tree populations__
 EJ Schwarzkopf et al. - __BMC Genomics__, 2020
 >
-
+> __Enhancing Card Sorting Dendrograms through the Holistic Analysis of Distance Methods and Linkage Criteria.__ JA Macías - __Journal of Usability Studies__, 2021
+>
 
 
 ## Discussions and Bug Reports

@@ -4,7 +4,7 @@
 \alias{jeffreys}
 \title{Jeffreys distance (lowlevel function)}
 \usage{
-jeffreys(P, Q, testNA, unit)
+jeffreys(P, Q, testNA, unit, epsilon)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

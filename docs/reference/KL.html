@@ -40,8 +40,6 @@
 
 
 <meta property="og:title" content="Kullback-Leibler Divergence — KL" />
-<meta property="og:description" content="This function computes the Kullback-Leibler divergence of two probability
-distributions P and Q." />
 
 
 
@@ -73,7 +71,7 @@ distributions P and Q." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
       </span>
     </div>
 
@@ -136,11 +134,9 @@ distributions P and Q." />
     </div>
 
     <div class="ref-description">
-    <p>This function computes the Kullback-Leibler divergence of two probability
-distributions P and Q.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, test.na <span class='op'>=</span> <span class='cn'>TRUE</span>, unit <span class='op'>=</span> <span class='st'>"log2"</span>, est.prob <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, test.na <span class='op'>=</span> <span class='cn'>TRUE</span>, unit <span class='op'>=</span> <span class='st'>"log2"</span>, est.prob <span class='op'>=</span> <span class='cn'>NULL</span>, epsilon <span class='op'>=</span> <span class='fl'>1e-05</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,71 +157,90 @@ distributions P and Q.</p>
       <th>est.prob</th>
       <td><p>method to estimate probabilities from a count vector. Default: est.prob = NULL.</p></td>
     </tr>
-    </table>
+    <tr>
+      <th>epsilon</th>
+      <td><p>a small value to address cases in the KL computation where division by zero occurs. In
+these cases, x / 0 or 0 / 0 will be replaced by <code>epsilon</code>. The default is <code>epsilon = 0.00001</code>.
+However, we recommend to choose a custom <code>epsilon</code> value depending on the size of the input vectors,
+the expected similarity between compared probability density functions and 
+whether or not many 0 values are present within the compared vectors.
+As a rough rule of thumb we suggest that when dealing with very large 
+input vectors which are very similar and contain many <code>0</code> values,
+the <code>epsilon</code> value should be set even smaller (e.g. <code>epsilon = 0.000000001</code>),
+whereas when vector sizes are small or distributions very divergent then
+higher <code>epsilon</code> values may also be appropriate (e.g. <code>epsilon = 0.01</code>).
+Addressing this <code>epsilon</code> issue is important to avoid cases where distance metrics
+return negative values which are not defined and only occur due to the
+technical issues of computing <code>x / 0</code> or (0 / 0) cases.}
+}
+{
+The Kullback-Leibler divergence of probability vectors.
+}
+{
+This function computes the Kullback-Leibler divergence of two probability
+distributions P and Q.
+}
+{
+$$KL(P||Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)$$
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>The Kullback-Leibler divergence of probability vectors.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>$$KL(P||Q) = \sum P(P) * log2(P(P) / P(Q)) = H(P,Q) - H(P)$$</p>
-<p>where H(P,Q) denotes the joint entropy of the probability
+where H(P,Q) denotes the joint entropy of the probability
 distributions P and Q and H(P) denotes the entropy of
 probability distribution P. In case P = Q then KL(P,Q) = 0 and in case P !=
-Q then KL(P,Q) &gt; 0.</p>
-<p>The KL divergence is a non-symmetric measure of the directed divergence
+Q then KL(P,Q) &gt; 0.
+
+The KL divergence is a non-symmetric measure of the directed divergence
 between two probability distributions P and Q. It only fulfills the
-<em>positivity</em> property of a <em>distance metric</em>.</p>
-<p>Because of the relation KL(P||Q) = H(P,Q) - H(P), the Kullback-Leibler
+<em>positivity</em> property of a <em>distance metric</em>.
+
+Because of the relation KL(P||Q) = H(P,Q) - H(P), the Kullback-Leibler
 divergence of two probability distributions P and Q is also named
-<em>Cross Entropy</em> of two probability distributions P and Q.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+<em>Cross Entropy</em> of two probability distributions P and Q.
+}
+{
 
-    <p>Cover Thomas M. and Thomas Joy A. 2006. Elements of Information
-Theory. <em>John Wiley &amp; Sons</em>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+# Kulback-Leibler Divergence between P and Q
+P &lt;- 1:10/sum(1:10)
+Q &lt;- 20:29/sum(20:29)
+x &lt;- rbind(P,Q)
+KL(x)
 
-    <div class='dont-index'><p><code><a href='H.html'>H</a></code>, <code><a href='CE.html'>CE</a></code>, <code><a href='JSD.html'>JSD</a></code>, <code><a href='gJSD.html'>gJSD</a></code>, <code><a href='distance.html'>distance</a></code></p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+# Kulback-Leibler Divergence between P and Q using different log bases
+KL(x, unit = "log2") # Default
+KL(x, unit = "log")
+KL(x, unit = "log10")
 
-    <p>Hajk-Georg Drost</p>
+# Kulback-Leibler Divergence between count vectors P.count and Q.count
+P.count &lt;- 1:10
+Q.count &lt;- 20:29
+x.count &lt;- rbind(P.count,Q.count)
+KL(x, est.prob = "empirical")
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Kulback-Leibler Divergence between P and Q</span>
-<span class='va'>P</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
-<span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>P</span>,<span class='va'>Q</span><span class='op'>)</span>
-<span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
-#&gt;        0.1392629 </div><div class='input'>
-<span class='co'># Kulback-Leibler Divergence between P and Q using different log bases</span>
-<span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, unit <span class='op'>=</span> <span class='st'>"log2"</span><span class='op'>)</span> <span class='co'># Default</span>
-</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
-#&gt;        0.1392629 </div><div class='input'><span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, unit <span class='op'>=</span> <span class='st'>"log"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
-#&gt;       0.09652967 </div><div class='input'><span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, unit <span class='op'>=</span> <span class='st'>"log10"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log10'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
-#&gt;        0.0419223 </div><div class='input'>
-<span class='co'># Kulback-Leibler Divergence between count vectors P.count and Q.count</span>
-<span class='va'>P.count</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>
-<span class='va'>Q.count</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span>
-<span class='va'>x.count</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>P.count</span>,<span class='va'>Q.count</span><span class='op'>)</span>
-<span class='fu'>KL</span><span class='op'>(</span><span class='va'>x</span>, est.prob <span class='op'>=</span> <span class='st'>"empirical"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; kullback-leibler 
-#&gt;        0.1392629 </div><div class='input'>
-<span class='co'># Example: Distance Matrix using KL-Distance</span>
+# Example: Distance Matrix using KL-Distance
 
-<span class='va'>Prob</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>, <span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span><span class='op'>)</span><span class='op'>)</span>
+Prob &lt;- rbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 
-<span class='co'># compute the KL matrix of a given probability matrix</span>
-<span class='va'>KLMatrix</span> <span class='op'>&lt;-</span> <span class='fu'>KL</span><span class='op'>(</span><span class='va'>Prob</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 3 vectors.</span></div><div class='input'>
-<span class='co'># plot a heatmap of the corresponding KL matrix</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/heatmap.html'>heatmap</a></span><span class='op'>(</span><span class='va'>KLMatrix</span><span class='op'>)</span>
-</div><div class='img'><img src='KL-1.png' alt='' width='700' height='433' /></div><div class='input'>
+# compute the KL matrix of a given probability matrix
+KLMatrix &lt;- KL(Prob)
 
-</div></pre>
+# plot a heatmap of the corresponding KL matrix
+heatmap(KLMatrix)
+
+
+}
+{
+Cover Thomas M. and Thomas Joy A. 2006. Elements of Information
+Theory. <em>John Wiley &amp; Sons</em>.
+}
+{
+<code><a href='H.html'>H</a></code>, <code><a href='CE.html'>CE</a></code>, <code><a href='JSD.html'>JSD</a></code>, <code><a href='gJSD.html'>gJSD</a></code>, <code><a href='distance.html'>distance</a></code>
+}
+{
+Hajk-Georg Drost
+}</p></td>
+    </tr>
+    </table>
+
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

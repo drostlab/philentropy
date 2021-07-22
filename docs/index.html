@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
       </span>
     </div>
 
@@ -131,7 +131,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/drostlab/philentropy">philentropy</a></span><span class="op">)</span>
 <span class="co"># retrieve available distance metrics</span>
-<span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code> [1] "euclidean"         "manhattan"         "minkowski"        
  [4] "chebyshev"         "sorensen"          "gower"            
  [7] "soergel"           "kulczynski_d"      "canberra"         
@@ -159,13 +159,13 @@
 
 <span class="co"># compute the jensen-shannon distance between</span>
 <span class="co"># probability density functions P and Q</span>
-<span class="fu"><a href="reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"jensen-shannon"</span><span class="op">)</span></code></pre></div>
+<span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"jensen-shannon"</span><span class="op">)</span></code></pre></div>
 <pre><code>jensen-shannon using unit 'log'.
 jensen-shannon 
     0.02628933</code></pre>
-<p>Alternatively, users can also retrieve values from all available distance/similarity metrics using <code><a href="reference/dist.diversity.html">dist.diversity()</a></code>:</p>
+<p>Alternatively, users can also retrieve values from all available distance/similarity metrics using <code><a href="reference/dist.diversity.html">philentropy::dist.diversity()</a></code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">2</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">2</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></code></pre></div>
 <pre><code>        euclidean         manhattan 
        0.12807130        0.35250464 
         minkowski         chebyshev 
@@ -269,6 +269,9 @@ jensen_difference            taneja
 <a href="#studies-that-successfully-applied-the-philentropy-package" class="anchor"></a>Studies that successfully applied the <code>philentropy</code> package</h3>
 <blockquote>
 <ul>
+<li><p><strong>High-content single-cell combinatorial indexing</strong> R Mulqueen et al. - <strong>Nature Biotechnology</strong>, 2021</p></li>
+<li><p><strong>Extinction at the end-Cretaceous and the origin of modern Neotropical rainforests</strong> MR Carvalho, C Jaramillo et al. - <strong>Science</strong>, 2021</p></li>
+<li><p><strong>The genetic architecture of temperature adaptation is shaped by population ancestry and not by selection regime</strong> KA Otte, V Nolte, F Mallard et al. - <strong>Genome Biology</strong>, 2021</p></li>
 <li><p><strong>Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation</strong> A Subramanian et al. - <strong>Nature Communications</strong>, 2019</p></li>
 <li><p><strong>Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche</strong> C Coupé, YM Oh, D Dediu, F Pellegrino - <strong>Science Advances</strong>, 2019</p></li>
 <li><p><strong>Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge</strong> A Sinha et al. - <strong>eLife</strong>, 2019</p></li>
@@ -304,6 +307,7 @@ jensen_difference            taneja
 <li><p><strong>Identifying inhibitors of epithelial–mesenchymal plasticity using a network topology-based approach</strong> K Hari et al. - <strong>NPJ systems biology and applications</strong>, 2020</p></li>
 <li><p><strong>Genetic differentiation and intrinsic genomic features explain variation in recombination hotspots among cocoa tree populations</strong> EJ Schwarzkopf et al. - <strong>BMC Genomics</strong>, 2020</p></li>
 </ul>
+<p><strong>Enhancing Card Sorting Dendrograms through the Holistic Analysis of Distance Methods and Linkage Criteria.</strong> JA Macías - <strong>Journal of Usability Studies</strong>, 2021</p>
 </blockquote>
 </div>
 </div>

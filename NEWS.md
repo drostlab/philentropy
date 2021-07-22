@@ -2,6 +2,10 @@
 
 ### New Features
 
+- `distance()` and all other individual information theory functions
+receive a new argument `epsilon` with default value `epsilon = 0.00001` to treat cases where in individual distance or similarity computations 
+yield `x / 0` or `0 / 0`. Instead of a hard coded epsilon, users can now set `epsilon` according to their input vectors. (Many thanks to Joshua McNeill #26 for this great question). 
+
 ### Updates
 - `dplyr` package dependency was removed and replaced by the `poorman`
 due to the heavy dependency burden of `dplyr`, since `philentropy`
