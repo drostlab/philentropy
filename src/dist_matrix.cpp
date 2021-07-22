@@ -132,7 +132,7 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Funct
 
 // @export
 // [[Rcpp::export]]
-double single_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& dist_fun, bool testNA, Rcpp::String unit){
+double single_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& dist_fun, const bool& testNA, const Rcpp::String& unit){
         double dist_value;
         if (dist_fun == "euclidean"){
                 dist_value = euclidean(P, Q, testNA);
@@ -163,16 +163,14 @@ Rcpp::NumericMatrix dist_many_many(Rcpp::NumericMatrix dists1, Rcpp::NumericMatr
         double dist_value = 0.0;
         
         Rcpp::NumericMatrix dist_matrix(nrows1,nrows2);
-        std::fill(dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na());
-        
+        // std::fill(dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na());
         
         for (int i = 0; i < nrows1; i++){
                 for (int j = 0; j < nrows2; j++){
-                        if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
+                        // if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
                                 dist_value = single_distance(dists1(i, Rcpp::_), dists2(j, Rcpp::_), dist_fun, testNA, unit);
                                 dist_matrix(i,j) = dist_value;
-                                dist_matrix(j,i) = dist_value;
-                        }
+                        // }
                 }
         }
         return dist_matrix;
