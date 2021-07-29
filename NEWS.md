@@ -10,6 +10,23 @@ yield `x / 0` or `0 / 0`. Instead of a hard coded epsilon, users can now set `ep
 - `dplyr` package dependency was removed and replaced by the `poorman`
 due to the heavy dependency burden of `dplyr`, since `philentropy`
 only used `dplyr::between()` which is now `poorman::between()` (Many thanks to Patrice Kiener for this suggestion)
+- `distance(..., as.dist.obj = TRUE)` now returns the same values as `stats::dist()` when working with 2 dimensional input matrices (2 vector inputs) (see #29) (Many thanks to 
+Jakub Nowosad (@Nowosad))
+Example:
+
+```r
+library(philentropy)
+
+m1 = matrix(c(1, 2), ncol = 1)
+
+dist(m1)
+#> 1
+#> 2 1
+distance(m1, as.dist.obj = TRUE)
+#> Metric: 'euclidean'; comparing: 2 vectors.
+#> 1
+#> 2 1
+```
 
 
 ## Version 0.5.0

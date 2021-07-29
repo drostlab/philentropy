@@ -966,7 +966,11 @@ distance <- function(x ,
     return(dist)
   
   if (as.dist.obj) {
-    dist <- stats::as.dist(dist, diag = diag, upper = upper)
+    if (ncols == 2) {
+      dist <- stats::as.dist(matrix(c(0, dist, dist, 0), nrow = 2), diag = diag, upper = upper)
+    } else {
+      dist <- stats::as.dist(dist, diag = diag, upper = upper)
+    }
     attr(dist, "method") <- method
     return(dist)
   }
