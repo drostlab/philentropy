@@ -278,7 +278,7 @@ K Hari et al. - __NPJ systems biology and applications__, 2020
 > - __Genetic differentiation and intrinsic genomic features explain variation in recombination hotspots among cocoa tree populations__
 EJ Schwarzkopf et al. - __BMC Genomics__, 2020
 >
-> __Enhancing Card Sorting Dendrograms through the Holistic Analysis of Distance Methods and Linkage Criteria.__ JA Macías - __Journal of Usability Studies__, 2021
+> - __Enhancing Card Sorting Dendrograms through the Holistic Analysis of Distance Methods and Linkage Criteria.__ JA Macías - __Journal of Usability Studies__, 2021
 >
 
 
