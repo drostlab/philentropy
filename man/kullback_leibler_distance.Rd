@@ -24,7 +24,8 @@ kullback_leibler_distance(P, Q, testNA, unit, epsilon)
 The lowlevel function for computing the kullback_leibler_distance distance.
 }
 \examples{
-kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+ unit = "log2", epsilon = 0.00001)
 }
 \author{
 Hajk-Georg Drost

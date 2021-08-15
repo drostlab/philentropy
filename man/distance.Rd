@@ -42,7 +42,7 @@ whereas when vector sizes are small or distributions very divergent then
 higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
 Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
 return negative values which are not defined and only occur due to the
-technical issues of computing \code{x / 0} or \code(0 / 0) cases.}
+technical issues of computing x / 0 or 0 / 0 cases.}
 
 \item{est.prob}{method to estimate probabilities from input count vectors such as non-probability vectors. Default: \code{est.prob = NULL}. Options are:
 \itemize{

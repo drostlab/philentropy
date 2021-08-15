@@ -17,7 +17,8 @@ kumar_johnson(P, Q, testNA, epsilon)
 The lowlevel function for computing the kumar_johnson distance.
 }
 \examples{
-kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+ testNA = FALSE, epsilon = 0.00001)
 }
 \author{
 Hajk-Georg Drost

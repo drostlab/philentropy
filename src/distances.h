@@ -368,7 +368,8 @@ double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 //' @author Hajk-Georg Drost
 //' @examples
-//' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+//' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+//'     testNA = FALSE, epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon){
@@ -1074,7 +1075,8 @@ double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 //' }
 //' @author Hajk-Georg Drost
 //' @examples
-//' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+//' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+//'  unit = "log2", epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon){
@@ -1227,7 +1229,8 @@ double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 //' @author Hajk-Georg Drost
 //' @examples
-//' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+//' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+//'  testNA = FALSE, epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon){
@@ -1282,7 +1285,8 @@ double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 //' @author Hajk-Georg Drost
 //' @examples
-//' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+//' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+//'  testNA = FALSE, epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon){
@@ -1543,7 +1547,8 @@ double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVec
 //' }
 //' @author Hajk-Georg Drost
 //' @examples
-//' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+//' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+//'  unit = "log2", epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon){
@@ -1662,7 +1667,8 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
 //' }
 //' @author Hajk-Georg Drost
 //' @examples
-//' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+//' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+//'  unit = "log2", epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon){
@@ -2346,7 +2352,8 @@ double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 //' }
 //' @author Hajk-Georg Drost
 //' @examples
-//' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+//' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+//'  unit = "log2", epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon){
@@ -2467,7 +2474,8 @@ double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 //' @author Hajk-Georg Drost
 //' @examples
-//' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+//' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+//'  testNA = FALSE, epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon){

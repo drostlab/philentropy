@@ -171,7 +171,8 @@ soergel <- function(P, Q, testNA) {
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 #' @author Hajk-Georg Drost
 #' @examples
-#' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+#' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+#'     testNA = FALSE, epsilon = 0.00001)
 #' @export
 kulczynski_d <- function(P, Q, testNA, epsilon) {
     .Call(`_philentropy_kulczynski_d`, P, Q, testNA, epsilon)
@@ -391,7 +392,8 @@ fidelity <- function(P, Q, testNA) {
 #' }
 #' @author Hajk-Georg Drost
 #' @examples
-#' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+#' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+#'  unit = "log2", epsilon = 0.00001)
 #' @export
 bhattacharyya <- function(P, Q, testNA, unit, epsilon) {
     .Call(`_philentropy_bhattacharyya`, P, Q, testNA, unit, epsilon)
@@ -456,7 +458,8 @@ squared_euclidean <- function(P, Q, testNA) {
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 #' @author Hajk-Georg Drost
 #' @examples
-#' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+#' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+#'  testNA = FALSE, epsilon = 0.00001)
 #' @export
 pearson_chi_sq <- function(P, Q, testNA, epsilon) {
     .Call(`_philentropy_pearson_chi_sq`, P, Q, testNA, epsilon)
@@ -469,7 +472,8 @@ pearson_chi_sq <- function(P, Q, testNA, epsilon) {
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 #' @author Hajk-Georg Drost
 #' @examples
-#' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+#' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+#'  testNA = FALSE, epsilon = 0.00001)
 #' @export
 neyman_chi_sq <- function(P, Q, testNA, epsilon) {
     .Call(`_philentropy_neyman_chi_sq`, P, Q, testNA, epsilon)
@@ -553,7 +557,8 @@ additive_symm_chi_sq <- function(P, Q, testNA) {
 #' }
 #' @author Hajk-Georg Drost
 #' @examples
-#' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+#' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+#'  unit = "log2", epsilon = 0.00001)
 #' @export
 kullback_leibler_distance <- function(P, Q, testNA, unit, epsilon) {
     .Call(`_philentropy_kullback_leibler_distance`, P, Q, testNA, unit, epsilon)
@@ -572,7 +577,8 @@ kullback_leibler_distance <- function(P, Q, testNA, unit, epsilon) {
 #' }
 #' @author Hajk-Georg Drost
 #' @examples
-#' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+#' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+#'  unit = "log2", epsilon = 0.00001)
 #' @export
 jeffreys <- function(P, Q, testNA, unit, epsilon) {
     .Call(`_philentropy_jeffreys`, P, Q, testNA, unit, epsilon)
@@ -667,7 +673,8 @@ jensen_difference <- function(P, Q, testNA, unit) {
 #' }
 #' @author Hajk-Georg Drost
 #' @examples
-#' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+#' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+#'  unit = "log2", epsilon = 0.00001)
 #' @export
 taneja <- function(P, Q, testNA, unit, epsilon) {
     .Call(`_philentropy_taneja`, P, Q, testNA, unit, epsilon)
@@ -680,7 +687,8 @@ taneja <- function(P, Q, testNA, unit, epsilon) {
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 #' @author Hajk-Georg Drost
 #' @examples
-#' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+#' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+#'  testNA = FALSE, epsilon = 0.00001)
 #' @export
 kumar_johnson <- function(P, Q, testNA, epsilon) {
     .Call(`_philentropy_kumar_johnson`, P, Q, testNA, epsilon)

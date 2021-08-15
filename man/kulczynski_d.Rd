@@ -17,7 +17,8 @@ kulczynski_d(P, Q, testNA, epsilon)
 The lowlevel function for computing the kulczynski_d distance.
 }
 \examples{
-kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+    testNA = FALSE, epsilon = 0.00001)
 }
 \author{
 Hajk-Georg Drost

@@ -24,7 +24,8 @@ bhattacharyya(P, Q, testNA, unit, epsilon)
 The lowlevel function for computing the bhattacharyya distance.
 }
 \examples{
-bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+ unit = "log2", epsilon = 0.00001)
 }
 \author{
 Hajk-Georg Drost

@@ -50,7 +50,7 @@
 #' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
 #' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
 #' return negative values which are not defined and only occur due to the
-#' technical issues of computing \code{x / 0} or \code(0 / 0) cases. 
+#' technical issues of computing x / 0 or 0 / 0 cases. 
 #' @return The Kullback-Leibler divergence of probability vectors.
 #' @author Hajk-Georg Drost
 #' @seealso

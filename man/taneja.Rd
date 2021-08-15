@@ -24,7 +24,8 @@ taneja(P, Q, testNA, unit, epsilon)
 The lowlevel function for computing the taneja distance.
 }
 \examples{
-taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+ unit = "log2", epsilon = 0.00001)
 }
 \author{
 Hajk-Georg Drost
