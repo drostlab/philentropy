@@ -130,7 +130,7 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Funct
         return dist_matrix;
 }
 
-// @export
+//' @export
 // [[Rcpp::export]]
 double single_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& dist_fun, const bool& testNA, const Rcpp::String& unit){
         double dist_value;
@@ -138,11 +138,13 @@ double single_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& 
                 dist_value = euclidean(P, Q, testNA);
         } else if (dist_fun == "jensen_shannon"){
                 dist_value = jensen_shannon(P, Q, testNA, unit);
+        } else if (dist_fun == "gower"){
+                dist_value = gower(P, Q, testNA);
         }
         return dist_value;
 }
 
-// @export
+//' @export
 // [[Rcpp::export]]
 Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMatrix dists, Rcpp::String dist_fun, bool testNA, Rcpp::String unit){
         
@@ -155,7 +157,7 @@ Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMat
         return dist_values;
 }
 
-// @export
+//' @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix dist_many_many(Rcpp::NumericMatrix dists1, Rcpp::NumericMatrix dists2, Rcpp::String dist_fun, bool testNA, Rcpp::String unit){
         int nrows1 = dists1.nrow();
