@@ -130,36 +130,125 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Funct
         return dist_matrix;
 }
 
+
 //' @export
 // [[Rcpp::export]]
-double single_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& dist_fun, const bool& testNA, const Rcpp::String& unit){
+double dist_one_one(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& dist_fun, const double& p = NA_REAL, const bool& testNA = true, const Rcpp::String& unit = "log", const double& epsilon = 0.00001){
         double dist_value;
         if (dist_fun == "euclidean"){
                 dist_value = euclidean(P, Q, testNA);
-        } else if (dist_fun == "jensen_shannon"){
-                dist_value = jensen_shannon(P, Q, testNA, unit);
-        } else if (dist_fun == "gower"){
+        } else if (dist_fun == "manhattan") {
+                dist_value = manhattan(P, Q, testNA);
+        } else if (dist_fun == "minkowski") {
+                dist_value = minkowski(P, Q, p, testNA);
+        } else if (dist_fun == "chebyshev") {
+                dist_value = chebyshev(P, Q, testNA);
+        } else if (dist_fun == "sorensen") {
+                dist_value = sorensen(P, Q, testNA);
+        } else if (dist_fun == "gower") {
                 dist_value = gower(P, Q, testNA);
+        } else if (dist_fun == "soergel") {
+                dist_value = soergel(P, Q, testNA);
+        } else if (dist_fun == "kulczynski_d") {
+                dist_value = kulczynski_d(P, Q, testNA, epsilon);
+        } else if (dist_fun == "canberra") {
+                dist_value = canberra(P, Q, testNA);
+        } else if (dist_fun == "lorentzian") {
+                dist_value = lorentzian(P, Q, testNA, unit);
+        } else if (dist_fun == "intersection") {
+                dist_value = intersection_dist(P, Q, testNA);
+        } else if (dist_fun == "non-intersection") {
+                dist_value = 1.0 - intersection_dist(P, Q, testNA);
+        } else if (dist_fun == "wavehedges") {
+                dist_value = wave_hedges(P, Q, testNA);
+        } else if (dist_fun == "czekanowski") {
+                dist_value = czekanowski(P, Q, testNA);
+        } else if (dist_fun == "motyka") {
+                dist_value = motyka(P, Q, testNA);
+        } else if (dist_fun == "kulczynski_s") {
+                dist_value = 1.0 / kulczynski_d(P, Q, testNA, epsilon);
+        } else if (dist_fun == "tanimoto") {
+                dist_value = tanimoto(P, Q, testNA);
+        } else if (dist_fun == "ruzicka") {
+                dist_value = ruzicka(P, Q, testNA);
+        } else if (dist_fun == "inner_product") {
+                dist_value = inner_product(P, Q, testNA);
+        } else if (dist_fun == "harmonic_mean") {
+                dist_value = harmonic_mean_dist(P, Q, testNA);
+        } else if (dist_fun == "cosine") {
+                dist_value = cosine_dist(P, Q, testNA);
+        } else if (dist_fun == "hassebrook") {
+                dist_value = kumar_hassebrook(P, Q, testNA);
+        } else if (dist_fun == "jaccard") {
+                dist_value = jaccard(P, Q, testNA);
+        } else if (dist_fun == "dice") {
+                dist_value = dice_dist(P, Q, testNA);
+        } else if (dist_fun == "fidelity") {
+                dist_value = fidelity(P, Q, testNA);
+        } else if (dist_fun == "bhattacharyya") {
+                dist_value = bhattacharyya(P, Q, testNA, unit, epsilon);
+        } else if (dist_fun == "hellinger") {
+                dist_value = hellinger(P, Q, testNA);
+        } else if (dist_fun == "matusita") {
+                dist_value = matusita(P, Q, testNA);
+        } else if (dist_fun == "squared_chord") {
+                dist_value = squared_chord(P, Q, testNA);
+        } else if (dist_fun == "squared_euclidean") {
+                dist_value = squared_euclidean(P, Q, testNA);
+        } else if (dist_fun == "pearson") {
+                dist_value = pearson_chi_sq(P, Q, testNA, epsilon);
+        } else if (dist_fun == "neyman") {
+                dist_value = neyman_chi_sq(P, Q, testNA, epsilon);
+        } else if (dist_fun == "squared_chi") {
+                dist_value = squared_chi_sq(P, Q, testNA);
+        } else if (dist_fun == "prob_symm") {
+                dist_value = prob_symm_chi_sq(P, Q, testNA);
+        } else if (dist_fun == "divergence") {
+                dist_value = divergence_sq(P, Q, testNA);
+        } else if (dist_fun == "clark") {
+                dist_value = clark_sq(P, Q, testNA);
+        } else if (dist_fun == "additive_symm") {
+                dist_value = additive_symm_chi_sq(P, Q, testNA);
+        } else if (dist_fun == "kullback-leibler") {
+                dist_value = kullback_leibler_distance(P, Q, testNA, unit, epsilon);
+        } else if (dist_fun == "jeffreys") {
+                dist_value = jeffreys(P, Q, testNA, unit, epsilon);
+        } else if (dist_fun == "k_divergence") {
+                dist_value = k_divergence(P, Q, testNA, unit);
+        } else if (dist_fun == "topsoe") {
+                dist_value = topsoe(P, Q, testNA, unit);
+        } else if (dist_fun == "jensen_shannon"){
+                dist_value = jensen_shannon(P, Q, testNA, unit); 
+        } else if (dist_fun == "jensen_difference") {
+                dist_value = jensen_difference(P, Q, testNA, unit);
+        } else if (dist_fun == "taneja") {
+                dist_value = taneja(P, Q, testNA, unit, epsilon);
+        } else if (dist_fun == "kumar-johnson") {
+                dist_value = kumar_johnson(P, Q, testNA, epsilon);
+        } else if (dist_fun == "avg") {
+                dist_value = avg(P, Q, testNA);
+        } else {
+                Rcpp::stop("Specified dist_fun is not implemented. Please consult getDistMethods().");
         }
         return dist_value;
 }
 
 //' @export
 // [[Rcpp::export]]
-Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMatrix dists, Rcpp::String dist_fun, bool testNA, Rcpp::String unit){
+Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMatrix dists, Rcpp::String dist_fun, double p, bool testNA, Rcpp::String unit, double epsilon){
         
         int nrows = dists.nrow();
         Rcpp::NumericVector dist_values(nrows);
         
         for (int i = 0; i < nrows; i++){
-                dist_values[i] = single_distance(P, dists(i, Rcpp::_), dist_fun, testNA, unit);
+                dist_values[i] = dist_one_one(P, dists(i, Rcpp::_), dist_fun, p, testNA, unit);
         }
         return dist_values;
 }
 
 //' @export
 // [[Rcpp::export]]
-Rcpp::NumericMatrix dist_many_many(Rcpp::NumericMatrix dists1, Rcpp::NumericMatrix dists2, Rcpp::String dist_fun, bool testNA, Rcpp::String unit){
+Rcpp::NumericMatrix dist_many_many(Rcpp::NumericMatrix dists1, Rcpp::NumericMatrix dists2, Rcpp::String dist_fun, double p, bool testNA, Rcpp::String unit, double epsilon){
         int nrows1 = dists1.nrow();
         int nrows2 = dists2.nrow();
         double dist_value = 0.0;
@@ -170,8 +259,8 @@ Rcpp::NumericMatrix dist_many_many(Rcpp::NumericMatrix dists1, Rcpp::NumericMatr
         for (int i = 0; i < nrows1; i++){
                 for (int j = 0; j < nrows2; j++){
                         // if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
-                                dist_value = single_distance(dists1(i, Rcpp::_), dists2(j, Rcpp::_), dist_fun, testNA, unit);
-                                dist_matrix(i,j) = dist_value;
+                        dist_value = dist_one_one(dists1(i, Rcpp::_), dists2(j, Rcpp::_), dist_fun, p, testNA, unit);
+                        dist_matrix(i,j) = dist_value;
                         // }
                 }
         }

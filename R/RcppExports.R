@@ -50,18 +50,18 @@ DistMatrixWithUnitMAT <- function(dists, DistFunc, testNA, unit) {
 }
 
 #' @export
-single_distance <- function(P, Q, dist_fun, testNA, unit) {
-    .Call(`_philentropy_single_distance`, P, Q, dist_fun, testNA, unit)
+dist_one_one <- function(P, Q, dist_fun, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
+    .Call(`_philentropy_dist_one_one`, P, Q, dist_fun, p, testNA, unit, epsilon)
 }
 
 #' @export
-dist_one_many <- function(P, dists, dist_fun, testNA, unit) {
-    .Call(`_philentropy_dist_one_many`, P, dists, dist_fun, testNA, unit)
+dist_one_many <- function(P, dists, dist_fun, p, testNA, unit, epsilon) {
+    .Call(`_philentropy_dist_one_many`, P, dists, dist_fun, p, testNA, unit, epsilon)
 }
 
 #' @export
-dist_many_many <- function(dists1, dists2, dist_fun, testNA, unit) {
-    .Call(`_philentropy_dist_many_many`, dists1, dists2, dist_fun, testNA, unit)
+dist_many_many <- function(dists1, dists2, dist_fun, p, testNA, unit, epsilon) {
+    .Call(`_philentropy_dist_many_many`, dists1, dists2, dist_fun, p, testNA, unit, epsilon)
 }
 
 custom_log2 <- function(x) {
