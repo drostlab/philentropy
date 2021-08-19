@@ -130,7 +130,33 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Funct
         return dist_matrix;
 }
 
-
+//' @title Distances and Similarities between Two Probability Density Functions
+//' @description This functions computes the distance/dissimilarity between two probability density functions.
+//' @param P a numeric vector storing the first distribution.
+//' @param Q a numeric vector storing the second distribution.
+//' @param dist_fun a character string indicating whether the distance measure that should be computed.
+//' @param p power of the Minkowski distance.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
+//' @return A single distance value
 //' @export
 // [[Rcpp::export]]
 double dist_one_one(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& dist_fun, const double& p = NA_REAL, const bool& testNA = true, const Rcpp::String& unit = "log", const double& epsilon = 0.00001){
@@ -233,6 +259,33 @@ double dist_one_one(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
         return dist_value;
 }
 
+//' @title Distances and Similarities between One and Many Probability Density Functions
+//' @description This functions computes the distance/dissimilarity between one probability density functions and a set of probability density functions.
+//' @param P a numeric vector storing the first distribution.
+//' @param dists a numeric matrix storing distributions in its rows.
+//' @param dist_fun a character string indicating whether the distance measure that should be computed.
+//' @param p power of the Minkowski distance.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
+//' @return A vector of distance values
 //' @export
 // [[Rcpp::export]]
 Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMatrix dists, Rcpp::String dist_fun, double p, bool testNA, Rcpp::String unit, double epsilon){
@@ -246,6 +299,33 @@ Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMat
         return dist_values;
 }
 
+//' @title Distances and Similarities between Many Probability Density Functions
+//' @description This functions computes the distance/dissimilarity between two sets of probability density functions.
+//' @param dists1 a numeric matrix storing distributions in its rows.
+//' @param dists2 a numeric matrix storing distributions in its rows.
+//' @param dist_fun a character string indicating whether the distance measure that should be computed.
+//' @param p power of the Minkowski distance.
+//' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param unit type of \code{log} function. Option are 
+//' \itemize{
+//' \item \code{unit = "log"}
+//' \item \code{unit = "log2"}
+//' \item \code{unit = "log10"}   
+//' }
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
+//' @return A matrix of distance values
 //' @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix dist_many_many(Rcpp::NumericMatrix dists1, Rcpp::NumericMatrix dists2, Rcpp::String dist_fun, double p, bool testNA, Rcpp::String unit, double epsilon){

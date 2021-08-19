@@ -49,16 +49,97 @@ DistMatrixWithUnitMAT <- function(dists, DistFunc, testNA, unit) {
     .Call(`_philentropy_DistMatrixWithUnitMAT`, dists, DistFunc, testNA, unit)
 }
 
+#' @title Distances and Similarities between Two Probability Density Functions
+#' @description This functions computes the distance/dissimilarity between two probability density functions.
+#' @param P a numeric vector storing the first distribution.
+#' @param Q a numeric vector storing the second distribution.
+#' @param dist_fun a character string indicating whether the distance measure that should be computed.
+#' @param p power of the Minkowski distance.
+#' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+#' @param unit type of \code{log} function. Option are 
+#' \itemize{
+#' \item \code{unit = "log"}
+#' \item \code{unit = "log2"}
+#' \item \code{unit = "log10"}   
+#' }
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
+#' @return A single distance value
 #' @export
 dist_one_one <- function(P, Q, dist_fun, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_dist_one_one`, P, Q, dist_fun, p, testNA, unit, epsilon)
 }
 
+#' @title Distances and Similarities between One and Many Probability Density Functions
+#' @description This functions computes the distance/dissimilarity between one probability density functions and a set of probability density functions.
+#' @param P a numeric vector storing the first distribution.
+#' @param dists a numeric matrix storing distributions in its rows.
+#' @param dist_fun a character string indicating whether the distance measure that should be computed.
+#' @param p power of the Minkowski distance.
+#' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+#' @param unit type of \code{log} function. Option are 
+#' \itemize{
+#' \item \code{unit = "log"}
+#' \item \code{unit = "log2"}
+#' \item \code{unit = "log10"}   
+#' }
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
+#' @return A vector of distance values
 #' @export
 dist_one_many <- function(P, dists, dist_fun, p, testNA, unit, epsilon) {
     .Call(`_philentropy_dist_one_many`, P, dists, dist_fun, p, testNA, unit, epsilon)
 }
 
+#' @title Distances and Similarities between Many Probability Density Functions
+#' @description This functions computes the distance/dissimilarity between two sets of probability density functions.
+#' @param dists1 a numeric matrix storing distributions in its rows.
+#' @param dists2 a numeric matrix storing distributions in its rows.
+#' @param dist_fun a character string indicating whether the distance measure that should be computed.
+#' @param p power of the Minkowski distance.
+#' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+#' @param unit type of \code{log} function. Option are 
+#' \itemize{
+#' \item \code{unit = "log"}
+#' \item \code{unit = "log2"}
+#' \item \code{unit = "log10"}   
+#' }
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
+#' @return A matrix of distance values
 #' @export
 dist_many_many <- function(dists1, dists2, dist_fun, p, testNA, unit, epsilon) {
     .Call(`_philentropy_dist_many_many`, dists1, dists2, dist_fun, p, testNA, unit, epsilon)
@@ -169,6 +250,19 @@ soergel <- function(P, Q, testNA) {
 #' @param P a numeric vector storing the first distribution.
 #' @param Q a numeric vector storing the second distribution.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' @author Hajk-Georg Drost
 #' @examples
 #' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
@@ -385,11 +479,37 @@ fidelity <- function(P, Q, testNA) {
 #' @param Q a numeric vector storing the second distribution.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 #' @param unit type of \code{log} function. Option are 
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' \itemize{
 #' \item \code{unit = "log"}
 #' \item \code{unit = "log2"}
 #' \item \code{unit = "log10"}   
 #' }
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' @author Hajk-Georg Drost
 #' @examples
 #' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
@@ -456,6 +576,19 @@ squared_euclidean <- function(P, Q, testNA) {
 #' @param P a numeric vector storing the first distribution.
 #' @param Q a numeric vector storing the second distribution.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' @author Hajk-Georg Drost
 #' @examples
 #' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
@@ -470,6 +603,19 @@ pearson_chi_sq <- function(P, Q, testNA, epsilon) {
 #' @param P a numeric vector storing the first distribution.
 #' @param Q a numeric vector storing the second distribution.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' @author Hajk-Georg Drost
 #' @examples
 #' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
@@ -555,6 +701,19 @@ additive_symm_chi_sq <- function(P, Q, testNA) {
 #' \item \code{unit = "log2"}
 #' \item \code{unit = "log10"}   
 #' }
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' @author Hajk-Georg Drost
 #' @examples
 #' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
@@ -575,6 +734,19 @@ kullback_leibler_distance <- function(P, Q, testNA, unit, epsilon) {
 #' \item \code{unit = "log2"}
 #' \item \code{unit = "log10"}   
 #' }
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' @author Hajk-Georg Drost
 #' @examples
 #' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
@@ -671,6 +843,19 @@ jensen_difference <- function(P, Q, testNA, unit) {
 #' \item \code{unit = "log2"}
 #' \item \code{unit = "log10"}   
 #' }
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' @author Hajk-Georg Drost
 #' @examples
 #' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
@@ -685,6 +870,19 @@ taneja <- function(P, Q, testNA, unit, epsilon) {
 #' @param P a numeric vector storing the first distribution.
 #' @param Q a numeric vector storing the second distribution.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+#' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+#' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+#' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+#' the expected similarity between compared probability density functions and 
+#' whether or not many 0 values are present within the compared vectors.
+#' As a rough rule of thumb we suggest that when dealing with very large 
+#' input vectors which are very similar and contain many \code{0} values,
+#' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+#' whereas when vector sizes are small or distributions very divergent then
+#' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+#' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+#' return negative values which are not defined and only occur due to the
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' @author Hajk-Georg Drost
 #' @examples
 #' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
