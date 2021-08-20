@@ -52,3 +52,9 @@ A vector of distance values
 \description{
 This functions computes the distance/dissimilarity between one probability density functions and a set of probability density functions.
 }
+\examples{
+set.seed(2020-08-20)
+P <- 1:10 / sum(1:10)
+M <- t(replicate(100, sample(1:10, size = 10) / 55))
+dist_one_many(P, M, method = "euclidean", testNA = FALSE)
+}

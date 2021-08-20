@@ -52,3 +52,9 @@ A matrix of distance values
 \description{
 This functions computes the distance/dissimilarity between two sets of probability density functions.
 }
+\examples{
+  set.seed(2020-08-20)
+  M1 <- t(replicate(10, sample(1:10, size = 10) / 55))
+  M2 <- t(replicate(10, sample(1:10, size = 10) / 55))
+  result <- dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)
+}

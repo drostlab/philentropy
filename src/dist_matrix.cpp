@@ -157,6 +157,10 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Funct
 //' return negative values which are not defined and only occur due to the
 //' technical issues of computing x / 0 or 0 / 0 cases.
 //' @return A single distance value
+//' @examples
+//' P <- 1:10 / sum(1:10)
+//' Q <- 20:29 / sum(20:29)
+//' dist_one_one(P, Q, method = "euclidean", testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 double dist_one_one(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& method, const double& p = NA_REAL, const bool& testNA = true, const Rcpp::String& unit = "log", const double& epsilon = 0.00001){
@@ -286,6 +290,11 @@ double dist_one_one(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
 //' return negative values which are not defined and only occur due to the
 //' technical issues of computing x / 0 or 0 / 0 cases.
 //' @return A vector of distance values
+//' @examples
+//' set.seed(2020-08-20)
+//' P <- 1:10 / sum(1:10)
+//' M <- t(replicate(100, sample(1:10, size = 10) / 55))
+//' dist_one_many(P, M, method = "euclidean", testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMatrix dists, Rcpp::String method, double p = NA_REAL, bool testNA = true, Rcpp::String unit = "log", double epsilon = 0.00001){
@@ -326,6 +335,11 @@ Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMat
 //' return negative values which are not defined and only occur due to the
 //' technical issues of computing x / 0 or 0 / 0 cases.
 //' @return A matrix of distance values
+//' @examples 
+//'   set.seed(2020-08-20)
+//'   M1 <- t(replicate(10, sample(1:10, size = 10) / 55))
+//'   M2 <- t(replicate(10, sample(1:10, size = 10) / 55))
+//'   result <- dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix dist_many_many(Rcpp::NumericMatrix dists1, Rcpp::NumericMatrix dists2, Rcpp::String method, double p = NA_REAL, bool testNA = true, Rcpp::String unit = "log", double epsilon = 0.00001){

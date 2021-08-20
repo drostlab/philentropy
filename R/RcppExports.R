@@ -76,6 +76,10 @@ DistMatrixWithUnitMAT <- function(dists, DistFunc, testNA, unit) {
 #' return negative values which are not defined and only occur due to the
 #' technical issues of computing x / 0 or 0 / 0 cases.
 #' @return A single distance value
+#' @examples
+#' P <- 1:10 / sum(1:10)
+#' Q <- 20:29 / sum(20:29)
+#' dist_one_one(P, Q, method = "euclidean", testNA = FALSE)
 #' @export
 dist_one_one <- function(P, Q, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_dist_one_one`, P, Q, method, p, testNA, unit, epsilon)
@@ -108,6 +112,11 @@ dist_one_one <- function(P, Q, method, p = NA_real_, testNA = TRUE, unit = "log"
 #' return negative values which are not defined and only occur due to the
 #' technical issues of computing x / 0 or 0 / 0 cases.
 #' @return A vector of distance values
+#' @examples
+#' set.seed(2020-08-20)
+#' P <- 1:10 / sum(1:10)
+#' M <- t(replicate(100, sample(1:10, size = 10) / 55))
+#' dist_one_many(P, M, method = "euclidean", testNA = FALSE)
 #' @export
 dist_one_many <- function(P, dists, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_dist_one_many`, P, dists, method, p, testNA, unit, epsilon)
@@ -140,6 +149,11 @@ dist_one_many <- function(P, dists, method, p = NA_real_, testNA = TRUE, unit = 
 #' return negative values which are not defined and only occur due to the
 #' technical issues of computing x / 0 or 0 / 0 cases.
 #' @return A matrix of distance values
+#' @examples 
+#'   set.seed(2020-08-20)
+#'   M1 <- t(replicate(10, sample(1:10, size = 10) / 55))
+#'   M2 <- t(replicate(10, sample(1:10, size = 10) / 55))
+#'   result <- dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)
 #' @export
 dist_many_many <- function(dists1, dists2, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_dist_many_many`, dists1, dists2, method, p, testNA, unit, epsilon)

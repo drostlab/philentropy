@@ -52,3 +52,8 @@ A single distance value
 \description{
 This functions computes the distance/dissimilarity between two probability density functions.
 }
+\examples{
+P <- 1:10 / sum(1:10)
+Q <- 20:29 / sum(20:29)
+dist_one_one(P, Q, method = "euclidean", testNA = FALSE)
+}
