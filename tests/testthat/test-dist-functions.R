@@ -1,4 +1,4 @@
-context("Test dist_one_one, dist_one_many, dist_many_many ...")
+context("Test implementation of dist_one_one(), dist_one_many(), and dist_many_many() ...")
 
 set.seed(2020-08-20)
 P <- 1:10 / sum(1:10)
