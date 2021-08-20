@@ -366,9 +366,23 @@ double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
 //' @param P a numeric vector storing the first distribution.
 //' @param Q a numeric vector storing the second distribution.
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
 //' @author Hajk-Georg Drost
 //' @examples
-//' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+//' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+//'     testNA = FALSE, epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon){
@@ -1067,14 +1081,41 @@ double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 //' @param Q a numeric vector storing the second distribution.
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 //' @param unit type of \code{log} function. Option are 
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
 //' \itemize{
 //' \item \code{unit = "log"}
 //' \item \code{unit = "log2"}
 //' \item \code{unit = "log10"}   
 //' }
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
 //' @author Hajk-Georg Drost
 //' @examples
-//' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+//' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+//'  unit = "log2", epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double bhattacharyya(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon){
@@ -1225,9 +1266,23 @@ double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 //' @param P a numeric vector storing the first distribution.
 //' @param Q a numeric vector storing the second distribution.
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
 //' @author Hajk-Georg Drost
 //' @examples
-//' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+//' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+//'  testNA = FALSE, epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon){
@@ -1280,9 +1335,23 @@ double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
 //' @param P a numeric vector storing the first distribution.
 //' @param Q a numeric vector storing the second distribution.
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
 //' @author Hajk-Georg Drost
 //' @examples
-//' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+//' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+//'  testNA = FALSE, epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon){
@@ -1541,9 +1610,23 @@ double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVec
 //' \item \code{unit = "log2"}
 //' \item \code{unit = "log10"}   
 //' }
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
 //' @author Hajk-Georg Drost
 //' @examples
-//' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+//' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+//'  unit = "log2", epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon){
@@ -1660,9 +1743,23 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
 //' \item \code{unit = "log2"}
 //' \item \code{unit = "log10"}   
 //' }
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
 //' @author Hajk-Georg Drost
 //' @examples
-//' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+//' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+//'  unit = "log2", epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon){
@@ -2344,9 +2441,23 @@ double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector
 //' \item \code{unit = "log2"}
 //' \item \code{unit = "log10"}   
 //' }
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
 //' @author Hajk-Georg Drost
 //' @examples
-//' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
+//' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
+//'  unit = "log2", epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, const Rcpp::String unit, double epsilon){
@@ -2465,9 +2576,23 @@ double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
 //' @param P a numeric vector storing the first distribution.
 //' @param Q a numeric vector storing the second distribution.
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
+//' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
+//' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
+//' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
+//' the expected similarity between compared probability density functions and 
+//' whether or not many 0 values are present within the compared vectors.
+//' As a rough rule of thumb we suggest that when dealing with very large 
+//' input vectors which are very similar and contain many \code{0} values,
+//' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
+//' whereas when vector sizes are small or distributions very divergent then
+//' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
+//' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
+//' return negative values which are not defined and only occur due to the
+//' technical issues of computing x / 0 or 0 / 0 cases.
 //' @author Hajk-Georg Drost
 //' @examples
-//' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
+//' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
+//'  testNA = FALSE, epsilon = 0.00001)
 //' @export
 // [[Rcpp::export]]
 double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA, double epsilon){

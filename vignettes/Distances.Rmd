@@ -184,7 +184,7 @@ As you can see, although the `distance()` function is quite fast, the internal c
 
 The advantage of `distance()` is that it implements 46 distance measures based on base C++ functions that can be accessed individually by typing `philentropy::` and then `TAB`. In future versions of `philentropy` I will optimize the `distance()` function so that internal checks for data type correctness and correct input data will take less termination time than the base `dist()` function.
 
-
+<!--
 ## Detailed assessment of individual similarity and distance metrics
 
 
@@ -210,4 +210,4 @@ Euclid argued that that the __shortest__ distance between two points is always a
 #### Chebyshev distance
 
 > $d = max | P_i - Q_i |$
-
+-->

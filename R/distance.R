@@ -37,7 +37,7 @@
 #' higher \code{epsilon} values may also be appropriate (e.g. \code{epsilon = 0.01}).
 #' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
 #' return negative values which are not defined and only occur due to the
-#' technical issues of computing \code{x / 0} or \code(0 / 0) cases.
+#' technical issues of computing x / 0 or 0 / 0 cases.
 #' @param est.prob method to estimate probabilities from input count vectors such as non-probability vectors. Default: \code{est.prob = NULL}. Options are:
 #' \itemize{
 #' \item \code{est.prob = "empirical"}: The relative frequencies of each vector are computed internally. For example an input matrix \code{rbind(1:10, 11:20)} will be transformed to a probability vector \code{rbind(1:10 / sum(1:10), 11:20 / sum(11:20))}
