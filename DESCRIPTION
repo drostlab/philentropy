@@ -22,7 +22,8 @@ URL: https://github.com/drostlab/philentropy
 Suggests:
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    microbenchmark
 VignetteBuilder: knitr
 BugReports: https://github.com/drostlab/philentropy/issues
 RoxygenNote: 7.1.1
