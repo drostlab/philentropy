@@ -4,14 +4,22 @@
 \alias{dist_many_many}
 \title{Distances and Similarities between Many Probability Density Functions}
 \usage{
-dist_many_many(dists1, dists2, dist_fun, p, testNA, unit, epsilon)
+dist_many_many(
+  dists1,
+  dists2,
+  method,
+  p = NA_real_,
+  testNA = TRUE,
+  unit = "log",
+  epsilon = 1e-05
+)
 }
 \arguments{
 \item{dists1}{a numeric matrix storing distributions in its rows.}
 
 \item{dists2}{a numeric matrix storing distributions in its rows.}
 
-\item{dist_fun}{a character string indicating whether the distance measure that should be computed.}
+\item{method}{a character string indicating whether the distance measure that should be computed.}
 
 \item{p}{power of the Minkowski distance.}
 

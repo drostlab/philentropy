@@ -4,14 +4,22 @@
 \alias{dist_one_many}
 \title{Distances and Similarities between One and Many Probability Density Functions}
 \usage{
-dist_one_many(P, dists, dist_fun, p, testNA, unit, epsilon)
+dist_one_many(
+  P,
+  dists,
+  method,
+  p = NA_real_,
+  testNA = TRUE,
+  unit = "log",
+  epsilon = 1e-05
+)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}
 
 \item{dists}{a numeric matrix storing distributions in its rows.}
 
-\item{dist_fun}{a character string indicating whether the distance measure that should be computed.}
+\item{method}{a character string indicating whether the distance measure that should be computed.}
 
 \item{p}{power of the Minkowski distance.}
 

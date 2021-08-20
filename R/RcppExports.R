@@ -53,7 +53,7 @@ DistMatrixWithUnitMAT <- function(dists, DistFunc, testNA, unit) {
 #' @description This functions computes the distance/dissimilarity between two probability density functions.
 #' @param P a numeric vector storing the first distribution.
 #' @param Q a numeric vector storing the second distribution.
-#' @param dist_fun a character string indicating whether the distance measure that should be computed.
+#' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 #' @param unit type of \code{log} function. Option are 
@@ -77,15 +77,15 @@ DistMatrixWithUnitMAT <- function(dists, DistFunc, testNA, unit) {
 #' technical issues of computing x / 0 or 0 / 0 cases.
 #' @return A single distance value
 #' @export
-dist_one_one <- function(P, Q, dist_fun, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
-    .Call(`_philentropy_dist_one_one`, P, Q, dist_fun, p, testNA, unit, epsilon)
+dist_one_one <- function(P, Q, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
+    .Call(`_philentropy_dist_one_one`, P, Q, method, p, testNA, unit, epsilon)
 }
 
 #' @title Distances and Similarities between One and Many Probability Density Functions
 #' @description This functions computes the distance/dissimilarity between one probability density functions and a set of probability density functions.
 #' @param P a numeric vector storing the first distribution.
 #' @param dists a numeric matrix storing distributions in its rows.
-#' @param dist_fun a character string indicating whether the distance measure that should be computed.
+#' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 #' @param unit type of \code{log} function. Option are 
@@ -109,15 +109,15 @@ dist_one_one <- function(P, Q, dist_fun, p = NA_real_, testNA = TRUE, unit = "lo
 #' technical issues of computing x / 0 or 0 / 0 cases.
 #' @return A vector of distance values
 #' @export
-dist_one_many <- function(P, dists, dist_fun, p, testNA, unit, epsilon) {
-    .Call(`_philentropy_dist_one_many`, P, dists, dist_fun, p, testNA, unit, epsilon)
+dist_one_many <- function(P, dists, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
+    .Call(`_philentropy_dist_one_many`, P, dists, method, p, testNA, unit, epsilon)
 }
 
 #' @title Distances and Similarities between Many Probability Density Functions
 #' @description This functions computes the distance/dissimilarity between two sets of probability density functions.
 #' @param dists1 a numeric matrix storing distributions in its rows.
 #' @param dists2 a numeric matrix storing distributions in its rows.
-#' @param dist_fun a character string indicating whether the distance measure that should be computed.
+#' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
 #' @param unit type of \code{log} function. Option are 
@@ -141,8 +141,8 @@ dist_one_many <- function(P, dists, dist_fun, p, testNA, unit, epsilon) {
 #' technical issues of computing x / 0 or 0 / 0 cases.
 #' @return A matrix of distance values
 #' @export
-dist_many_many <- function(dists1, dists2, dist_fun, p, testNA, unit, epsilon) {
-    .Call(`_philentropy_dist_many_many`, dists1, dists2, dist_fun, p, testNA, unit, epsilon)
+dist_many_many <- function(dists1, dists2, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
+    .Call(`_philentropy_dist_many_many`, dists1, dists2, method, p, testNA, unit, epsilon)
 }
 
 custom_log2 <- function(x) {

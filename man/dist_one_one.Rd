@@ -7,7 +7,7 @@
 dist_one_one(
   P,
   Q,
-  dist_fun,
+  method,
   p = NA_real_,
   testNA = TRUE,
   unit = "log",
@@ -19,7 +19,7 @@ dist_one_one(
 
 \item{Q}{a numeric vector storing the second distribution.}
 
-\item{dist_fun}{a character string indicating whether the distance measure that should be computed.}
+\item{method}{a character string indicating whether the distance measure that should be computed.}
 
 \item{p}{power of the Minkowski distance.}
 
