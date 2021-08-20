@@ -5,7 +5,8 @@
 - `distance()` and all other individual information theory functions
 receive a new argument `epsilon` with default value `epsilon = 0.00001` to treat cases where in individual distance or similarity computations 
 yield `x / 0` or `0 / 0`. Instead of a hard coded epsilon, users can now set `epsilon` according to their input vectors. (Many thanks to Joshua McNeill #26 for this great question). 
-- three new functions `dist_one_one()`, `dist_one_many()`, `dist_many_many()` are added. They are fairly flexible intermediaries between `distance()` and single distance functions. `dist_one_one()` expects two vectors (probability density functions) and returns a single value. `dist_one_many()` expects one vector (a probability density function) and one matrix (a set of probability density functions), and returns a vector of values. `dist_many_many()` expects two matrices (two sets of probability density functions), and returns a matrix of values.
+- three new functions `dist_one_one()`, `dist_one_many()`, `dist_many_many()` are added. They are fairly flexible intermediaries between `distance()` and single distance functions. `dist_one_one()` expects two vectors (probability density functions) and returns a single value. `dist_one_many()` expects one vector (a probability density function) and one matrix (a set of probability density functions), and returns a vector of values. `dist_many_many()` expects two matrices (two sets of probability density functions), and returns a matrix of values. (Many thanks to 
+Jakub Nowosad, see #27 and #28)
 
 ### Updates
 
