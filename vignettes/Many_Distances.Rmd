@@ -1,0 +1,132 @@
+---
+title: "Comparing many probability density functions"
+author: Jakub Nowosad
+date: 2021-08-20
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Many_Distances}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+The **philentropy** package has several mechanisms to calculate distances between probability density functions.
+The main one is to use the the `distance()` function, which enables to compute 46 different distances/similarities between probability density functions (see `?philentropy::distance` and [a companion vignette](Distances.html) for details).
+Alternatively, it is possible to call each distance/dissimilarity function directly.
+For example, the `euclidean()` function will compute the euclidean distance, while `jaccard` - the Jaccard distance.
+The complete list of available distance measures are available with the `philentropy::getDistMethods()` function.
+
+Both of the above approaches have their pros and cons. 
+The `distance()` function is more flexible as it allows users to use any distance measure and can return either a `matrix` or a `dist` object. 
+It also has several defensive programming checks implemented, and thus, it is more appropriate for regular users.
+Single distance functions, such as `euclidean()` or `jaccard()`, can be, on the other hand, slightly faster as they directly call the underlining C++ code.
+
+Now, we introduce three new low-level functions that are intermediaries between `distance()` and single distance functions. 
+They are fairly flexible, allowing to use of any implemented distance measure, but also usually faster than calling the `distance()` functions (especially, if it is needed to use many times).
+These functions are:
+
+- `dist_one_one()` - expects two vectors (probability density functions), returns a single value
+- `dist_one_many()` - expects one vector (a probability density function) and one matrix (a set of probability density functions), returns a vector of values
+- `dist_many_many()` - expects two matrices (two sets of probability density functions), returns a matrix of values
+
+Let's start testing them by attaching the **philentropy** package.
+
+```{r}
+library(philentropy)
+```
+
+## `dist_one_one()`
+
+`dist_one_one()` is a lower level equivalent to `distance()`.
+However, instead of accepting a numeric `data.frame` or `matrix`, it expects two vectors representing probability density functions.
+In this example, we create two vectors, `P` and `Q`.
+
+```{r}
+P <- 1:10 / sum(1:10)
+Q <- 20:29 / sum(20:29)
+```
+
+To calculate the euclidean distance between them we can use several approaches - (a) build-in R `dist()` function, (b) `philentropy::distance()`, (c) `philentropy::euclidean()`, or the new `dist_one_one()`.
+
+```{r}
+# install.packages("microbenchmark")
+microbenchmark::microbenchmark(
+  dist(rbind(P, Q), method = "euclidean"),
+  distance(rbind(P, Q), method = "euclidean", test.na = FALSE, mute.message = TRUE),
+  euclidean(P, Q, FALSE),
+  dist_one_one(P, Q, method = "euclidean", testNA = FALSE)
+)
+```
+
+All of them return the same, single value.
+However, as you can see in the benchmark above, some are more flexible, and others are faster.
+
+## `dist_one_many()`
+
+The role of `dist_one_many()` is to calculate distances between one probability density function (in a form of a `vector`) and a set of probability density functions (as rows in a `matrix`).
+
+Firstly, let's create our example data.
+
+```{r}
+set.seed(2020-08-20)
+P <- 1:10 / sum(1:10)
+M <- t(replicate(100, sample(1:10, size = 10) / 55))
+```
+
+`P` is our input vector and `M` is our input matrix.
+
+Distances between the `P` vector and probability density functions in `M` can be calculated using several approaches. 
+For example, we could write a `for` loop (adding a new code) or just use the existing `distance()` function and extract only one row (or column) from the results.
+The `dist_one_many()` allows for this calculation directly as it goes through each row in `M` and calculates a given distance measure between `P` and values in this row.
+
+```{r}
+# install.packages("microbenchmark")
+microbenchmark::microbenchmark(
+  as.matrix(dist(rbind(P, M), method = "euclidean"))[1, ][-1],
+  distance(rbind(P, M), method = "euclidean", test.na = FALSE, mute.message = TRUE)[1, ][-1],
+  dist_one_many(P, M, method = "euclidean", testNA = FALSE)
+)
+```
+
+The `dist_one_many()` returns a vector of values.
+It is, in this case, much faster than `distance()`, and visibly faster than `dist()` while allowing for more possible distance measures to be used.
+
+## `dist_many_many()`
+
+`dist_many_many()` calculates distances between two sets of probability density functions (as rows in two `matrix` objects).
+
+Let's create two new `matrix` example data.
+
+```{r}
+set.seed(2020-08-20)
+M1 <- t(replicate(10, sample(1:10, size = 10) / 55))
+M2 <- t(replicate(10, sample(1:10, size = 10) / 55))
+```
+
+`M1` is our first input matrix and `M2` is our second input matrix.
+I am not aware of any function build-in R that allows calculating distances between rows of two matrices, and thus, to solve this problem, we can create our own - `many_dists()`...
+
+```{r}
+many_dists = function(m1, m2){
+  r = matrix(nrow = nrow(m1), ncol = nrow(m2))
+  for (i in seq_len(nrow(m1))){
+    for (j in seq_len(nrow(m2))){
+      x = rbind(m1[i, ], m2[j, ])
+      r[i, j] = distance(x, method = "euclidean", mute.message = TRUE)
+    }
+  }
+  r
+}
+```
+
+... and compare it to `dist_many_many()`.
+
+```{r}
+# install.packages("microbenchmark")
+microbenchmark::microbenchmark(
+  many_dists(M1, M2),
+  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)
+)
+```
+
+Both `many_dists()`and `dist_many_many()` return a matrix.
+The above benchmark concludes that `dist_many_many()` is about 30 times faster than our custom `many_dists()` approach.
