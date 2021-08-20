@@ -103,6 +103,9 @@
     <li>
       <a href="../articles/Introduction.html">Introduction</a>
     </li>
+    <li>
+      <a href="../articles/Many_Distances.html">Comparing many probability density functions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -155,6 +158,22 @@
       <th>testNA</th>
       <td><p>a logical value indicating whether or not distributions shall be checked for <code>NA</code> values.</p></td>
     </tr>
+    <tr>
+      <th>epsilon</th>
+      <td><p>epsilon a small value to address cases in the distance computation where division by zero occurs. In
+these cases, x / 0 or 0 / 0 will be replaced by <code>epsilon</code>. The default is <code>epsilon = 0.00001</code>.
+However, we recommend to choose a custom <code>epsilon</code> value depending on the size of the input vectors,
+the expected similarity between compared probability density functions and 
+whether or not many 0 values are present within the compared vectors.
+As a rough rule of thumb we suggest that when dealing with very large 
+input vectors which are very similar and contain many <code>0</code> values,
+the <code>epsilon</code> value should be set even smaller (e.g. <code>epsilon = 0.000000001</code>),
+whereas when vector sizes are small or distributions very divergent then
+higher <code>epsilon</code> values may also be appropriate (e.g. <code>epsilon = 0.01</code>).
+Addressing this <code>epsilon</code> issue is important to avoid cases where distance metrics
+return negative values which are not defined and only occur due to the
+technical issues of computing x / 0 or 0 / 0 cases.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
@@ -162,8 +181,9 @@
     <p>Hajk-Georg Drost</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>neyman_chi_sq</span><span class='op'>(</span>P <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, Q <span class='op'>=</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>, testNA <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE): argument "epsilon" is missing, with no default</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>neyman_chi_sq</span><span class='op'>(</span>P <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, Q <span class='op'>=</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>,
+ testNA <span class='op'>=</span> <span class='cn'>FALSE</span>, epsilon <span class='op'>=</span> <span class='fl'>0.00001</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.3674247</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

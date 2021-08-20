@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Jaccard distance (lowlevel function) — jaccard • philentropy</title>
+<title>Distances and Similarities between Two Probability Density Functions — dist_one_one • philentropy</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Jaccard distance (lowlevel function) — jaccard" />
-<meta property="og:description" content="The lowlevel function for computing the jaccard distance." />
+<meta property="og:title" content="Distances and Similarities between Two Probability Density Functions — dist_one_one" />
+<meta property="og:description" content="This functions computes the distance/dissimilarity between two probability density functions." />
 
 
 
@@ -132,16 +132,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Jaccard distance (lowlevel function)</h1>
+    <h1>Distances and Similarities between Two Probability Density Functions</h1>
     <small class="dont-index">Source: <a href='https://github.com/drostlab/philentropy/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
-    <div class="hidden name"><code>jaccard.Rd</code></div>
+    <div class="hidden name"><code>dist_one_one.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The lowlevel function for computing the jaccard distance.</p>
+    <p>This functions computes the distance/dissimilarity between two probability density functions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>jaccard</span><span class='op'>(</span><span class='va'>P</span>, <span class='va'>Q</span>, <span class='va'>testNA</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>dist_one_one</span><span class='op'>(</span>
+  <span class='va'>P</span>,
+  <span class='va'>Q</span>,
+  <span class='va'>method</span>,
+  p <span class='op'>=</span> <span class='cn'>NA_real_</span>,
+  testNA <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  unit <span class='op'>=</span> <span class='st'>"log"</span>,
+  epsilon <span class='op'>=</span> <span class='fl'>1e-05</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,18 +163,52 @@
       <td><p>a numeric vector storing the second distribution.</p></td>
     </tr>
     <tr>
+      <th>method</th>
+      <td><p>a character string indicating whether the distance measure that should be computed.</p></td>
+    </tr>
+    <tr>
+      <th>p</th>
+      <td><p>power of the Minkowski distance.</p></td>
+    </tr>
+    <tr>
       <th>testNA</th>
       <td><p>a logical value indicating whether or not distributions shall be checked for <code>NA</code> values.</p></td>
     </tr>
+    <tr>
+      <th>unit</th>
+      <td><p>type of <code>log</code> function. Option are</p><ul>
+<li><p><code>unit = "log"</code></p></li>
+<li><p><code>unit = "log2"</code></p></li>
+<li><p><code>unit = "log10"</code></p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>epsilon</th>
+      <td><p>epsilon a small value to address cases in the distance computation where division by zero occurs. In
+these cases, x / 0 or 0 / 0 will be replaced by <code>epsilon</code>. The default is <code>epsilon = 0.00001</code>.
+However, we recommend to choose a custom <code>epsilon</code> value depending on the size of the input vectors,
+the expected similarity between compared probability density functions and 
+whether or not many 0 values are present within the compared vectors.
+As a rough rule of thumb we suggest that when dealing with very large 
+input vectors which are very similar and contain many <code>0</code> values,
+the <code>epsilon</code> value should be set even smaller (e.g. <code>epsilon = 0.000000001</code>),
+whereas when vector sizes are small or distributions very divergent then
+higher <code>epsilon</code> values may also be appropriate (e.g. <code>epsilon = 0.01</code>).
+Addressing this <code>epsilon</code> issue is important to avoid cases where distance metrics
+return negative values which are not defined and only occur due to the
+technical issues of computing x / 0 or 0 / 0 cases.</p></td>
+    </tr>
     </table>
 
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Hajk-Georg Drost</p>
+    <p>A single distance value</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>jaccard</span><span class='op'>(</span>P <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, Q <span class='op'>=</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>, testNA <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.133869</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>P</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>
+<span class='fu'>dist_one_one</span><span class='op'>(</span><span class='va'>P</span>, <span class='va'>Q</span>, method <span class='op'>=</span> <span class='st'>"euclidean"</span>, testNA <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.1280713</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

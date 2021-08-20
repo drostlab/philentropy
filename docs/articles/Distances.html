@@ -62,6 +62,9 @@
     <li>
       <a href="../articles/Introduction.html">Introduction</a>
     </li>
+    <li>
+      <a href="../articles/Many_Distances.html">Comparing many probability density functions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -198,9 +201,9 @@ test3 0.13881717 0.01074588</code></pre>
 <p>Now let’s compare the run times of base R and <code>philentropy</code>. For this purpose you need to install the <code>microbenchmark</code> package.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("microbenchmark")</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">microbenchmark</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a></span><span class="op">)</span>
 
-<span class="fu">microbenchmark</span><span class="op">(</span>
+<span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>,method <span class="op">=</span> <span class="st">"euclidean"</span>, test.na <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
   <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">x</span>,method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/euclidean.html">euclidean</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span> , <span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span> , <span class="op">]</span>, <span class="cn">FALSE</span><span class="op">)</span>
@@ -212,44 +215,33 @@ test3 0.13881717 0.01074588</code></pre>
                    euclidean(x[1, ], x[2, ], FALSE)  4.329  4.9605  5.72378  5.4815  6.1240 22.510   100</code></pre>
 <p>As you can see, although the <code><a href="../reference/distance.html">distance()</a></code> function is quite fast, the internal checks cause it to be 2x slower than the base <code><a href="https://rdrr.io/r/stats/dist.html">dist()</a></code> function (for the <code>euclidean</code> example). Nevertheless, in case you need to implement a faster version of the corresponding distance measure you can type <code>philentropy::</code> and then <code>TAB</code> allowing you to select the base distance computation functions (written in C++), e.g. <code><a href="../reference/euclidean.html">philentropy::euclidean()</a></code> which is almost 3x faster than the base <code><a href="https://rdrr.io/r/stats/dist.html">dist()</a></code> function.</p>
 <p>The advantage of <code><a href="../reference/distance.html">distance()</a></code> is that it implements 46 distance measures based on base C++ functions that can be accessed individually by typing <code>philentropy::</code> and then <code>TAB</code>. In future versions of <code>philentropy</code> I will optimize the <code><a href="../reference/distance.html">distance()</a></code> function so that internal checks for data type correctness and correct input data will take less termination time than the base <code><a href="https://rdrr.io/r/stats/dist.html">dist()</a></code> function.</p>
-</div>
-</div>
-<div id="detailed-assessment-of-individual-similarity-and-distance-metrics" class="section level2">
-<h2 class="hasAnchor">
-<a href="#detailed-assessment-of-individual-similarity-and-distance-metrics" class="anchor"></a>Detailed assessment of individual similarity and distance metrics</h2>
-<p>The vast amount of available similarity metrics raises the immediate question which metric should be used for which application. Here, I will review the origin of each individual metric and will discuss the most recent literature that aims to compare these measures. I hope that users will find valuable insights and might be stimulated to conduct their own comparative research since this is a field of ongoing research.</p>
-<div id="l_p-minkowski-family" class="section level3">
-<h3 class="hasAnchor">
-<a href="#l_p-minkowski-family" class="anchor"></a><span class="math inline">\(L_p\)</span> Minkowski Family</h3>
-<div id="euclidean-distance" class="section level4">
-<h4 class="hasAnchor">
-<a href="#euclidean-distance" class="anchor"></a>Euclidean distance</h4>
-<p>The <a href="https://en.wikipedia.org/wiki/Euclidean_distance">euclidean distance</a> is (named after <a href="https://en.wikipedia.org/wiki/Euclid">Euclid</a>) a straight line distance between two points. Euclid argued that that the <strong>shortest</strong> distance between two points is always a line.</p>
-<blockquote>
-<p><span class="math inline">\(d = \sqrt{\sum_{i = 1}^N | P_i - Q_i |^2)}\)</span></p>
-</blockquote>
-</div>
-<div id="manhattan-distance" class="section level4">
-<h4 class="hasAnchor">
-<a href="#manhattan-distance" class="anchor"></a>Manhattan distance</h4>
-<blockquote>
-<p><span class="math inline">\(d = \sum_{i = 1}^N | P_i - Q_i |\)</span></p>
-</blockquote>
-</div>
-<div id="minkowski-distance" class="section level4">
-<h4 class="hasAnchor">
-<a href="#minkowski-distance" class="anchor"></a>Minkowski distance</h4>
-<blockquote>
-<p><span class="math inline">\(d = ( \sum_{i = 1}^N | P_i - Q_i |^p)^{1/p}\)</span></p>
-</blockquote>
-</div>
-<div id="chebyshev-distance" class="section level4">
-<h4 class="hasAnchor">
-<a href="#chebyshev-distance" class="anchor"></a>Chebyshev distance</h4>
-<blockquote>
-<p><span class="math inline">\(d = max | P_i - Q_i |\)</span></p>
-</blockquote>
-</div>
+<!--
+## Detailed assessment of individual similarity and distance metrics
+
+
+The vast amount of available similarity metrics raises the immediate question which metric should be used for which application. Here, I will review the origin of each individual metric and will discuss the most recent literature that aims to compare these measures. I hope that users will find valuable insights and might be stimulated to conduct their own comparative research since this is a field of ongoing research. 
+
+### $L_p$ Minkowski Family
+
+#### Euclidean distance
+
+The [euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance) is (named after [Euclid](https://en.wikipedia.org/wiki/Euclid)) a straight line distance between two points.
+Euclid argued that that the __shortest__ distance between two points is always a line.
+
+> $d = \sqrt{\sum_{i = 1}^N | P_i - Q_i |^2)}$
+
+#### Manhattan distance
+
+> $d = \sum_{i = 1}^N | P_i - Q_i |$
+
+#### Minkowski distance
+
+> $d = ( \sum_{i = 1}^N | P_i - Q_i |^p)^{1/p}$
+
+#### Chebyshev distance
+
+> $d = max | P_i - Q_i |$
+-->
 </div>
 </div>
   </div>

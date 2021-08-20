@@ -102,6 +102,9 @@
     <li>
       <a href="../articles/Introduction.html">Introduction</a>
     </li>
+    <li>
+      <a href="../articles/Many_Distances.html">Comparing many probability density functions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -141,6 +144,7 @@
 <ul>
 <li>
 <code><a href="../reference/distance.html">distance()</a></code> and all other individual information theory functions receive a new argument <code>epsilon</code> with default value <code>epsilon = 0.00001</code> to treat cases where in individual distance or similarity computations yield <code>x / 0</code> or <code>0 / 0</code>. Instead of a hard coded epsilon, users can now set <code>epsilon</code> according to their input vectors. (Many thanks to Joshua McNeill <a href='https://github.com/drostlab/philentropy/issues/26'>#26</a> for this great question).</li>
+<li>three new functions <code><a href="../reference/dist_one_one.html">dist_one_one()</a></code>, <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code>, <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> are added. They are fairly flexible intermediaries between <code><a href="../reference/distance.html">distance()</a></code> and single distance functions. <code><a href="../reference/dist_one_one.html">dist_one_one()</a></code> expects two vectors (probability density functions) and returns a single value. <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> expects one vector (a probability density function) and one matrix (a set of probability density functions), and returns a vector of values. <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> expects two matrices (two sets of probability density functions), and returns a matrix of values. (Many thanks to Jakub Nowosad, see <a href='https://github.com/drostlab/philentropy/issues/27'>#27</a> and <a href='https://github.com/drostlab/philentropy/issues/28'>#28</a>)</li>
 </ul>
 </div>
 <div id="updates" class="section level3">
