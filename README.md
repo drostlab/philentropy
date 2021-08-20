@@ -181,6 +181,9 @@ The current status of the package as well as a detailed history of the functiona
 >
 > - __The genetic architecture of temperature adaptation is shaped by population ancestry and not by selection regime__ KA Otte, V Nolte, F Mallard et al. - __Genome Biology__, 2021
 > 
+> - __Gut microbiome-mediated metabolism effects on immunity in rural and urban African populations__
+M Stražar, GS Temba, H Vlamakis et al. - __Nature Communications__, 2021
+>
 > - __Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation__ A Subramanian et al. - __Nature Communications__, 2019
 >
 > - __Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche__
@@ -201,10 +204,13 @@ EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
 >
 > - __Multi-Omics Investigation of Innate Navitoclax Resistance in Triple-Negative Breast Cancer Cells__ M Marczyk et al. - __Cancers__, 2020
 >
-> - __Impact of Gut Microbiome on Hypertensive Patients with Low-Salt Intake: Shika Study Results__
-S Nagase et al. - __Frontiers in Medicine__, 2020
+> - __Impact of Gut Microbiome on Hypertensive Patients with Low-Salt Intake: Shika Study Results__ S Nagase et al. - __Frontiers in Medicine__, 2020
 >
 > - __Combined TCR Repertoire Profiles and Blood Cell Phenotypes Predict Melanoma Patient Response to Personalized Neoantigen Therapy plus Anti-PD-1__ A Poran et al. - __Cell Reports Medicine__, 2020
+>
+> - __Phenotyping of acute and persistent COVID-19 features in the outpatient setting: exploratory analysis of an international cross-sectional online survey__ S Sahanic, P Tymoszuk, D Ausserhofer et al. - __medRxiv__, 2021
+>
+> - __A two-part evaluation approach for measuring the usability and user experience of an Augmented Reality-based assistance system to support the temporal coordination of spatially dispersed teams__ L Thomaschewski, B Weyers, A Kluge - __Cognitive Systems Research__, 2021
 >
 > - __SEDE-GPS: socio-economic data enrichment based on GPS information__
 T Sperlea, S Füser, J Boenigk, D Heider - __BMC bioinformatics__, 2018
@@ -280,6 +286,18 @@ EJ Schwarzkopf et al. - __BMC Genomics__, 2020
 >
 > - __Enhancing Card Sorting Dendrograms through the Holistic Analysis of Distance Methods and Linkage Criteria.__ JA Macías - __Journal of Usability Studies__, 2021
 >
+> - __Pattern-based identification and mapping of landscape types using multi-thematic data__ J Nowosad, TF Stepinski - __International Journal of Geographical Information__, 2021
+>
+> - __Motif Analysis in k-mer Networks: An Approach towards Understanding SARS-CoV-2 Geographical Shifts__
+S Biswas, S Saha, S Bandyopadhyay, M Bhattacharyya - __bioRxiv__, 2020
+>
+> - __Motif: an open-source R tool for pattern-based spatial analysis__ J Nowosad - __Landscape Ecology__, 2021
+>
+> - __New effective spectral matching measures for hyperspectral data analysis__ C Kumar, S Chatterjee, T Oommen, A Guha - __International Journal of Remote Sensing__, 2021
+>
+> - __Innovative activity of Polish enterprises–a strategic aspect. The similarity of NACE divisions__ E Bielińska-Dusza, M Hamerska - __Journal of Entrepreneurship, Management and innovation__, 2021
+>
+> - __Multi-classifier majority voting analyses in provenance studies on iron artefacts__ G Żabiński, J Gramacki et al.- __Journal of Archaeological Science__, 2020
 
 
 ## Discussions and Bug Reports
