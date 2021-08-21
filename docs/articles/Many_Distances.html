@@ -140,11 +140,11 @@
 ##  distance(rbind(P, Q), method = "euclidean", test.na = FALSE,      mute.message = TRUE)
 ##                                                                  euclidean(P, Q, FALSE)
 ##                                dist_one_one(P, Q, method = "euclidean", testNA = FALSE)
-##     min      lq     mean  median      uq      max neval
-##  20.539 22.4355 33.24895 24.1130 30.7445  497.134   100
-##  29.561 31.4650 67.88148 34.4530 41.9195 2100.039   100
-##   3.186  3.8110  7.92510  4.1595  5.5315  278.279   100
-##   4.894  5.6680  9.29590  6.9000  9.7640   62.670   100</code></pre>
+##     min      lq      mean  median      uq      max neval
+##  24.726 31.4070  71.36764 49.2785 70.9945  603.621   100
+##  33.031 39.1695 253.22199 66.2225 91.7130 8844.956   100
+##   4.008  4.8210   7.97157  6.1120  8.4770   80.373   100
+##   5.904  8.7260  21.00480 11.9530 16.8190  343.540   100</code></pre>
 <p>All of them return the same, single value. However, as you can see in the benchmark above, some are more flexible, and others are faster.</p>
 </div>
 <div id="dist_one_many" class="section level2">
@@ -171,10 +171,10 @@
 ##                                      as.matrix(dist(rbind(P, M), method = "euclidean"))[1, ][-1]
 ##  distance(rbind(P, M), method = "euclidean", test.na = FALSE,      mute.message = TRUE)[1, ][-1]
 ##                                        dist_one_many(P, M, method = "euclidean", testNA = FALSE)
-##        min         lq       mean    median         uq       max neval
-##    326.171   439.9580   622.1581   576.851   693.0105  2923.426   100
-##  30792.322 35395.9535 41330.0811 40028.984 45901.1585 68882.523   100
-##     71.518    82.4695   146.4539    93.688   113.7325  3343.094   100</code></pre>
+##         min          lq        mean      median         uq       max neval
+##     524.098    957.2750   2473.3418   1575.0065   2867.125  10377.12   100
+##  133358.512 185187.8990 221418.9170 214056.2175 247847.865 410579.88   100
+##     110.008    180.6195    424.5707    203.4745    301.521   4445.88   100</code></pre>
 <p>The <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> returns a vector of values. It is, in this case, much faster than <code><a href="../reference/distance.html">distance()</a></code>, and visibly faster than <code><a href="https://rdrr.io/r/stats/dist.html">dist()</a></code> while allowing for more possible distance measures to be used.</p>
 </div>
 <div id="dist_many_many" class="section level2">
@@ -207,12 +207,12 @@
   <span class="fu"><a href="../reference/dist_many_many.html">dist_many_many</a></span><span class="op">(</span><span class="va">M1</span>, <span class="va">M2</span>, method <span class="op">=</span> <span class="st">"euclidean"</span>, testNA <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                                                          expr      min       lq
-##                                            many_dists(M1, M2) 2618.413 3094.620
-##  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)   99.732  117.656
-##       mean    median        uq       max neval
-##  3828.2614 3351.4710 3710.5150 17184.068   100
-##   142.8702  128.3245  155.4245   343.042   100</code></pre>
+##                                                          expr      min
+##                                            many_dists(M1, M2) 5284.495
+##  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)  139.709
+##         lq       mean    median         uq      max neval
+##  12111.113 22236.7094 18301.575 28710.0730 90930.44   100
+##    207.289   668.3994   250.107   307.6455 15864.02   100</code></pre>
 <p>Both <code>many_dists()</code>and <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> return a matrix. The above benchmark concludes that <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> is about 30 times faster than our custom <code>many_dists()</code> approach.</p>
 </div>
   </div>

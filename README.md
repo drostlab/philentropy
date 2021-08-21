@@ -38,6 +38,7 @@ __I am developing `philentropy` in my spare time and would be very grateful if y
  - [Introduction to the philentropy package](https://drostlab.github.io/philentropy/articles/Introduction.html)
  - [Distance and Similarity Measures implemented in philentropy](https://drostlab.github.io/philentropy/articles/Distances.html)
  - [Information Theory Metrics implemented in philentropy](https://drostlab.github.io/philentropy/articles/Information_Theory.html)
+- [Comparing many probability density functions](https://drostlab.github.io/philentropy/articles/Many_Distances.html)
 
 ## Examples
 
