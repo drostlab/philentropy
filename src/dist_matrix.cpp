@@ -247,7 +247,7 @@ double dist_one_one(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
                 dist_value = k_divergence(P, Q, testNA, unit);
         } else if (method == "topsoe") {
                 dist_value = topsoe(P, Q, testNA, unit);
-        } else if (method == "jensen_shannon"){
+        } else if (method == "jensen-shannon"){
                 dist_value = jensen_shannon(P, Q, testNA, unit); 
         } else if (method == "jensen_difference") {
                 dist_value = jensen_difference(P, Q, testNA, unit);
