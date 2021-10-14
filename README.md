@@ -176,6 +176,10 @@ The current status of the package as well as a detailed history of the functiona
 
 ### Studies that successfully applied the `philentropy` package
 
+> - __An atlas of gene regulatory elements in adult mouse cerebrum__ YE Li, S Preissl, X Hou, Z Zhang, K Zhang et al.- __Nature__, 2021
+>
+> - __Antigen dominance hierarchies shape TCF1+ progenitor CD8 T cell phenotypes in tumors__ ML Burger, AM Cruz, GE Crossland et al. - __Cell__, 2021
+>
 > - __High-content single-cell combinatorial indexing__ R Mulqueen et al. - __Nature Biotechnology__, 2021 
 >
 > - __Extinction at the end-Cretaceous and the origin of modern Neotropical rainforests__ MR Carvalho, C Jaramillo et al. - __Science__, 2021
@@ -184,6 +188,8 @@ The current status of the package as well as a detailed history of the functiona
 > 
 > - __Gut microbiome-mediated metabolism effects on immunity in rural and urban African populations__
 M Stražar, GS Temba, H Vlamakis et al. - __Nature Communications__, 2021
+>
+> - __Aging, inflammation and DNA damage in the somatic testicular niche with idiopathic germ cell aplasia__ M Alfano, AS Tascini, F Pederzoli et al. - __Nature communications__, 2021
 >
 > - __Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation__ A Subramanian et al. - __Nature Communications__, 2019
 >
@@ -221,6 +227,8 @@ M Hauer, S Holloway, T Oda – 2019
 >
 > - __Robust comparison of similarity measures in analogy based software effort estimation__
 P Phannachitta - __11th International Conference on Software__, 2017
+>
+> - __RUNIMC - An R-based package for imaging mass cytometry data analysis and pipeline validation__ L Dolcetti, PR Barber, G Weitsman, S Thavarajet al. - __bioRxiv__, 2021
 >
 > - __Expression variation analysis for tumor heterogeneity in single-cell RNA-sequencing data__
 EF Davis-Marcisak, P Orugunta et al. - __BioRxiv__, 2018
