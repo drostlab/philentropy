@@ -178,6 +178,8 @@ The current status of the package as well as a detailed history of the functiona
 
 > - __An atlas of gene regulatory elements in adult mouse cerebrum__ YE Li, S Preissl, X Hou, Z Zhang, K Zhang et al.- __Nature__, 2021
 >
+> - __Convergent somatic mutations in metabolism genes in chronic liver disease__ S Ng, F Rouhani, S Brunner, N Brzozowska et al. __Nature__, 2021
+>
 > - __Antigen dominance hierarchies shape TCF1+ progenitor CD8 T cell phenotypes in tumors__ ML Burger, AM Cruz, GE Crossland et al. - __Cell__, 2021
 >
 > - __High-content single-cell combinatorial indexing__ R Mulqueen et al. - __Nature Biotechnology__, 2021 
