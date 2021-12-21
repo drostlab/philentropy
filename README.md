@@ -186,6 +186,9 @@ The current status of the package as well as a detailed history of the functiona
 >
 > - __Extinction at the end-Cretaceous and the origin of modern Neotropical rainforests__ MR Carvalho, C Jaramillo et al. - __Science__, 2021
 >
+> - __HERMES: a molecular-formula-oriented method to target the metabolome__
+R Giné, J Capellades, JM Badia et al. - __Nature Methods__, 2021
+>
 > - __The genetic architecture of temperature adaptation is shaped by population ancestry and not by selection regime__ KA Otte, V Nolte, F Mallard et al. - __Genome Biology__, 2021
 > 
 > - __Gut microbiome-mediated metabolism effects on immunity in rural and urban African populations__
