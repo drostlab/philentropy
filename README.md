@@ -190,7 +190,11 @@ The current status of the package as well as a detailed history of the functiona
 R Giné, J Capellades, JM Badia et al. - __Nature Methods__, 2021
 >
 > - __The genetic architecture of temperature adaptation is shaped by population ancestry and not by selection regime__ KA Otte, V Nolte, F Mallard et al. - __Genome Biology__, 2021
+>
+> - __The Tug1 lncRNA locus is essential for male fertility__ JP Lewandowski et al. - __Genome Biology__, 2020
 > 
+> - __Resolving the structure of phage–bacteria interactions in the context of natural diversity__ KM Kauffman, WK Chang, JM Brown et al. - __Nature Communications__, 2022
+>
 > - __Gut microbiome-mediated metabolism effects on immunity in rural and urban African populations__
 M Stražar, GS Temba, H Vlamakis et al. - __Nature Communications__, 2021
 >
@@ -202,8 +206,6 @@ M Stražar, GS Temba, H Vlamakis et al. - __Nature Communications__, 2021
 C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
 >
 > - __Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge__ A Sinha et al. - __eLife__, 2019
->
-> - __The Tug1 lncRNA locus is essential for male fertility__ JP Lewandowski et al. - __Genome Biology__, 2020
 >
 > - __Sex and hatching order modulate the association between MHC‐II diversity and fitness in early‐life stages of a wild seabird__
 M Pineaux et al - __Molecular Ecology__, 2020
@@ -220,12 +222,18 @@ EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
 >
 > - __Combined TCR Repertoire Profiles and Blood Cell Phenotypes Predict Melanoma Patient Response to Personalized Neoantigen Therapy plus Anti-PD-1__ A Poran et al. - __Cell Reports Medicine__, 2020
 >
+> - __Identification of a glioma functional network from gene fitness data using machine learning__ C Xiang, X Liu, D Zhou, Y Zhou, X Wang, F Chen - __Journal of Cellular and Molecular Medicine__, 2022
+>
+> - __Prediction of New Risk Genes and Potential Drugs for Rheumatoid Arthritis from Multiomics Data__ AM Birga, L Ren, H Luo, Y Zhang, J Huang - __Computational and Mathematical Methods in Medicine__, 2022
+>
 > - __Phenotyping of acute and persistent COVID-19 features in the outpatient setting: exploratory analysis of an international cross-sectional online survey__ S Sahanic, P Tymoszuk, D Ausserhofer et al. - __medRxiv__, 2021
 >
 > - __A two-part evaluation approach for measuring the usability and user experience of an Augmented Reality-based assistance system to support the temporal coordination of spatially dispersed teams__ L Thomaschewski, B Weyers, A Kluge - __Cognitive Systems Research__, 2021
 >
 > - __SEDE-GPS: socio-economic data enrichment based on GPS information__
 T Sperlea, S Füser, J Boenigk, D Heider - __BMC bioinformatics__, 2018
+>
+> - __Spatial and molecular anatomy of germ layers in the gastrulating primate embryo__ G Cui, S Feng, Y Yan, L Wang, X He, X Li, et al. - __bioRxiv__, 2022
 >
 > - __Evacuees and Migrants Exhibit Different Migration Systems after the Great East Japan Earthquake and Tsunami__
 M Hauer, S Holloway, T Oda – 2019
@@ -312,7 +320,14 @@ S Biswas, S Saha, S Bandyopadhyay, M Bhattacharyya - __bioRxiv__, 2020
 > - __Innovative activity of Polish enterprises–a strategic aspect. The similarity of NACE divisions__ E Bielińska-Dusza, M Hamerska - __Journal of Entrepreneurship, Management and innovation__, 2021
 >
 > - __Multi-classifier majority voting analyses in provenance studies on iron artefacts__ G Żabiński, J Gramacki et al.- __Journal of Archaeological Science__, 2020
-
+>
+> - __Unraveling the record of a tropical continental Cretaceous-Paleogene boundary in northern Colombia, South America__ F de la Parra, C Jaramillo, P Kaskes et al. - __Journal of South American Earth Sciences__, 2022
+>
+> - __A roadmap to reconstructing muscle architecture from CT data__
+J Katzke, P Puchenkov, H Stark, EP Economo - __Integrative Organismal Biology__, 2022
+> 
+> - __Pandemonium: a clustering tool to partition parameter space—application to the B anomalies__ U Laa, G Valencia - __The European Physical Journal Plus__, 2022
+>
 
 ## Discussions and Bug Reports
 
