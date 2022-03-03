@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -205,10 +205,11 @@ technical issues of computing x / 0 or 0 / 0 cases.</p></td>
     <p>A single distance value</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>P</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
-<span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>
-<span class='fu'>dist_one_one</span><span class='op'>(</span><span class='va'>P</span>, <span class='va'>Q</span>, method <span class='op'>=</span> <span class='st'>"euclidean"</span>, testNA <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.1280713</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>P</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>Q</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>dist_one_one</span><span class='op'>(</span><span class='va'>P</span>, <span class='va'>Q</span>, method <span class='op'>=</span> <span class='st'>"euclidean"</span>, testNA <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.1280713</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

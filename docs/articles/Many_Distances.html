@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
 
       
 
-      </header><script src="Many_Distances_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="Many_Distances_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Comparing many probability density functions</h1>
@@ -140,11 +140,11 @@
 ##  distance(rbind(P, Q), method = "euclidean", test.na = FALSE,      mute.message = TRUE)
 ##                                                                  euclidean(P, Q, FALSE)
 ##                                dist_one_one(P, Q, method = "euclidean", testNA = FALSE)
-##     min      lq      mean  median      uq      max neval
-##  24.726 31.4070  71.36764 49.2785 70.9945  603.621   100
-##  33.031 39.1695 253.22199 66.2225 91.7130 8844.956   100
-##   4.008  4.8210   7.97157  6.1120  8.4770   80.373   100
-##   5.904  8.7260  21.00480 11.9530 16.8190  343.540   100</code></pre>
+##     min      lq     mean  median      uq      max neval
+##  21.017 22.6785 33.91872 23.9470 26.1130  305.616   100
+##  27.555 28.9300 67.36313 29.9755 33.1265 2190.872   100
+##   2.548  2.9290  3.72877  3.1580  3.7405   24.948   100
+##   3.645  4.2180  6.32354  4.7135  5.1485  127.471   100</code></pre>
 <p>All of them return the same, single value. However, as you can see in the benchmark above, some are more flexible, and others are faster.</p>
 </div>
 <div id="dist_one_many" class="section level2">
@@ -171,10 +171,10 @@
 ##                                      as.matrix(dist(rbind(P, M), method = "euclidean"))[1, ][-1]
 ##  distance(rbind(P, M), method = "euclidean", test.na = FALSE,      mute.message = TRUE)[1, ][-1]
 ##                                        dist_one_many(P, M, method = "euclidean", testNA = FALSE)
-##         min          lq        mean      median         uq       max neval
-##     524.098    957.2750   2473.3418   1575.0065   2867.125  10377.12   100
-##  133358.512 185187.8990 221418.9170 214056.2175 247847.865 410579.88   100
-##     110.008    180.6195    424.5707    203.4745    301.521   4445.88   100</code></pre>
+##        min        lq        mean     median         uq       max neval
+##    389.581   528.141   705.30695   703.8735   799.2435  2660.721   100
+##  33281.702 39837.296 47609.73996 45371.5355 52265.8085 92813.572   100
+##     34.407    40.242    56.62543    49.6750    59.3605   169.750   100</code></pre>
 <p>The <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> returns a vector of values. It is, in this case, much faster than <code><a href="../reference/distance.html">distance()</a></code>, and visibly faster than <code><a href="https://rdrr.io/r/stats/dist.html">dist()</a></code> while allowing for more possible distance measures to be used.</p>
 </div>
 <div id="dist_many_many" class="section level2">
@@ -207,12 +207,12 @@
   <span class="fu"><a href="../reference/dist_many_many.html">dist_many_many</a></span><span class="op">(</span><span class="va">M1</span>, <span class="va">M2</span>, method <span class="op">=</span> <span class="st">"euclidean"</span>, testNA <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                                                          expr      min
-##                                            many_dists(M1, M2) 5284.495
-##  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)  139.709
-##         lq       mean    median         uq      max neval
-##  12111.113 22236.7094 18301.575 28710.0730 90930.44   100
-##    207.289   668.3994   250.107   307.6455 15864.02   100</code></pre>
+##                                                          expr      min       lq
+##                                            many_dists(M1, M2) 3049.288 3479.443
+##  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)   48.604   57.196
+##        mean   median       uq       max neval
+##  5008.11392 4017.414 5288.151 24289.867   100
+##    77.55257   64.302   78.925   507.448   100</code></pre>
 <p>Both <code>many_dists()</code>and <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> return a matrix. The above benchmark concludes that <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> is about 30 times faster than our custom <code>many_dists()</code> approach.</p>
 </div>
   </div>

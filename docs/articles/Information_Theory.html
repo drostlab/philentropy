@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
 
       
 
-      </header><script src="Information_Theory_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="Information_Theory_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Information Theory</h1>
@@ -177,7 +177,7 @@
 <blockquote>
 <p><span class="math inline">\(KL(P || Q) = \sum\limits_{i=1}^n P(p_i) * log_2(P(p_i) / P(q_i)) = H(P, Q) - H(P)\)</span></p>
 </blockquote>
-<p>where <code><a href="../reference/H.html">H(P, Q)</a></code> denotes the joint entropy of the probability distributions <code>P</code> and <code>Q</code> and <code><a href="../reference/H.html">H(P)</a></code> denotes the entropy of probability distribution <code>P</code>. In case <code>P = Q</code> then <code>KL(P, Q) = 0</code> and in case <code>P != Q</code> then <code>KL(P, Q) &gt; 0</code>.</p>
+<p>where <code>H(P, Q)</code> denotes the joint entropy of the probability distributions <code>P</code> and <code>Q</code> and <code>H(P)</code> denotes the entropy of probability distribution <code>P</code>. In case <code>P = Q</code> then <code>KL(P, Q) = 0</code> and in case <code>P != Q</code> then <code>KL(P, Q) &gt; 0</code>.</p>
 <p>The KL divergence is a non-symmetric measure of the directed divergence between two probability distributions P and Q. It only fulfills the positivity property of a distance metric.</p>
 <p>Because of the relation <code>KL(P||Q) = H(P,Q) - H(P)</code>, the Kullback-Leibler divergence of two probability distributions <code>P</code> and <code>Q</code> is also named <code>Cross Entropy</code> of two probability distributions <code>P</code> and <code>Q</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -206,12 +206,12 @@ kullback-leibler
 <div id="jensen-shannon-divergence" class="section level3">
 <h3 class="hasAnchor">
 <a href="#jensen-shannon-divergence" class="anchor"></a>Jensen-Shannon Divergence</h3>
-<p>This function computes the <code>Jensen-Shannon Divergence</code> <code><a href="../reference/JSD.html">JSD(P || Q)</a></code> between two probability distributions <code>P</code> and <code>Q</code> with equal weights <code>π_1</code> = <code>π_2</code> = 1/2.</p>
+<p>This function computes the <code>Jensen-Shannon Divergence</code> <code>JSD(P || Q)</code> between two probability distributions <code>P</code> and <code>Q</code> with equal weights <code>π_1</code> = <code>π_2</code> = 1/2.</p>
 <p>The Jensen-Shannon Divergence JSD(P || Q) between two probability distributions P and Q is defined as:</p>
 <blockquote>
 <p><span class="math inline">\(JSD(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))\)</span></p>
 </blockquote>
-<p>where <code>R = 0.5 * (P + Q)</code> denotes the mid-point of the probability vectors <code>P</code> and <code>Q</code>, and <code><a href="../reference/KL.html">KL(P || R)</a></code>, <code><a href="../reference/KL.html">KL(Q || R)</a></code> denote the <code>Kullback-Leibler Divergence</code> of <code>P</code> and <code>R</code>, as well as <code>Q</code> and <code>R</code>.</p>
+<p>where <code>R = 0.5 * (P + Q)</code> denotes the mid-point of the probability vectors <code>P</code> and <code>Q</code>, and <code>KL(P || R)</code>, <code>KL(Q || R)</code> denote the <code>Kullback-Leibler Divergence</code> of <code>P</code> and <code>R</code>, as well as <code>Q</code> and <code>R</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Jensen-Shannon Divergence between P and Q</span>
 <span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>

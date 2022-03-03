@@ -73,7 +73,7 @@ and returns a vector storing the corresponding distance measures. This vector is
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -175,33 +175,80 @@ and returns a vector storing the corresponding distance measures. This vector is
     <p>Hajk-Georg Drost</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>dist.diversity</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span><span class='op'>)</span>, p <span class='op'>=</span> <span class='fl'>2</span>, unit <span class='op'>=</span> <span class='st'>"log2"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Metric: 'euclidean'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'manhattan'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'minkowski'; p = 2; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'chebyshev'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'sorensen'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'gower'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'soergel'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kulczynski_d'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'canberra'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'lorentzian' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'intersection'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'non-intersection'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'wavehedges'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'czekanowski'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'motyka'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kulczynski_s'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'tanimoto'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'ruzicka'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'inner_product'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'harmonic_mean'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'cosine'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'hassebrook'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jaccard'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'dice'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'fidelity'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'bhattacharyya' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'hellinger'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'matusita'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'squared_chord'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'squared_euclidean'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'pearson'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'neyman'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'squared_chi'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'prob_symm'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'divergence'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'clark'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'additive_symm'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jeffreys' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'k_divergence' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'topsoe' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jensen-shannon' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'jensen_difference' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'taneja' using unit: 'log2'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'kumar-johnson'; comparing: 2 vectors.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'avg'; comparing: 2 vectors.</span></div><div class='output co'>#&gt;         euclidean         manhattan         minkowski         chebyshev 
-#&gt;        0.12807130        0.35250464        0.12807130        0.06345083 
-#&gt;          sorensen             gower           soergel      kulczynski_d 
-#&gt;        0.17625232        0.03525046        0.29968454        0.42792793 
-#&gt;          canberra        lorentzian      intersection  non-intersection 
-#&gt;        2.09927095        0.49712136        0.82374768        0.17625232 
-#&gt;        wavehedges       czekanowski            motyka      kulczynski_s 
-#&gt;        3.16657887        0.17625232        0.58812616        2.33684211 
-#&gt;          tanimoto           ruzicka     inner_product     harmonic_mean 
-#&gt;        0.29968454        0.70031546        0.10612245        0.94948528 
-#&gt;            cosine        hassebrook           jaccard              dice 
-#&gt;        0.93427641        0.86613103        0.13386897        0.07173611 
-#&gt;          fidelity     bhattacharyya         hellinger          matusita 
-#&gt;        0.97312397        0.03930448        0.32787819        0.23184489 
-#&gt;     squared_chord squared_euclidean           pearson            neyman 
-#&gt;        0.05375205        0.01640226        0.16814418        0.36742465 
-#&gt;       squared_chi         prob_symm        divergence             clark 
-#&gt;        0.10102943        0.20205886        1.49843905        0.86557468 
-#&gt;     additive_symm  kullback-leibler          jeffreys      k_divergence 
-#&gt;        0.53556883        0.13926288        0.31761069        0.04216273 
-#&gt;            topsoe    jensen-shannon jensen_difference            taneja 
-#&gt;        0.07585498        0.03792749        0.03792749        0.04147518 
-#&gt;     kumar-johnson               avg 
-#&gt;        0.62779644        0.20797774 </div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='fu'>dist.diversity</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span><span class='op'>)</span>, p <span class='op'>=</span> <span class='fl'>2</span>, unit <span class='op'>=</span> <span class='st'>"log2"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'euclidean'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'manhattan'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'minkowski'; p = 2; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'chebyshev'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'sorensen'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'gower'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'soergel'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'kulczynski_d'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'canberra'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'lorentzian' using unit: 'log2'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'intersection'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'non-intersection'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'wavehedges'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'czekanowski'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'motyka'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'kulczynski_s'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'tanimoto'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'ruzicka'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'inner_product'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'harmonic_mean'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'cosine'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'hassebrook'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'jaccard'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'dice'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'fidelity'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'bhattacharyya' using unit: 'log2'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'hellinger'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'matusita'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'squared_chord'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'squared_euclidean'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'pearson'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'neyman'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'squared_chi'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'prob_symm'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'divergence'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'clark'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'additive_symm'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'kullback-leibler' using unit: 'log2'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'jeffreys' using unit: 'log2'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'k_divergence' using unit: 'log2'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'topsoe' using unit: 'log2'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'jensen-shannon' using unit: 'log2'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'jensen_difference' using unit: 'log2'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'taneja' using unit: 'log2'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'kumar-johnson'; comparing: 2 vectors.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'avg'; comparing: 2 vectors.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         euclidean         manhattan         minkowski         chebyshev </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.12807130        0.35250464        0.12807130        0.06345083 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          sorensen             gower           soergel      kulczynski_d </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.17625232        0.03525046        0.29968454        0.42792793 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          canberra        lorentzian      intersection  non-intersection </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        2.09927095        0.49712136        0.82374768        0.17625232 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        wavehedges       czekanowski            motyka      kulczynski_s </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        3.16657887        0.17625232        0.58812616        2.33684211 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          tanimoto           ruzicka     inner_product     harmonic_mean </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.29968454        0.70031546        0.10612245        0.94948528 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>            cosine        hassebrook           jaccard              dice </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.93427641        0.86613103        0.13386897        0.07173611 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          fidelity     bhattacharyya         hellinger          matusita </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.97312397        0.03930448        0.32787819        0.23184489 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     squared_chord squared_euclidean           pearson            neyman </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.05375205        0.01640226        0.16814418        0.36742465 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       squared_chi         prob_symm        divergence             clark </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.10102943        0.20205886        1.49843905        0.86557468 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     additive_symm  kullback-leibler          jeffreys      k_divergence </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.53556883        0.13926288        0.31761069        0.04216273 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>            topsoe    jensen-shannon jensen_difference            taneja </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.07585498        0.03792749        0.03792749        0.04147518 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     kumar-johnson               avg </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        0.62779644        0.20797774 </span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

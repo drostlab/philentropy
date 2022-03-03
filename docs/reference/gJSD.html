@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -165,7 +165,7 @@ denotes that <code>vec1</code> is weighted by <code>0.5</code>, <code>vec2</code
     <tr>
       <th>est.prob</th>
       <td><p>method to estimate probabilities from input count vectors such as non-probability vectors. Default: <code>est.prob = NULL</code>. Options are:</p><ul>
-<li><p><code>est.prob = "empirical"</code>: The relative frequencies of each vector are computed internally. For example an input matrix <code><a href='https://rdrr.io/r/base/cbind.html'>rbind(1:10, 11:20)</a></code> will be transformed to a probability vector <code><a href='https://rdrr.io/r/base/cbind.html'>rbind(1:10 / sum(1:10), 11:20 / sum(11:20))</a></code></p></li>
+<li><p><code>est.prob = "empirical"</code>: The relative frequencies of each vector are computed internally. For example an input matrix <code>rbind(1:10, 11:20)</code> will be transformed to a probability vector <code>rbind(1:10 / sum(1:10), 11:20 / sum(11:20))</code></p></li>
 </ul></td>
     </tr>
     </table>
@@ -177,7 +177,7 @@ denotes that <code>vec1</code> is weighted by <code>0.5</code>, <code>vec2</code
 
     <p>Function to compute the Generalized Jensen-Shannon Divergence</p>
 <p>\(JSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i * P_i) - \sum_{i = 1}^n \pi_i*H(P_i)\)</p>
-<p>where \(\pi_1,...,\pi_n\) denote the weights selected for the probability vectors <code>P_1,...,P_n</code> and <code><a href='H.html'>H(P_i)</a></code> denotes the Shannon Entropy of probability vector <code>P_i</code>.</p>
+<p>where \(\pi_1,...,\pi_n\) denote the weights selected for the probability vectors <code>P_1,...,P_n</code> and <code>H(P_i)</code> denotes the Shannon Entropy of probability vector <code>P_i</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='KL.html'>KL</a></code>, <code><a href='H.html'>H</a></code>, <code><a href='JSD.html'>JSD</a></code>,
@@ -187,25 +187,45 @@ denotes that <code>vec1</code> is weighted by <code>0.5</code>, <code>vec2</code
     <p>Hajk-Georg Drost</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># define input probability matrix</span>
-<span class='va'>Prob</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>, <span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># compute the Generalized JSD comparing the PS probability matrix</span>
-<span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>Prob</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).</span></div><div class='output co'>#&gt; <span class='message'>Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span></div><div class='output co'>#&gt; [1] 0.03512892</div><div class='input'>
-<span class='co'># Generalized Jensen-Shannon Divergence between three vectors using different log bases</span>
-<span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>Prob</span>, unit <span class='op'>=</span> <span class='st'>"log2"</span><span class='op'>)</span> <span class='co'># Default</span>
-</div><div class='output co'>#&gt; <span class='message'>No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).</span></div><div class='output co'>#&gt; <span class='message'>Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span></div><div class='output co'>#&gt; [1] 0.03512892</div><div class='input'><span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>Prob</span>, unit <span class='op'>=</span> <span class='st'>"log"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'gJSD'; unit = 'log'; comparing: 3 vectors (v1, ... , v3).</span></div><div class='output co'>#&gt; <span class='message'>Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span></div><div class='output co'>#&gt; [1] 0.02434951</div><div class='input'><span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>Prob</span>, unit <span class='op'>=</span> <span class='st'>"log10"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'gJSD'; unit = 'log10'; comparing: 3 vectors (v1, ... , v3).</span></div><div class='output co'>#&gt; <span class='message'>Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span></div><div class='output co'>#&gt; [1] 0.01057486</div><div class='input'>
-<span class='co'># Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count</span>
-<span class='va'>P.count</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>
-<span class='va'>Q.count</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span>
-<span class='va'>R.count</span> <span class='op'>&lt;-</span> <span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span>
-<span class='va'>x.count</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>P.count</span>, <span class='va'>Q.count</span>, <span class='va'>R.count</span><span class='op'>)</span>
-<span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>x.count</span>, est.prob <span class='op'>=</span> <span class='st'>"empirical"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span></div><div class='output co'>#&gt; <span class='message'>Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).</span></div><div class='output co'>#&gt; <span class='message'>Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span></div><div class='output co'>#&gt; [1] 0.03512892</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># define input probability matrix</span></span>
+<span class='r-in'><span class='va'>Prob</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span><span class='op'>)</span>, <span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># compute the Generalized JSD comparing the PS probability matrix</span></span>
+<span class='r-in'><span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>Prob</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.03512892</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Generalized Jensen-Shannon Divergence between three vectors using different log bases</span></span>
+<span class='r-in'><span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>Prob</span>, unit <span class='op'>=</span> <span class='st'>"log2"</span><span class='op'>)</span> <span class='co'># Default</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.03512892</span>
+<span class='r-in'><span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>Prob</span>, unit <span class='op'>=</span> <span class='st'>"log"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'gJSD'; unit = 'log'; comparing: 3 vectors (v1, ... , v3).</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.02434951</span>
+<span class='r-in'><span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>Prob</span>, unit <span class='op'>=</span> <span class='st'>"log10"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'gJSD'; unit = 'log10'; comparing: 3 vectors (v1, ... , v3).</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.01057486</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count</span></span>
+<span class='r-in'><span class='va'>P.count</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span></span>
+<span class='r-in'><span class='va'>Q.count</span> <span class='op'>&lt;-</span> <span class='fl'>20</span><span class='op'>:</span><span class='fl'>29</span></span>
+<span class='r-in'><span class='va'>R.count</span> <span class='op'>&lt;-</span> <span class='fl'>30</span><span class='op'>:</span><span class='fl'>39</span></span>
+<span class='r-in'><span class='va'>x.count</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>P.count</span>, <span class='va'>Q.count</span>, <span class='va'>R.count</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>gJSD</span><span class='op'>(</span><span class='va'>x.count</span>, est.prob <span class='op'>=</span> <span class='st'>"empirical"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.03512892</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
