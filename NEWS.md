@@ -1,3 +1,11 @@
+## Version 0.7.0.9000
+
+### New Features
+
+### Updates
+
+- the [Distances](https://drostlab.github.io/philentropy/articles/Distances.html) vignette now has a fixed documentation for the benchmarking of low-level distance functions. Many thanks to (@Nowosad) #30 
+
 ## Version 0.6.0
 
 ### New Features

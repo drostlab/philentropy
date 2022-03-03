@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
 
       
 
-      </header><script src="Distances_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="Distances_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Distances</h1>
@@ -199,6 +199,9 @@ Example3 0.1388172 0.01074588 0.00000000</code></pre>
 test2 0.12807130           
 test3 0.13881717 0.01074588</code></pre>
 <p>Now let’s compare the run times of base R and <code>philentropy</code>. For this purpose you need to install the <code>microbenchmark</code> package.</p>
+<blockquote>
+<p>Note: Please make sure to insert vector objects (in our example P, Q) when directly running the low-level functions such as <code><a href="../reference/euclidean.html">euclidean()</a></code> etc. Otherwise, computational overheads are produced that <a href="https://github.com/drostlab/philentropy/issues/30">significantly slow down computations when using large vectors</a>.</p>
+</blockquote>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("microbenchmark")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a></span><span class="op">)</span>
@@ -206,13 +209,13 @@ test3 0.13881717 0.01074588</code></pre>
 <span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>,method <span class="op">=</span> <span class="st">"euclidean"</span>, test.na <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
   <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">x</span>,method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/euclidean.html">euclidean</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span> , <span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span> , <span class="op">]</span>, <span class="cn">FALSE</span><span class="op">)</span>
+  <span class="fu"><a href="../reference/euclidean.html">euclidean</a></span><span class="op">(</span><span class="va">P</span>, <span class="va">Q</span>, <span class="cn">FALSE</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <pre><code>Unit: microseconds
                                                expr    min      lq     mean  median      uq    max neval
  distance(x, method = "euclidean", test.na = FALSE) 26.518 28.3495 29.73174 29.2210 30.1025 62.096   100
                       dist(x, method = "euclidean") 11.073 12.9375 14.65223 14.3340 15.1710 65.130   100
-                   euclidean(x[1, ], x[2, ], FALSE)  4.329  4.9605  5.72378  5.4815  6.1240 22.510   100</code></pre>
+                   euclidean(P, Q, FALSE)  4.329  4.9605  5.72378  5.4815  6.1240 22.510   100</code></pre>
 <p>As you can see, although the <code><a href="../reference/distance.html">distance()</a></code> function is quite fast, the internal checks cause it to be 2x slower than the base <code><a href="https://rdrr.io/r/stats/dist.html">dist()</a></code> function (for the <code>euclidean</code> example). Nevertheless, in case you need to implement a faster version of the corresponding distance measure you can type <code>philentropy::</code> and then <code>TAB</code> allowing you to select the base distance computation functions (written in C++), e.g. <code><a href="../reference/euclidean.html">philentropy::euclidean()</a></code> which is almost 3x faster than the base <code><a href="https://rdrr.io/r/stats/dist.html">dist()</a></code> function.</p>
 <p>The advantage of <code><a href="../reference/distance.html">distance()</a></code> is that it implements 46 distance measures based on base C++ functions that can be accessed individually by typing <code>philentropy::</code> and then <code>TAB</code>. In future versions of <code>philentropy</code> I will optimize the <code><a href="../reference/distance.html">distance()</a></code> function so that internal checks for data type correctness and correct input data will take less termination time than the base <code><a href="https://rdrr.io/r/stats/dist.html">dist()</a></code> function.</p>
 <!--

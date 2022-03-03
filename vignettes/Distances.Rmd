@@ -161,6 +161,9 @@ test3 0.13881717 0.01074588
 
 Now let's compare the run times of base R and `philentropy`. For this purpose you need to install the `microbenchmark` package.
 
+> Note: Please make sure to insert vector objects (in our example P, Q) when directly running the low-level functions such as `euclidean()` etc. Otherwise, computational overheads are produced that 
+[significantly slow down computations when using large vectors](https://github.com/drostlab/philentropy/issues/30).
+
 ```r
 # install.packages("microbenchmark")
 library(microbenchmark)
@@ -168,7 +171,7 @@ library(microbenchmark)
 microbenchmark(
   distance(x,method = "euclidean", test.na = FALSE),
   dist(x,method = "euclidean"),
-  euclidean(x[1 , ], x[2 , ], FALSE)
+  euclidean(P, Q, FALSE)
 )
 ```
 
@@ -177,7 +180,7 @@ Unit: microseconds
                                                expr    min      lq     mean  median      uq    max neval
  distance(x, method = "euclidean", test.na = FALSE) 26.518 28.3495 29.73174 29.2210 30.1025 62.096   100
                       dist(x, method = "euclidean") 11.073 12.9375 14.65223 14.3340 15.1710 65.130   100
-                   euclidean(x[1, ], x[2, ], FALSE)  4.329  4.9605  5.72378  5.4815  6.1240 22.510   100
+                   euclidean(P, Q, FALSE)  4.329  4.9605  5.72378  5.4815  6.1240 22.510   100
 ```
 
 As you can see, although the `distance()` function is quite fast, the internal checks cause it to be 2x slower than the base `dist()` function (for the `euclidean` example). Nevertheless, in case you need to implement a faster version of the corresponding distance measure you can type `philentropy::` and then `TAB` allowing you to select the base distance computation functions (written in C++), e.g. `philentropy::euclidean()` which is almost 3x faster than the base `dist()` function.
