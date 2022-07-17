@@ -205,6 +205,12 @@ M Stražar, GS Temba, H Vlamakis et al. - __Nature Communications__, 2021
 > - __Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche__
 C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
 >
+> - __Single-cell deletion analyses show control of pro–T cell developmental speed and pathways by Tcf7, Spi1, Gata3, Bcl11a, Erg, and Bcl11b__ W Zhou, F Gao, M Romero-Wolf, S Jo, EV Rothenberg - __Science Immunology__, 2022
+>
+> - __Large-scale chromatin reorganization reactivates placenta-specific genes that drive cellular aging__ Z Liu, Q Ji, J Ren, P Yan, Z Wu, S Wang, L Sun, Z Wang et al - __Developmental Cell__, 2022
+>
+> - __Direct epitranscriptomic regulation of mammalian translation initiation through N4-acetylcytidine__ D Arango, D Sturgill, R Yang, T Kanai, P Bauer et al. - __Molecular Cell__, 2022
+>
 > - __Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge__ A Sinha et al. - __eLife__, 2019
 >
 > - __Sex and hatching order modulate the association between MHC‐II diversity and fitness in early‐life stages of a wild seabird__
@@ -328,6 +334,23 @@ J Katzke, P Puchenkov, H Stark, EP Economo - __Integrative Organismal Biology__,
 > 
 > - __Pandemonium: a clustering tool to partition parameter space—application to the B anomalies__ U Laa, G Valencia - __The European Physical Journal Plus__, 2022
 >
+> - __Identification of a glioma functional network from gene fitness data using machine learning__ C Xiang, X Liu, D Zhou, Y Zhou, X Wang, F Chen - __Journal of Cellular and Molecular Medicine__, 2022
+>
+> - __Cross compatibility in intraspecific and interspecific hybridization in yam (Dioscorea spp.)__ JM Mondo, PA Agre, A Edemodu et al. - __Scientific reports__, 2022
+>
+> - __A Modular and Expandable Ecosystem for Metabolomics Data Annotation in R__ J Rainer, A Vicini, L Salzer, J Stanstrup et al. - __Metabolites__, 2022
+>
+> - __Single-Cell Transcriptome Integration Analysis Reveals the Correlation Between Mesenchymal Stromal Cells and Fibroblasts__ C Fan, M Liao, L Xie, L Huang, S Lv, S Cai et al. - __Frontiers in genetics__, 2022
+>
+> - __Phenotypic regionalization of the vertebral column in the thorny skate Amblyraja radiata: Stability and variation__ F Berio, Y Bayle, C Riley, O Larouche, R Cloutier - __Journal of Anatomy__, 2022
+>
+> - __Community assembly during vegetation succession after metal mining is driven by multiple processes with temporal variation__ T Li, H Yang, X Yang, Z Guo, D Fu, C Liu, S Li et al. - __Ecology and evolution__, 2022
+>
+> - __Integrative Organismal Biology__ J Katzke, P Puchenkov, H Stark, __EP Economo__ - 2022
+>
+> - __Optimizing use of US Ex-PVP inbred lines for enhancing agronomic performance of tropical Striga resistant maize inbred lines__ ARS Maazou, M Gedil, VO Adetimirin et al. - __BMC Plant Biology__, 2022
+
+
 
 ## Discussions and Bug Reports
 
