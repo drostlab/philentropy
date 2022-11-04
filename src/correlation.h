@@ -46,7 +46,7 @@ double pearson_corr_centred(const Rcpp::NumericVector& x, const Rcpp::NumericVec
         if(testNA){
                 for(int i = 0; i < x.size(); i++){
                         
-                        if(Rcpp::NumericVector::is_na(x[i]) | Rcpp::NumericVector::is_na(y[i])){
+                        if(Rcpp::NumericVector::is_na(x[i]) or Rcpp::NumericVector::is_na(y[i])){
                                 Rcpp::stop("Your input vectors store NA values...");
                         }
                         
@@ -91,7 +91,7 @@ double pearson_corr_uncentred(const Rcpp::NumericVector& x, const Rcpp::NumericV
         
         if(testNA){
                 for(int i = 0; i < x.size(); i++){
-                       if(Rcpp::NumericVector::is_na(x[i]) | Rcpp::NumericVector::is_na(y[i])){
+                       if(Rcpp::NumericVector::is_na(x[i]) or Rcpp::NumericVector::is_na(y[i])){
                                 Rcpp::stop("Your input vectors store NA values...");
                         } 
                         x_diff[i] = x[i] - mean_x;
@@ -134,7 +134,7 @@ double squared_pearson_corr(const Rcpp::NumericVector& x, const Rcpp::NumericVec
         
         if(testNA){
                 for(int i = 0; i < x.size(); i++){
-                        if(Rcpp::NumericVector::is_na(x[i]) | Rcpp::NumericVector::is_na(y[i])){
+                        if(Rcpp::NumericVector::is_na(x[i]) or Rcpp::NumericVector::is_na(y[i])){
                                 Rcpp::stop("Your input vectors store NA values...");
                         } 
                         x_diff[i] = x[i] - mean_x;
