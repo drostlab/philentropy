@@ -21,7 +21,7 @@ lorentzian(P, Q, testNA, unit)
 }}
 }
 \description{
-The lowlevel function for computing the lorentzian distance.
+The low-level function for computing the lorentzian distance.
 }
 \examples{
 lorentzian(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
