@@ -300,7 +300,7 @@ canberra <- function(P, Q, testNA) {
 }
 
 #' @title Lorentzian distance (lowlevel function)
-#' @description The lowlevel function for computing the lorentzian distance.
+#' @description The low-level function for computing the lorentzian distance.
 #' @param P a numeric vector storing the first distribution.
 #' @param Q a numeric vector storing the second distribution.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.

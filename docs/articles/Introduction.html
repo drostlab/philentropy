@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -73,7 +69,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/drostlab/philentropy/">
+  <a href="https://github.com/drostlab/philentropy/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -88,24 +84,24 @@
 
       
 
-      </header><script src="Introduction_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/drostlab/philentropy/blob/master/vignettes/Introduction.Rmd"><code>vignettes/Introduction.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/drostlab/philentropy/blob/HEAD/vignettes/Introduction.Rmd" class="external-link"><code>vignettes/Introduction.Rmd</code></a></small>
       <div class="hidden name"><code>Introduction.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction-to-the-philentropy-package" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction-to-the-philentropy-package" class="anchor"></a>Introduction to the <code>philentropy</code> Package</h2>
+<div class="section level2">
+<h2 id="introduction-to-the-philentropy-package">Introduction to the <code>philentropy</code> Package<a class="anchor" aria-label="anchor" href="#introduction-to-the-philentropy-package"></a>
+</h2>
 <p>Comparison is a fundamental method of scientific research leading to more general insights about the processes that generate similarity or dissimilarity. In statistical terms comparisons between probability functions are performed to infer connections, correlations, or relationships between samples. The <code>philentropy</code> package implements optimized distance and similarity measures for comparing probability functions. These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a base framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions.</p>
-<p>Applying the method of comparison in statistics often means computing distances between probability functions. In this context <a href="https://users.uom.gr/~kouiruki/sung.pdf">Sung-Hyuk Cha (2007)</a> provides a clear definition of distance :</p>
+<p>Applying the method of comparison in statistics often means computing distances between probability functions. In this context <a href="https://users.uom.gr/~kouiruki/sung.pdf" class="external-link">Sung-Hyuk Cha (2007)</a> provides a clear definition of distance :</p>
 <blockquote>
 <p>From the scientific and mathematical point of view, <em>distance</em> is defined as a quantitative degree of how far apart two objects are.</p>
 </blockquote>
@@ -120,19 +116,20 @@
 <li>Correlation Analyses</li>
 </ul>
 <p>Personally, I hope that some of these functions are helpful to the R community.</p>
-<div id="distance-measures" class="section level3">
-<h3 class="hasAnchor">
-<a href="#distance-measures" class="anchor"></a>Distance Measures</h3>
-<p>Here, the <a href="https://github.com/drostlab/philentropy/blob/master/vignettes/Distances.Rmd">Distance Measure Vignette</a> introduces how to work with the main function <code><a href="../reference/distance.html">distance()</a></code> that implements the 46 distance measures presented in Cha’s review.</p>
+<div class="section level3">
+<h3 id="distance-measures">Distance Measures<a class="anchor" aria-label="anchor" href="#distance-measures"></a>
+</h3>
+<p>Here, the <a href="https://github.com/drostlab/philentropy/blob/master/vignettes/Distances.Rmd" class="external-link">Distance Measure Vignette</a> introduces how to work with the main function <code><a href="../reference/distance.html">distance()</a></code> that implements the 46 distance measures presented in Cha’s review.</p>
 <p>Furthermore, for each distance/similarity measure a short description on usage and performance is presented.</p>
 <p>The following probability distance/similarity measures will be described in detail:</p>
 </div>
-<div id="distance-and-similarity-measures" class="section level3">
-<h3 class="hasAnchor">
-<a href="#distance-and-similarity-measures" class="anchor"></a>Distance and Similarity Measures</h3>
-<div id="l_p-minkowski-family" class="section level4">
-<h4 class="hasAnchor">
-<a href="#l_p-minkowski-family" class="anchor"></a><span class="math inline">\(L_p\)</span> Minkowski Family</h4>
+<div class="section level3">
+<h3 id="distance-and-similarity-measures">Distance and Similarity Measures<a class="anchor" aria-label="anchor" href="#distance-and-similarity-measures"></a>
+</h3>
+<div class="section level4">
+<h4 id="l_p-minkowski-family">
+<span class="math inline">\(L_p\)</span> Minkowski Family<a class="anchor" aria-label="anchor" href="#l_p-minkowski-family"></a>
+</h4>
 <ul>
 <li>Euclidean : <span class="math inline">\(d = \sqrt{\sum_{i = 1}^N | P_i - Q_i |^2)}\)</span>
 </li>
@@ -144,9 +141,10 @@
 </li>
 </ul>
 </div>
-<div id="l_1-family" class="section level4">
-<h4 class="hasAnchor">
-<a href="#l_1-family" class="anchor"></a><span class="math inline">\(L_1\)</span> Family</h4>
+<div class="section level4">
+<h4 id="l_1-family">
+<span class="math inline">\(L_1\)</span> Family<a class="anchor" aria-label="anchor" href="#l_1-family"></a>
+</h4>
 <ul>
 <li>Sorensen : <span class="math inline">\(d = \frac{\sum_{i = 1}^N | P_i - Q_i |}{\sum_{i = 1}^N (P_i + Q_i)}\)</span>
 </li>
@@ -162,9 +160,9 @@
 </li>
 </ul>
 </div>
-<div id="intersection-family" class="section level4">
-<h4 class="hasAnchor">
-<a href="#intersection-family" class="anchor"></a>Intersection Family</h4>
+<div class="section level4">
+<h4 id="intersection-family">Intersection Family<a class="anchor" aria-label="anchor" href="#intersection-family"></a>
+</h4>
 <ul>
 <li>Intersection : <span class="math inline">\(s = \sum_{i = 1}^N min(P_i , Q_i)\)</span>
 </li>
@@ -182,9 +180,9 @@
 <li>Ruzicka : <span class="math inline">\(s = \frac{\sum_{i = 1}^N min(P_i , Q_i)}{\sum_{i = 1}^N max(P_i , Q_i)}\)</span> ; equivalent to 1 - Tanimoto = 1 - Soergel</li>
 </ul>
 </div>
-<div id="inner-product-family" class="section level4">
-<h4 class="hasAnchor">
-<a href="#inner-product-family" class="anchor"></a>Inner Product Family</h4>
+<div class="section level4">
+<h4 id="inner-product-family">Inner Product Family<a class="anchor" aria-label="anchor" href="#inner-product-family"></a>
+</h4>
 <ul>
 <li>Inner Product : <span class="math inline">\(s = \sum_{i = 1}^N P_i \dot Q_i\)</span>
 </li>
@@ -199,9 +197,9 @@
 </li>
 </ul>
 </div>
-<div id="squared-chord-family" class="section level4">
-<h4 class="hasAnchor">
-<a href="#squared-chord-family" class="anchor"></a>Squared-chord Family</h4>
+<div class="section level4">
+<h4 id="squared-chord-family">Squared-chord Family<a class="anchor" aria-label="anchor" href="#squared-chord-family"></a>
+</h4>
 <ul>
 <li>Fidelity : <span class="math inline">\(s = \sum_{i = 1}^N \sqrt{P_i \cdot Q_i}\)</span>
 </li>
@@ -215,9 +213,9 @@
 </li>
 </ul>
 </div>
-<div id="squared-l_2-family-x2-squared-family" class="section level4">
-<h4 class="hasAnchor">
-<a href="#squared-l_2-family-x2-squared-family" class="anchor"></a>Squared <span class="math inline">\(L_2\)</span> family (<span class="math inline">\(X^2\)</span> squared family)</h4>
+<div class="section level4">
+<h4 id="squared-l_2-family-x2-squared-family">Squared <span class="math inline">\(L_2\)</span> family (<span class="math inline">\(X^2\)</span> squared family)<a class="anchor" aria-label="anchor" href="#squared-l_2-family-x2-squared-family"></a>
+</h4>
 <ul>
 <li>Squared Euclidean : <span class="math inline">\(d = \sum_{i = 1}^N ( P_i - Q_i )^2\)</span>
 </li>
@@ -237,9 +235,9 @@
 </li>
 </ul>
 </div>
-<div id="shannons-entropy-family" class="section level4">
-<h4 class="hasAnchor">
-<a href="#shannons-entropy-family" class="anchor"></a>Shannon’s Entropy Family</h4>
+<div class="section level4">
+<h4 id="shannons-entropy-family">Shannon’s Entropy Family<a class="anchor" aria-label="anchor" href="#shannons-entropy-family"></a>
+</h4>
 <ul>
 <li>Kullback-Leibler : <span class="math inline">\(d = \sum_{i = 1}^N P_i \cdot log(\frac{P_i}{Q_i})\)</span>
 </li>
@@ -255,9 +253,9 @@
 </li>
 </ul>
 </div>
-<div id="combinations" class="section level4">
-<h4 class="hasAnchor">
-<a href="#combinations" class="anchor"></a>Combinations</h4>
+<div class="section level4">
+<h4 id="combinations">Combinations<a class="anchor" aria-label="anchor" href="#combinations"></a>
+</h4>
 <ul>
 <li>Taneja : <span class="math inline">\(d = \sum_{i = 1}^N ( \frac{P_i + Q_i}{2}) \cdot log( \frac{P_i + Q_i}{( 2 \cdot \sqrt{P_i \cdot Q_i})} )\)</span>
 </li>
@@ -269,10 +267,10 @@
 <p><strong>Note</strong>: <span class="math inline">\(d\)</span> refers to distance measures, whereas <span class="math inline">\(s\)</span> denotes similarity measures.</p>
 </div>
 </div>
-<div id="information-theory" class="section level3">
-<h3 class="hasAnchor">
-<a href="#information-theory" class="anchor"></a>Information Theory</h3>
-<p>Modern methods for distribution comparisons have a strong <a href="http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf">information theoretic background</a>. This fact motivated me to name this package <code>philentropy</code> and as a result, several well established information theory measures are (and further will be) implemeted in this package.</p>
+<div class="section level3">
+<h3 id="information-theory">Information Theory<a class="anchor" aria-label="anchor" href="#information-theory"></a>
+</h3>
+<p>Modern methods for distribution comparisons have a strong <a href="http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf" class="external-link">information theoretic background</a>. This fact motivated me to name this package <code>philentropy</code> and as a result, several well established information theory measures are (and further will be) implemeted in this package.</p>
 <ul>
 <li>Shannon’s Entropy H(X) : <span class="math inline">\(H(X) = -\sum\limits_{i=1}^n P(x_i) \cdot log_b(P(x_i))\)</span>
 </li>
@@ -304,11 +302,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Hajk-Georg Drost.</p>
+  <p></p>
+<p>Developed by Hajk-Georg Drost.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -316,6 +316,8 @@
 
   
 
+
+  
 
   </body>
 </html>

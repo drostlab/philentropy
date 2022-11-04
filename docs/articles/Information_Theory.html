@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -73,7 +69,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/drostlab/philentropy/">
+  <a href="https://github.com/drostlab/philentropy/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -88,22 +84,21 @@
 
       
 
-      </header><script src="Information_Theory_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Information Theory</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/drostlab/philentropy/blob/master/vignettes/Information_Theory.Rmd"><code>vignettes/Information_Theory.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/drostlab/philentropy/blob/HEAD/vignettes/Information_Theory.Rmd" class="external-link"><code>vignettes/Information_Theory.Rmd</code></a></small>
       <div class="hidden name"><code>Information_Theory.Rmd</code></div>
 
     </div>
 
     
     
-<div id="information-theory-measures-in-philentropy" class="section level2">
-<h2 class="hasAnchor">
-<a href="#information-theory-measures-in-philentropy" class="anchor"></a>Information Theory measures in <code>philentropy</code>
+<div class="section level2">
+<h2 id="information-theory-measures-in-philentropy">Information Theory measures in <code>philentropy</code><a class="anchor" aria-label="anchor" href="#information-theory-measures-in-philentropy"></a>
 </h2>
 <blockquote>
 <p>The laws of probability, so true in general, so fallacious in particular.</p>
@@ -111,69 +106,69 @@
 </blockquote>
 <p>Information theory and statistics were beautifully fused by <code>Solomon Kullback</code>. This fusion allowed to quantify correlations and similarities between random variables using a more sophisticated toolkit. Modern fields such as machine learning and statistical data science build upon this fusion and the most powerful statistical techniques used today are based on an information theoretic foundation.</p>
 <p>The <code>philentropy</code> aims to follow this tradition and therefore, it implements the most important information theory measures.</p>
-<div id="shannons-entropy-hx" class="section level3">
-<h3 class="hasAnchor">
-<a href="#shannons-entropy-hx" class="anchor"></a>Shannon’s Entropy H(X)</h3>
+<div class="section level3">
+<h3 id="shannons-entropy-hx">Shannon’s Entropy H(X)<a class="anchor" aria-label="anchor" href="#shannons-entropy-hx"></a>
+</h3>
 <blockquote>
 <p><span class="math inline">\(H(X) = -\sum\limits_{i=1}^n P(x_i) * log_b(P(x_i))\)</span></p>
 </blockquote>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># define probabilities P(X)</span>
-<span class="va">Prob</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-<span class="co"># Compute Shannon's Entropy</span>
-<span class="fu"><a href="../reference/H.html">H</a></span><span class="op">(</span><span class="va">Prob</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># define probabilities P(X)</span></span>
+<span><span class="va">Prob</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co"># Compute Shannon's Entropy</span></span>
+<span><span class="fu"><a href="../reference/H.html">H</a></span><span class="op">(</span><span class="va">Prob</span><span class="op">)</span></span></code></pre></div>
 <pre><code>[1] 3.103643</code></pre>
 </div>
-<div id="shannons-joint-entropy-hxy" class="section level3">
-<h3 class="hasAnchor">
-<a href="#shannons-joint-entropy-hxy" class="anchor"></a>Shannon’s Joint-Entropy H(X,Y)</h3>
+<div class="section level3">
+<h3 id="shannons-joint-entropy-hxy">Shannon’s Joint-Entropy H(X,Y)<a class="anchor" aria-label="anchor" href="#shannons-joint-entropy-hxy"></a>
+</h3>
 <blockquote>
 <p><span class="math inline">\(H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b(P(x_i, y_j))\)</span></p>
 </blockquote>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># define the joint distribution P(X,Y)</span>
-<span class="va">P_xy</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span>
-<span class="co"># Compute Shannon's Joint-Entropy</span>
-<span class="fu"><a href="../reference/JE.html">JE</a></span><span class="op">(</span><span class="va">P_xy</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># define the joint distribution P(X,Y)</span></span>
+<span><span class="va">P_xy</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="co"># Compute Shannon's Joint-Entropy</span></span>
+<span><span class="fu"><a href="../reference/JE.html">JE</a></span><span class="op">(</span><span class="va">P_xy</span><span class="op">)</span></span></code></pre></div>
 <pre><code>[1] 6.372236</code></pre>
 </div>
-<div id="shannons-conditional-entropy-hx-y" class="section level3">
-<h3 class="hasAnchor">
-<a href="#shannons-conditional-entropy-hx-y" class="anchor"></a>Shannon’s Conditional-Entropy H(X | Y)</h3>
+<div class="section level3">
+<h3 id="shannons-conditional-entropy-hx-y">Shannon’s Conditional-Entropy H(X | Y)<a class="anchor" aria-label="anchor" href="#shannons-conditional-entropy-hx-y"></a>
+</h3>
 <blockquote>
 <p><span class="math inline">\(H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i) / P(x_i, y_j) )\)</span></p>
 </blockquote>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># define the distribution P(X)</span>
-<span class="va">P_x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-<span class="co"># define the distribution P(Y)</span>
-<span class="va">P_y</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-
-<span class="co"># Compute Shannon's Joint-Entropy</span>
-<span class="fu"><a href="../reference/CE.html">CE</a></span><span class="op">(</span><span class="va">P_x</span>, <span class="va">P_y</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># define the distribution P(X)</span></span>
+<span><span class="va">P_x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co"># define the distribution P(Y)</span></span>
+<span><span class="va">P_y</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Compute Shannon's Joint-Entropy</span></span>
+<span><span class="fu"><a href="../reference/CE.html">CE</a></span><span class="op">(</span><span class="va">P_x</span>, <span class="va">P_y</span><span class="op">)</span></span></code></pre></div>
 <pre><code>[1] 0</code></pre>
 </div>
-<div id="mutual-information-ixy" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mutual-information-ixy" class="anchor"></a>Mutual Information I(X,Y)</h3>
+<div class="section level3">
+<h3 id="mutual-information-ixy">Mutual Information I(X,Y)<a class="anchor" aria-label="anchor" href="#mutual-information-ixy"></a>
+</h3>
 <blockquote>
 <p><span class="math inline">\(MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i, y_j) / ( P(x_i) * P(y_j) )\)</span></p>
 </blockquote>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># define the distribution P(X)</span>
-<span class="va">P_x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-<span class="co"># define the distribution P(Y)</span>
-<span class="va">P_y</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>
-<span class="co"># define the joint-distribution P(X,Y)</span>
-<span class="va">P_xy</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-
-<span class="co"># Compute Shannon's Joint-Entropy</span>
-<span class="fu"><a href="../reference/MI.html">MI</a></span><span class="op">(</span><span class="va">P_x</span>, <span class="va">P_y</span>, <span class="va">P_xy</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># define the distribution P(X)</span></span>
+<span><span class="va">P_x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co"># define the distribution P(Y)</span></span>
+<span><span class="va">P_y</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span></span>
+<span><span class="co"># define the joint-distribution P(X,Y)</span></span>
+<span><span class="va">P_xy</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Compute Shannon's Joint-Entropy</span></span>
+<span><span class="fu"><a href="../reference/MI.html">MI</a></span><span class="op">(</span><span class="va">P_x</span>, <span class="va">P_y</span>, <span class="va">P_xy</span><span class="op">)</span></span></code></pre></div>
 <pre><code>[1] 3.311973</code></pre>
 </div>
-<div id="kullback-leibler-divergence" class="section level3">
-<h3 class="hasAnchor">
-<a href="#kullback-leibler-divergence" class="anchor"></a>Kullback-Leibler Divergence</h3>
+<div class="section level3">
+<h3 id="kullback-leibler-divergence">Kullback-Leibler Divergence<a class="anchor" aria-label="anchor" href="#kullback-leibler-divergence"></a>
+</h3>
 <blockquote>
 <p><span class="math inline">\(KL(P || Q) = \sum\limits_{i=1}^n P(p_i) * log_2(P(p_i) / P(q_i)) = H(P, Q) - H(P)\)</span></p>
 </blockquote>
@@ -181,15 +176,15 @@
 <p>The KL divergence is a non-symmetric measure of the directed divergence between two probability distributions P and Q. It only fulfills the positivity property of a distance metric.</p>
 <p>Because of the relation <code>KL(P||Q) = H(P,Q) - H(P)</code>, the Kullback-Leibler divergence of two probability distributions <code>P</code> and <code>Q</code> is also named <code>Cross Entropy</code> of two probability distributions <code>P</code> and <code>Q</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Kulback-Leibler Divergence between random variables P and Q</span>
-<span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-<span class="va">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">P</span>,<span class="va">Q</span><span class="op">)</span>
-
-<span class="co"># Kulback-Leibler Divergence between P and Q using different log bases</span>
-<span class="fu"><a href="../reference/KL.html">KL</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span> <span class="co"># Default</span>
-<span class="fu"><a href="../reference/KL.html">KL</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/KL.html">KL</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Kulback-Leibler Divergence between random variables P and Q</span></span>
+<span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">P</span>,<span class="va">Q</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Kulback-Leibler Divergence between P and Q using different log bases</span></span>
+<span><span class="fu"><a href="../reference/KL.html">KL</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span> <span class="co"># Default</span></span>
+<span><span class="fu"><a href="../reference/KL.html">KL</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/KL.html">KL</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span></span></code></pre></div>
 <pre><code># KL(x, unit = "log2") # Default
 Kulback-Leibler Divergence using unit 'log2'.
 kullback-leibler 
@@ -203,9 +198,9 @@ Kulback-Leibler Divergence using unit 'log10'.
 kullback-leibler 
        0.0419223 </code></pre>
 </div>
-<div id="jensen-shannon-divergence" class="section level3">
-<h3 class="hasAnchor">
-<a href="#jensen-shannon-divergence" class="anchor"></a>Jensen-Shannon Divergence</h3>
+<div class="section level3">
+<h3 id="jensen-shannon-divergence">Jensen-Shannon Divergence<a class="anchor" aria-label="anchor" href="#jensen-shannon-divergence"></a>
+</h3>
 <p>This function computes the <code>Jensen-Shannon Divergence</code> <code>JSD(P || Q)</code> between two probability distributions <code>P</code> and <code>Q</code> with equal weights <code>π_1</code> = <code>π_2</code> = 1/2.</p>
 <p>The Jensen-Shannon Divergence JSD(P || Q) between two probability distributions P and Q is defined as:</p>
 <blockquote>
@@ -213,15 +208,15 @@ kullback-leibler
 </blockquote>
 <p>where <code>R = 0.5 * (P + Q)</code> denotes the mid-point of the probability vectors <code>P</code> and <code>Q</code>, and <code>KL(P || R)</code>, <code>KL(Q || R)</code> denote the <code>Kullback-Leibler Divergence</code> of <code>P</code> and <code>R</code>, as well as <code>Q</code> and <code>R</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Jensen-Shannon Divergence between P and Q</span>
-<span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-<span class="va">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">P</span>,<span class="va">Q</span><span class="op">)</span>
-
-<span class="co"># Jensen-Shannon Divergence between P and Q using different log bases</span>
-<span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span> <span class="co"># Default</span>
-<span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Jensen-Shannon Divergence between P and Q</span></span>
+<span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">P</span>,<span class="va">Q</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Jensen-Shannon Divergence between P and Q using different log bases</span></span>
+<span><span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span> <span class="co"># Default</span></span>
+<span><span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">x</span>, unit <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span></span></code></pre></div>
 <pre><code># JSD(x, unit = "log2") # Default
 Jensen-Shannon Divergence using unit 'log2'.
 jensen-shannon 
@@ -236,31 +231,31 @@ jensen-shannon
     0.01141731 </code></pre>
 <p>Alternatively, users can specify count data.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count</span>
-<span class="va">P.count</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
-<span class="va">Q.count</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span>
-<span class="va">x.count</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">P.count</span>, <span class="va">Q.count</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">x</span>, est.prob <span class="op">=</span> <span class="st">"empirical"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count</span></span>
+<span><span class="va">P.count</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<span><span class="va">Q.count</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span></span>
+<span><span class="va">x.count</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">P.count</span>, <span class="va">Q.count</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">x</span>, est.prob <span class="op">=</span> <span class="st">"empirical"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>Jensen-Shannon Divergence using unit 'log2'.
 jensen-shannon 
     0.03792749</code></pre>
 <p>Or users can compute distances based on a probability matrix</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Example: Distance Matrix using JSD-Distance</span>
-<span class="va">Prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>, <span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># compute the KL matrix of a given probability matrix</span>
-<span class="va">JSDMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">Prob</span><span class="op">)</span>
-
-<span class="va">JSDMatrix</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Example: Distance Matrix using JSD-Distance</span></span>
+<span><span class="va">Prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>, <span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># compute the KL matrix of a given probability matrix</span></span>
+<span><span class="va">JSDMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/JSD.html">JSD</a></span><span class="op">(</span><span class="va">Prob</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">JSDMatrix</span></span></code></pre></div>
 <pre><code>           v1           v2           v3
 v1 0.00000000 0.0379274917 0.0435852218
 v2 0.03792749 0.0000000000 0.0002120578
 v3 0.04358522 0.0002120578 0.0000000000</code></pre>
-<div id="properties-of-the-jensen-shannon-divergence" class="section level4">
-<h4 class="hasAnchor">
-<a href="#properties-of-the-jensen-shannon-divergence" class="anchor"></a>Properties of the <code>Jensen-Shannon Divergence</code>:</h4>
+<div class="section level4">
+<h4 id="properties-of-the-jensen-shannon-divergence">Properties of the <code>Jensen-Shannon Divergence</code>:<a class="anchor" aria-label="anchor" href="#properties-of-the-jensen-shannon-divergence"></a>
+</h4>
 <ul>
 <li><p>JSD is non-negative.</p></li>
 <li><p>JSD is a symmetric measure JSD(P || Q) = JSD(Q || P).</p></li>
@@ -268,20 +263,20 @@ v3 0.04358522 0.0002120578 0.0000000000</code></pre>
 </ul>
 </div>
 </div>
-<div id="generalized-jensen-shannon-divergence" class="section level3">
-<h3 class="hasAnchor">
-<a href="#generalized-jensen-shannon-divergence" class="anchor"></a>Generalized Jensen-Shannon Divergence</h3>
+<div class="section level3">
+<h3 id="generalized-jensen-shannon-divergence">Generalized Jensen-Shannon Divergence<a class="anchor" aria-label="anchor" href="#generalized-jensen-shannon-divergence"></a>
+</h3>
 <p>The generalized Jensen-Shannon Divergence <span class="math inline">\(gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n)\)</span> enables distance comparisons between multiple probability distributions <span class="math inline">\(P_1,...,P_n\)</span>:</p>
 <blockquote>
 <p><span class="math inline">\(gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i*P_i) - \sum_{i = 1}^n \pi_i*H(P_i)\)</span></p>
 </blockquote>
 <p>where <span class="math inline">\(\pi_1,...,\pi_n\)</span> denote the weights selected for the probability vectors <span class="math inline">\(P_1,...,P_n\)</span> and <span class="math inline">\(H(P_i)\)</span> denotes the Shannon Entropy of probability vector <span class="math inline">\(P_i\)</span>.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># generate example probability matrix for comparing three probability functions</span>
-<span class="va">Prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>, <span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># compute the Generalized JSD comparing the PS probability matrix</span>
-<span class="fu"><a href="../reference/gJSD.html">gJSD</a></span><span class="op">(</span><span class="va">Prob</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># generate example probability matrix for comparing three probability functions</span></span>
+<span><span class="va">Prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>, <span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># compute the Generalized JSD comparing the PS probability matrix</span></span>
+<span><span class="fu"><a href="../reference/gJSD.html">gJSD</a></span><span class="op">(</span><span class="va">Prob</span><span class="op">)</span></span></code></pre></div>
 <pre><code>#&gt; No weights were specified ('weights = NULL'), thus equal weights for all
 #&gt; distributions will be calculated and applied.
 #&gt; Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).
@@ -290,20 +285,20 @@ v3 0.04358522 0.0002120578 0.0000000000</code></pre>
 <p>As you can see, the <code>gJSD</code> function prints out the exact number of vectors that were used to compute the generalized JSD. By default, the weights are uniformly distributed (<code>weights = NULL</code>).</p>
 <p>Users can also specify non-uniformly distributed weights via specifying the <code>weights</code> argument:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># define probability matrix</span>
-<span class="va">Prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>, <span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span>
-<span class="co"># compute generalized JSD with custom weights</span>
-<span class="fu"><a href="../reference/gJSD.html">gJSD</a></span><span class="op">(</span><span class="va">Prob</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># define probability matrix</span></span>
+<span><span class="va">Prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>, <span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># compute generalized JSD with custom weights</span></span>
+<span><span class="fu"><a href="../reference/gJSD.html">gJSD</a></span><span class="op">(</span><span class="va">Prob</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>#&gt; Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).
 #&gt; Weights: v1 = 0.5, v2 = 0.25, v3 = 0.25
 [1] 0.04081969</code></pre>
 <p>Finally, users can use the argument <code>est.prob</code> to empirically estimate probability vectors when they wish to specify count vectors as input:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">P.count</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
-<span class="va">Q.count</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span>
-<span class="va">R.count</span> <span class="op">&lt;-</span> <span class="fl">30</span><span class="op">:</span><span class="fl">39</span>
-<span class="va">x.count</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">P.count</span>, <span class="va">Q.count</span>, <span class="va">R.count</span><span class="op">)</span>
-<span class="fu"><a href="../reference/gJSD.html">gJSD</a></span><span class="op">(</span><span class="va">x.count</span>, est.prob <span class="op">=</span> <span class="st">"empirical"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">P.count</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<span><span class="va">Q.count</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span></span>
+<span><span class="va">R.count</span> <span class="op">&lt;-</span> <span class="fl">30</span><span class="op">:</span><span class="fl">39</span></span>
+<span><span class="va">x.count</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">P.count</span>, <span class="va">Q.count</span>, <span class="va">R.count</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/gJSD.html">gJSD</a></span><span class="op">(</span><span class="va">x.count</span>, est.prob <span class="op">=</span> <span class="st">"empirical"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>#&gt; No weights were specified ('weights = NULL'), thus equal weights for all distributions will be calculated and applied.
 #&gt; Metric: 'gJSD'; unit = 'log2'; comparing: 3 vectors (v1, ... , v3).
 #&gt; Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333
@@ -323,11 +318,13 @@ v3 0.04358522 0.0002120578 0.0000000000</code></pre>
 
 
       <footer><div class="copyright">
-  <p>Developed by Hajk-Georg Drost.</p>
+  <p></p>
+<p>Developed by Hajk-Georg Drost.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -335,6 +332,8 @@ v3 0.04358522 0.0002120578 0.0000000000</code></pre>
 
   
 
+
+  
 
   </body>
 </html>

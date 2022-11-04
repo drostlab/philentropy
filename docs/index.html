@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -73,7 +69,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/drostlab/philentropy/">
+  <a href="https://github.com/drostlab/philentropy/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -90,52 +86,48 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="philentropy" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#philentropy" class="anchor"></a>philentropy</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="philentropy">philentropy<a class="anchor" aria-label="anchor" href="#philentropy"></a>
+</h1></div>
 
-<div id="similarity-and-distance-quantification-between-probability-functions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#similarity-and-distance-quantification-between-probability-functions" class="anchor"></a>Similarity and Distance Quantification between Probability Functions</h3>
-<blockquote>
-<p>Describe and understand the world through data.</p>
-</blockquote>
+<div class="section level3">
+<h3 id="similarity-and-distance-quantification-between-probability-functions">Similarity and Distance Quantification between Probability Functions<a class="anchor" aria-label="anchor" href="#similarity-and-distance-quantification-between-probability-functions"></a>
+</h3>
+<blockquote><p>Describe and understand the world through data.</p></blockquote>
 <p>Data collection and data comparison are the foundations of scientific research. <em>Mathematics</em> provides the abstract framework to describe patterns we observe in nature and <em>Statistics</em> provides the framework to quantify the uncertainty of these patterns. In statistics, natural patterns are described in form of probability distributions which either follow a fixed pattern (parametric distributions) or more dynamic patterns (non-parametric distributions).</p>
 <p>The <code>philentropy</code> package implements fundamental distance and similarity measures to quantify distances between probability density functions as well as traditional information theory measures. In this regard, it aims to provide a framework for comparing natural patterns in a statistical notation.</p>
 <p>This project is born out of my passion for statistics and I hope that it will be useful to the people who share it with me.</p>
 </div>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
+<div class="section level3">
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install philentropy version 0.6.0 from CRAN</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"philentropy"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install philentropy version 0.6.0 from CRAN</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"philentropy"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="citation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#citation" class="anchor"></a>Citation</h3>
+<div class="section level3">
+<h3 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h3>
 <p><strong>I am developing <code>philentropy</code> in my spare time and would be very grateful if you would consider citing the following paper in case <code>philentropy</code> was useful for your own research. I plan on maintaining and extending the <code>philentropy</code> functionality and usability in the next years and require citations to back up these efforts. Many thanks in advance :)</strong></p>
-<blockquote>
-<p>HG Drost, (2018). <strong>Philentropy: Information Theory and Distance Quantification with R</strong>. <em>Journal of Open Source Software</em>, 3(26), 765. <a href="https://doi.org/10.21105/joss.00765" class="uri">https://doi.org/10.21105/joss.00765</a></p>
-</blockquote>
+<blockquote><p>HG Drost, (2018). <strong>Philentropy: Information Theory and Distance Quantification with R</strong>. <em>Journal of Open Source Software</em>, 3(26), 765. <a href="https://doi.org/10.21105/joss.00765" class="external-link uri">https://doi.org/10.21105/joss.00765</a></p></blockquote>
 </div>
-<div id="tutorials" class="section level2">
-<h2 class="hasAnchor">
-<a href="#tutorials" class="anchor"></a>Tutorials</h2>
+<div class="section level2">
+<h2 id="tutorials">Tutorials<a class="anchor" aria-label="anchor" href="#tutorials"></a>
+</h2>
 <ul>
-<li><a href="https://drostlab.github.io/philentropy/articles/Introduction.html">Introduction to the philentropy package</a></li>
-<li><a href="https://drostlab.github.io/philentropy/articles/Distances.html">Distance and Similarity Measures implemented in philentropy</a></li>
-<li><a href="https://drostlab.github.io/philentropy/articles/Information_Theory.html">Information Theory Metrics implemented in philentropy</a></li>
-<li><a href="https://drostlab.github.io/philentropy/articles/Many_Distances.html">Comparing many probability density functions</a></li>
+<li><a href="https://drostlab.github.io/philentropy/articles/Introduction.html" class="external-link">Introduction to the philentropy package</a></li>
+<li><a href="https://drostlab.github.io/philentropy/articles/Distances.html" class="external-link">Distance and Similarity Measures implemented in philentropy</a></li>
+<li><a href="https://drostlab.github.io/philentropy/articles/Information_Theory.html" class="external-link">Information Theory Metrics implemented in philentropy</a></li>
+<li><a href="https://drostlab.github.io/philentropy/articles/Many_Distances.html" class="external-link">Comparing many probability density functions</a></li>
 </ul>
 </div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/drostlab/philentropy">philentropy</a></span><span class="op">)</span>
-<span class="co"># retrieve available distance metrics</span>
-<span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/drostlab/philentropy" class="external-link">philentropy</a></span><span class="op">)</span></span>
+<span><span class="co"># retrieve available distance metrics</span></span>
+<span><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code> [1] "euclidean"         "manhattan"         "minkowski"        
  [4] "chebyshev"         "sorensen"          "gower"            
  [7] "soergel"           "kulczynski_d"      "canberra"         
@@ -153,23 +145,23 @@
 [43] "jensen_difference" "taneja"            "kumar-johnson"    
 [46] "avg"</code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># define a probability density function P</span>
-<span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
-<span class="co"># define a probability density function Q</span>
-<span class="va">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>
-
-<span class="co"># combine P and Q as matrix object</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">P</span>,<span class="va">Q</span><span class="op">)</span>
-
-<span class="co"># compute the jensen-shannon distance between</span>
-<span class="co"># probability density functions P and Q</span>
-<span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"jensen-shannon"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># define a probability density function P</span></span>
+<span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co"># define a probability density function Q</span></span>
+<span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># combine P and Q as matrix object</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">P</span>,<span class="va">Q</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># compute the jensen-shannon distance between</span></span>
+<span><span class="co"># probability density functions P and Q</span></span>
+<span><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"jensen-shannon"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>jensen-shannon using unit 'log'.
 jensen-shannon 
     0.02628933</code></pre>
 <p>Alternatively, users can also retrieve values from all available distance/similarity metrics using <code><a href="reference/dist.diversity.html">philentropy::dist.diversity()</a></code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">2</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">2</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>        euclidean         manhattan 
        0.12807130        0.35250464 
         minkowski         chebyshev 
@@ -216,27 +208,27 @@ jensen_difference            taneja
        0.03792749        0.04147518 
     kumar-johnson               avg 
        0.62779644        0.20797774</code></pre>
-<div id="install-developer-version" class="section level3">
-<h3 class="hasAnchor">
-<a href="#install-developer-version" class="anchor"></a>Install Developer Version</h3>
+<div class="section level3">
+<h3 id="install-developer-version">Install Developer Version<a class="anchor" aria-label="anchor" href="#install-developer-version"></a>
+</h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="co"># install the current version of philentropy on your system</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"HajkD/philentropy"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="co"># install the current version of philentropy on your system</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"HajkD/philentropy"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="news" class="section level3">
-<h3 class="hasAnchor">
-<a href="#news" class="anchor"></a>NEWS</h3>
-<p>The current status of the package as well as a detailed history of the functionality of each version of <code>philentropy</code> can be found in the <a href="https://drostlab.github.io/philentropy/news/index.html">NEWS</a> section.</p>
+<div class="section level3">
+<h3 id="news">NEWS<a class="anchor" aria-label="anchor" href="#news"></a>
+</h3>
+<p>The current status of the package as well as a detailed history of the functionality of each version of <code>philentropy</code> can be found in the <a href="https://drostlab.github.io/philentropy/news/index.html" class="external-link">NEWS</a> section.</p>
 </div>
 </div>
-<div id="important-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#important-functions" class="anchor"></a>Important Functions</h2>
-<div id="distance-measures" class="section level3">
-<h3 class="hasAnchor">
-<a href="#distance-measures" class="anchor"></a>Distance Measures</h3>
+<div class="section level2">
+<h2 id="important-functions">Important Functions<a class="anchor" aria-label="anchor" href="#important-functions"></a>
+</h2>
+<div class="section level3">
+<h3 id="distance-measures">Distance Measures<a class="anchor" aria-label="anchor" href="#distance-measures"></a>
+</h3>
 <ul>
 <li>
 <code><a href="reference/distance.html">distance()</a></code> : Implements 46 fundamental probability distance (or similarity) measures</li>
@@ -248,9 +240,9 @@ jensen_difference            taneja
 <code><a href="reference/estimate.probability.html">estimate.probability()</a></code> : Estimate Probability Vectors From Count Vectors</li>
 </ul>
 </div>
-<div id="information-theory" class="section level3">
-<h3 class="hasAnchor">
-<a href="#information-theory" class="anchor"></a>Information Theory</h3>
+<div class="section level3">
+<h3 id="information-theory">Information Theory<a class="anchor" aria-label="anchor" href="#information-theory"></a>
+</h3>
 <ul>
 <li>
 <code><a href="reference/H.html">H()</a></code> : Shannon’s Entropy H(X)</li>
@@ -268,11 +260,10 @@ jensen_difference            taneja
 <code><a href="reference/gJSD.html">gJSD()</a></code> : Generalized Jensen-Shannon Divergence</li>
 </ul>
 </div>
-<div id="studies-that-successfully-applied-the-philentropy-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#studies-that-successfully-applied-the-philentropy-package" class="anchor"></a>Studies that successfully applied the <code>philentropy</code> package</h3>
-<blockquote>
-<ul>
+<div class="section level3">
+<h3 id="studies-that-successfully-applied-the-philentropy-package">Studies that successfully applied the <code>philentropy</code> package<a class="anchor" aria-label="anchor" href="#studies-that-successfully-applied-the-philentropy-package"></a>
+</h3>
+<blockquote><ul>
 <li><p><strong>An atlas of gene regulatory elements in adult mouse cerebrum</strong> YE Li, S Preissl, X Hou, Z Zhang, K Zhang et al.- <strong>Nature</strong>, 2021</p></li>
 <li><p><strong>Convergent somatic mutations in metabolism genes in chronic liver disease</strong> S Ng, F Rouhani, S Brunner, N Brzozowska et al. <strong>Nature</strong>, 2021</p></li>
 <li><p><strong>Antigen dominance hierarchies shape TCF1+ progenitor CD8 T cell phenotypes in tumors</strong> ML Burger, AM Cruz, GE Crossland et al. - <strong>Cell</strong>, 2021</p></li>
@@ -286,6 +277,9 @@ jensen_difference            taneja
 <li><p><strong>Aging, inflammation and DNA damage in the somatic testicular niche with idiopathic germ cell aplasia</strong> M Alfano, AS Tascini, F Pederzoli et al. - <strong>Nature communications</strong>, 2021</p></li>
 <li><p><strong>Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation</strong> A Subramanian et al. - <strong>Nature Communications</strong>, 2019</p></li>
 <li><p><strong>Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche</strong> C Coupé, YM Oh, D Dediu, F Pellegrino - <strong>Science Advances</strong>, 2019</p></li>
+<li><p><strong>Single-cell deletion analyses show control of pro–T cell developmental speed and pathways by Tcf7, Spi1, Gata3, Bcl11a, Erg, and Bcl11b</strong> W Zhou, F Gao, M Romero-Wolf, S Jo, EV Rothenberg - <strong>Science Immunology</strong>, 2022</p></li>
+<li><p><strong>Large-scale chromatin reorganization reactivates placenta-specific genes that drive cellular aging</strong> Z Liu, Q Ji, J Ren, P Yan, Z Wu, S Wang, L Sun, Z Wang et al - <strong>Developmental Cell</strong>, 2022</p></li>
+<li><p><strong>Direct epitranscriptomic regulation of mammalian translation initiation through N4-acetylcytidine</strong> D Arango, D Sturgill, R Yang, T Kanai, P Bauer et al. - <strong>Molecular Cell</strong>, 2022</p></li>
 <li><p><strong>Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge</strong> A Sinha et al. - <strong>eLife</strong>, 2019</p></li>
 <li><p><strong>Sex and hatching order modulate the association between MHC‐II diversity and fitness in early‐life stages of a wild seabird</strong> M Pineaux et al - <strong>Molecular Ecology</strong>, 2020</p></li>
 <li><p><strong>How the Choice of Distance Measure Influences the Detection of Prior-Data Conflict</strong> K Lek, R Van De Schoot - <strong>Entropy</strong>, 2019</p></li>
@@ -333,72 +327,83 @@ jensen_difference            taneja
 <li><p><strong>Unraveling the record of a tropical continental Cretaceous-Paleogene boundary in northern Colombia, South America</strong> F de la Parra, C Jaramillo, P Kaskes et al. - <strong>Journal of South American Earth Sciences</strong>, 2022</p></li>
 <li><p><strong>A roadmap to reconstructing muscle architecture from CT data</strong> J Katzke, P Puchenkov, H Stark, EP Economo - <strong>Integrative Organismal Biology</strong>, 2022</p></li>
 <li><p><strong>Pandemonium: a clustering tool to partition parameter space—application to the B anomalies</strong> U Laa, G Valencia - <strong>The European Physical Journal Plus</strong>, 2022</p></li>
-</ul>
-</blockquote>
+<li><p><strong>Identification of a glioma functional network from gene fitness data using machine learning</strong> C Xiang, X Liu, D Zhou, Y Zhou, X Wang, F Chen - <strong>Journal of Cellular and Molecular Medicine</strong>, 2022</p></li>
+<li><p><strong>Cross compatibility in intraspecific and interspecific hybridization in yam (Dioscorea spp.)</strong> JM Mondo, PA Agre, A Edemodu et al. - <strong>Scientific reports</strong>, 2022</p></li>
+<li><p><strong>A Modular and Expandable Ecosystem for Metabolomics Data Annotation in R</strong> J Rainer, A Vicini, L Salzer, J Stanstrup et al. - <strong>Metabolites</strong>, 2022</p></li>
+<li><p><strong>Single-Cell Transcriptome Integration Analysis Reveals the Correlation Between Mesenchymal Stromal Cells and Fibroblasts</strong> C Fan, M Liao, L Xie, L Huang, S Lv, S Cai et al. - <strong>Frontiers in genetics</strong>, 2022</p></li>
+<li><p><strong>Phenotypic regionalization of the vertebral column in the thorny skate Amblyraja radiata: Stability and variation</strong> F Berio, Y Bayle, C Riley, O Larouche, R Cloutier - <strong>Journal of Anatomy</strong>, 2022</p></li>
+<li><p><strong>Community assembly during vegetation succession after metal mining is driven by multiple processes with temporal variation</strong> T Li, H Yang, X Yang, Z Guo, D Fu, C Liu, S Li et al. - <strong>Ecology and evolution</strong>, 2022</p></li>
+<li><p><strong>Integrative Organismal Biology</strong> J Katzke, P Puchenkov, H Stark, <strong>EP Economo</strong> - 2022</p></li>
+<li><p><strong>Optimizing use of US Ex-PVP inbred lines for enhancing agronomic performance of tropical Striga resistant maize inbred lines</strong> ARS Maazou, M Gedil, VO Adetimirin et al. - <strong>BMC Plant Biology</strong>, 2022</p></li>
+</ul></blockquote>
 </div>
 </div>
-<div id="discussions-and-bug-reports" class="section level2">
-<h2 class="hasAnchor">
-<a href="#discussions-and-bug-reports" class="anchor"></a>Discussions and Bug Reports</h2>
+<div class="section level2">
+<h2 id="discussions-and-bug-reports">Discussions and Bug Reports<a class="anchor" aria-label="anchor" href="#discussions-and-bug-reports"></a>
+</h2>
 <p>I would be very happy to learn more about potential improvements of the concepts and functions provided in this package.</p>
 <p>Furthermore, in case you find some bugs or need additional (more flexible) functionality of parts of this package, please let me know:</p>
-<p><a href="https://github.com/drostlab/philentropy/issues" class="uri">https://github.com/drostlab/philentropy/issues</a></p>
-<p>or find me on <a href="https://twitter.com/hajkdrost">twitter: HajkDrost</a></p>
+<p><a href="https://github.com/drostlab/philentropy/issues" class="external-link uri">https://github.com/drostlab/philentropy/issues</a></p>
+<p>or find me on <a href="https://twitter.com/hajkdrost" class="external-link">twitter: HajkDrost</a></p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=philentropy">https://​cloud.r-project.org/​package=philentropy</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/drostlab/philentropy/">https://​github.com/​drostlab/​philentropy/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/drostlab/philentropy/issues">https://​github.com/​drostlab/​philentropy/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-2">GPL-2</a></li>
-</ul>
-</div>
-<div class="citation">
-<h2>Citation</h2>
-<ul class="list-unstyled">
-<li><a href="authors.html">Citing philentropy</a></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Hajk-Georg Drost <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/http://orcid.org/0000-0002-1567-306X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="https://cloud.r-project.org/package=philentropy" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/drostlab/philentropy/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/drostlab/philentropy/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/HajkD/philentropy"><img src="https://travis-ci.org/HajkD/philentropy.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://joss.theoj.org/papers/10.21105/joss.00765"><img src="http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg" alt="status"></a></li>
-<li><a href="https://github.com/r-hub/cranlogs.app"><img src="http://cranlogs.r-pkg.org/badges/philentropy" alt="rstudio mirror downloads"></a></li>
-<li><a href="https://github.com/r-hub/cranlogs.app"><img src="http://cranlogs.r-pkg.org/badges/grand-total/philentropy" alt="rstudio mirror downloads"></a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-2" class="external-link">GPL-2</a></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing philentropy</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Hajk-Georg Drost <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/http://orcid.org/0000-0002-1567-306X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.org/HajkD/philentropy" class="external-link"><img src="https://travis-ci.org/HajkD/philentropy.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://joss.theoj.org/papers/10.21105/joss.00765" class="external-link"><img src="http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg" alt="status"></a></li>
+<li><a href="https://github.com/r-hub/cranlogs.app" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/philentropy" alt="rstudio mirror downloads"></a></li>
+<li><a href="https://github.com/r-hub/cranlogs.app" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/philentropy" alt="rstudio mirror downloads"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Hajk-Georg Drost.</p>
+  <p></p>
+<p>Developed by Hajk-Georg Drost.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -406,6 +411,8 @@ jensen_difference            taneja
 
   
 
+
+  
 
   </body>
 </html>
