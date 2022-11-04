@@ -28,4 +28,4 @@ Suggests:
     microbenchmark
 VignetteBuilder: knitr
 BugReports: https://github.com/drostlab/philentropy/issues
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1

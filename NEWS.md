@@ -1,10 +1,12 @@
-## Version 0.7.0.9000
+## Version 0.7.0
 
 ### New Features
 
 ### Updates
 
 - the [Distances](https://drostlab.github.io/philentropy/articles/Distances.html) vignette now has a fixed documentation for the benchmarking of low-level distance functions. Many thanks to (@Nowosad) #30 
+- in `../src/correlation.h` adjustment of use of logical operators rather than Wbitwise (`| -> or`) which otherwises raises warnings in `clang14`
+- vector element limit is now extended to long vectors for all distance measures by declaring `R_xlen_t` instead of `int` during indexing.
 
 ## Version 0.6.0
 
