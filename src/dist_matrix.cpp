@@ -19,9 +19,11 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF, Rcpp::Funct
         Rcpp::NumericMatrix dist_matrix(nrow,nrow);
         // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
         std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
+        R_xlen_t vector_elements = nrow;
         
-        for (int i = 0; i < nrow; i++){
-                for (int j = 0; j < nrow; j++){
+        
+        for (R_xlen_t i = 0; i < vector_elements; i++){
+                for (R_xlen_t j = 0; j < vector_elements; j++){
                         if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
                                 dist_value = Rcpp::as<double>(DistFunc(dists(i,Rcpp::_),dists(j,Rcpp::_), testNA));
                                 dist_matrix(i,j) = dist_value;
@@ -41,9 +43,10 @@ Rcpp::NumericMatrix DistMatrixMinkowskiMAT(Rcpp::NumericMatrix dists, double p, 
         Rcpp::NumericMatrix dist_matrix(ncols,ncols);
         // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
         std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
+        R_xlen_t vector_elements = ncols;
         
-        for (int i = 0; i < ncols; i++){
-                for (int j = 0; j < ncols; j++){
+        for (R_xlen_t i = 0; i < vector_elements; i++){
+                for (R_xlen_t j = 0; j < vector_elements; j++){
                         if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
                                 dist_value = minkowski(dists(Rcpp::_, i),dists(Rcpp::_, j), p, testNA);
                                 dist_matrix(i,j) = dist_value;
@@ -65,9 +68,10 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Fu
         Rcpp::NumericMatrix dist_matrix(ncols,ncols);
         // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
         std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
+        R_xlen_t vector_elements = ncols;
         
-        for (int i = 0; i < ncols; i++){
-                for (int j = 0; j < ncols; j++){
+        for (R_xlen_t i = 0; i < vector_elements; i++){
+                for (R_xlen_t j = 0; j < vector_elements; j++){
                         if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
                                 dist_value = Rcpp::as<double>(DistFunc(dists(Rcpp::_, i),dists(Rcpp::_, j), testNA));
                                 dist_matrix(i,j) = dist_value;
@@ -91,9 +95,10 @@ Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, Rcpp::Function
         Rcpp::NumericMatrix dist_matrix(nrow,nrow);
         // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
         std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
+        R_xlen_t vector_elements = nrow;
         
-        for (int i = 0; i < nrow; i++){
-                for (int j = 0; j < nrow; j++){
+        for (R_xlen_t i = 0; i < vector_elements; i++){
+                for (R_xlen_t j = 0; j < vector_elements; j++){
                         if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
                                 dist_value = Rcpp::as<double>(DistFunc(dists(i,Rcpp::_),dists(j,Rcpp::_), testNA, unit));
                                 dist_matrix(i,j) = dist_value;
@@ -116,9 +121,10 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Funct
         Rcpp::NumericMatrix dist_matrix(ncols,ncols);
         // http://stackoverflow.com/questions/23748572/initializing-a-matrix-to-na-in-rcpp
         std::fill( dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na() );
+        R_xlen_t vector_elements = ncols;
         
-        for (int i = 0; i < ncols; i++){
-                for (int j = 0; j < ncols; j++){
+        for (R_xlen_t i = 0; i < vector_elements; i++){
+                for (R_xlen_t j = 0; j < vector_elements; j++){
                         if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
                                 dist_value = Rcpp::as<double>(DistFunc(dists(Rcpp::_, i),dists(Rcpp::_, j), testNA, unit));
                                 dist_matrix(i,j) = dist_value;
@@ -301,8 +307,10 @@ Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMat
         
         int nrows = dists.nrow();
         Rcpp::NumericVector dist_values(nrows);
+        R_xlen_t vector_elements = nrows;
         
-        for (int i = 0; i < nrows; i++){
+        
+        for (R_xlen_t i = 0; i < vector_elements; i++){
                 dist_values[i] = dist_one_one(P, dists(i, Rcpp::_), method, p, testNA, unit);
         }
         return dist_values;
@@ -346,12 +354,14 @@ Rcpp::NumericMatrix dist_many_many(Rcpp::NumericMatrix dists1, Rcpp::NumericMatr
         int nrows1 = dists1.nrow();
         int nrows2 = dists2.nrow();
         double dist_value = 0.0;
+        R_xlen_t vector_elements1 = nrows1;
+        R_xlen_t vector_elements2 = nrows2;
         
         Rcpp::NumericMatrix dist_matrix(nrows1,nrows2);
         // std::fill(dist_matrix.begin(), dist_matrix.end(), Rcpp::NumericVector::get_na());
         
-        for (int i = 0; i < nrows1; i++){
-                for (int j = 0; j < nrows2; j++){
+        for (R_xlen_t i = 0; i < vector_elements1; i++){
+                for (R_xlen_t j = 0; j < vector_elements2; j++){
                         // if(Rcpp::NumericVector::is_na(dist_matrix(i,j))){
                         dist_value = dist_one_one(dists1(i, Rcpp::_), dists2(j, Rcpp::_), method, p, testNA, unit);
                         dist_matrix(i,j) = dist_value;
