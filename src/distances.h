@@ -59,31 +59,35 @@ double custom_log10(const double& x ){
 //' euclidean(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 //' @export
 // [[Rcpp::export]]
-double euclidean(const Rcpp::NumericVector& P,const Rcpp::NumericVector& Q, bool testNA){
+double euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool testNA){
         
-        int    P_len = P.size();
-        int    Q_len = Q.size();
         double dist  = 0.0;
         double diff  = 0.0;
+        int counter = 0;
+        R_xlen_t vector_elements = P.size();
         
-        if (P_len != Q_len){
+        if (P.size() != Q.size()){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
 
         if (testNA){
-                for (int i = 0; i < P_len; i++){     
+                for (R_xlen_t i = 0; i < vector_elements; i++){     
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
                         diff = fabs(P[i] - Q[i]);
                         dist += diff * diff;
+                        counter++;
                 }
         } else {
-              for (int i = 0; i < P_len; i++){
+              for (R_xlen_t i = 0; i < vector_elements; i++){
                       diff = fabs(P[i] - Q[i]);
                       dist += diff * diff;
+                      counter++;
                }  
         }
+        
+        if (counter == 0) return NA_REAL;
         return sqrt(dist);
 }
 
@@ -103,13 +107,14 @@ double manhattan(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
         int    Q_len = Q.size();
         double dist  = 0.0;
         double diff  = 0.0;
+        R_xlen_t vector_elements = P_len;
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -117,7 +122,7 @@ double manhattan(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
                         dist += diff;
                 }   
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff = fabs(P[i] - Q[i]);
                         dist += diff;
                 }  
@@ -144,13 +149,14 @@ double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, dou
         int    Q_len = Q.size();
         double dist  = 0.0;
         double diff  = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -158,7 +164,7 @@ double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, dou
                         dist += diff;
                 }          
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff = pow(fabs(P[i] - Q[i]), n);
                         dist += diff;
                 }
@@ -183,13 +189,14 @@ double chebyshev(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
         int    Q_len = Q.size();
         double dist  = 0.0;
         double diff  = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -198,7 +205,7 @@ double chebyshev(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
                                 dist = diff;
                 }      
         } else {
-               for (int i = 0; i < P_len; i++){
+               for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff = fabs(P[i] - Q[i]);
                         if (diff > dist)
                                 dist = diff;
@@ -226,13 +233,14 @@ double sorensen(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
         double dist2 = 0.0;
         double diff  = 0.0;
         double sum   = 0.0;
+        R_xlen_t vector_elements = P_len;
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -242,7 +250,7 @@ double sorensen(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
                         dist2 += sum;
                 }  
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff = fabs(P[i] - Q[i]);
                         sum  = P[i] + Q[i];
                         dist1 += diff;
@@ -275,6 +283,7 @@ double gower(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool te
         int    Q_len = Q.size();
         double diff  = 0.0;
         double dist  = 0.0;
+        R_xlen_t vector_elements = P_len;
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -285,7 +294,7 @@ double gower(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool te
         }
         
         if(testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -293,7 +302,7 @@ double gower(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool te
                         dist += diff;
                 }   
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff = fabs(P[i] - Q[i]);
                         dist += diff;
                 } 
@@ -321,13 +330,14 @@ double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
         double dist1      = 0.0;
         double dist2      = 0.0;
         double max_point  = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -341,7 +351,7 @@ double soergel(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool 
                         dist2 += max_point;
                 }   
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff      = fabs(P[i] - Q[i]);
                         if (P[i] >= Q[i]){
                                 max_point = P[i];
@@ -393,13 +403,14 @@ double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
         double dist1      = 0.0;
         double dist2      = 0.0;
         double min_point  = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -417,7 +428,7 @@ double kulczynski_d(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
                         }     
                 }
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff      = fabs(P[i] - Q[i]);
                         if (P[i] <= Q[i]){
                                 min_point = P[i];
@@ -458,6 +469,7 @@ double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
         double dist  = 0.0;
         double diff  = 0.0;
         double sum   = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         
         if (P_len != Q_len){
@@ -465,7 +477,7 @@ double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -479,7 +491,7 @@ double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
                         }     
                 }
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff = fabs(P[i] - Q[i]);
                         sum  = P[i] + Q[i];
                         // replace 0/0 or x/0 or 0/x by 0 according to Sung-Hyuk Cha (2007)
@@ -495,7 +507,7 @@ double canberra(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
 
 
 //' @title Lorentzian distance (lowlevel function)
-//' @description The lowlevel function for computing the lorentzian distance.
+//' @description The low-level function for computing the lorentzian distance.
 //' @param P a numeric vector storing the first distribution.
 //' @param Q a numeric vector storing the second distribution.
 //' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
@@ -516,13 +528,14 @@ double lorentzian(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bo
         int    Q_len = Q.size();
         double dist  = 0.0;
         double diff  = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -541,7 +554,7 @@ double lorentzian(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bo
                  }
         } else {
                 
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff = fabs(P[i] - Q[i]);
                         if (unit == "log"){
                                 dist += log(1.0 + diff);
@@ -576,13 +589,14 @@ double intersection_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector
         int    Q_len      = Q.size();
         double dist       = 0.0;
         double min_point  = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -594,7 +608,7 @@ double intersection_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector
                         dist += min_point;
                 }   
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if (P[i] <= Q[i]){
                                 min_point = P[i];
                         } else {
@@ -624,13 +638,14 @@ double wave_hedges(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
         double diff       = 0.0;
         double dist       = 0.0;
         double max_point  = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -647,7 +662,7 @@ double wave_hedges(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
                         }     
                 }
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff      = fabs(P[i] - Q[i]);
                         if (P[i] >= Q[i]){
                                 max_point = P[i];
@@ -683,13 +698,14 @@ double czekanowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
         double sum        = 0.0;
         double dist1      = 0.0;
         double dist2      = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if (testNA){
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -699,7 +715,7 @@ double czekanowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
                         dist2 += sum;
                 }
         } else {
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         diff  = fabs(P[i] - Q[i]);
                         sum   = P[i] + Q[i];
                         dist1 += diff;
@@ -734,12 +750,13 @@ double motyka(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
         double dist1      = 0.0;
         double dist2      = 0.0;
         double min_point  = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -819,12 +836,13 @@ double inner_product(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist       = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -855,12 +873,13 @@ double harmonic_mean_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVecto
         double prod      = 0.0;
         double sum       = 0.0;
         double dist      = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -900,12 +919,13 @@ double cosine_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, b
         double p_square  = 0.0;
         double q_square  = 0.0;
         double dist      = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -947,12 +967,13 @@ double kumar_hassebrook(const Rcpp::NumericVector& P, const Rcpp::NumericVector&
         double p_square  = 0.0;
         double q_square  = 0.0;
         double dist      = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1011,12 +1032,13 @@ double dice_dist(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
         double p_square    = 0.0;
         double q_square    = 0.0;
         double dist        = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1055,12 +1077,13 @@ double fidelity(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist      = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1196,12 +1219,13 @@ double squared_chord(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist       = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1232,6 +1256,7 @@ double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist       = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -1239,7 +1264,7 @@ double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector
         
         if(testNA){
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1250,7 +1275,7 @@ double squared_euclidean(const Rcpp::NumericVector& P, const Rcpp::NumericVector
                 }
         } else {
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         dist += pow(P[i] - Q[i], 2.0);
                 
@@ -1290,6 +1315,7 @@ double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist       = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -1297,7 +1323,7 @@ double pearson_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
         
         if(testNA){
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1359,6 +1385,8 @@ double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist       = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -1366,7 +1394,7 @@ double neyman_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
         
         if(testNA){
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1415,12 +1443,14 @@ double squared_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
         double dist       = 0.0;
         double PQdiff     = 0.0;
         double PQsum      = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
        
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1479,12 +1509,14 @@ double divergence_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
         double dist       = 0.0;
         double PQdiff     = 0.0;
         double PQsum      = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1525,12 +1557,14 @@ double clark_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
         double dist       = 0.0;
         double PQdiff     = 0.0;
         double PQsum      = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
 
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1570,12 +1604,14 @@ double additive_symm_chi_sq(const Rcpp::NumericVector& P, const Rcpp::NumericVec
         double dist       = 0.0;
         double PQsum      = 0.0;
         double PQprod     = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1635,13 +1671,15 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
         int    Q_len      = Q.size();
         double dist       = 0.0;
         double PQratio    = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
 
         if(testNA){
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1687,7 +1725,7 @@ double kullback_leibler_distance(const Rcpp::NumericVector& P, const Rcpp::Numer
                 }
         } else {
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                         
                         if((P[i] == 0.0) && (Q[i] == 0.0)){
                                 dist += 0.0;
@@ -1768,6 +1806,7 @@ double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
         int    Q_len      = Q.size();
         double PQrate     = 0.0;
         double dist       = 0.0;
+        R_xlen_t vector_elements = P.size();
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -1775,7 +1814,7 @@ double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
         
         if(testNA){
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -1820,7 +1859,7 @@ double jeffreys(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool
                 }
         } else {
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                         
                         if(Q[i] == 0.0){
                                 PQrate = P[i] / epsilon;
@@ -1887,6 +1926,8 @@ double k_divergence(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
         int    P_len      = P.size();
         int    Q_len      = Q.size();
         double dist       = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -1894,7 +1935,7 @@ double k_divergence(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
         
         if(testNA){
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                         if ((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -1920,7 +1961,7 @@ double k_divergence(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
                 }
         } else {
                 
-                for (int i = 0; i < P_len; i++){
+                for (R_xlen_t i = 0; i < vector_elements; i++){
                         
                         if ((P[i] == 0.0) && (Q[i] == 0.0)){
                                 dist += 0.0;
@@ -1969,13 +2010,15 @@ double topsoe(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
         int    Q_len      = Q.size();
         double dist       = 0.0;
         double PQsum      = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
         if(testNA){
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -2004,7 +2047,7 @@ double topsoe(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
                 }
         } else {
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((P[i] == 0.0) && (Q[i] == 0.0)){
                                 dist += 0.0;
@@ -2056,13 +2099,15 @@ double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
         double sum1       = 0.0;
         double sum2       = 0.0;
         double PQsum      = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
        
        if(testNA){
-               for(int i = 0; i < P_len; i++){
+               for(R_xlen_t i = 0; i < vector_elements; i++){
                        if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
                         }
@@ -2111,7 +2156,7 @@ double jensen_shannon(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q
                         }
         } else {
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                        
                                 PQsum =   P[i] + Q[i];
                                 
@@ -2184,6 +2229,8 @@ double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector
         int    Q_len      = Q.size();
         double dist       = 0.0;
         double PQsum      = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -2191,7 +2238,7 @@ double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector
         
         if(testNA){
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -2309,7 +2356,7 @@ double jensen_difference(const Rcpp::NumericVector& P, const Rcpp::NumericVector
                 }
         } else {
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                         
                         PQsum = P[i] + Q[i];
                   
@@ -2467,6 +2514,8 @@ double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
         double dist        = 0.0;
         double PQsum       = 0.0;
         double denominator = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -2474,7 +2523,7 @@ double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
         
         if(testNA){
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -2522,7 +2571,7 @@ double taneja(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool t
                 }
         } else {
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                         
                         if((P[i] == 0.0) && (Q[i] == 0.0)){
                                 dist += 0.0;
@@ -2601,6 +2650,8 @@ double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
         int    Q_len      = Q.size();
         double divisor    = 0.0;
         double dist       = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
@@ -2608,7 +2659,7 @@ double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
         
         
         if(testNA){
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
@@ -2624,7 +2675,7 @@ double kumar_johnson(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q,
                 }
         } else {
                 
-                for(int i = 0; i < P_len; i++){
+                for(R_xlen_t i = 0; i < vector_elements; i++){
                 
                         divisor = (2.0 * pow(P[i] * Q[i], 1.5));
                         
@@ -2658,12 +2709,14 @@ double avg(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, bool test
         double dist        = 0.0;
         double PQdiff      = 0.0;
         double PQmax       = 0.0;
+        R_xlen_t vector_elements = P.size();
+        
         
         if (P_len != Q_len){
                 Rcpp::stop("The vectors you are comparing do not have the same length!");
         }
         
-        for(int i = 0; i < P_len; i++){
+        for(R_xlen_t i = 0; i < vector_elements; i++){
                 if(testNA){
                         if((Rcpp::NumericVector::is_na(P[i])) || (Rcpp::NumericVector::is_na(Q[i]))){
                                 Rcpp::stop("Your input vector stores NA values...");
