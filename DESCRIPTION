@@ -1,8 +1,8 @@
 Package: philentropy
 Type: Package
 Title: Similarity and Distance Quantification Between Probability Functions
-Version: 0.6.0
-Date: 2022-02-14
+Version: 0.7.0
+Date: 2022-11-04
 Authors@R: c(person("Hajk-Georg", "Drost",
                 role = c("aut", "cre"),
                 email = "hajk-georg.drost@tuebingen.mpg.de",
