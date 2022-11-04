@@ -40,7 +40,7 @@ lin.cor <- function(x,y = NULL, method = "pearson", test.na = FALSE){
         
         if(method == "pearson"){
                 
-                if(class(x) == "matrix"){
+                if(inherits(x, "matrix")){
                         cor.coef <-  DistMatrixWithoutUnitMAT(x,pearson_corr_centred,test.na)
                 }
                 else if ((is.vector(x)) && (is.vector(y))){
@@ -50,7 +50,7 @@ lin.cor <- function(x,y = NULL, method = "pearson", test.na = FALSE){
         
         if(method == "pearson2"){
                 
-                if(class(x) == "matrix"){
+                if(inherits(x, "matrix")){
                         cor.coef <-  DistMatrixWithoutUnitMAT(x,pearson_corr_uncentred,test.na)
                 } else if ((is.vector(x)) && (is.vector(y))){
                         cor.coef <-  pearson_corr_uncentred(x,y,test.na)
@@ -59,14 +59,14 @@ lin.cor <- function(x,y = NULL, method = "pearson", test.na = FALSE){
         
         if(method == "sq_pearson"){
                 
-                if(class(x) == "matrix"){
+                if(inherits(x, "matrix")){
                         cor.coef <-  DistMatrixWithoutUnitMAT(x,squared_pearson_corr,test.na)
                 } else if ((is.vector(x)) && (is.vector(y))){
                         cor.coef <-  squared_pearson_corr(x,y,test.na)
                 }
         }
         
-        if(class(cor.coef) == "matrix"){
+        if(inherits(cor.coef, "matrix")){
                 colnames(cor.coef) <- paste0("vec.",1:ncol(cor.coef))
                 rownames(cor.coef) <- paste0("vec.",1:ncol(cor.coef))       
         } else if (is.vector(cor.coef)){
