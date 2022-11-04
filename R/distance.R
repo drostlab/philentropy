@@ -337,7 +337,7 @@ distance <- function(x ,
   
   if (ncols == 2) {
     dist <- vector("numeric", 1)
-  } else {
+    } else {
     dist <- matrix(NA_real_, ncols, ncols)
   }
   
@@ -348,9 +348,11 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     
-    if (ncols == 2)
-      dist <- euclidean(x[, 1], x[, 2], test.na)
-    
+    if (ncols == 2) {
+      dist <- euclidean(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
+      
+    }
+
     if (ncols > 2)
       dist <-
         DistMatrixNoUnit(x, euclidean, test.na)
@@ -361,7 +363,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     
     if (ncols == 2)
-      dist <- manhattan(x[, 1], x[, 2], test.na)
+      dist <- manhattan(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -382,7 +384,7 @@ distance <- function(x ,
     if (!is.null(p)) {
       if (ncols == 2)
         dist <-
-          minkowski(x[, 1], x[, 2], as.double(p), test.na)
+          minkowski(as.numeric(x[, 1]), as.numeric(x[, 2]), as.double(p), test.na)
       if (ncols > 2)
         dist <-
           DistMatrixMinkowski(x, as.double(p), test.na)
@@ -395,7 +397,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- chebyshev(x[, 1], x[, 2], test.na)
+      dist <- chebyshev(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -406,7 +408,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- sorensen(x[, 1], x[, 2], test.na)
+      dist <- sorensen(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, sorensen, test.na)
@@ -417,7 +419,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- gower(x[, 1], x[, 2], test.na)
+      dist <- gower(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, gower, test.na)
@@ -427,7 +429,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- soergel(x[, 1], x[, 2], test.na)
+      dist <- soergel(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, soergel, test.na)
@@ -438,7 +440,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        kulczynski_d(x[, 1], x[, 2], test.na, epsilon)
+        kulczynski_d(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, epsilon)
     
     if (ncols > 2)
       dist <-
@@ -449,7 +451,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- canberra(x[, 1], x[, 2], test.na)
+      dist <- canberra(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, canberra, test.na)
@@ -466,7 +468,7 @@ distance <- function(x ,
               " vectors.")
     if (ncols == 2)
       dist <-
-        lorentzian(x[, 1], x[, 2], test.na, unit)
+        lorentzian(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, unit)
     if (ncols > 2)
       dist <-
         DistMatrix(x, lorentzian, test.na, unit)
@@ -477,7 +479,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        intersection_dist(x[, 1], x[, 2], test.na)
+        intersection_dist(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -490,7 +492,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        1.0 - intersection_dist(x[, 1], x[, 2], test.na)
+        1.0 - intersection_dist(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -502,7 +504,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        wave_hedges(x[, 1], x[, 2], test.na)
+        wave_hedges(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -515,7 +517,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        czekanowski(x[, 1], x[, 2], test.na)
+        czekanowski(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -526,7 +528,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- motyka(x[, 1], x[, 2], test.na)
+      dist <- motyka(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, motyka, test.na)
@@ -537,7 +539,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        1.0 / kulczynski_d(x[, 1], x[, 2], test.na, epsilon)
+        1.0 / kulczynski_d(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, epsilon)
     
     if (ncols > 2)
       dist <-
@@ -548,7 +550,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- tanimoto(x[, 1], x[, 2], test.na)
+      dist <- tanimoto(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, tanimoto, test.na)
@@ -558,7 +560,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- ruzicka(x[, 1], x[, 2], test.na)
+      dist <- ruzicka(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, ruzicka, test.na)
@@ -569,7 +571,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        inner_product(x[, 1], x[, 2], test.na)
+        inner_product(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -581,7 +583,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        harmonic_mean_dist(x[, 1], x[, 2], test.na)
+        harmonic_mean_dist(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -594,7 +596,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        cosine_dist(x[, 1], x[, 2], test.na)
+        cosine_dist(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -607,7 +609,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        kumar_hassebrook(x[, 1], x[, 2], test.na)
+        kumar_hassebrook(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -619,7 +621,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- jaccard(x[, 1], x[, 2], test.na)
+      dist <- jaccard(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, jaccard, test.na)
@@ -630,7 +632,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- dice_dist(x[, 1], x[, 2], test.na)
+      dist <- dice_dist(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -642,7 +644,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- fidelity(x[, 1], x[, 2], test.na)
+      dist <- fidelity(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, fidelity, test.na)
@@ -659,7 +661,7 @@ distance <- function(x ,
               " vectors.")
     if (ncols == 2)
       dist <-
-        bhattacharyya(x[, 1], x[, 2], test.na, unit, epsilon)
+        bhattacharyya(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, unit, epsilon)
     if (ncols > 2)
       dist <-
         DistMatrix_epsilon(x, bhattacharyya, test.na, unit, epsilon)
@@ -669,7 +671,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- hellinger(x[, 1], x[, 2], test.na)
+      dist <- hellinger(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -684,7 +686,7 @@ distance <- function(x ,
       stop("Please make sure that all vectors sum up to 1.0 ...", call. = FALSE)
     
     if (ncols == 2)
-      dist <- matusita(x[, 1], x[, 2], test.na)
+      dist <- matusita(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, matusita, test.na)
@@ -695,7 +697,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        squared_chord(x[, 1], x[, 2], test.na)
+        squared_chord(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -707,7 +709,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        squared_euclidean(x[, 1], x[, 2], test.na)
+        squared_euclidean(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -719,7 +721,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        pearson_chi_sq(x[, 1], x[, 2], test.na, epsilon)
+        pearson_chi_sq(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, epsilon)
     
     if (ncols > 2)
       dist <-
@@ -732,7 +734,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        neyman_chi_sq(x[, 1], x[, 2], test.na, epsilon)
+        neyman_chi_sq(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, epsilon)
     
     if (ncols > 2)
       dist <-
@@ -745,7 +747,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        squared_chi_sq(x[, 1], x[, 2], test.na)
+        squared_chi_sq(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -758,7 +760,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        prob_symm_chi_sq(x[, 1], x[, 2], test.na)
+        prob_symm_chi_sq(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -771,7 +773,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        divergence_sq(x[, 1], x[, 2], test.na)
+        divergence_sq(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -783,7 +785,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- clark_sq(x[, 1], x[, 2], test.na)
+      dist <- clark_sq(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, clark_sq, test.na)
@@ -795,7 +797,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        additive_symm_chi_sq(x[, 1], x[, 2], test.na)
+        additive_symm_chi_sq(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     
     if (ncols > 2)
       dist <-
@@ -817,7 +819,7 @@ distance <- function(x ,
     
     if (ncols == 2)
       dist <-
-        kullback_leibler_distance(x[, 1], x[, 2], test.na, unit, epsilon)
+        kullback_leibler_distance(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, unit, epsilon)
     if (ncols > 2)
       dist <-
         DistMatrix_epsilon(x, kullback_leibler_distance, test.na, unit, epsilon)
@@ -834,7 +836,7 @@ distance <- function(x ,
               " vectors.")
     if (ncols == 2)
       dist <-
-        jeffreys(x[, 1], x[, 2], test.na, unit, epsilon)
+        jeffreys(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, unit, epsilon)
     if (ncols > 2)
       dist <- DistMatrix_epsilon(x, jeffreys, test.na, unit, epsilon)
     
@@ -854,7 +856,7 @@ distance <- function(x ,
     
     if (ncols == 2)
       dist <-
-        k_divergence(x[, 1], x[, 2], test.na, unit)
+        k_divergence(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, unit)
     if (ncols > 2)
       dist <-
         DistMatrix(x, k_divergence, test.na, unit)
@@ -871,7 +873,7 @@ distance <- function(x ,
               " vectors.")
     if (ncols == 2)
       dist <-
-        topsoe(x[, 1], x[, 2], test.na, unit)
+        topsoe(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, unit)
     if (ncols > 2)
       dist <- DistMatrix(x, topsoe, test.na, unit)
     
@@ -888,7 +890,7 @@ distance <- function(x ,
               " vectors.")
     if (ncols == 2)
       dist <-
-        jensen_shannon(x[, 1], x[, 2], test.na, unit)
+        jensen_shannon(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, unit)
     if (ncols > 2)
       dist <-
         DistMatrix(x, jensen_shannon, test.na, unit)
@@ -905,7 +907,7 @@ distance <- function(x ,
               " vectors.")
     if (ncols == 2)
       dist <-
-        jensen_difference(x[, 1], x[, 2], test.na, unit)
+        jensen_difference(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, unit)
     if (ncols > 2)
       dist <-
         DistMatrix(x, jensen_difference, test.na, unit)
@@ -923,7 +925,7 @@ distance <- function(x ,
     
     if (ncols == 2)
       dist <-
-        taneja(x[, 1], x[, 2], test.na, unit, epsilon)
+        taneja(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, unit, epsilon)
     if (ncols > 2)
       dist <- DistMatrix_epsilon(x, taneja, test.na, unit, epsilon)
   }
@@ -933,7 +935,7 @@ distance <- function(x ,
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
       dist <-
-        kumar_johnson(x[, 1], x[, 2], test.na, epsilon)
+        kumar_johnson(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na, epsilon)
     if (ncols > 2)
       dist <-
         DistMatrixNoUnit_epsilon(x, kumar_johnson, test.na, epsilon)
@@ -943,7 +945,7 @@ distance <- function(x ,
     if (!mute.message)
       message("Metric: '", method, "'; comparing: ", ncols, " vectors.")
     if (ncols == 2)
-      dist <- avg(x[, 1], x[, 2], test.na)
+      dist <- avg(as.numeric(x[, 1]), as.numeric(x[, 2]), test.na)
     if (ncols > 2)
       dist <- DistMatrixNoUnit(x, avg, test.na)
   }
