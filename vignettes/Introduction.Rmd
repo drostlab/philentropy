@@ -15,6 +15,8 @@ Applying the method of comparison in statistics often means computing distances 
 
 > From the scientific and mathematical point of view, _distance_ is defined as a quantitative degree of how far apart two objects are.
 
+Hence, quantifying the distance of two objects requires the assumption about a particular space in which these objects live. For the euclidean distance, for example, this would mean comparison of objects (coordinates) in euclidean space (e.g. coordinate system) while other distance measures may require different spaces to allow sensitive and appropriate quantification of distances between objects. This aspect of quantifying the `degree of how far two objects are apart in a defined space` (adjusted definition) motivates the existence of diverse distance measures. __As a result, the domain expert should appreciate the responsibility to decide in which space their model or experimental data is best represented and which distance metric then maximizes the usefulness of object comparison within this defined space__.   
+
 Cha's comprehensive review of distance/similarity measures motivated me to implement all these measures to better understand their comparative nature. As Cha states:
 
 > The choice of distance/similarity measures depends on the measurement type or representation of objects.
@@ -25,7 +27,7 @@ As a result, the `philentropy` package implements functions that are part of the
 * Information Theory
 * Correlation Analyses
 
-Personally, I hope that some of these functions are helpful to the R community.
+Personally, I hope that some of these functions are helpful to the scientific community.
 
 ### Distance Measures
 
@@ -103,7 +105,7 @@ __Note__: $d$ refers to distance measures, whereas $s$ denotes similarity measur
 
 ### Information Theory
 
-Modern methods for distribution comparisons have a strong [information theoretic background](http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf). This fact motivated me to name this package `philentropy` and as a result, several well established information theory measures are (and further will be) implemeted in this package. 
+Modern methods for distribution comparisons have a strong [information theoretic background](http://compbio.biosci.uq.edu.au/mediawiki/upload/b/b3/Jaynes_PhysRev1957-1.pdf). This fact motivated me to name this package `philentropy` and as a result, several well established information theory measures are (and further will be) implemented in this package. 
 
 - Shannon's Entropy H(X) : $H(X) = -\sum\limits_{i=1}^n P(x_i) \cdot log_b(P(x_i))$
 - Shannon's Joint-Entropy H(X,Y) : $H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) \cdot log_b(P(x_i, y_j))$

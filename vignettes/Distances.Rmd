@@ -13,7 +13,7 @@ The `distance()` function implemented in `philentropy` is able to compute 46 dif
 
 ### Simple Example
 
-The `distance()` function is implemented using the same _logic_ as R's base functions `stats::dist()` and takes a `matrix` or `data.frame` as input. The corresponding `matrix` or `data.frame` should store probability density functions (as rows) for which distance computations should be performed.
+The `distance()` function is implemented using the same _logic_ as R's base function `stats::dist()` and takes a `matrix` or `data.frame` object as input. The corresponding `matrix` or `data.frame` should store probability density functions (as rows) for which distance computations should be performed.
 
 
 ```r
@@ -52,7 +52,7 @@ stats::dist(x, method = "euclidean")
 Q 0.1280713
 ```
 
-However, the R base function `stats::dist()` only computes the following distance measures: `"euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski"`, whereas `distance()` allows you to choose from 46 distance/similarity measures. 
+However, the R base function `stats::dist()` only computes the following distance measures: `"euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski"`, whereas `distance()` allows you to choose from 46 distance/similarity measures and when selecting the native distance functions underlying `distance()` users can speed up their computations 3-5x. 
 
 To find out which `method`s are implemented in `distance()` you can consult
 the `getDistMethods()` function.

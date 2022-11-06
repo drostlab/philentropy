@@ -16,8 +16,7 @@ vignette: >
 Information theory and statistics were beautifully fused by `Solomon Kullback`. This fusion allowed to quantify correlations and similarities between random variables
 using a more sophisticated toolkit. Modern fields such as machine learning and statistical data science build upon this fusion and the most powerful statistical techniques used today are based on an information theoretic foundation.
 
-The `philentropy` aims to follow this tradition and therefore, it implements
-the most important information theory measures.
+The `philentropy` package aims to follow this tradition and therefore, in addition to a comprehensive catalog of distance measures it also implements the most important information theory measures.
 
 ### Shannon's Entropy H(X)
 

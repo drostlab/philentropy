@@ -26,6 +26,7 @@
     </style>
 
 
+
 <style type="text/css">
   code {
     white-space: pre;
@@ -107,13 +108,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -146,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>distance()</code> function implemented in <code>philentropy</code> is able to compute 46 different distances/similarities between probability density functions (see <code>?philentropy::distance</code> for details).</p>
 <div id="simple-example" class="section level3">
 <h3>Simple Example</h3>
-<p>The <code>distance()</code> function is implemented using the same <em>logic</em> as R’s base functions <code>stats::dist()</code> and takes a <code>matrix</code> or <code>data.frame</code> as input. The corresponding <code>matrix</code> or <code>data.frame</code> should store probability density functions (as rows) for which distance computations should be performed.</p>
+<p>The <code>distance()</code> function is implemented using the same <em>logic</em> as R’s base function <code>stats::dist()</code> and takes a <code>matrix</code> or <code>data.frame</code> object as input. The corresponding <code>matrix</code> or <code>data.frame</code> should store probability density functions (as rows) for which distance computations should be performed.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a probability density function P</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define a probability density function Q</span></span>
@@ -166,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">dist</span>(x, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span></code></pre></div>
 <pre><code>          P
 Q 0.1280713</code></pre>
-<p>However, the R base function <code>stats::dist()</code> only computes the following distance measures: <code>&quot;euclidean&quot;, &quot;maximum&quot;, &quot;manhattan&quot;, &quot;canberra&quot;, &quot;binary&quot; or &quot;minkowski&quot;</code>, whereas <code>distance()</code> allows you to choose from 46 distance/similarity measures.</p>
+<p>However, the R base function <code>stats::dist()</code> only computes the following distance measures: <code>&quot;euclidean&quot;, &quot;maximum&quot;, &quot;manhattan&quot;, &quot;canberra&quot;, &quot;binary&quot; or &quot;minkowski&quot;</code>, whereas <code>distance()</code> allows you to choose from 46 distance/similarity measures and when selecting the native distance functions underlying <code>distance()</code> users can speed up their computations 3-5x.</p>
 <p>To find out which <code>method</code>s are implemented in <code>distance()</code> you can consult the <code>getDistMethods()</code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># names of implemented distance/similarity functions</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getDistMethods</span>()</span></code></pre></div>

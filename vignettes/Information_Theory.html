@@ -14,39 +14,41 @@
 
 <title>Information Theory</title>
 
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
 
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
-});
-</script>
-
-
-<style type="text/css">code{white-space: pre;}</style>
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -66,7 +68,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -106,13 +108,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -123,187 +132,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table {
-margin: 1em auto;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table, table th, table td {
-border-left-style: none;
-border-right-style: none;
-}
-table thead, table tr.even {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
 
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; } 
-code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
 
 
 
@@ -326,16 +156,16 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>- Edward Gibbon</p>
 </blockquote>
 <p>Information theory and statistics were beautifully fused by <code>Solomon Kullback</code>. This fusion allowed to quantify correlations and similarities between random variables using a more sophisticated toolkit. Modern fields such as machine learning and statistical data science build upon this fusion and the most powerful statistical techniques used today are based on an information theoretic foundation.</p>
-<p>The <code>philentropy</code> aims to follow this tradition and therefore, it implements the most important information theory measures.</p>
+<p>The <code>philentropy</code> package aims to follow this tradition and therefore, in addition to a comprehensive catalog of distance measures it also implements the most important information theory measures.</p>
 <div id="shannons-entropy-hx" class="section level3">
 <h3>Shannon’s Entropy H(X)</h3>
 <blockquote>
 <p><span class="math inline">\(H(X) = -\sum\limits_{i=1}^n P(x_i) * log_b(P(x_i))\)</span></p>
 </blockquote>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># define probabilities P(X)</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>Prob &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Compute Shannon&#39;s Entropy</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">H</span>(Prob)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define probabilities P(X)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Prob <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Shannon&#39;s Entropy</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">H</span>(Prob)</span></code></pre></div>
 <pre><code>[1] 3.103643</code></pre>
 </div>
 <div id="shannons-joint-entropy-hxy" class="section level3">
@@ -343,10 +173,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <blockquote>
 <p><span class="math inline">\(H(X,Y) = -\sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b(P(x_i, y_j))\)</span></p>
 </blockquote>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># define the joint distribution P(X,Y)</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>P_xy &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># Compute Shannon&#39;s Joint-Entropy</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">JE</span>(P_xy)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the joint distribution P(X,Y)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>P_xy <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Shannon&#39;s Joint-Entropy</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">JE</span>(P_xy)</span></code></pre></div>
 <pre><code>[1] 6.372236</code></pre>
 </div>
 <div id="shannons-conditional-entropy-hx-y" class="section level3">
@@ -354,13 +184,13 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <blockquote>
 <p><span class="math inline">\(H(Y|X) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i) / P(x_i, y_j) )\)</span></p>
 </blockquote>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># define the distribution P(X)</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>P_x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># define the distribution P(Y)</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>P_y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># Compute Shannon&#39;s Joint-Entropy</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="kw">CE</span>(P_x, P_y)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the distribution P(X)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>P_x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define the distribution P(Y)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>P_y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Shannon&#39;s Joint-Entropy</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">CE</span>(P_x, P_y)</span></code></pre></div>
 <pre><code>[1] 0</code></pre>
 </div>
 <div id="mutual-information-ixy" class="section level3">
@@ -368,15 +198,15 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <blockquote>
 <p><span class="math inline">\(MI(X,Y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m P(x_i, y_j) * log_b( P(x_i, y_j) / ( P(x_i) * P(y_j) )\)</span></p>
 </blockquote>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># define the distribution P(X)</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>P_x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># define the distribution P(Y)</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>P_y &lt;-<span class="st"> </span><span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>)</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># define the joint-distribution P(X,Y)</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>P_xy &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb7-7"><a href="#cb7-7"></a></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co"># Compute Shannon&#39;s Joint-Entropy</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="kw">MI</span>(P_x, P_y, P_xy)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the distribution P(X)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>P_x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define the distribution P(Y)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>P_y <span class="ot">&lt;-</span> <span class="dv">20</span><span class="sc">:</span><span class="dv">29</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">29</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># define the joint-distribution P(X,Y)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>P_xy <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Shannon&#39;s Joint-Entropy</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">MI</span>(P_x, P_y, P_xy)</span></code></pre></div>
 <pre><code>[1] 3.311973</code></pre>
 </div>
 <div id="kullback-leibler-divergence" class="section level3">
@@ -387,15 +217,15 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>where <code>H(P, Q)</code> denotes the joint entropy of the probability distributions <code>P</code> and <code>Q</code> and <code>H(P)</code> denotes the entropy of probability distribution <code>P</code>. In case <code>P = Q</code> then <code>KL(P, Q) = 0</code> and in case <code>P != Q</code> then <code>KL(P, Q) &gt; 0</code>.</p>
 <p>The KL divergence is a non-symmetric measure of the directed divergence between two probability distributions P and Q. It only fulfills the positivity property of a distance metric.</p>
 <p>Because of the relation <code>KL(P||Q) = H(P,Q) - H(P)</code>, the Kullback-Leibler divergence of two probability distributions <code>P</code> and <code>Q</code> is also named <code>Cross Entropy</code> of two probability distributions <code>P</code> and <code>Q</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Kulback-Leibler Divergence between random variables P and Q</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>P &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>Q &lt;-<span class="st"> </span><span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>x &lt;-<span class="st"> </span><span class="kw">rbind</span>(P,Q)</span>
-<span id="cb9-5"><a href="#cb9-5"></a></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co"># Kulback-Leibler Divergence between P and Q using different log bases</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="kw">KL</span>(x, <span class="dt">unit =</span> <span class="st">&quot;log2&quot;</span>) <span class="co"># Default</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="kw">KL</span>(x, <span class="dt">unit =</span> <span class="st">&quot;log&quot;</span>)</span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="kw">KL</span>(x, <span class="dt">unit =</span> <span class="st">&quot;log10&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kulback-Leibler Divergence between random variables P and Q</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> <span class="dv">20</span><span class="sc">:</span><span class="dv">29</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">29</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rbind</span>(P,Q)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Kulback-Leibler Divergence between P and Q using different log bases</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">KL</span>(x, <span class="at">unit =</span> <span class="st">&quot;log2&quot;</span>) <span class="co"># Default</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">KL</span>(x, <span class="at">unit =</span> <span class="st">&quot;log&quot;</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">KL</span>(x, <span class="at">unit =</span> <span class="st">&quot;log10&quot;</span>)</span></code></pre></div>
 <pre><code># KL(x, unit = &quot;log2&quot;) # Default
 Kulback-Leibler Divergence using unit &#39;log2&#39;.
 kullback-leibler 
@@ -417,15 +247,15 @@ kullback-leibler
 <p><span class="math inline">\(JSD(P || Q) = 0.5 * (KL(P || R) + KL(Q || R))\)</span></p>
 </blockquote>
 <p>where <code>R = 0.5 * (P + Q)</code> denotes the mid-point of the probability vectors <code>P</code> and <code>Q</code>, and <code>KL(P || R)</code>, <code>KL(Q || R)</code> denote the <code>Kullback-Leibler Divergence</code> of <code>P</code> and <code>R</code>, as well as <code>Q</code> and <code>R</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Jensen-Shannon Divergence between P and Q</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>P &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a>Q &lt;-<span class="st"> </span><span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>)</span>
-<span id="cb11-4"><a href="#cb11-4"></a>x &lt;-<span class="st"> </span><span class="kw">rbind</span>(P,Q)</span>
-<span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co"># Jensen-Shannon Divergence between P and Q using different log bases</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="kw">JSD</span>(x, <span class="dt">unit =</span> <span class="st">&quot;log2&quot;</span>) <span class="co"># Default</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="kw">JSD</span>(x, <span class="dt">unit =</span> <span class="st">&quot;log&quot;</span>)</span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="kw">JSD</span>(x, <span class="dt">unit =</span> <span class="st">&quot;log10&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jensen-Shannon Divergence between P and Q</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> <span class="dv">20</span><span class="sc">:</span><span class="dv">29</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">29</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rbind</span>(P,Q)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Jensen-Shannon Divergence between P and Q using different log bases</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">JSD</span>(x, <span class="at">unit =</span> <span class="st">&quot;log2&quot;</span>) <span class="co"># Default</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">JSD</span>(x, <span class="at">unit =</span> <span class="st">&quot;log&quot;</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">JSD</span>(x, <span class="at">unit =</span> <span class="st">&quot;log10&quot;</span>)</span></code></pre></div>
 <pre><code># JSD(x, unit = &quot;log2&quot;) # Default
 Jensen-Shannon Divergence using unit &#39;log2&#39;.
 jensen-shannon 
@@ -439,23 +269,23 @@ Jensen-Shannon Divergence using unit &#39;log10&#39;.
 jensen-shannon 
     0.01141731 </code></pre>
 <p>Alternatively, users can specify count data.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>P.count &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>Q.count &lt;-<span class="st"> </span><span class="dv">20</span><span class="op">:</span><span class="dv">29</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>x.count &lt;-<span class="st"> </span><span class="kw">rbind</span>(P.count, Q.count)</span>
-<span id="cb13-5"><a href="#cb13-5"></a></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="kw">JSD</span>(x, <span class="dt">est.prob =</span> <span class="st">&quot;empirical&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jensen-Shannon Divergence Divergence between count vectors P.count and Q.count</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>P.count <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>Q.count <span class="ot">&lt;-</span> <span class="dv">20</span><span class="sc">:</span><span class="dv">29</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>x.count <span class="ot">&lt;-</span> <span class="fu">rbind</span>(P.count, Q.count)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">JSD</span>(x, <span class="at">est.prob =</span> <span class="st">&quot;empirical&quot;</span>)</span></code></pre></div>
 <pre><code>Jensen-Shannon Divergence using unit &#39;log2&#39;.
 jensen-shannon 
     0.03792749</code></pre>
 <p>Or users can compute distances based on a probability matrix</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Example: Distance Matrix using JSD-Distance</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>Prob &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>), <span class="dv">30</span><span class="op">:</span><span class="dv">39</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">30</span><span class="op">:</span><span class="dv">39</span>))</span>
-<span id="cb15-3"><a href="#cb15-3"></a></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># compute the KL matrix of a given probability matrix</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>JSDMatrix &lt;-<span class="st"> </span><span class="kw">JSD</span>(Prob)</span>
-<span id="cb15-6"><a href="#cb15-6"></a></span>
-<span id="cb15-7"><a href="#cb15-7"></a>JSDMatrix</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Distance Matrix using JSD-Distance</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>Prob <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="sc">:</span><span class="dv">29</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">29</span>), <span class="dv">30</span><span class="sc">:</span><span class="dv">39</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">30</span><span class="sc">:</span><span class="dv">39</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the KL matrix of a given probability matrix</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>JSDMatrix <span class="ot">&lt;-</span> <span class="fu">JSD</span>(Prob)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>JSDMatrix</span></code></pre></div>
 <pre><code>           v1           v2           v3
 v1 0.00000000 0.0379274917 0.0435852218
 v2 0.03792749 0.0000000000 0.0002120578
@@ -476,11 +306,11 @@ v3 0.04358522 0.0002120578 0.0000000000</code></pre>
 <p><span class="math inline">\(gJSD_{\pi_1,...,\pi_n}(P_1, ..., P_n) = H(\sum_{i = 1}^n \pi_i*P_i) - \sum_{i = 1}^n \pi_i*H(P_i)\)</span></p>
 </blockquote>
 <p>where <span class="math inline">\(\pi_1,...,\pi_n\)</span> denote the weights selected for the probability vectors <span class="math inline">\(P_1,...,P_n\)</span> and <span class="math inline">\(H(P_i)\)</span> denotes the Shannon Entropy of probability vector <span class="math inline">\(P_i\)</span>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># generate example probability matrix for comparing three probability functions</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>Prob &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>), <span class="dv">30</span><span class="op">:</span><span class="dv">39</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">30</span><span class="op">:</span><span class="dv">39</span>))</span>
-<span id="cb17-3"><a href="#cb17-3"></a></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="co"># compute the Generalized JSD comparing the PS probability matrix</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="kw">gJSD</span>(Prob)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate example probability matrix for comparing three probability functions</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Prob <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="sc">:</span><span class="dv">29</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">29</span>), <span class="dv">30</span><span class="sc">:</span><span class="dv">39</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">30</span><span class="sc">:</span><span class="dv">39</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the Generalized JSD comparing the PS probability matrix</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gJSD</span>(Prob)</span></code></pre></div>
 <pre><code>#&gt; No weights were specified (&#39;weights = NULL&#39;), thus equal weights for all
 #&gt; distributions will be calculated and applied.
 #&gt; Metric: &#39;gJSD&#39;; unit = &#39;log2&#39;; comparing: 3 vectors (v1, ... , v3).
@@ -488,19 +318,19 @@ v3 0.04358522 0.0002120578 0.0000000000</code></pre>
 [1] 0.03512892</code></pre>
 <p>As you can see, the <code>gJSD</code> function prints out the exact number of vectors that were used to compute the generalized JSD. By default, the weights are uniformly distributed (<code>weights = NULL</code>).</p>
 <p>Users can also specify non-uniformly distributed weights via specifying the <code>weights</code> argument:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># define probability matrix</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>Prob &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="op">:</span><span class="dv">29</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">20</span><span class="op">:</span><span class="dv">29</span>), <span class="dv">30</span><span class="op">:</span><span class="dv">39</span><span class="op">/</span><span class="kw">sum</span>(<span class="dv">30</span><span class="op">:</span><span class="dv">39</span>))</span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="co"># compute generalized JSD with custom weights</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="kw">gJSD</span>(Prob, <span class="dt">weights =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define probability matrix</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Prob <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="dv">20</span><span class="sc">:</span><span class="dv">29</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">29</span>), <span class="dv">30</span><span class="sc">:</span><span class="dv">39</span><span class="sc">/</span><span class="fu">sum</span>(<span class="dv">30</span><span class="sc">:</span><span class="dv">39</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># compute generalized JSD with custom weights</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gJSD</span>(Prob, <span class="at">weights =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>))</span></code></pre></div>
 <pre><code>#&gt; Metric: &#39;gJSD&#39;; unit = &#39;log2&#39;; comparing: 3 vectors (v1, ... , v3).
 #&gt; Weights: v1 = 0.5, v2 = 0.25, v3 = 0.25
 [1] 0.04081969</code></pre>
 <p>Finally, users can use the argument <code>est.prob</code> to empirically estimate probability vectors when they wish to specify count vectors as input:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>P.count &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>Q.count &lt;-<span class="st"> </span><span class="dv">20</span><span class="op">:</span><span class="dv">29</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>R.count &lt;-<span class="st"> </span><span class="dv">30</span><span class="op">:</span><span class="dv">39</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>x.count &lt;-<span class="st"> </span><span class="kw">rbind</span>(P.count, Q.count, R.count)</span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="kw">gJSD</span>(x.count, <span class="dt">est.prob =</span> <span class="st">&quot;empirical&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>P.count <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Q.count <span class="ot">&lt;-</span> <span class="dv">20</span><span class="sc">:</span><span class="dv">29</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>R.count <span class="ot">&lt;-</span> <span class="dv">30</span><span class="sc">:</span><span class="dv">39</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>x.count <span class="ot">&lt;-</span> <span class="fu">rbind</span>(P.count, Q.count, R.count)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gJSD</span>(x.count, <span class="at">est.prob =</span> <span class="st">&quot;empirical&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; No weights were specified (&#39;weights = NULL&#39;), thus equal weights for all distributions will be calculated and applied.
 #&gt; Metric: &#39;gJSD&#39;; unit = &#39;log2&#39;; comparing: 3 vectors (v1, ... , v3).
 #&gt; Weights: v1 = 0.333333333333333, v2 = 0.333333333333333, v3 = 0.333333333333333
