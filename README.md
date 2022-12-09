@@ -207,7 +207,10 @@ C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
 >
 > - __Single-cell deletion analyses show control of pro–T cell developmental speed and pathways by Tcf7, Spi1, Gata3, Bcl11a, Erg, and Bcl11b__ W Zhou, F Gao, M Romero-Wolf, S Jo, EV Rothenberg - __Science Immunology__, 2022
 >
-> - __Large-scale chromatin reorganization reactivates placenta-specific genes that drive cellular aging__ Z Liu, Q Ji, J Ren, P Yan, Z Wu, S Wang, L Sun, Z Wang et al - __Developmental Cell__, 2022
+> - Mapping hormone-regulated cell-cell interaction networks in the human breast at single-cell resolution
+LM Murrow, RJ Weber, JA Caruso et al. - __Cell Systems__, 2022
+>
+> - __Large-scale chromatin reorganization reactivates placenta-specific genes that drive cellular aging__ Z Liu, Q Ji, J Ren, P Yan, Z Wu, S Wang, L Sun, Z Wang et al. - __Developmental Cell__, 2022
 >
 > - __Direct epitranscriptomic regulation of mammalian translation initiation through N4-acetylcytidine__ D Arango, D Sturgill, R Yang, T Kanai, P Bauer et al. - __Molecular Cell__, 2022
 >
@@ -225,6 +228,9 @@ EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
 > - __Multi-Omics Investigation of Innate Navitoclax Resistance in Triple-Negative Breast Cancer Cells__ M Marczyk et al. - __Cancers__, 2020
 >
 > - __Impact of Gut Microbiome on Hypertensive Patients with Low-Salt Intake: Shika Study Results__ S Nagase et al. - __Frontiers in Medicine__, 2020
+>
+> - Children's social networks in developmental psychology: A network approach to capture and describe early social environments
+N Burke, N Brezack, A Woodward - __Frontiers in psychology__, 2022
 >
 > - __Combined TCR Repertoire Profiles and Blood Cell Phenotypes Predict Melanoma Patient Response to Personalized Neoantigen Therapy plus Anti-PD-1__ A Poran et al. - __Cell Reports Medicine__, 2020
 >
