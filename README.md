@@ -176,6 +176,8 @@ The current status of the package as well as a detailed history of the functiona
 
 ### Studies that successfully applied the `philentropy` package
 
+> - __Annelid functional genomics reveal the origins of bilaterian life cycles__ FM Martín-Zamora, Y Liang, K Guynes et al.- __Nature__, 2023
+
 > - __An atlas of gene regulatory elements in adult mouse cerebrum__ YE Li, S Preissl, X Hou, Z Zhang, K Zhang et al.- __Nature__, 2021
 >
 > - __Convergent somatic mutations in metabolism genes in chronic liver disease__ S Ng, F Rouhani, S Brunner, N Brzozowska et al. __Nature__, 2021
