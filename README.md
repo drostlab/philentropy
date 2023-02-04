@@ -194,6 +194,8 @@ R Giné, J Capellades, JM Badia et al. - __Nature Methods__, 2021
 > - __The genetic architecture of temperature adaptation is shaped by population ancestry and not by selection regime__ KA Otte, V Nolte, F Mallard et al. - __Genome Biology__, 2021
 >
 > - __The Tug1 lncRNA locus is essential for male fertility__ JP Lewandowski et al. - __Genome Biology__, 2020
+>
+> - __Transcriptional vulnerabilities of striatal neurons in human and rodent models of Huntington's disease__ A Matsushima, SS Pineda, JR Crittenden et al. - __Nature Communications__, 2023
 > 
 > - __Resolving the structure of phage–bacteria interactions in the context of natural diversity__ KM Kauffman, WK Chang, JM Brown et al. - __Nature Communications__, 2022
 >
@@ -208,6 +210,8 @@ M Stražar, GS Temba, H Vlamakis et al. - __Nature Communications__, 2021
 C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
 >
 > - __Single-cell deletion analyses show control of pro–T cell developmental speed and pathways by Tcf7, Spi1, Gata3, Bcl11a, Erg, and Bcl11b__ W Zhou, F Gao, M Romero-Wolf, S Jo, EV Rothenberg - __Science Immunology__, 2022
+>
+> - __TAS-Seq is a robust and sensitive amplification method for bead-based scRNA-seq__ S Shichino, S Ueha, S Hashimoto, T Ogawa et al. - __Communications biology__, 2022
 >
 > - Mapping hormone-regulated cell-cell interaction networks in the human breast at single-cell resolution
 LM Murrow, RJ Weber, JA Caruso et al. - __Cell Systems__, 2022
