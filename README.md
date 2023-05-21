@@ -211,6 +211,9 @@ C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
 >
 > - __Single-cell deletion analyses show control of pro–T cell developmental speed and pathways by Tcf7, Spi1, Gata3, Bcl11a, Erg, and Bcl11b__ W Zhou, F Gao, M Romero-Wolf, S Jo, EV Rothenberg - __Science Immunology__, 2022
 >
+> - __Large-scale iterated singing experiments reveal oral transmission mechanisms underlying music evolution__
+M Anglada-Tort, PMC Harrison, H Lee, N Jacoby - __Current Biology__, 2023
+>
 > - __TAS-Seq is a robust and sensitive amplification method for bead-based scRNA-seq__ S Shichino, S Ueha, S Hashimoto, T Ogawa et al. - __Communications biology__, 2022
 >
 > - Mapping hormone-regulated cell-cell interaction networks in the human breast at single-cell resolution
