@@ -87,8 +87,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Comparing many probability density functions</h1>
-                        <h4 data-toc-skip class="author">Jakub Nowosad</h4>
+      <h1 data-toc-skip>Comparing many probability density
+functions</h1>
+                        <h4 data-toc-skip class="author">Jakub
+Nowosad</h4>
             
             <h4 data-toc-skip class="date">2021-08-20</h4>
       
@@ -99,29 +101,64 @@
 
     
     
-<p>The <strong>philentropy</strong> package has several mechanisms to calculate distances between probability density functions. The main one is to use the the <code><a href="../reference/distance.html">distance()</a></code> function, which enables to compute 46 different distances/similarities between probability density functions (see <code><a href="../reference/distance.html">?philentropy::distance</a></code> and <a href="Distances.html">a companion vignette</a> for details). Alternatively, it is possible to call each distance/dissimilarity function directly. For example, the <code><a href="../reference/euclidean.html">euclidean()</a></code> function will compute the euclidean distance, while <code>jaccard</code> - the Jaccard distance. The complete list of available distance measures are available with the <code><a href="../reference/getDistMethods.html">philentropy::getDistMethods()</a></code> function.</p>
-<p>Both of the above approaches have their pros and cons. The <code><a href="../reference/distance.html">distance()</a></code> function is more flexible as it allows users to use any distance measure and can return either a <code>matrix</code> or a <code>dist</code> object. It also has several defensive programming checks implemented, and thus, it is more appropriate for regular users. Single distance functions, such as <code><a href="../reference/euclidean.html">euclidean()</a></code> or <code><a href="../reference/jaccard.html">jaccard()</a></code>, can be, on the other hand, slightly faster as they directly call the underlining C++ code.</p>
-<p>Now, we introduce three new low-level functions that are intermediaries between <code><a href="../reference/distance.html">distance()</a></code> and single distance functions. They are fairly flexible, allowing to use of any implemented distance measure, but also usually faster than calling the <code><a href="../reference/distance.html">distance()</a></code> functions (especially, if it is needed to use many times). These functions are:</p>
+<p>The <strong>philentropy</strong> package has several mechanisms to
+calculate distances between probability density functions. The main one
+is to use the the <code><a href="../reference/distance.html">distance()</a></code> function, which enables to
+compute 46 different distances/similarities between probability density
+functions (see <code><a href="../reference/distance.html">?philentropy::distance</a></code> and <a href="Distances.html">a companion vignette</a> for details).
+Alternatively, it is possible to call each distance/dissimilarity
+function directly. For example, the <code><a href="../reference/euclidean.html">euclidean()</a></code> function
+will compute the euclidean distance, while <code>jaccard</code> - the
+Jaccard distance. The complete list of available distance measures are
+available with the <code><a href="../reference/getDistMethods.html">philentropy::getDistMethods()</a></code>
+function.</p>
+<p>Both of the above approaches have their pros and cons. The
+<code><a href="../reference/distance.html">distance()</a></code> function is more flexible as it allows users to
+use any distance measure and can return either a <code>matrix</code> or
+a <code>dist</code> object. It also has several defensive programming
+checks implemented, and thus, it is more appropriate for regular users.
+Single distance functions, such as <code><a href="../reference/euclidean.html">euclidean()</a></code> or
+<code><a href="../reference/jaccard.html">jaccard()</a></code>, can be, on the other hand, slightly faster as
+they directly call the underlining C++ code.</p>
+<p>Now, we introduce three new low-level functions that are
+intermediaries between <code><a href="../reference/distance.html">distance()</a></code> and single distance
+functions. They are fairly flexible, allowing to use of any implemented
+distance measure, but also usually faster than calling the
+<code><a href="../reference/distance.html">distance()</a></code> functions (especially, if it is needed to use
+many times). These functions are:</p>
 <ul>
 <li>
-<code><a href="../reference/dist_one_one.html">dist_one_one()</a></code> - expects two vectors (probability density functions), returns a single value</li>
+<code><a href="../reference/dist_one_one.html">dist_one_one()</a></code> - expects two vectors (probability
+density functions), returns a single value</li>
 <li>
-<code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> - expects one vector (a probability density function) and one matrix (a set of probability density functions), returns a vector of values</li>
+<code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> - expects one vector (a probability
+density function) and one matrix (a set of probability density
+functions), returns a vector of values</li>
 <li>
-<code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> - expects two matrices (two sets of probability density functions), returns a matrix of values</li>
+<code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> - expects two matrices (two sets of
+probability density functions), returns a matrix of values</li>
 </ul>
-<p>Let’s start testing them by attaching the <strong>philentropy</strong> package.</p>
+<p>Let’s start testing them by attaching the
+<strong>philentropy</strong> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/drostlab/philentropy" class="external-link">philentropy</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="dist_one_one">
 <code>dist_one_one()</code><a class="anchor" aria-label="anchor" href="#dist_one_one"></a>
 </h2>
-<p><code><a href="../reference/dist_one_one.html">dist_one_one()</a></code> is a lower level equivalent to <code><a href="../reference/distance.html">distance()</a></code>. However, instead of accepting a numeric <code>data.frame</code> or <code>matrix</code>, it expects two vectors representing probability density functions. In this example, we create two vectors, <code>P</code> and <code>Q</code>.</p>
+<p><code><a href="../reference/dist_one_one.html">dist_one_one()</a></code> is a lower level equivalent to
+<code><a href="../reference/distance.html">distance()</a></code>. However, instead of accepting a numeric
+<code>data.frame</code> or <code>matrix</code>, it expects two vectors
+representing probability density functions. In this example, we create
+two vectors, <code>P</code> and <code>Q</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span></span></code></pre></div>
-<p>To calculate the euclidean distance between them we can use several approaches - (a) build-in R <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> function, (b) <code><a href="../reference/distance.html">philentropy::distance()</a></code>, (c) <code><a href="../reference/euclidean.html">philentropy::euclidean()</a></code>, or the new <code><a href="../reference/dist_one_one.html">dist_one_one()</a></code>.</p>
+<p>To calculate the euclidean distance between them we can use several
+approaches - (a) build-in R <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> function, (b)
+<code><a href="../reference/distance.html">philentropy::distance()</a></code>, (c)
+<code><a href="../reference/euclidean.html">philentropy::euclidean()</a></code>, or the new
+<code><a href="../reference/dist_one_one.html">dist_one_one()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("microbenchmark")</span></span>
 <span><span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
@@ -130,32 +167,47 @@
 <span>  <span class="fu"><a href="../reference/euclidean.html">euclidean</a></span><span class="op">(</span><span class="va">P</span>, <span class="va">Q</span>, <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/dist_one_one.html">dist_one_one</a></span><span class="op">(</span><span class="va">P</span>, <span class="va">Q</span>, method <span class="op">=</span> <span class="st">"euclidean"</span>, testNA <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Unit: microseconds</span></span>
+<pre><code><span><span class="co">## Warning in microbenchmark::microbenchmark(dist(rbind(P, Q), method =</span></span>
+<span><span class="co">## "euclidean"), : less accurate nanosecond times to avoid potential integer</span></span>
+<span><span class="co">## overflows</span></span></code></pre>
+<pre><code><span><span class="co">## Unit: nanoseconds</span></span>
 <span><span class="co">##                                                                                    expr</span></span>
 <span><span class="co">##                                                 dist(rbind(P, Q), method = "euclidean")</span></span>
 <span><span class="co">##  distance(rbind(P, Q), method = "euclidean", test.na = FALSE,      mute.message = TRUE)</span></span>
 <span><span class="co">##                                                                  euclidean(P, Q, FALSE)</span></span>
 <span><span class="co">##                                dist_one_one(P, Q, method = "euclidean", testNA = FALSE)</span></span>
-<span><span class="co">##     min     lq     mean  median     uq      max neval</span></span>
-<span><span class="co">##  21.212 22.365 26.91674 23.8455 24.457  261.898   100</span></span>
-<span><span class="co">##  32.974 33.886 61.63084 35.0545 36.832 2340.132   100</span></span>
-<span><span class="co">##   2.660  3.008  3.80653  3.2960  3.899   18.529   100</span></span>
-<span><span class="co">##   3.829  4.407  5.87694  5.0615  5.503   58.035   100</span></span></code></pre>
-<p>All of them return the same, single value. However, as you can see in the benchmark above, some are more flexible, and others are faster.</p>
+<span><span class="co">##   min      lq     mean  median      uq    max neval cld</span></span>
+<span><span class="co">##  6027  6396.0  8476.75  6724.0  7113.5 164943   100  ab</span></span>
+<span><span class="co">##  9512 10045.0 18886.24 10311.5 10844.5 845707   100  a </span></span>
+<span><span class="co">##   820   922.5  1442.79  1025.0  1107.0  32595   100   b</span></span>
+<span><span class="co">##  1230  1353.0  1758.90  1476.0  1599.0  27552   100   b</span></span></code></pre>
+<p>All of them return the same, single value. However, as you can see in
+the benchmark above, some are more flexible, and others are faster.</p>
 </div>
 <div class="section level2">
 <h2 id="dist_one_many">
 <code>dist_one_many()</code><a class="anchor" aria-label="anchor" href="#dist_one_many"></a>
 </h2>
-<p>The role of <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> is to calculate distances between one probability density function (in a form of a <code>vector</code>) and a set of probability density functions (as rows in a <code>matrix</code>).</p>
+<p>The role of <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> is to calculate distances
+between one probability density function (in a form of a
+<code>vector</code>) and a set of probability density functions (as rows
+in a <code>matrix</code>).</p>
 <p>Firstly, let’s create our example data.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">-</span><span class="fl">08</span><span class="op">-</span><span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">/</span> <span class="fl">55</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><code>P</code> is our input vector and <code>M</code> is our input matrix.</p>
-<p>Distances between the <code>P</code> vector and probability density functions in <code>M</code> can be calculated using several approaches. For example, we could write a <code>for</code> loop (adding a new code) or just use the existing <code><a href="../reference/distance.html">distance()</a></code> function and extract only one row (or column) from the results. The <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> allows for this calculation directly as it goes through each row in <code>M</code> and calculates a given distance measure between <code>P</code> and values in this row.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p><code>P</code> is our input vector and <code>M</code> is our input
+matrix.</p>
+<p>Distances between the <code>P</code> vector and probability density
+functions in <code>M</code> can be calculated using several approaches.
+For example, we could write a <code>for</code> loop (adding a new code)
+or just use the existing <code><a href="../reference/distance.html">distance()</a></code> function and extract
+only one row (or column) from the results. The
+<code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> allows for this calculation directly as it
+goes through each row in <code>M</code> and calculates a given distance
+measure between <code>P</code> and values in this row.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("microbenchmark")</span></span>
 <span><span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">P</span>, <span class="va">M</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>,</span>
@@ -167,24 +219,33 @@
 <span><span class="co">##                                      as.matrix(dist(rbind(P, M), method = "euclidean"))[1, ][-1]</span></span>
 <span><span class="co">##  distance(rbind(P, M), method = "euclidean", test.na = FALSE,      mute.message = TRUE)[1, ][-1]</span></span>
 <span><span class="co">##                                        dist_one_many(P, M, method = "euclidean", testNA = FALSE)</span></span>
-<span><span class="co">##        min        lq        mean    median        uq       max neval</span></span>
-<span><span class="co">##    333.213   438.964   601.08900   553.630   641.857  2787.836   100</span></span>
-<span><span class="co">##  25790.692 31707.734 38792.72013 36469.824 42673.513 83685.017   100</span></span>
-<span><span class="co">##     27.609    35.483    49.58433    44.281    50.076   178.512   100</span></span></code></pre>
-<p>The <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> returns a vector of values. It is, in this case, much faster than <code><a href="../reference/distance.html">distance()</a></code>, and visibly faster than <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> while allowing for more possible distance measures to be used.</p>
+<span><span class="co">##       min        lq        mean     median        uq       max neval cld</span></span>
+<span><span class="co">##   141.491   166.337   179.89980   181.3225   192.413   299.300   100  a </span></span>
+<span><span class="co">##  9796.212 10308.589 11858.90929 10585.3185 13777.988 15164.670   100   b</span></span>
+<span><span class="co">##    10.045    10.701    14.06792    13.4685    16.031    56.867   100  a</span></span></code></pre>
+<p>The <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> returns a vector of values. It is,
+in this case, much faster than <code><a href="../reference/distance.html">distance()</a></code>, and visibly
+faster than <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> while allowing for more possible
+distance measures to be used.</p>
 </div>
 <div class="section level2">
 <h2 id="dist_many_many">
 <code>dist_many_many()</code><a class="anchor" aria-label="anchor" href="#dist_many_many"></a>
 </h2>
-<p><code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> calculates distances between two sets of probability density functions (as rows in two <code>matrix</code> objects).</p>
+<p><code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> calculates distances between two sets
+of probability density functions (as rows in two <code>matrix</code>
+objects).</p>
 <p>Let’s create two new <code>matrix</code> example data.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">-</span><span class="fl">08</span><span class="op">-</span><span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">/</span> <span class="fl">55</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">M2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">/</span> <span class="fl">55</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><code>M1</code> is our first input matrix and <code>M2</code> is our second input matrix. I am not aware of any function build-in R that allows calculating distances between rows of two matrices, and thus, to solve this problem, we can create our own - <code>many_dists()</code>…</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p><code>M1</code> is our first input matrix and <code>M2</code> is our
+second input matrix. I am not aware of any function build-in R that
+allows calculating distances between rows of two matrices, and thus, to
+solve this problem, we can create our own -
+<code>many_dists()</code>…</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">many_dists</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">r</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
@@ -196,7 +257,7 @@
 <span>  <span class="va">r</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>… and compare it to <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("microbenchmark")</span></span>
 <span><span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  <span class="fu">many_dists</span><span class="op">(</span><span class="va">M1</span>, <span class="va">M2</span><span class="op">)</span>,</span>
@@ -204,12 +265,15 @@
 <span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Unit: microseconds</span></span>
 <span><span class="co">##                                                          expr      min       lq</span></span>
-<span><span class="co">##                                            many_dists(M1, M2) 3030.675 3400.980</span></span>
-<span><span class="co">##  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)   44.261   52.123</span></span>
-<span><span class="co">##       mean    median        uq       max neval</span></span>
-<span><span class="co">##  4179.8278 3597.5785 3867.3770 15803.478   100</span></span>
-<span><span class="co">##    57.8797   56.3705   60.8115   126.199   100</span></span></code></pre>
-<p>Both <code>many_dists()</code>and <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> return a matrix. The above benchmark concludes that <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> is about 30 times faster than our custom <code>many_dists()</code> approach.</p>
+<span><span class="co">##                                            many_dists(M1, M2) 1038.940 1080.494</span></span>
+<span><span class="co">##  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)   15.088   16.277</span></span>
+<span><span class="co">##        mean    median       uq      max neval cld</span></span>
+<span><span class="co">##  1232.97537 1125.9420 1216.306 5800.516   100  a </span></span>
+<span><span class="co">##    18.62712   18.2655   20.213   44.936   100   b</span></span></code></pre>
+<p>Both <code>many_dists()</code>and <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code>
+return a matrix. The above benchmark concludes that
+<code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> is about 30 times faster than our custom
+<code>many_dists()</code> approach.</p>
 </div>
   </div>
 
@@ -230,7 +294,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

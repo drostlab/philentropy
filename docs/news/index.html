@@ -68,11 +68,15 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.0.9000" id="version-0809000">Version 0.8.0.9000<a class="anchor" aria-label="anchor" href="#version-0809000"></a></h2>
-<div class="section level3"><h3 id="new-features-0-8-0-9000">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-8-0-9000"></a></h3></div>
+<div class="section level3">
+<h3 id="new-features-0-8-0-9000">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-8-0-9000"></a></h3>
+</div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.0" id="version-070">Version 0.7.0<small>2022-11-05</small><a class="anchor" aria-label="anchor" href="#version-070"></a></h2>
-<div class="section level3"><h3 id="new-features-0-7-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-7-0"></a></h3></div>
+<div class="section level3">
+<h3 id="new-features-0-7-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-7-0"></a></h3>
+</div>
 <div class="section level3">
 <h3 id="updates-0-7-0">Updates<a class="anchor" aria-label="anchor" href="#updates-0-7-0"></a></h3>
 <ul><li>the <a href="https://drostlab.github.io/philentropy/articles/Distances.html" class="external-link">Distances</a> vignette now has a fixed documentation for the benchmarking of low-level distance functions. Many thanks to (<a href="https://github.com/Nowosad" class="external-link">@Nowosad</a>) <a href="https://github.com/drostlab/philentropy/issues/30" class="external-link">#30</a></li>
@@ -93,7 +97,7 @@
 <h3 id="updates-0-6-0">Updates<a class="anchor" aria-label="anchor" href="#updates-0-6-0"></a></h3>
 <ul><li>a new Vignette <a href="https://drostlab.github.io/philentropy/articles/Many_Distances.html" class="external-link">Comparing many probability density functions</a> (Many thanks to Jakub Nowosad)</li>
 <li>
-<code>dplyr</code> package dependency was removed and replaced by the <code>poorman</code> due to the heavy dependency burden of <code>dplyr</code>, since <code>philentropy</code> only used <code><a href="https://rdrr.io/pkg/dplyr/man/between.html" class="external-link">dplyr::between()</a></code> which is now <code><a href="https://nathaneastwood.github.io/poorman/reference/between.html" class="external-link">poorman::between()</a></code> (Many thanks to Patrice Kiener for this suggestion)</li>
+<code>dplyr</code> package dependency was removed and replaced by the <code>poorman</code> due to the heavy dependency burden of <code>dplyr</code>, since <code>philentropy</code> only used <code><a href="https://dplyr.tidyverse.org/reference/between.html" class="external-link">dplyr::between()</a></code> which is now <code><a href="https://nathaneastwood.github.io/poorman/reference/between.html" class="external-link">poorman::between()</a></code> (Many thanks to Patrice Kiener for this suggestion)</li>
 <li>
 <code>distance(..., as.dist.obj = TRUE)</code> now returns the same values as <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code> when working with 2 dimensional input matrices (2 vector inputs) (see <a href="https://github.com/drostlab/philentropy/issues/29" class="external-link">#29</a>) (Many thanks to Jakub Nowosad (<a href="https://github.com/Nowosad" class="external-link">@Nowosad</a>)) Example:</li>
 </ul><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -115,12 +119,14 @@
 <h2 class="page-header" data-toc-text="0.5.0" id="version-050">Version 0.5.0<small>2021-05-12</small><a class="anchor" aria-label="anchor" href="#version-050"></a></h2>
 <div class="section level3">
 <h3 id="new-features-0-5-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-5-0"></a></h3>
-<ul><li>the <code><a href="../reference/distance.html">distance()</a></code> function receives a new argument <code>mute.message</code> allowing users to mute message printing when running large-scale distance computations. Example:</li></ul><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<ul><li>the <code><a href="../reference/distance.html">distance()</a></code> function receives a new argument <code>mute.message</code> allowing users to mute message printing when running large-scale distance computations. Example:</li>
+</ul><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>         method <span class="op">=</span> <span class="st">"euclidean"</span>, </span>
 <span>         mute.message <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<ul><li>adding <code>markdown</code> dependency to <code>DESCRIPTION</code> (<a href="https://github.com/yihui/knitr/issues/1864" class="external-link">find details here</a>)</li></ul></div>
+<ul><li>adding <code>markdown</code> dependency to <code>DESCRIPTION</code> (<a href="https://github.com/yihui/knitr/issues/1864" class="external-link">find details here</a>)</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.0" id="version-040">Version 0.4.0<small>2020-01-09</small><a class="anchor" aria-label="anchor" href="#version-040"></a></h2>
@@ -157,13 +163,15 @@ Number of objects: 3 </code></pre>
 </div>
 <div class="section level3">
 <h3 id="bug-fixes-0-4-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-4-0"></a></h3>
-<ul><li>fixing a bug in <code><a href="../reference/gJSD.html">gJSD()</a></code> which tested transposed matrix rows rather than transposed matrix columns for sum &gt; 1 (see issue <a href="https://github.com/drostlab/philentropy/issues/17" class="external-link">#17</a> ; many thanks to <a href="https://github.com/wkc1986" class="external-link">@wkc1986</a>)</li></ul></div>
+<ul><li>fixing a bug in <code><a href="../reference/gJSD.html">gJSD()</a></code> which tested transposed matrix rows rather than transposed matrix columns for sum &gt; 1 (see issue <a href="https://github.com/drostlab/philentropy/issues/17" class="external-link">#17</a> ; many thanks to <a href="https://github.com/wkc1986" class="external-link">@wkc1986</a>)</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.0" id="version-030">Version 0.3.0<small>2019-02-13</small><a class="anchor" aria-label="anchor" href="#version-030"></a></h2>
 <div class="section level3">
 <h3 id="new-functionality-0-3-0">New functionality<a class="anchor" aria-label="anchor" href="#new-functionality-0-3-0"></a></h3>
-<ul><li>exporting all Rcpp distance measure functions individually (see issue <a href="https://github.com/drostlab/philentropy/issues/9" class="external-link">#9</a>), this enables access to much faster computations (see micro benchmarks at <a href="https://hajkd.github.io/philentropy/articles/Distances.html" class="external-link uri">https://hajkd.github.io/philentropy/articles/Distances.html</a>)</li></ul></div>
+<ul><li>exporting all Rcpp distance measure functions individually (see issue <a href="https://github.com/drostlab/philentropy/issues/9" class="external-link">#9</a>), this enables access to much faster computations (see micro benchmarks at <a href="https://hajkd.github.io/philentropy/articles/Distances.html" class="external-link uri">https://hajkd.github.io/philentropy/articles/Distances.html</a>)</li>
+</ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-0-3-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-0"></a></h3>
 <ul><li><p>fixing bug which caused that KL distance returns NaN when P == 0 (see issue <a href="https://github.com/drostlab/philentropy/issues/10" class="external-link">#10</a>; Many thanks to <a href="https://github.com/KaiserDominici" class="external-link">@KaiserDominici</a>)</p></li>
@@ -194,13 +202,15 @@ Number of objects: 3 </code></pre>
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-0-1-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-0"></a></h3>
-<ul><li>Fixing bug that caused that <code><a href="../reference/JSD.html">JSD()</a></code> gives NaN when any probability is 0 - see <a href="https://github.com/HajkD/philentropy/issues/1" class="external-link uri">https://github.com/HajkD/philentropy/issues/1</a> (Thanks to William Kurtis Chang)</li></ul></div>
+<ul><li>Fixing bug that caused that <code><a href="../reference/JSD.html">JSD()</a></code> gives NaN when any probability is 0 - see <a href="https://github.com/HajkD/philentropy/issues/1" class="external-link uri">https://github.com/HajkD/philentropy/issues/1</a> (Thanks to William Kurtis Chang)</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.2" id="version-002">Version 0.0.2<small>2017-05-04</small><a class="anchor" aria-label="anchor" href="#version-002"></a></h2>
 <div class="section level3">
 <h3 id="bug-fixes-0-0-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-0-2"></a></h3>
-<ul><li>Fixing C++ memory leaks in <code><a href="../reference/dist.diversity.html">dist.diversity()</a></code> and <code><a href="../reference/distance.html">distance()</a></code> when check for <code>colSums(x) &gt; 1.001</code> was peformed (leak was found with <code>rhub::check_with_valgrind()</code>)</li></ul></div>
+<ul><li>Fixing C++ memory leaks in <code><a href="../reference/dist.diversity.html">dist.diversity()</a></code> and <code><a href="../reference/distance.html">distance()</a></code> when check for <code>colSums(x) &gt; 1.001</code> was peformed (leak was found with <code><a href="https://r-hub.github.io/rhub/reference/check_shortcuts.html" class="external-link">rhub::check_with_valgrind()</a></code>)</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.1" id="version-001">Version 0.0.1<small>2017-04-25</small><a class="anchor" aria-label="anchor" href="#version-001"></a></h2>
@@ -220,7 +230,7 @@ Number of objects: 3 </code></pre>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
