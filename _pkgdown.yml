@@ -1,0 +1,69 @@
+reference:
+- title: "Distance Functions"
+  contents:
+    - distance
+    - dist_many_many
+    - dist_one_many
+    - dist_one_one
+    - getDistMethods
+    - dist.diversity
+    - estimate.probability
+- title: "Information Theory"
+  contents:
+    - H
+    - JE
+    - CE
+    - MI
+    - KL
+    - JSD
+    - gJSD
+- title: "Low Level Distance functions"
+  contents:
+    - additive_symm_chi_sq
+    - avg
+    - bhattacharyya
+    - canberra
+    - chebyshev
+    - clark_sq
+    - cosine_dist
+    - czekanowski
+    - dice_dist
+    - divergence_sq
+    - euclidean
+    - fidelity
+    - gower
+    - harmonic_mean_dist
+    - hellinger
+    - inner_product
+    - intersection_dist
+    - jaccard
+    - jeffreys
+    - jensen_difference
+    - jensen_shannon
+    - k_divergence
+    - kulczynski_d
+    - kullback_leibler_distance
+    - kumar_hassebrook
+    - kumar_johnson
+    - lorentzian
+    - manhattan
+    - matusita
+    - minkowski
+    - motyka
+    - neyman_chi_sq
+    - pearson_chi_sq
+    - prob_symm_chi_sq
+    - ruzicka
+    - soergel
+    - sorensen
+    - squared_chi_sq
+    - squared_chord
+    - squared_euclidean
+    - taneja
+    - tanimoto
+    - topsoe
+    - wave_hedges
+- title: "Other"
+  contents:
+    - binned.kernel.est
+    - lin.cor

@@ -11,3 +11,4 @@ paper.md
 paper.bib
 docs
 LICENSE
+^_pkgdown.yml$
