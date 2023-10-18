@@ -100,11 +100,19 @@
 <div class="section level2">
 <h2 id="how-to-use-distance">How to use <code>distance()</code><a class="anchor" aria-label="anchor" href="#how-to-use-distance"></a>
 </h2>
-<p>The <code><a href="../reference/distance.html">distance()</a></code> function implemented in <code>philentropy</code> is able to compute 46 different distances/similarities between probability density functions (see <code><a href="../reference/distance.html">?philentropy::distance</a></code> for details).</p>
+<p>The <code><a href="../reference/distance.html">distance()</a></code> function implemented in
+<code>philentropy</code> is able to compute 46 different
+distances/similarities between probability density functions (see
+<code><a href="../reference/distance.html">?philentropy::distance</a></code> for details).</p>
 <div class="section level3">
 <h3 id="simple-example">Simple Example<a class="anchor" aria-label="anchor" href="#simple-example"></a>
 </h3>
-<p>The <code><a href="../reference/distance.html">distance()</a></code> function is implemented using the same <em>logic</em> as R’s base function <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code> and takes a <code>matrix</code> or <code>data.frame</code> object as input. The corresponding <code>matrix</code> or <code>data.frame</code> should store probability density functions (as rows) for which distance computations should be performed.</p>
+<p>The <code><a href="../reference/distance.html">distance()</a></code> function is implemented using the same
+<em>logic</em> as R’s base function <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code> and takes
+a <code>matrix</code> or <code>data.frame</code> object as input. The
+corresponding <code>matrix</code> or <code>data.frame</code> should
+store probability density functions (as rows) for which distance
+computations should be performed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># define a probability density function P</span></span>
 <span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
@@ -113,7 +121,9 @@
 <span></span>
 <span><span class="co"># combine P and Q as matrix object</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">P</span>,<span class="va">Q</span><span class="op">)</span></span></code></pre></div>
-<p>Please note that when defining a <code>matrix</code> from vectors, probability vectors should be combined as rows (<code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code>).</p>
+<p>Please note that when defining a <code>matrix</code> from vectors,
+probability vectors should be combined as rows
+(<code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code>).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/drostlab/philentropy" class="external-link">philentropy</a></span><span class="op">)</span></span>
 <span></span>
@@ -121,14 +131,24 @@
 <span><span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="va">euclidean</span> </span>
 <span><span class="fl">0.1280713</span></span></code></pre>
-<p>For this simple case you can compare the results with R’s base function to compute the euclidean distance <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code>.</p>
+<p>For this simple case you can compare the results with R’s base
+function to compute the euclidean distance
+<code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># compute the Euclidean Distance using R's base function</span></span>
 <span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>          P
 Q 0.1280713</code></pre>
-<p>However, the R base function <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code> only computes the following distance measures: <code>"euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski"</code>, whereas <code><a href="../reference/distance.html">distance()</a></code> allows you to choose from 46 distance/similarity measures and when selecting the native distance functions underlying <code><a href="../reference/distance.html">distance()</a></code> users can speed up their computations 3-5x.</p>
-<p>To find out which <code>method</code>s are implemented in <code><a href="../reference/distance.html">distance()</a></code> you can consult the <code><a href="../reference/getDistMethods.html">getDistMethods()</a></code> function.</p>
+<p>However, the R base function <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code> only computes
+the following distance measures:
+<code>"euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski"</code>,
+whereas <code><a href="../reference/distance.html">distance()</a></code> allows you to choose from 46
+distance/similarity measures and when selecting the native distance
+functions underlying <code><a href="../reference/distance.html">distance()</a></code> users can speed up their
+computations 3-5x.</p>
+<p>To find out which <code>method</code>s are implemented in
+<code><a href="../reference/distance.html">distance()</a></code> you can consult the
+<code><a href="../reference/getDistMethods.html">getDistMethods()</a></code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># names of implemented distance/similarity functions</span></span>
 <span><span class="fu"><a href="../reference/getDistMethods.html">getDistMethods</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -144,13 +164,15 @@ Q 0.1280713</code></pre>
 [37] "additive_symm"     "kullback-leibler"  "jeffreys"          "k_divergence"     
 [41] "topsoe"            "jensen-shannon"    "jensen_difference" "taneja"           
 [45] "kumar-johnson"     "avg"</code></pre>
-<p>Now you can choose any distance/similarity <code>method</code> that serves you.</p>
+<p>Now you can choose any distance/similarity <code>method</code> that
+serves you.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># compute the Jaccard Distance with default parameters</span></span>
 <span><span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"jaccard"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span> <span class="va">jaccard</span> </span>
 <span><span class="fl">0.133869</span></span></code></pre>
-<p>Analogously, in case a probability matrix is specified the following output is generated.</p>
+<p>Analogously, in case a probability matrix is specified the following
+output is generated.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># combine three probabilty vectors to a probabilty matrix </span></span>
 <span><span class="va">ProbMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>,<span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span></span>
@@ -164,7 +186,10 @@ Q 0.1280713</code></pre>
 v1 0.0000000 0.12807130 0.13881717
 v2 0.1280713 0.00000000 0.01074588
 v3 0.1388172 0.01074588 0.00000000</code></pre>
-<p>Alternatively, users can specify the argument <code>use.row.names = TRUE</code> to maintain the rownames of the input matrix and pass them as rownames and colnames to the output distance matrix.</p>
+<p>Alternatively, users can specify the argument
+<code>use.row.names = TRUE</code> to maintain the rownames of the input
+matrix and pass them as rownames and colnames to the output distance
+matrix.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># compute the euclidean distance between all </span></span>
 <span><span class="co"># pairwise comparisons of probability vectors</span></span>
@@ -174,7 +199,8 @@ v3 0.1388172 0.01074588 0.00000000</code></pre>
 Example1 0.0000000 0.12807130 0.13881717
 Example2 0.1280713 0.00000000 0.01074588
 Example3 0.1388172 0.01074588 0.00000000</code></pre>
-<p>This output differs from the output of <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code>.</p>
+<p>This output differs from the output of
+<code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># compute the euclidean distance between all </span></span>
 <span><span class="co"># pairwise comparisons of probability vectors</span></span>
@@ -183,8 +209,13 @@ Example3 0.1388172 0.01074588 0.00000000</code></pre>
 <pre><code>           1          2
 2 0.12807130           
 3 0.13881717 0.01074588</code></pre>
-<p>Whereas <code><a href="../reference/distance.html">distance()</a></code> returns a symmetric distance matrix, <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code> returns only one part of the symmetric matrix.</p>
-<p>However, users can also specify the argument <code>as.dist.obj = TRUE</code> in <code><a href="../reference/distance.html">philentropy::distance()</a></code> to retrieve a <code><a href="../reference/distance.html">philentropy::distance()</a></code> output which is an object of type <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code>.</p>
+<p>Whereas <code><a href="../reference/distance.html">distance()</a></code> returns a symmetric distance matrix,
+<code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code> returns only one part of the symmetric
+matrix.</p>
+<p>However, users can also specify the argument
+<code>as.dist.obj = TRUE</code> in <code><a href="../reference/distance.html">philentropy::distance()</a></code>
+to retrieve a <code><a href="../reference/distance.html">philentropy::distance()</a></code> output which is an
+object of type <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">stats::dist()</a></code>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ProbMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>,<span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">ProbMatrix</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"test"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
@@ -193,9 +224,15 @@ Example3 0.1388172 0.01074588 0.00000000</code></pre>
            test1      test2
 test2 0.12807130           
 test3 0.13881717 0.01074588</code></pre>
-<p>Now let’s compare the run times of base R and <code>philentropy</code>. For this purpose you need to install the <code>microbenchmark</code> package.</p>
+<p>Now let’s compare the run times of base R and
+<code>philentropy</code>. For this purpose you need to install the
+<code>microbenchmark</code> package.</p>
 <blockquote>
-<p>Note: Please make sure to insert vector objects (in our example P, Q) when directly running the low-level functions such as <code><a href="../reference/euclidean.html">euclidean()</a></code> etc. Otherwise, computational overheads are produced that <a href="https://github.com/drostlab/philentropy/issues/30" class="external-link">significantly slow down computations when using large vectors</a>.</p>
+<p>Note: Please make sure to insert vector objects (in our example P, Q)
+when directly running the low-level functions such as
+<code><a href="../reference/euclidean.html">euclidean()</a></code> etc. Otherwise, computational overheads are
+produced that <a href="https://github.com/drostlab/philentropy/issues/30" class="external-link">significantly
+slow down computations when using large vectors</a>.</p>
 </blockquote>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("microbenchmark")</span></span>
@@ -211,8 +248,22 @@ test3 0.13881717 0.01074588</code></pre>
  distance(x, method = "euclidean", test.na = FALSE) 26.518 28.3495 29.73174 29.2210 30.1025 62.096   100
                       dist(x, method = "euclidean") 11.073 12.9375 14.65223 14.3340 15.1710 65.130   100
                    euclidean(P, Q, FALSE)  4.329  4.9605  5.72378  5.4815  6.1240 22.510   100</code></pre>
-<p>As you can see, although the <code><a href="../reference/distance.html">distance()</a></code> function is quite fast, the internal checks cause it to be 2x slower than the base <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> function (for the <code>euclidean</code> example). Nevertheless, in case you need to implement a faster version of the corresponding distance measure you can type <code>philentropy::</code> and then <code>TAB</code> allowing you to select the base distance computation functions (written in C++), e.g. <code><a href="../reference/euclidean.html">philentropy::euclidean()</a></code> which is almost 3x faster than the base <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> function.</p>
-<p>The advantage of <code><a href="../reference/distance.html">distance()</a></code> is that it implements 46 distance measures based on base C++ functions that can be accessed individually by typing <code>philentropy::</code> and then <code>TAB</code>. In future versions of <code>philentropy</code> I will optimize the <code><a href="../reference/distance.html">distance()</a></code> function so that internal checks for data type correctness and correct input data will take less termination time than the base <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> function.</p>
+<p>As you can see, although the <code><a href="../reference/distance.html">distance()</a></code> function is
+quite fast, the internal checks cause it to be 2x slower than the base
+<code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> function (for the <code>euclidean</code> example).
+Nevertheless, in case you need to implement a faster version of the
+corresponding distance measure you can type <code>philentropy::</code>
+and then <code>TAB</code> allowing you to select the base distance
+computation functions (written in C++),
+e.g. <code><a href="../reference/euclidean.html">philentropy::euclidean()</a></code> which is almost 3x faster
+than the base <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> function.</p>
+<p>The advantage of <code><a href="../reference/distance.html">distance()</a></code> is that it implements 46
+distance measures based on base C++ functions that can be accessed
+individually by typing <code>philentropy::</code> and then
+<code>TAB</code>. In future versions of <code>philentropy</code> I will
+optimize the <code><a href="../reference/distance.html">distance()</a></code> function so that internal checks
+for data type correctness and correct input data will take less
+termination time than the base <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> function.</p>
 <!--
 ## Detailed assessment of individual similarity and distance metrics
 
@@ -261,7 +312,7 @@ Euclid argued that that the __shortest__ distance between two points is always a
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
