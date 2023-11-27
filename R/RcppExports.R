@@ -937,5 +937,5 @@ est_prob_empirical <- function(CountVec) {
 
 # Register entry points for exported C++ functions
 methods::setLoadAction(function(ns) {
-    .Call('_philentropy_RcppExport_registerCCallable', PACKAGE = 'philentropy')
+    .Call(`_philentropy_RcppExport_registerCCallable`)
 })
