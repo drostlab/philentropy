@@ -186,7 +186,13 @@ The current status of the package as well as a detailed history of the functiona
 >
 > - __High-content single-cell combinatorial indexing__ R Mulqueen et al. - __Nature Biotechnology__, 2021 
 >
+> - __A comparative atlas of single-cell chromatin accessibility in the human brain__
+YE Li, S Preissl, M Miller, ND Johnson, Z Wang et al. - __Science__, 2023
+>
 > - __Extinction at the end-Cretaceous and the origin of modern Neotropical rainforests__ MR Carvalho, C Jaramillo et al. - __Science__, 2021
+>
+> - __sciCSR infers B cell state transition and predicts class-switch recombination dynamics using single-cell transcriptomic data__
+JCF Ng, G Montamat Garcia, AT Stewart et al. - __Nature Methods__, 2023
 >
 > - __HERMES: a molecular-formula-oriented method to target the metabolome__
 R Giné, J Capellades, JM Badia et al. - __Nature Methods__, 2021
@@ -205,6 +211,9 @@ M Stražar, GS Temba, H Vlamakis et al. - __Nature Communications__, 2021
 > - __Aging, inflammation and DNA damage in the somatic testicular niche with idiopathic germ cell aplasia__ M Alfano, AS Tascini, F Pederzoli et al. - __Nature communications__, 2021
 >
 > - __Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation__ A Subramanian et al. - __Nature Communications__, 2019
+>
+> - __A single-cell multi-omic atlas spanning the adult rhesus macaque brain__
+KL Chiou, X Huang, MO Bohlen et al. - __Science Advances__, 2023
 >
 > - __Different languages, similar encoding efficiency: Comparable information rates across the human communicative niche__
 C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
@@ -228,6 +237,12 @@ LM Murrow, RJ Weber, JA Caruso et al. - __Cell Systems__, 2022
 > - __Sex and hatching order modulate the association between MHC‐II diversity and fitness in early‐life stages of a wild seabird__
 M Pineaux et al - __Molecular Ecology__, 2020
 >
+> - __BELMM: Bayesian model selection and random walk smoothing in time-series clustering__
+O Sarala, T Pyhäjärvi, MJ Sillanpää - __Bioinformatics__, 2023
+>
+> - __Cellsig plug-in enhances CIBERSORTx signature selection for multi-dataset transcriptomes with sparse multilevel modelling__
+MA Al Kamran Khan, J Wu, S Yuhan et al. - __Bioinformatics__, 2023
+>
 > - __How the Choice of Distance Measure Influences the Detection of Prior-Data Conflict__
 K Lek, R Van De Schoot - __Entropy__, 2019
 >
@@ -245,6 +260,9 @@ N Burke, N Brezack, A Woodward - __Frontiers in psychology__, 2022
 >
 > - __Identification of a glioma functional network from gene fitness data using machine learning__ C Xiang, X Liu, D Zhou, Y Zhou, X Wang, F Chen - __Journal of Cellular and Molecular Medicine__, 2022
 >
+> - __Whole genome assemblies of Zophobas morio and Tenebrio molitor__
+S Kaur, SA Stinson, GC diCenzo - __G3: Genes, Genomes, Genetics__, 2023
+>
 > - __Prediction of New Risk Genes and Potential Drugs for Rheumatoid Arthritis from Multiomics Data__ AM Birga, L Ren, H Luo, Y Zhang, J Huang - __Computational and Mathematical Methods in Medicine__, 2022
 >
 > - __Phenotyping of acute and persistent COVID-19 features in the outpatient setting: exploratory analysis of an international cross-sectional online survey__ S Sahanic, P Tymoszuk, D Ausserhofer et al. - __medRxiv__, 2021
@@ -253,6 +271,9 @@ N Burke, N Brezack, A Woodward - __Frontiers in psychology__, 2022
 >
 > - __SEDE-GPS: socio-economic data enrichment based on GPS information__
 T Sperlea, S Füser, J Boenigk, D Heider - __BMC bioinformatics__, 2018
+>
+> - __Longitudinal analysis on the ecological dynamics of the cervicovaginal microbiome in hrHPV infection__
+MA Molina, WJG Melchers, et al. - __Computational and structural biotechnology__, 2023
 >
 > - __Spatial and molecular anatomy of germ layers in the gastrulating primate embryo__ G Cui, S Feng, Y Yan, L Wang, X He, X Li, et al. - __bioRxiv__, 2022
 >
