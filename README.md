@@ -207,7 +207,7 @@ R Giné, J Capellades, JM Badia et al. - __Nature Methods__, 2021
 > - __Gut microbiome-mediated metabolism effects on immunity in rural and urban African populations__
 M Stražar, GS Temba, H Vlamakis et al. - __Nature Communications__, 2021
 >
-> - __Aging, inflammation and DNA damage in the somatic testicular niche with idiopathic germ cell aplasia__ M Alfano, AS Tascini, F Pederzoli et al. - __Nature communications__, 2021
+> - __Aging, inflammation and DNA damage in the somatic testicular niche with idiopathic germ cell aplasia__ M Alfano, AS Tascini, F Pederzoli et al. - __Nature Communications__, 2021
 >
 > - __Single cell census of human kidney organoids shows reproducibility and diminished off-target cells after transplantation__ A Subramanian et al. - __Nature Communications__, 2019
 >
