@@ -1,7 +1,6 @@
 philentropy
 ===========
-
-[![Travis-CI Build Status](https://travis-ci.org/HajkD/philentropy.svg?branch=master)](https://travis-ci.org/HajkD/philentropy)  [![status](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00765)
+ [![status](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00765)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/philentropy)](https://github.com/r-hub/cranlogs.app)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/philentropy)](https://github.com/r-hub/cranlogs.app)
 
@@ -23,7 +22,7 @@ the people who share it with me.
 
 ### Installation
 ```r
-# install philentropy version 0.7.0 from CRAN
+# install philentropy version 0.8.0 from CRAN
 install.packages("philentropy")
 ```
 
