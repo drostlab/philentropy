@@ -1,6 +1,19 @@
-## Version 0.8.0.9000
+## Version 0.8.0
 
-### New Features
+### Updates
+
+Fixing warning on Debian systems:
+```
+Result: WARN 
+  Found the following significant warnings:
+    RcppExports.cpp:865:18: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+    RcppExports.cpp:899:18: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+    RcppExports.cpp:933:18: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+    RcppExports.cpp:967:18: warning: format string is not a string literal (potentially insecure) [-Wformat-security]
+  See ‘/home/hornik/tmp/R.check/r-devel-clang/Work/PKGS/philentropy.Rcheck/00install.out’ for details.
+  * used C++ compiler: ‘Debian clang version 17.0.5 (1)’
+```
+- The solution was to implement this [quick fix](https://github.com/RcppCore/Rcpp/issues/1287#issuecomment-1829886024) by reinstalling `Rcpp v1.0.11.6` via `devtools::install_github("https://github.com/RcppCore/Rcpp")` and rerun `Rcpp::compileAttributes()`. 
 
 ## Version 0.7.0
 
