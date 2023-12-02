@@ -1,6 +1,6 @@
 citHeader("To cite philentropy in publications please use:")
 
-citEntry(entry = "Article",
+bibentry(bibtype = "Article",
   title        = "Philentropy: Information Theory and Distance Quantification with R",
   author       = personList(as.person("Drost HG")),
   journal      = "Journal of Open Source Software",
