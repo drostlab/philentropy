@@ -196,9 +196,18 @@ JCF Ng, G Montamat Garcia, AT Stewart et al. - __Nature Methods__, 2023
 > - __HERMES: a molecular-formula-oriented method to target the metabolome__
 R Giné, J Capellades, JM Badia et al. - __Nature Methods__, 2021
 >
+> - __Epithelial zonation along the mouse and human small intestine defines five discrete metabolic domains__
+> RK Zwick, P Kasparek, B Palikuqi, et al. - __Nature Cell Biology__, 2024
+>
 > - __The genetic architecture of temperature adaptation is shaped by population ancestry and not by selection regime__ KA Otte, V Nolte, F Mallard et al. - __Genome Biology__, 2021
 >
 > - __The Tug1 lncRNA locus is essential for male fertility__ JP Lewandowski et al. - __Genome Biology__, 2020
+>
+> - __Decoding the gene regulatory network of endosperm differentiation in maize__
+> Y Yuan, Q Huo, Z Zhang, Q Wang, J Wang, et al. - __Nature Communications__, 2024
+>
+> - __A full-body transcription factor expression atlas with completely resolved cell identities in C. elegans__
+> Y Li, S Chen, W Liu, D Zhao, Y Gao, S Hu, H Liu, Y Li… - __Nature Communications__, 2024
 >
 > - __Transcriptional vulnerabilities of striatal neurons in human and rodent models of Huntington's disease__ A Matsushima, SS Pineda, JR Crittenden et al. - __Nature Communications__, 2023
 > 
@@ -222,6 +231,8 @@ C Coupé, YM Oh, D Dediu, F Pellegrino - __Science Advances__, 2019
 > - __Large-scale iterated singing experiments reveal oral transmission mechanisms underlying music evolution__
 M Anglada-Tort, PMC Harrison, H Lee, N Jacoby - __Current Biology__, 2023
 >
+> - __Detecting and diagnosing prior and likelihood sensitivity with power-scaling__
+> N Kallioinen, T Paananen, PC Bürkner, A Vehtari - __Statistics and Computing__, 2024
 > - __TAS-Seq is a robust and sensitive amplification method for bead-based scRNA-seq__ S Shichino, S Ueha, S Hashimoto, T Ogawa et al. - __Communications biology__, 2022
 >
 > - Mapping hormone-regulated cell-cell interaction networks in the human breast at single-cell resolution
@@ -252,8 +263,17 @@ EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
 >
 > - __Impact of Gut Microbiome on Hypertensive Patients with Low-Salt Intake: Shika Study Results__ S Nagase et al. - __Frontiers in Medicine__, 2020
 >
-> - Children's social networks in developmental psychology: A network approach to capture and describe early social environments
+> - __Tumor-associated neutrophils upregulate PANoptosis to foster an immunosuppressive microenvironment of non-small cell lung cancer__
+> Q Hu, R Wang, J Zhang, Q Xue, B Ding - __Cancer Immunology, Immunotherapy__, 2023
+>
+> - __cisDynet: An integrated platform for modeling gene‐regulatory dynamics and networks__
+> T Zhu, X Zhou, Y You, L Wang, Z He, D Chen - __iMeta__, 2023
+>
+> - __Children's social networks in developmental psychology: A network approach to capture and describe early social environments__
 N Burke, N Brezack, A Woodward - __Frontiers in psychology__, 2022
+>
+> - __Whole Genome Sequencing and Morphological Trait-Based Evaluation of UPOV Option 2 for DUS Testing in Rice__
+> H Liu, D Rao, T Guo, SS Gangurde, Y Hong, et al. - __Frontiers in Genetics__, 2022
 >
 > - __Combined TCR Repertoire Profiles and Blood Cell Phenotypes Predict Melanoma Patient Response to Personalized Neoantigen Therapy plus Anti-PD-1__ A Poran et al. - __Cell Reports Medicine__, 2020
 >

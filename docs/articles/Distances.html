@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.0.9000</span>
       </span>
     </div>
 
@@ -238,7 +238,7 @@ slow down computations when using large vectors</a>.</p>
 <code class="sourceCode R"><span><span class="co"># install.packages("microbenchmark")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/" class="external-link">microbenchmark</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
+<span><span class="fu">microbenchmark</span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>,method <span class="op">=</span> <span class="st">"euclidean"</span>, test.na <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist</a></span><span class="op">(</span><span class="va">x</span>,method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/euclidean.html">euclidean</a></span><span class="op">(</span><span class="va">P</span>, <span class="va">Q</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
