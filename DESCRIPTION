@@ -20,7 +20,7 @@ Imports:
 License: GPL-2
 LazyData: false
 LinkingTo: Rcpp
-URL: https://github.com/drostlab/philentropy
+URL: https://drostlab.github.io/philentropy/, https://github.com/drostlab/philentropy
 Suggests:
     testthat,
     knitr,
