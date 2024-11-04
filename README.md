@@ -1,8 +1,8 @@
 philentropy
 ===========
- [![status](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00765)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/philentropy)](https://github.com/r-hub/cranlogs.app)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/philentropy)](https://github.com/r-hub/cranlogs.app)
+ [![status](http://joss.theoj.org/papers/cad5ffc246ce197b06ccad1af7d2932a/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00765) 
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/philentropy)](https://github.com/r-hub/cranlogs.app)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/philentropy)](https://github.com/r-hub/cranlogs.app)
 
 
 ### Similarity and Distance Quantification between Probability Functions
