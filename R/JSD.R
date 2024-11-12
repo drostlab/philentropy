@@ -1,5 +1,6 @@
 #' @title Jensen-Shannon Divergence 
-#' @description This function computes a distance matrix or distance value based on the Jensen-Shannon Divergence with equal weights.
+#' @description This function computes a divergence matrix or divergence value based on the Jensen-Shannon Divergence with equal weights.
+#' Please be aware that when aiming to compute the Jensen-Shannon Distance (rather than Divergence), you will need to apply the \code{link{sqrt}} on the \code{JSD()} output. 
 #' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob = TRUE}). See \code{\link{distance}} for details.
 #' @param test.na a boolean value specifying whether input vectors shall be tested for NA values.
 #' @param unit a character string specifying the logarithm unit that shall be used to compute distances that depend on log computations.
@@ -7,7 +8,7 @@
 #' \itemize{
 #' \item \code{est.prob = "empirical"}: The relative frequencies of each vector are computed internally. For example an input matrix \code{rbind(1:10, 11:20)} will be transformed to a probability vector \code{rbind(1:10 / sum(1:10), 11:20 / sum(11:20))}
 #' }
-#' @return a distance value or matrix based on JSD computations.
+#' @return a divergence value or matrix based on JSD computations.
 #' @author Hajk-Georg Drost
 #' @details 
 #' 
@@ -54,7 +55,7 @@
 #' x.count <- rbind(P.count,Q.count)
 #' JSD(x.count, est.prob = "empirical")
 #' 
-#' # Example: Distance Matrix using JSD-Distance
+#' # Example: Divergence Matrix using JSD-Divergence
 #' 
 #' Prob <- rbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 #'
