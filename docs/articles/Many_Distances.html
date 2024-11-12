@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Comparing many probability density functions • philentropy</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.0</span>
       </span>
     </div>
 
@@ -141,7 +141,7 @@ probability density functions), returns a matrix of values</li>
 <p>Let’s start testing them by attaching the
 <strong>philentropy</strong> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/drostlab/philentropy" class="external-link">philentropy</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://drostlab.github.io/philentropy/" class="external-link">philentropy</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="dist_one_one">
 <code>dist_one_one()</code><a class="anchor" aria-label="anchor" href="#dist_one_one"></a>
@@ -176,11 +176,11 @@ approaches - (a) build-in R <code><a href="https://rdrr.io/r/stats/dist.html" cl
 <span><span class="co">##  distance(rbind(P, Q), method = "euclidean", test.na = FALSE,      mute.message = TRUE)</span></span>
 <span><span class="co">##                                                                  euclidean(P, Q, FALSE)</span></span>
 <span><span class="co">##                                dist_one_one(P, Q, method = "euclidean", testNA = FALSE)</span></span>
-<span><span class="co">##   min   lq     mean  median      uq    max neval</span></span>
-<span><span class="co">##  5986 6396  8233.62  6724.0  7113.5 108691   100</span></span>
-<span><span class="co">##  9266 9922 18894.85 10475.5 11931.0 783756   100</span></span>
-<span><span class="co">##   820  902  1150.87   943.0  1086.5   3854   100</span></span>
-<span><span class="co">##  1189 1271  1756.03  1353.0  1496.5  19680   100</span></span></code></pre>
+<span><span class="co">##   min   lq     mean median     uq    max neval</span></span>
+<span><span class="co">##  5166 5371  6431.26   5658 5883.5  75563   100</span></span>
+<span><span class="co">##  7585 7913 12703.03   8036 8241.0 459200   100</span></span>
+<span><span class="co">##   492  533   771.62    574  615.0  19352   100</span></span>
+<span><span class="co">##   820  861  1093.88    943 1025.0  15375   100</span></span></code></pre>
 <p>All of them return the same, single value. However, as you can see in
 the benchmark above, some are more flexible, and others are faster.</p>
 </div>
@@ -219,10 +219,10 @@ measure between <code>P</code> and values in this row.</p>
 <span><span class="co">##                                      as.matrix(dist(rbind(P, M), method = "euclidean"))[1, ][-1]</span></span>
 <span><span class="co">##  distance(rbind(P, M), method = "euclidean", test.na = FALSE,      mute.message = TRUE)[1, ][-1]</span></span>
 <span><span class="co">##                                        dist_one_many(P, M, method = "euclidean", testNA = FALSE)</span></span>
-<span><span class="co">##       min        lq        mean     median        uq       max neval</span></span>
-<span><span class="co">##   130.831  148.1125   160.26367   157.9935   167.690   263.548   100</span></span>
-<span><span class="co">##  9016.515 9735.1630 11155.15536 10312.8735 12742.677 14336.511   100</span></span>
-<span><span class="co">##     9.512   10.3730    12.67269    11.8285    13.858    44.526   100</span></span></code></pre>
+<span><span class="co">##       min        lq       mean    median        uq      max neval</span></span>
+<span><span class="co">##    65.313   71.4425   77.49861   74.3330   80.8315  152.028   100</span></span>
+<span><span class="co">##  6430.850 6534.4570 6748.67462 6621.6845 6945.7895 8020.297   100</span></span>
+<span><span class="co">##     7.749    8.8970    9.69158    9.2455    9.6350   30.381   100</span></span></code></pre>
 <p>The <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> returns a vector of values. It is,
 in this case, much faster than <code><a href="../reference/distance.html">distance()</a></code>, and visibly
 faster than <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> while allowing for more possible
@@ -265,11 +265,11 @@ solve this problem, we can create our own -
 <span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Unit: microseconds</span></span>
 <span><span class="co">##                                                          expr     min       lq</span></span>
-<span><span class="co">##                                            many_dists(M1, M2) 958.990 994.5575</span></span>
-<span><span class="co">##  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)  14.104  14.8830</span></span>
-<span><span class="co">##        mean   median       uq      max neval</span></span>
-<span><span class="co">##  1181.08126 1013.458 1081.375 4497.126   100</span></span>
-<span><span class="co">##    16.36269   15.375   16.851   37.843   100</span></span></code></pre>
+<span><span class="co">##                                            many_dists(M1, M2) 815.982 859.6265</span></span>
+<span><span class="co">##  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)  12.669  13.7965</span></span>
+<span><span class="co">##        mean  median       uq      max neval</span></span>
+<span><span class="co">##  1018.45107 900.114 992.6305 3761.668   100</span></span>
+<span><span class="co">##    15.36475  14.719  16.1745   32.062   100</span></span></code></pre>
 <p>Both <code>many_dists()</code>and <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code>
 return a matrix. The above benchmark concludes that
 <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> is about 30 times faster than our custom
@@ -294,7 +294,7 @@ return a matrix. The above benchmark concludes that
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>

@@ -19,10 +19,11 @@ JSD(x, test.na = TRUE, unit = "log2", est.prob = NULL)
 }}
 }
 \value{
-a distance value or matrix based on JSD computations.
+a divergence value or matrix based on JSD computations.
 }
 \description{
-This function computes a distance matrix or distance value based on the Jensen-Shannon Divergence with equal weights.
+This function computes a divergence matrix or divergence value based on the Jensen-Shannon Divergence with equal weights.
+Please be aware that when aiming to compute the Jensen-Shannon Distance (rather than Divergence), you will need to apply the \code{link{sqrt}} on the \code{JSD()} output.
 }
 \details{
 Function to compute the Jensen-Shannon Divergence JSD(P || Q) between two
@@ -64,7 +65,7 @@ Q.count <- 20:29
 x.count <- rbind(P.count,Q.count)
 JSD(x.count, est.prob = "empirical")
 
-# Example: Distance Matrix using JSD-Distance
+# Example: Divergence Matrix using JSD-Divergence
 
 Prob <- rbind(1:10/sum(1:10), 20:29/sum(20:29), 30:39/sum(30:39))
 

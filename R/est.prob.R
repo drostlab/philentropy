@@ -15,17 +15,12 @@
 #' @author Hajk-Georg Drost
 #' @return a numeric probability vector.
 #' @examples
-#' 
 #' # generate a count vector
 #' x <- runif(100)
-#' 
 #' # generate a probability vector from corresponding counts
 #' # method = "empirical"
 #' x.prob <- estimate.probability(x, method = "empirical")
-#' 
 #' @export
-
-
 estimate.probability <- function(x, method = "empirical"){
         
         if(!is.element(method,c("empirical")))
@@ -35,5 +30,4 @@ estimate.probability <- function(x, method = "empirical"){
                 # fastest implementation for relative frequency 
                 return(x/sum(x))
         }
-        
 }

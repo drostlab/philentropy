@@ -27,14 +27,11 @@ The following probability estimation methods are implemented in this function:
 }
 }
 \examples{
-
 # generate a count vector
 x <- runif(100)
-
 # generate a probability vector from corresponding counts
 # method = "empirical"
 x.prob <- estimate.probability(x, method = "empirical")
-
 }
 \author{
 Hajk-Georg Drost
