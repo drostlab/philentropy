@@ -22,16 +22,13 @@ The following probability estimation methods are implemented in this function:
 
 \itemize{
 \item \code{method = "empirical"} : generates the relative frequency of the data \code{x/sum(x)}.
-\item
-\item
 }
 }
 \examples{
 # generate a count vector
 x <- runif(100)
 # generate a probability vector from corresponding counts
-# method = "empirical"
-x.prob <- estimate.probability(x, method = "empirical")
+x.prob <- estimate.probability(x, method = 'empirical')
 }
 \author{
 Hajk-Georg Drost
