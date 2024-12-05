@@ -19,7 +19,7 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -45,7 +45,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -71,7 +71,7 @@
 <li>
   <a href="https://github.com/drostlab/philentropy/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -82,7 +82,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="contents col-md-9">
@@ -132,21 +132,21 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://drostlab.github.io/philentropy/" class="external-link">philentropy</a></span><span class="op">)</span></span>
 <span><span class="co"># retrieve available distance metrics</span></span>
 <span><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code> [1] "euclidean"         "manhattan"         "minkowski"        
- [4] "chebyshev"         "sorensen"          "gower"            
- [7] "soergel"           "kulczynski_d"      "canberra"         
-[10] "lorentzian"        "intersection"      "non-intersection" 
-[13] "wavehedges"        "czekanowski"       "motyka"           
-[16] "kulczynski_s"      "tanimoto"          "ruzicka"          
-[19] "inner_product"     "harmonic_mean"     "cosine"           
-[22] "hassebrook"        "jaccard"           "dice"             
-[25] "fidelity"          "bhattacharyya"     "hellinger"        
+<pre><code> [1] "euclidean"         "manhattan"         "minkowski"
+ [4] "chebyshev"         "sorensen"          "gower"
+ [7] "soergel"           "kulczynski_d"      "canberra"
+[10] "lorentzian"        "intersection"      "non-intersection"
+[13] "wavehedges"        "czekanowski"       "motyka"
+[16] "kulczynski_s"      "tanimoto"          "ruzicka"
+[19] "inner_product"     "harmonic_mean"     "cosine"
+[22] "hassebrook"        "jaccard"           "dice"
+[25] "fidelity"          "bhattacharyya"     "hellinger"
 [28] "matusita"          "squared_chord"     "squared_euclidean"
-[31] "pearson"           "neyman"            "squared_chi"      
-[34] "prob_symm"         "divergence"        "clark"            
-[37] "additive_symm"     "kullback-leibler"  "jeffreys"         
-[40] "k_divergence"      "topsoe"            "jensen-shannon"   
-[43] "jensen_difference" "taneja"            "kumar-johnson"    
+[31] "pearson"           "neyman"            "squared_chi"
+[34] "prob_symm"         "divergence"        "clark"
+[37] "additive_symm"     "kullback-leibler"  "jeffreys"
+[40] "k_divergence"      "topsoe"            "jensen-shannon"
+[43] "jensen_difference" "taneja"            "kumar-johnson"
 [46] "avg"</code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># define a probability density function P</span></span>
@@ -161,56 +161,56 @@
 <span><span class="co"># probability density functions P and Q</span></span>
 <span><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/distance.html">distance</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"jensen-shannon"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>jensen-shannon using unit 'log'.
-jensen-shannon 
+jensen-shannon
     0.02628933</code></pre>
 <p>Alternatively, users can also retrieve values from all available distance/similarity metrics using <code><a href="reference/dist.diversity.html">philentropy::dist.diversity()</a></code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">2</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>        euclidean         manhattan 
-       0.12807130        0.35250464 
-        minkowski         chebyshev 
-       0.12807130        0.06345083 
-         sorensen             gower 
-       0.17625232        0.03525046 
-          soergel      kulczynski_d 
-       0.29968454        0.42792793 
-         canberra        lorentzian 
-       2.09927095        0.49712136 
-     intersection  non-intersection 
-       0.82374768        0.17625232 
-       wavehedges       czekanowski 
-       3.16657887        0.17625232 
-           motyka      kulczynski_s 
-       0.58812616        2.33684211 
-         tanimoto           ruzicka 
-       0.29968454        0.70031546 
-    inner_product     harmonic_mean 
-       0.10612245        0.94948528 
-           cosine        hassebrook 
-       0.93427641        0.86613103 
-          jaccard              dice 
-       0.13386897        0.07173611 
-         fidelity     bhattacharyya 
-       0.97312397        0.03930448 
-        hellinger          matusita 
-       0.32787819        0.23184489 
-    squared_chord squared_euclidean 
-       0.05375205        0.01640226 
-          pearson            neyman 
-       0.16814418        0.36742465 
-      squared_chi         prob_symm 
-       0.10102943        0.20205886 
-       divergence             clark 
-       1.49843905        0.86557468 
-    additive_symm  kullback-leibler 
-       0.53556883        0.13926288 
-         jeffreys      k_divergence 
-       0.31761069        0.04216273 
-           topsoe    jensen-shannon 
-       0.07585498        0.03792749 
-jensen_difference            taneja 
-       0.03792749        0.04147518 
-    kumar-johnson               avg 
+<pre><code>        euclidean         manhattan
+       0.12807130        0.35250464
+        minkowski         chebyshev
+       0.12807130        0.06345083
+         sorensen             gower
+       0.17625232        0.03525046
+          soergel      kulczynski_d
+       0.29968454        0.42792793
+         canberra        lorentzian
+       2.09927095        0.49712136
+     intersection  non-intersection
+       0.82374768        0.17625232
+       wavehedges       czekanowski
+       3.16657887        0.17625232
+           motyka      kulczynski_s
+       0.58812616        2.33684211
+         tanimoto           ruzicka
+       0.29968454        0.70031546
+    inner_product     harmonic_mean
+       0.10612245        0.94948528
+           cosine        hassebrook
+       0.93427641        0.86613103
+          jaccard              dice
+       0.13386897        0.07173611
+         fidelity     bhattacharyya
+       0.97312397        0.03930448
+        hellinger          matusita
+       0.32787819        0.23184489
+    squared_chord squared_euclidean
+       0.05375205        0.01640226
+          pearson            neyman
+       0.16814418        0.36742465
+      squared_chi         prob_symm
+       0.10102943        0.20205886
+       divergence             clark
+       1.49843905        0.86557468
+    additive_symm  kullback-leibler
+       0.53556883        0.13926288
+         jeffreys      k_divergence
+       0.31761069        0.04216273
+           topsoe    jensen-shannon
+       0.07585498        0.03792749
+jensen_difference            taneja
+       0.03792749        0.04147518
+    kumar-johnson               avg
        0.62779644        0.20797774</code></pre>
 <div class="section level3">
 <h3 id="install-developer-version">Install Developer Version<a class="anchor" aria-label="anchor" href="#install-developer-version"></a>
@@ -269,6 +269,7 @@ jensen_difference            taneja
 </h3>
 <blockquote>
 <ul>
+<li><p><strong>A transcriptomic hourglass in brown algae</strong> JS Lotharukpong, M Zheng, R Luthringer et al. - <strong>Nature</strong>, 2024</p></li>
 <li><p><strong>Annelid functional genomics reveal the origins of bilaterian life cycles</strong> FM Martín-Zamora, Y Liang, K Guynes et al.- <strong>Nature</strong>, 2023</p></li>
 <li><p><strong>An atlas of gene regulatory elements in adult mouse cerebrum</strong> YE Li, S Preissl, X Hou, Z Zhang, K Zhang et al.- <strong>Nature</strong>, 2021</p></li>
 <li><p><strong>Convergent somatic mutations in metabolism genes in chronic liver disease</strong> S Ng, F Rouhani, S Brunner, N Brzozowska et al. <strong>Nature</strong>, 2021</p></li>
@@ -276,13 +277,14 @@ jensen_difference            taneja
 <li><p><strong>High-content single-cell combinatorial indexing</strong> R Mulqueen et al. - <strong>Nature Biotechnology</strong>, 2021</p></li>
 <li><p><strong>A comparative atlas of single-cell chromatin accessibility in the human brain</strong> YE Li, S Preissl, M Miller, ND Johnson, Z Wang et al. - <strong>Science</strong>, 2023</p></li>
 <li><p><strong>Extinction at the end-Cretaceous and the origin of modern Neotropical rainforests</strong> MR Carvalho, C Jaramillo et al. - <strong>Science</strong>, 2021</p></li>
-<li><p><strong>sciCSR infers B cell state transition and predicts class-switch recombination dynamics using single-cell transcriptomic data</strong> JCF Ng, G Montamat Garcia, AT Stewart et al. - <strong>Nature Methods</strong>, 2023</p></li>
+<li><p><strong>sciCSR infers B cell state transition and predicts class-switch recombination dynamics using single-cell transcriptomic data</strong> JCF Ng, G Montamat Garcia, AT Stewart et al. - <strong>Nature Methods</strong>, 2024</p></li>
 <li><p><strong>HERMES: a molecular-formula-oriented method to target the metabolome</strong> R Giné, J Capellades, JM Badia et al. - <strong>Nature Methods</strong>, 2021</p></li>
 <li><p><strong>Epithelial zonation along the mouse and human small intestine defines five discrete metabolic domains</strong> RK Zwick, P Kasparek, B Palikuqi, et al. - <strong>Nature Cell Biology</strong>, 2024</p></li>
 <li><p><strong>The genetic architecture of temperature adaptation is shaped by population ancestry and not by selection regime</strong> KA Otte, V Nolte, F Mallard et al. - <strong>Genome Biology</strong>, 2021</p></li>
 <li><p><strong>The Tug1 lncRNA locus is essential for male fertility</strong> JP Lewandowski et al. - <strong>Genome Biology</strong>, 2020</p></li>
 <li><p><strong>Decoding the gene regulatory network of endosperm differentiation in maize</strong> Y Yuan, Q Huo, Z Zhang, Q Wang, J Wang, et al. - <strong>Nature Communications</strong>, 2024</p></li>
 <li><p><strong>A full-body transcription factor expression atlas with completely resolved cell identities in C. elegans</strong> Y Li, S Chen, W Liu, D Zhao, Y Gao, S Hu, H Liu, Y Li… - <strong>Nature Communications</strong>, 2024</p></li>
+<li><p><strong>Comprehensive mapping and modelling of the rice regulome landscape unveils the regulatory architecture underlying complex traits</strong> T Zhu, C Xia, R Yu, X Zhou, X Xu, L Wang et al. - <strong>Nature Communications</strong>, 2024</p></li>
 <li><p><strong>Transcriptional vulnerabilities of striatal neurons in human and rodent models of Huntington’s disease</strong> A Matsushima, SS Pineda, JR Crittenden et al. - <strong>Nature Communications</strong>, 2023</p></li>
 <li><p><strong>Resolving the structure of phage–bacteria interactions in the context of natural diversity</strong> KM Kauffman, WK Chang, JM Brown et al. - <strong>Nature Communications</strong>, 2022</p></li>
 <li><p><strong>Gut microbiome-mediated metabolism effects on immunity in rural and urban African populations</strong> M Stražar, GS Temba, H Vlamakis et al. - <strong>Nature Communications</strong>, 2021</p></li>
@@ -293,19 +295,34 @@ jensen_difference            taneja
 <li><p><strong>Single-cell deletion analyses show control of pro–T cell developmental speed and pathways by Tcf7, Spi1, Gata3, Bcl11a, Erg, and Bcl11b</strong> W Zhou, F Gao, M Romero-Wolf, S Jo, EV Rothenberg - <strong>Science Immunology</strong>, 2022</p></li>
 <li><p><strong>Large-scale iterated singing experiments reveal oral transmission mechanisms underlying music evolution</strong> M Anglada-Tort, PMC Harrison, H Lee, N Jacoby - <strong>Current Biology</strong>, 2023</p></li>
 <li><p><strong>Detecting and diagnosing prior and likelihood sensitivity with power-scaling</strong> N Kallioinen, T Paananen, PC Bürkner, A Vehtari - <strong>Statistics and Computing</strong>, 2024</p></li>
+<li><p><strong>SLAPSHOT reveals rapid dynamics of extracellularly exposed proteome in response to calcium-activated plasma membrane phospholipid scrambling</strong> ST Tuomivaara, CF Teo, YN Jan, AP Wiita et al. - <strong>Communications Biology</strong>, 2024</p></li>
 <li><p><strong>TAS-Seq is a robust and sensitive amplification method for bead-based scRNA-seq</strong> S Shichino, S Ueha, S Hashimoto, T Ogawa et al. - <strong>Communications biology</strong>, 2022</p></li>
-<li><p>Mapping hormone-regulated cell-cell interaction networks in the human breast at single-cell resolution LM Murrow, RJ Weber, JA Caruso et al. - <strong>Cell Systems</strong>, 2022</p></li>
+<li><p><strong>Mapping hormone-regulated cell-cell interaction networks in the human breast at single-cell resolution</strong> LM Murrow, RJ Weber, JA Caruso et al. - <strong>Cell Systems</strong>, 2022</p></li>
+<li><p><strong>Gene module reconstruction identifies cellular differentiation processes and the regulatory logic of specialized secretion in zebrafish</strong> Y Wang, J Liu, LY Du, JL Wyss, JA Farrell, AF Schier - <strong>Developmental Cell</strong>, 2024</p></li>
+<li><p><strong>The temporal progression of lung immune remodeling during breast cancer metastasis</strong> CS McGinnis, Z Miao, D Superville, W Yao, et al. - <strong>Cancer Cell</strong>, 2024</p></li>
 <li><p><strong>Large-scale chromatin reorganization reactivates placenta-specific genes that drive cellular aging</strong> Z Liu, Q Ji, J Ren, P Yan, Z Wu, S Wang, L Sun, Z Wang et al. - <strong>Developmental Cell</strong>, 2022</p></li>
 <li><p><strong>Direct epitranscriptomic regulation of mammalian translation initiation through N4-acetylcytidine</strong> D Arango, D Sturgill, R Yang, T Kanai, P Bauer et al. - <strong>Molecular Cell</strong>, 2022</p></li>
+<li><p><strong>Spotless, a reproducible pipeline for benchmarking cell type deconvolution in spatial transcriptomics</strong> C Sang-Aram, R Browaeys, R Seurinck, Y Saeys - <strong>eLife</strong>, 2024</p></li>
 <li><p><strong>Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge</strong> A Sinha et al. - <strong>eLife</strong>, 2019</p></li>
 <li><p><strong>Sex and hatching order modulate the association between MHC‐II diversity and fitness in early‐life stages of a wild seabird</strong> M Pineaux et al - <strong>Molecular Ecology</strong>, 2020</p></li>
 <li><p><strong>BELMM: Bayesian model selection and random walk smoothing in time-series clustering</strong> O Sarala, T Pyhäjärvi, MJ Sillanpää - <strong>Bioinformatics</strong>, 2023</p></li>
 <li><p><strong>Cellsig plug-in enhances CIBERSORTx signature selection for multi-dataset transcriptomes with sparse multilevel modelling</strong> MA Al Kamran Khan, J Wu, S Yuhan et al. - <strong>Bioinformatics</strong>, 2023</p></li>
+<li><p><strong>Neutrality in plant–herbivore interactions</strong> VS Pan, WC Wetzel - <strong>Proceedings of the Royal Society B</strong>, 2024</p></li>
 <li><p><strong>How the Choice of Distance Measure Influences the Detection of Prior-Data Conflict</strong> K Lek, R Van De Schoot - <strong>Entropy</strong>, 2019</p></li>
 <li><p><strong>Differential variation analysis enables detection of tumor heterogeneity using single-cell RNA-sequencing data</strong> EF Davis-Marcisak, TD Sherman et al. - <strong>Cancer research</strong>, 2019</p></li>
 <li><p><strong>Multi-Omics Investigation of Innate Navitoclax Resistance in Triple-Negative Breast Cancer Cells</strong> M Marczyk et al. - <strong>Cancers</strong>, 2020</p></li>
 <li><p><strong>Impact of Gut Microbiome on Hypertensive Patients with Low-Salt Intake: Shika Study Results</strong> S Nagase et al. - <strong>Frontiers in Medicine</strong>, 2020</p></li>
 <li><p><strong>Tumor-associated neutrophils upregulate PANoptosis to foster an immunosuppressive microenvironment of non-small cell lung cancer</strong> Q Hu, R Wang, J Zhang, Q Xue, B Ding - <strong>Cancer Immunology, Immunotherapy</strong>, 2023</p></li>
+<li><p><strong>Spatial and Temporal Relationships Between Atrophy and Hypometabolism in Behavioral-Variant Frontotemporal Dementia</strong> J Stocks, E Gibson, K Popuri, MF Beg et al. - <strong>Alzheimer Disease &amp; Associated Disorders</strong>, 2024</p></li>
+<li><p><strong>Unveiling Dynamic Changes and Regulatory Mechanisms of T Cell Subsets in Sepsis Pathogenesis</strong> C Jiang, J Chen, T Sun, J Xu, H Zhu, J Chen - <strong>ImmunoTargets and Therapy</strong>, 2024</p></li>
+<li><p><strong>Integrated analysis reveals NLRC4 as a potential biomarker in sepsis pathogenesis</strong> C Jiang, J Chen, J Xu, C Chen, H Zhu, Y Xu, H Zhao et al. - <strong>Genes &amp; Immunity</strong>, 2024</p></li>
+<li><p><strong>Temporal composition of the cervicovaginal microbiome associates with hrHPV infection outcomes in a longitudinal study</strong> MA Molina, WPJ Leenders, MA Huynen, WJG Melchers et al. - <strong>BMC Infectious Diseases</strong>, 2024</p></li>
+<li><p><strong>PlantFUNCO: Integrative functional genomics database reveals clues into duplicates divergence evolution</strong> V Roces, S Guerrero, A Álvarez, J Pascual, M Meijón - <strong>Molecular Biology and Evolution</strong>, 2024</p></li>
+<li><p><strong>Cross-tissue human fibroblast atlas reveals myofibroblast subtypes with distinct roles in immune modulation</strong> Y Gao, J Li, W Cheng, T Diao, H Liu, Y Bo, C Liu et al. - <strong>Cancer Cell</strong>, 2024</p></li>
+<li><p><strong>Enhancing Immunotherapy Response Prediction in Metastatic Lung Adenocarcinoma: Leveraging Shallow and Deep Learning with CT-Based Radiomics</strong> C Masson-Grehaigne, M Lafon, J Palussière, L Leroy et al. - <strong>Cancers</strong>, 2024</p></li>
+<li><p><strong>A general framework for implementing distances for categorical variables</strong> M van de Velden, AI D’Enza, A Markos, C Cavicchia - <strong>Pattern Recognition</strong>, 2024</p></li>
+<li><p><strong>Early transcriptional similarities between two distinct neural lineages during ascidian embryogenesis</strong> RR Copley, J Buttin, MJ Arguel, G Williaume et al. - <strong>Developmental Biology</strong>, 2024</p></li>
+<li><p><strong>The power of visualizing distributional differences: formal graphical n-sample tests</strong> K Konstantinou, T Mrkvička, M Myllymäki - <strong>Computational Statistics</strong>, 2024</p></li>
 <li><p><strong>cisDynet: An integrated platform for modeling gene‐regulatory dynamics and networks</strong> T Zhu, X Zhou, Y You, L Wang, Z He, D Chen - <strong>iMeta</strong>, 2023</p></li>
 <li><p><strong>Children’s social networks in developmental psychology: A network approach to capture and describe early social environments</strong> N Burke, N Brezack, A Woodward - <strong>Frontiers in psychology</strong>, 2022</p></li>
 <li><p><strong>Whole Genome Sequencing and Morphological Trait-Based Evaluation of UPOV Option 2 for DUS Testing in Rice</strong> H Liu, D Rao, T Guo, SS Gangurde, Y Hong, et al. - <strong>Frontiers in Genetics</strong>, 2022</p></li>
@@ -421,16 +438,16 @@ jensen_difference            taneja
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>

@@ -175,6 +175,8 @@ The current status of the package as well as a detailed history of the functiona
 
 ### Studies that successfully applied the `philentropy` package
 
+> - __A transcriptomic hourglass in brown algae__ JS Lotharukpong, M Zheng, R Luthringer et al. - __Nature__, 2024
+>
 > - __Annelid functional genomics reveal the origins of bilaterian life cycles__ FM Martín-Zamora, Y Liang, K Guynes et al.- __Nature__, 2023
 >
 > - __An atlas of gene regulatory elements in adult mouse cerebrum__ YE Li, S Preissl, X Hou, Z Zhang, K Zhang et al.- __Nature__, 2021
@@ -191,7 +193,7 @@ YE Li, S Preissl, M Miller, ND Johnson, Z Wang et al. - __Science__, 2023
 > - __Extinction at the end-Cretaceous and the origin of modern Neotropical rainforests__ MR Carvalho, C Jaramillo et al. - __Science__, 2021
 >
 > - __sciCSR infers B cell state transition and predicts class-switch recombination dynamics using single-cell transcriptomic data__
-JCF Ng, G Montamat Garcia, AT Stewart et al. - __Nature Methods__, 2023
+JCF Ng, G Montamat Garcia, AT Stewart et al. - __Nature Methods__, 2024
 >
 > - __HERMES: a molecular-formula-oriented method to target the metabolome__
 R Giné, J Capellades, JM Badia et al. - __Nature Methods__, 2021
@@ -208,6 +210,8 @@ R Giné, J Capellades, JM Badia et al. - __Nature Methods__, 2021
 >
 > - __A full-body transcription factor expression atlas with completely resolved cell identities in C. elegans__
 > Y Li, S Chen, W Liu, D Zhao, Y Gao, S Hu, H Liu, Y Li… - __Nature Communications__, 2024
+>
+> - __Comprehensive mapping and modelling of the rice regulome landscape unveils the regulatory architecture underlying complex traits__ T Zhu, C Xia, R Yu, X Zhou, X Xu, L Wang et al. - __Nature Communications__, 2024
 >
 > - __Transcriptional vulnerabilities of striatal neurons in human and rodent models of Huntington's disease__ A Matsushima, SS Pineda, JR Crittenden et al. - __Nature Communications__, 2023
 > 
@@ -233,14 +237,23 @@ M Anglada-Tort, PMC Harrison, H Lee, N Jacoby - __Current Biology__, 2023
 >
 > - __Detecting and diagnosing prior and likelihood sensitivity with power-scaling__
 > N Kallioinen, T Paananen, PC Bürkner, A Vehtari - __Statistics and Computing__, 2024
+>
+> - __SLAPSHOT reveals rapid dynamics of extracellularly exposed proteome in response to calcium-activated plasma membrane phospholipid scrambling__ ST Tuomivaara, CF Teo, YN Jan, AP Wiita et al. - __Communications Biology__, 2024
+>
 > - __TAS-Seq is a robust and sensitive amplification method for bead-based scRNA-seq__ S Shichino, S Ueha, S Hashimoto, T Ogawa et al. - __Communications biology__, 2022
 >
-> - Mapping hormone-regulated cell-cell interaction networks in the human breast at single-cell resolution
+> - __Mapping hormone-regulated cell-cell interaction networks in the human breast at single-cell resolution__
 LM Murrow, RJ Weber, JA Caruso et al. - __Cell Systems__, 2022
+>
+> - __Gene module reconstruction identifies cellular differentiation processes and the regulatory logic of specialized secretion in zebrafish__ Y Wang, J Liu, LY Du, JL Wyss, JA Farrell, AF Schier - __Developmental Cell__, 2024
+>
+> - __The temporal progression of lung immune remodeling during breast cancer metastasis__ CS McGinnis, Z Miao, D Superville, W Yao, et al. - __Cancer Cell__, 2024
 >
 > - __Large-scale chromatin reorganization reactivates placenta-specific genes that drive cellular aging__ Z Liu, Q Ji, J Ren, P Yan, Z Wu, S Wang, L Sun, Z Wang et al. - __Developmental Cell__, 2022
 >
 > - __Direct epitranscriptomic regulation of mammalian translation initiation through N4-acetylcytidine__ D Arango, D Sturgill, R Yang, T Kanai, P Bauer et al. - __Molecular Cell__, 2022
+>
+> - __Spotless, a reproducible pipeline for benchmarking cell type deconvolution in spatial transcriptomics__ C Sang-Aram, R Browaeys, R Seurinck, Y Saeys - __eLife__, 2024
 >
 > - __Loss of adaptive capacity in asthmatic patients revealed by biomarker fluctuation dynamics after rhinovirus challenge__ A Sinha et al. - __eLife__, 2019
 >
@@ -252,6 +265,8 @@ O Sarala, T Pyhäjärvi, MJ Sillanpää - __Bioinformatics__, 2023
 >
 > - __Cellsig plug-in enhances CIBERSORTx signature selection for multi-dataset transcriptomes with sparse multilevel modelling__
 MA Al Kamran Khan, J Wu, S Yuhan et al. - __Bioinformatics__, 2023
+>
+> - __Neutrality in plant–herbivore interactions__ VS Pan, WC Wetzel - __Proceedings of the Royal Society B__, 2024
 >
 > - __How the Choice of Distance Measure Influences the Detection of Prior-Data Conflict__
 K Lek, R Van De Schoot - __Entropy__, 2019
@@ -265,6 +280,26 @@ EF Davis-Marcisak, TD Sherman et al. - __Cancer research__, 2019
 >
 > - __Tumor-associated neutrophils upregulate PANoptosis to foster an immunosuppressive microenvironment of non-small cell lung cancer__
 > Q Hu, R Wang, J Zhang, Q Xue, B Ding - __Cancer Immunology, Immunotherapy__, 2023
+>
+> - __Spatial and Temporal Relationships Between Atrophy and Hypometabolism in Behavioral-Variant Frontotemporal Dementia__ J Stocks, E Gibson, K Popuri, MF Beg et al. - __Alzheimer Disease & Associated Disorders__, 2024
+>
+> - __Unveiling Dynamic Changes and Regulatory Mechanisms of T Cell Subsets in Sepsis Pathogenesis__ C Jiang, J Chen, T Sun, J Xu, H Zhu, J Chen - __ImmunoTargets and Therapy__, 2024
+>
+> - __Integrated analysis reveals NLRC4 as a potential biomarker in sepsis pathogenesis__ C Jiang, J Chen, J Xu, C Chen, H Zhu, Y Xu, H Zhao et al. - __Genes & Immunity__, 2024
+>
+> - __Temporal composition of the cervicovaginal microbiome associates with hrHPV infection outcomes in a longitudinal study__ MA Molina, WPJ Leenders, MA Huynen, WJG Melchers et al. - __BMC Infectious Diseases__, 2024
+>
+> - __PlantFUNCO: Integrative functional genomics database reveals clues into duplicates divergence evolution__ V Roces, S Guerrero, A Álvarez, J Pascual, M Meijón - __Molecular Biology and Evolution__, 2024
+>
+> - __Cross-tissue human fibroblast atlas reveals myofibroblast subtypes with distinct roles in immune modulation__ Y Gao, J Li, W Cheng, T Diao, H Liu, Y Bo, C Liu et al. - __Cancer Cell__, 2024
+>
+> - __Enhancing Immunotherapy Response Prediction in Metastatic Lung Adenocarcinoma: Leveraging Shallow and Deep Learning with CT-Based Radiomics__ C Masson-Grehaigne, M Lafon, J Palussière, L Leroy et al. - __Cancers__, 2024
+>
+> - __A general framework for implementing distances for categorical variables__ M van de Velden, AI D'Enza, A Markos, C Cavicchia - __Pattern Recognition__, 2024
+>
+> - __Early transcriptional similarities between two distinct neural lineages during ascidian embryogenesis__ RR Copley, J Buttin, MJ Arguel, G Williaume et al. - __Developmental Biology__, 2024
+>
+> - __The power of visualizing distributional differences: formal graphical n-sample tests__ K Konstantinou, T Mrkvička, M Myllymäki - __Computational Statistics__, 2024 
 >
 > - __cisDynet: An integrated platform for modeling gene‐regulatory dynamics and networks__
 > T Zhu, X Zhou, Y You, L Wang, Z He, D Chen - __iMeta__, 2023
