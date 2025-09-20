@@ -104,15 +104,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // DistMatrixWithoutUnitDF
-Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF, Rcpp::Function DistFunc, bool testNA);
-RcppExport SEXP _philentropy_DistMatrixWithoutUnitDF(SEXP distsDFSEXP, SEXP DistFuncSEXP, SEXP testNASEXP) {
+Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF, std::string DistFunc, bool testNA, Rcpp::Nullable<double> p);
+RcppExport SEXP _philentropy_DistMatrixWithoutUnitDF(SEXP distsDFSEXP, SEXP DistFuncSEXP, SEXP testNASEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::DataFrame >::type distsDF(distsDFSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Function >::type DistFunc(DistFuncSEXP);
+    Rcpp::traits::input_parameter< std::string >::type DistFunc(DistFuncSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    rcpp_result_gen = Rcpp::wrap(DistMatrixWithoutUnitDF(distsDF, DistFunc, testNA));
+    Rcpp::traits::input_parameter< Rcpp::Nullable<double> >::type p(pSEXP);
+    rcpp_result_gen = Rcpp::wrap(DistMatrixWithoutUnitDF(distsDF, DistFunc, testNA, p));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -130,48 +131,49 @@ BEGIN_RCPP
 END_RCPP
 }
 // DistMatrixWithoutUnitMAT
-Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Function DistFunc, bool testNA);
-RcppExport SEXP _philentropy_DistMatrixWithoutUnitMAT(SEXP distsSEXP, SEXP DistFuncSEXP, SEXP testNASEXP) {
+Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists, std::string DistFunc, bool testNA, Rcpp::Nullable<double> p);
+RcppExport SEXP _philentropy_DistMatrixWithoutUnitMAT(SEXP distsSEXP, SEXP DistFuncSEXP, SEXP testNASEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type dists(distsSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Function >::type DistFunc(DistFuncSEXP);
+    Rcpp::traits::input_parameter< std::string >::type DistFunc(DistFuncSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    rcpp_result_gen = Rcpp::wrap(DistMatrixWithoutUnitMAT(dists, DistFunc, testNA));
+    Rcpp::traits::input_parameter< Rcpp::Nullable<double> >::type p(pSEXP);
+    rcpp_result_gen = Rcpp::wrap(DistMatrixWithoutUnitMAT(dists, DistFunc, testNA, p));
     return rcpp_result_gen;
 END_RCPP
 }
 // DistMatrixWithUnitDF
-Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, Rcpp::Function DistFunc, bool testNA, Rcpp::String unit);
+Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, std::string DistFunc, bool testNA, std::string unit);
 RcppExport SEXP _philentropy_DistMatrixWithUnitDF(SEXP distsDFSEXP, SEXP DistFuncSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::DataFrame >::type distsDF(distsDFSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Function >::type DistFunc(DistFuncSEXP);
+    Rcpp::traits::input_parameter< std::string >::type DistFunc(DistFuncSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
+    Rcpp::traits::input_parameter< std::string >::type unit(unitSEXP);
     rcpp_result_gen = Rcpp::wrap(DistMatrixWithUnitDF(distsDF, DistFunc, testNA, unit));
     return rcpp_result_gen;
 END_RCPP
 }
 // DistMatrixWithUnitMAT
-Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, Rcpp::Function DistFunc, bool testNA, Rcpp::String unit);
+Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, std::string DistFunc, bool testNA, std::string unit);
 RcppExport SEXP _philentropy_DistMatrixWithUnitMAT(SEXP distsSEXP, SEXP DistFuncSEXP, SEXP testNASEXP, SEXP unitSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type dists(distsSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Function >::type DistFunc(DistFuncSEXP);
+    Rcpp::traits::input_parameter< std::string >::type DistFunc(DistFuncSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
+    Rcpp::traits::input_parameter< std::string >::type unit(unitSEXP);
     rcpp_result_gen = Rcpp::wrap(DistMatrixWithUnitMAT(dists, DistFunc, testNA, unit));
     return rcpp_result_gen;
 END_RCPP
 }
 // dist_one_one
-double dist_one_one(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& method, const double& p, const bool& testNA, const Rcpp::String& unit, const double& epsilon);
+double dist_one_one(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, const Rcpp::String& method, Rcpp::Nullable<double> p, const bool& testNA, const Rcpp::String& unit, const double& epsilon);
 RcppExport SEXP _philentropy_dist_one_one(SEXP PSEXP, SEXP QSEXP, SEXP methodSEXP, SEXP pSEXP, SEXP testNASEXP, SEXP unitSEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -179,7 +181,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type P(PSEXP);
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type Q(QSEXP);
     Rcpp::traits::input_parameter< const Rcpp::String& >::type method(methodSEXP);
-    Rcpp::traits::input_parameter< const double& >::type p(pSEXP);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<double> >::type p(pSEXP);
     Rcpp::traits::input_parameter< const bool& >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< const Rcpp::String& >::type unit(unitSEXP);
     Rcpp::traits::input_parameter< const double& >::type epsilon(epsilonSEXP);
@@ -188,7 +190,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // dist_one_many
-Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMatrix dists, Rcpp::String method, double p, bool testNA, Rcpp::String unit, double epsilon);
+Rcpp::NumericVector dist_one_many(const Rcpp::NumericVector& P, Rcpp::NumericMatrix dists, Rcpp::String method, Rcpp::Nullable<double> p, bool testNA, Rcpp::String unit, double epsilon);
 RcppExport SEXP _philentropy_dist_one_many(SEXP PSEXP, SEXP distsSEXP, SEXP methodSEXP, SEXP pSEXP, SEXP testNASEXP, SEXP unitSEXP, SEXP epsilonSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -196,7 +198,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type P(PSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type dists(distsSEXP);
     Rcpp::traits::input_parameter< Rcpp::String >::type method(methodSEXP);
-    Rcpp::traits::input_parameter< double >::type p(pSEXP);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<double> >::type p(pSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
     Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
@@ -1000,9 +1002,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_philentropy_pearson_corr_centred", (DL_FUNC) &_philentropy_pearson_corr_centred, 3},
     {"_philentropy_pearson_corr_uncentred", (DL_FUNC) &_philentropy_pearson_corr_uncentred, 3},
     {"_philentropy_squared_pearson_corr", (DL_FUNC) &_philentropy_squared_pearson_corr, 3},
-    {"_philentropy_DistMatrixWithoutUnitDF", (DL_FUNC) &_philentropy_DistMatrixWithoutUnitDF, 3},
+    {"_philentropy_DistMatrixWithoutUnitDF", (DL_FUNC) &_philentropy_DistMatrixWithoutUnitDF, 4},
     {"_philentropy_DistMatrixMinkowskiMAT", (DL_FUNC) &_philentropy_DistMatrixMinkowskiMAT, 3},
-    {"_philentropy_DistMatrixWithoutUnitMAT", (DL_FUNC) &_philentropy_DistMatrixWithoutUnitMAT, 3},
+    {"_philentropy_DistMatrixWithoutUnitMAT", (DL_FUNC) &_philentropy_DistMatrixWithoutUnitMAT, 4},
     {"_philentropy_DistMatrixWithUnitDF", (DL_FUNC) &_philentropy_DistMatrixWithUnitDF, 4},
     {"_philentropy_DistMatrixWithUnitMAT", (DL_FUNC) &_philentropy_DistMatrixWithUnitMAT, 4},
     {"_philentropy_dist_one_one", (DL_FUNC) &_philentropy_dist_one_one, 7},

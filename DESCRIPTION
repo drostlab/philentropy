@@ -1,8 +1,8 @@
 Package: philentropy
 Type: Package
 Title: Similarity and Distance Quantification Between Probability Functions
-Version: 0.9.0
-Date: 2024-11-12
+Version: 0.10.0
+Date: 2025-09-19
 Authors@R: c(person("Hajk-Georg", "Drost",
                 role = c("aut", "cre"),
                 email = "hajk-georg.drost@tuebingen.mpg.de",
@@ -15,11 +15,12 @@ Depends:
     R (>= 3.1.2)
 Imports:
     Rcpp,
+    RcppParallel,
     KernSmooth,
     poorman
 License: GPL-2
 LazyData: false
-LinkingTo: Rcpp
+LinkingTo: Rcpp, RcppParallel
 URL: https://drostlab.github.io/philentropy/, https://github.com/drostlab/philentropy
 Suggests:
     testthat,
@@ -28,4 +29,5 @@ Suggests:
     microbenchmark
 VignetteBuilder: knitr
 BugReports: https://github.com/drostlab/philentropy/issues
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
+Encoding: UTF-8

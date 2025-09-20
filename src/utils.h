@@ -58,6 +58,14 @@ SEXP est_prob_empirical( SEXP CountVec ){
    return Rcpp::wrap( EmpiricalProb );
 }
 
+inline void check_na(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q) {
+    if (P.size() != Q.size())
+        Rcpp::stop("Input vectors do not have the same length.");
 
+    for (R_xlen_t i = 0; i < P.size(); ++i) {
+        if (Rcpp::NumericVector::is_na(P[i]) || Rcpp::NumericVector::is_na(Q[i]))
+            Rcpp::stop("Input vectors contain NA values.");
+    }
+}
 
 #endif // philentropy_UTILS_H

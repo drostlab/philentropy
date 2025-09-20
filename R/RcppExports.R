@@ -29,16 +29,16 @@ squared_pearson_corr <- function(x, y, testNA) {
     .Call(`_philentropy_squared_pearson_corr`, x, y, testNA)
 }
 
-DistMatrixWithoutUnitDF <- function(distsDF, DistFunc, testNA) {
-    .Call(`_philentropy_DistMatrixWithoutUnitDF`, distsDF, DistFunc, testNA)
+DistMatrixWithoutUnitDF <- function(distsDF, DistFunc, testNA, p = NULL) {
+    .Call(`_philentropy_DistMatrixWithoutUnitDF`, distsDF, DistFunc, testNA, p)
 }
 
 DistMatrixMinkowskiMAT <- function(dists, p, testNA) {
     .Call(`_philentropy_DistMatrixMinkowskiMAT`, dists, p, testNA)
 }
 
-DistMatrixWithoutUnitMAT <- function(dists, DistFunc, testNA) {
-    .Call(`_philentropy_DistMatrixWithoutUnitMAT`, dists, DistFunc, testNA)
+DistMatrixWithoutUnitMAT <- function(dists, DistFunc, testNA, p = NULL) {
+    .Call(`_philentropy_DistMatrixWithoutUnitMAT`, dists, DistFunc, testNA, p)
 }
 
 DistMatrixWithUnitDF <- function(distsDF, DistFunc, testNA, unit) {
@@ -81,7 +81,7 @@ DistMatrixWithUnitMAT <- function(dists, DistFunc, testNA, unit) {
 #' Q <- 20:29 / sum(20:29)
 #' dist_one_one(P, Q, method = "euclidean", testNA = FALSE)
 #' @export
-dist_one_one <- function(P, Q, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
+dist_one_one <- function(P, Q, method, p = NULL, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_dist_one_one`, P, Q, method, p, testNA, unit, epsilon)
 }
 
@@ -118,7 +118,7 @@ dist_one_one <- function(P, Q, method, p = NA_real_, testNA = TRUE, unit = "log"
 #' M <- t(replicate(100, sample(1:10, size = 10) / 55))
 #' dist_one_many(P, M, method = "euclidean", testNA = FALSE)
 #' @export
-dist_one_many <- function(P, dists, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
+dist_one_many <- function(P, dists, method, p = NULL, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_dist_one_many`, P, dists, method, p, testNA, unit, epsilon)
 }
 
@@ -176,7 +176,7 @@ custom_log10 <- function(x) {
 #' @examples
 #' euclidean(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-euclidean <- function(P, Q, testNA) {
+euclidean <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_euclidean`, P, Q, testNA)
 }
 
@@ -189,7 +189,7 @@ euclidean <- function(P, Q, testNA) {
 #' @examples
 #' manhattan(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-manhattan <- function(P, Q, testNA) {
+manhattan <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_manhattan`, P, Q, testNA)
 }
 
@@ -203,7 +203,7 @@ manhattan <- function(P, Q, testNA) {
 #' @examples
 #' minkowski(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), n = 2, testNA = FALSE)
 #' @export
-minkowski <- function(P, Q, n, testNA) {
+minkowski <- function(P, Q, n, testNA = TRUE) {
     .Call(`_philentropy_minkowski`, P, Q, n, testNA)
 }
 
@@ -216,7 +216,7 @@ minkowski <- function(P, Q, n, testNA) {
 #' @examples
 #' chebyshev(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-chebyshev <- function(P, Q, testNA) {
+chebyshev <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_chebyshev`, P, Q, testNA)
 }
 
@@ -229,7 +229,7 @@ chebyshev <- function(P, Q, testNA) {
 #' @examples
 #' sorensen(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-sorensen <- function(P, Q, testNA) {
+sorensen <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_sorensen`, P, Q, testNA)
 }
 
@@ -242,7 +242,7 @@ sorensen <- function(P, Q, testNA) {
 #' @examples
 #' gower(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-gower <- function(P, Q, testNA) {
+gower <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_gower`, P, Q, testNA)
 }
 
@@ -255,7 +255,7 @@ gower <- function(P, Q, testNA) {
 #' @examples
 #' soergel(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-soergel <- function(P, Q, testNA) {
+soergel <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_soergel`, P, Q, testNA)
 }
 
@@ -282,7 +282,7 @@ soergel <- function(P, Q, testNA) {
 #' kulczynski_d(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
 #'     testNA = FALSE, epsilon = 0.00001)
 #' @export
-kulczynski_d <- function(P, Q, testNA, epsilon) {
+kulczynski_d <- function(P, Q, testNA = TRUE, epsilon = 0.00001) {
     .Call(`_philentropy_kulczynski_d`, P, Q, testNA, epsilon)
 }
 
@@ -295,7 +295,7 @@ kulczynski_d <- function(P, Q, testNA, epsilon) {
 #' @examples
 #' canberra(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-canberra <- function(P, Q, testNA) {
+canberra <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_canberra`, P, Q, testNA)
 }
 
@@ -314,7 +314,7 @@ canberra <- function(P, Q, testNA) {
 #' @examples
 #' lorentzian(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 #' @export
-lorentzian <- function(P, Q, testNA, unit) {
+lorentzian <- function(P, Q, testNA = TRUE, unit = "log") {
     .Call(`_philentropy_lorentzian`, P, Q, testNA, unit)
 }
 
@@ -327,7 +327,7 @@ lorentzian <- function(P, Q, testNA, unit) {
 #' @examples
 #' intersection_dist(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-intersection_dist <- function(P, Q, testNA) {
+intersection_dist <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_intersection_dist`, P, Q, testNA)
 }
 
@@ -340,7 +340,7 @@ intersection_dist <- function(P, Q, testNA) {
 #' @examples
 #' wave_hedges(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-wave_hedges <- function(P, Q, testNA) {
+wave_hedges <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_wave_hedges`, P, Q, testNA)
 }
 
@@ -353,7 +353,7 @@ wave_hedges <- function(P, Q, testNA) {
 #' @examples
 #' czekanowski(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-czekanowski <- function(P, Q, testNA) {
+czekanowski <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_czekanowski`, P, Q, testNA)
 }
 
@@ -366,7 +366,7 @@ czekanowski <- function(P, Q, testNA) {
 #' @examples
 #' motyka(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-motyka <- function(P, Q, testNA) {
+motyka <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_motyka`, P, Q, testNA)
 }
 
@@ -379,7 +379,7 @@ motyka <- function(P, Q, testNA) {
 #' @examples
 #' tanimoto(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-tanimoto <- function(P, Q, testNA) {
+tanimoto <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_tanimoto`, P, Q, testNA)
 }
 
@@ -392,7 +392,7 @@ tanimoto <- function(P, Q, testNA) {
 #' @examples
 #' ruzicka(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-ruzicka <- function(P, Q, testNA) {
+ruzicka <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_ruzicka`, P, Q, testNA)
 }
 
@@ -405,7 +405,7 @@ ruzicka <- function(P, Q, testNA) {
 #' @examples
 #' inner_product(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-inner_product <- function(P, Q, testNA) {
+inner_product <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_inner_product`, P, Q, testNA)
 }
 
@@ -418,7 +418,7 @@ inner_product <- function(P, Q, testNA) {
 #' @examples
 #' harmonic_mean_dist(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-harmonic_mean_dist <- function(P, Q, testNA) {
+harmonic_mean_dist <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_harmonic_mean_dist`, P, Q, testNA)
 }
 
@@ -431,7 +431,7 @@ harmonic_mean_dist <- function(P, Q, testNA) {
 #' @examples
 #' cosine_dist(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-cosine_dist <- function(P, Q, testNA) {
+cosine_dist <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_cosine_dist`, P, Q, testNA)
 }
 
@@ -444,7 +444,7 @@ cosine_dist <- function(P, Q, testNA) {
 #' @examples
 #' kumar_hassebrook(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-kumar_hassebrook <- function(P, Q, testNA) {
+kumar_hassebrook <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_kumar_hassebrook`, P, Q, testNA)
 }
 
@@ -457,7 +457,7 @@ kumar_hassebrook <- function(P, Q, testNA) {
 #' @examples
 #' jaccard(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-jaccard <- function(P, Q, testNA) {
+jaccard <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_jaccard`, P, Q, testNA)
 }
 
@@ -470,7 +470,7 @@ jaccard <- function(P, Q, testNA) {
 #' @examples
 #' dice_dist(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-dice_dist <- function(P, Q, testNA) {
+dice_dist <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_dice_dist`, P, Q, testNA)
 }
 
@@ -483,7 +483,7 @@ dice_dist <- function(P, Q, testNA) {
 #' @examples
 #' fidelity(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-fidelity <- function(P, Q, testNA) {
+fidelity <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_fidelity`, P, Q, testNA)
 }
 
@@ -529,7 +529,7 @@ fidelity <- function(P, Q, testNA) {
 #' bhattacharyya(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
 #'  unit = "log2", epsilon = 0.00001)
 #' @export
-bhattacharyya <- function(P, Q, testNA, unit, epsilon) {
+bhattacharyya <- function(P, Q, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_bhattacharyya`, P, Q, testNA, unit, epsilon)
 }
 
@@ -542,7 +542,7 @@ bhattacharyya <- function(P, Q, testNA, unit, epsilon) {
 #' @examples
 #' hellinger(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-hellinger <- function(P, Q, testNA) {
+hellinger <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_hellinger`, P, Q, testNA)
 }
 
@@ -555,7 +555,7 @@ hellinger <- function(P, Q, testNA) {
 #' @examples
 #' matusita(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-matusita <- function(P, Q, testNA) {
+matusita <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_matusita`, P, Q, testNA)
 }
 
@@ -568,7 +568,7 @@ matusita <- function(P, Q, testNA) {
 #' @examples
 #' squared_chord(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-squared_chord <- function(P, Q, testNA) {
+squared_chord <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_squared_chord`, P, Q, testNA)
 }
 
@@ -581,7 +581,7 @@ squared_chord <- function(P, Q, testNA) {
 #' @examples
 #' squared_euclidean(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-squared_euclidean <- function(P, Q, testNA) {
+squared_euclidean <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_squared_euclidean`, P, Q, testNA)
 }
 
@@ -608,7 +608,7 @@ squared_euclidean <- function(P, Q, testNA) {
 #' pearson_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
 #'  testNA = FALSE, epsilon = 0.00001)
 #' @export
-pearson_chi_sq <- function(P, Q, testNA, epsilon) {
+pearson_chi_sq <- function(P, Q, testNA = TRUE, epsilon = 0.00001) {
     .Call(`_philentropy_pearson_chi_sq`, P, Q, testNA, epsilon)
 }
 
@@ -635,7 +635,7 @@ pearson_chi_sq <- function(P, Q, testNA, epsilon) {
 #' neyman_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
 #'  testNA = FALSE, epsilon = 0.00001)
 #' @export
-neyman_chi_sq <- function(P, Q, testNA, epsilon) {
+neyman_chi_sq <- function(P, Q, testNA = TRUE, epsilon = 0.00001) {
     .Call(`_philentropy_neyman_chi_sq`, P, Q, testNA, epsilon)
 }
 
@@ -648,7 +648,7 @@ neyman_chi_sq <- function(P, Q, testNA, epsilon) {
 #' @examples
 #' squared_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-squared_chi_sq <- function(P, Q, testNA) {
+squared_chi_sq <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_squared_chi_sq`, P, Q, testNA)
 }
 
@@ -661,7 +661,7 @@ squared_chi_sq <- function(P, Q, testNA) {
 #' @examples
 #' prob_symm_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-prob_symm_chi_sq <- function(P, Q, testNA) {
+prob_symm_chi_sq <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_prob_symm_chi_sq`, P, Q, testNA)
 }
 
@@ -674,7 +674,7 @@ prob_symm_chi_sq <- function(P, Q, testNA) {
 #' @examples
 #' divergence_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-divergence_sq <- function(P, Q, testNA) {
+divergence_sq <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_divergence_sq`, P, Q, testNA)
 }
 
@@ -687,7 +687,7 @@ divergence_sq <- function(P, Q, testNA) {
 #' @examples
 #' clark_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-clark_sq <- function(P, Q, testNA) {
+clark_sq <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_clark_sq`, P, Q, testNA)
 }
 
@@ -700,7 +700,7 @@ clark_sq <- function(P, Q, testNA) {
 #' @examples
 #' additive_symm_chi_sq(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-additive_symm_chi_sq <- function(P, Q, testNA) {
+additive_symm_chi_sq <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_additive_symm_chi_sq`, P, Q, testNA)
 }
 
@@ -733,7 +733,7 @@ additive_symm_chi_sq <- function(P, Q, testNA) {
 #' kullback_leibler_distance(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
 #'  unit = "log2", epsilon = 0.00001)
 #' @export
-kullback_leibler_distance <- function(P, Q, testNA, unit, epsilon) {
+kullback_leibler_distance <- function(P, Q, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_kullback_leibler_distance`, P, Q, testNA, unit, epsilon)
 }
 
@@ -766,7 +766,7 @@ kullback_leibler_distance <- function(P, Q, testNA, unit, epsilon) {
 #' jeffreys(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
 #'  unit = "log2", epsilon = 0.00001)
 #' @export
-jeffreys <- function(P, Q, testNA, unit, epsilon) {
+jeffreys <- function(P, Q, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_jeffreys`, P, Q, testNA, unit, epsilon)
 }
 
@@ -785,7 +785,7 @@ jeffreys <- function(P, Q, testNA, unit, epsilon) {
 #' @examples
 #' k_divergence(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 #' @export
-k_divergence <- function(P, Q, testNA, unit) {
+k_divergence <- function(P, Q, testNA = TRUE, unit = "log") {
     .Call(`_philentropy_k_divergence`, P, Q, testNA, unit)
 }
 
@@ -804,7 +804,7 @@ k_divergence <- function(P, Q, testNA, unit) {
 #' @examples
 #' topsoe(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 #' @export
-topsoe <- function(P, Q, testNA, unit) {
+topsoe <- function(P, Q, testNA = TRUE, unit = "log") {
     .Call(`_philentropy_topsoe`, P, Q, testNA, unit)
 }
 
@@ -823,7 +823,7 @@ topsoe <- function(P, Q, testNA, unit) {
 #' @examples
 #' jensen_shannon(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 #' @export
-jensen_shannon <- function(P, Q, testNA, unit) {
+jensen_shannon <- function(P, Q, testNA = TRUE, unit = "log") {
     .Call(`_philentropy_jensen_shannon`, P, Q, testNA, unit)
 }
 
@@ -842,7 +842,7 @@ jensen_shannon <- function(P, Q, testNA, unit) {
 #' @examples
 #' jensen_difference(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE, unit = "log2")
 #' @export
-jensen_difference <- function(P, Q, testNA, unit) {
+jensen_difference <- function(P, Q, testNA = TRUE, unit = "log") {
     .Call(`_philentropy_jensen_difference`, P, Q, testNA, unit)
 }
 
@@ -875,7 +875,7 @@ jensen_difference <- function(P, Q, testNA, unit) {
 #' taneja(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE,
 #'  unit = "log2", epsilon = 0.00001)
 #' @export
-taneja <- function(P, Q, testNA, unit, epsilon) {
+taneja <- function(P, Q, testNA = TRUE, unit = "log", epsilon = 0.00001) {
     .Call(`_philentropy_taneja`, P, Q, testNA, unit, epsilon)
 }
 
@@ -902,7 +902,7 @@ taneja <- function(P, Q, testNA, unit, epsilon) {
 #' kumar_johnson(P = 1:10/sum(1:10), Q = 20:29/sum(20:29),
 #'  testNA = FALSE, epsilon = 0.00001)
 #' @export
-kumar_johnson <- function(P, Q, testNA, epsilon) {
+kumar_johnson <- function(P, Q, testNA = TRUE, epsilon = 0.00001) {
     .Call(`_philentropy_kumar_johnson`, P, Q, testNA, epsilon)
 }
 
@@ -915,7 +915,7 @@ kumar_johnson <- function(P, Q, testNA, epsilon) {
 #' @examples
 #' avg(P = 1:10/sum(1:10), Q = 20:29/sum(20:29), testNA = FALSE)
 #' @export
-avg <- function(P, Q, testNA) {
+avg <- function(P, Q, testNA = TRUE) {
     .Call(`_philentropy_avg`, P, Q, testNA)
 }
 

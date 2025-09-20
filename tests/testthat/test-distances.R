@@ -967,8 +967,15 @@ context("Test implementation of k_divergence distance ...")
 test_that(
         "distance(method = 'k_divergence') computes the correct distance value using unit = log.",
         {
-                test_kdivergence_dist <- function(P, Q) {
-                        sum((P) * log(2 * (P) / ((P) + (Q))))
+                test_kdivergence_dist <- function(P, Q, unit = "log") {
+                        log_func <- switch(unit,
+                                           log = log,
+                                           log2 = log2,
+                                           log10 = log10)
+                        term <- P * log_func(2 * P / (P + Q))
+                        # In R, 0 * log(0) -> 0 * -Inf -> NaN. The correct value is 0.
+                        term[P == 0] <- 0
+                        sum(term)
                 }
                 
                 expect_equal(as.vector(
@@ -993,28 +1000,28 @@ test_that(
 test_that(
         "distance(method = 'k_divergence') computes the correct distance value using unit = log2.",
         {
+                test_kdivergence_dist_log2 <- function(P, Q) {
+                        term <- P * log2(2 * P / (P + Q))
+                        term[P == 0] <- 0
+                        sum(term)
+                }
                 expect_equal(as.vector(
                         philentropy::distance(rbind(P, Q), method = "k_divergence", unit = "log2")
-                ), sum((P) * log2(2 * (P) / ((
-                        P
-                ) + (
-                        Q
-                )))))
-                
+                ), test_kdivergence_dist_log2(P, Q))
         }
 )
 
 test_that(
         "distance(method = 'k_divergence') computes the correct distance value using unit = log10.",
         {
+                test_kdivergence_dist_log10 <- function(P, Q) {
+                        term <- P * log10(2 * P / (P + Q))
+                        term[P == 0] <- 0
+                        sum(term)
+                }
                 expect_equal(as.vector(
                         philentropy::distance(rbind(P, Q), method = "k_divergence", unit = "log10")
-                ), sum((P) * log10(2 * (P) / ((
-                        P
-                ) + (
-                        Q
-                )))))
-                
+                ), test_kdivergence_dist_log10(P, Q))
         }
 )
 
@@ -1023,23 +1030,14 @@ test_that(
         {
                 A <- c(0, 0.25, 0.25, 0, 0.25, 0.25)
                 B <- c(0, 0, 0.25, 0.25, 0.25, 0.25)
-                
-                kdiv <- function(x, y) {
-                        dist <- vector(mode = "numeric", length = 1)
-                        dist <- 0
-                        
-                        for (i in 1:length(x)) {
-                                if ((x[i] == 0) & ((y[i]) == 0)) {
-                                        dist = dist
-                                } else {
-                                        dist = dist + (x[i] * log((2 * x[i]) / (x[i] + y[i])))
-                                }
-                                
-                        }
-                        
-                        return(dist)
-                        
+
+                kdiv <- function(P, Q) {
+                        term <- P * log(2 * P / (P + Q))
+                        # In R, 0 * log(0) -> 0 * -Inf -> NaN. The correct value is 0.
+                        term[P == 0] <- 0
+                        sum(term)
                 }
+
                 expect_equal(as.vector(
                         philentropy::distance(rbind(A, B), method = "k_divergence")
                 ), kdiv(A, B))
@@ -1105,22 +1103,13 @@ test_that(
                 A <- c(0, 0.25, 0.25, 0, 0.25, 0.25)
                 B <- c(0, 0, 0.25, 0.25, 0.25, 0.25)
                 
-                topsoe <- function(x, y) {
-                        dist <- vector(mode = "numeric", length = 1)
-                        dist <- 0
-                        
-                        for (i in 1:length(x)) {
-                                if ((x[i] == 0) & ((y[i]) == 0)) {
-                                        dist = dist
-                                } else {
-                                        dist = dist + (x[i] * log((2 * x[i]) / (x[i] + y[i]))) + (y[i] * log((2 * y[i]) /
-                                                                                                                     (x[i] + y[i])))
-                                }
-                                
-                        }
-                        
-                        return(dist)
-                        
+                topsoe <- function(P, Q) {
+                    term1 <- P * log((2 * P) / (P + Q))
+                    term2 <- Q * log((2 * Q) / (P + Q))
+                    # In R, 0 * log(0) -> 0 * -Inf -> NaN. The correct value is 0.
+                    term1[P == 0] <- 0
+                    term2[Q == 0] <- 0
+                    sum(term1 + term2)
                 }
                 expect_equal(as.vector(philentropy::distance(rbind(A, B), method = "topsoe")), topsoe(A, B))
                 

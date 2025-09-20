@@ -8,7 +8,7 @@ dist_one_many(
   P,
   dists,
   method,
-  p = NA_real_,
+  p = NULL,
   testNA = TRUE,
   unit = "log",
   epsilon = 1e-05
