@@ -2,13 +2,20 @@ Package: philentropy
 Type: Package
 Title: Similarity and Distance Quantification Between Probability Functions
 Version: 0.10.0
-Date: 2025-09-19
+Date: 2025-10-03
 Authors@R: c(person("Hajk-Georg", "Drost",
                 role = c("aut", "cre"),
                 email = "hajk-georg.drost@tuebingen.mpg.de",
-                comment = c(ORCID = "http://orcid.org/0000-0002-1567-306X")),
-                person("Jakub", "Nowosad", role = c("ctb"), email="nowosad.jakub@gmail.com", comment = c(ORCID = "0000-0002-1057-3721"))
-                )
+                comment = c(ORCID = "0000-0002-1567-306X")),
+             person("Jakub", "Nowosad",
+                role = c("ctb"), 
+                email = "nowosad.jakub@gmail.com", 
+                comment = c(ORCID = "0000-0002-1057-3721")),
+             person("Andrew", "Brown",
+                role = c("ctb"),
+                email = "brown.andrewg@gmail.com",
+                comment = c(ORCID = "0000-0002-4565-533X"))
+            )
 Maintainer: Hajk-Georg Drost <hajk-georg.drost@tuebingen.mpg.de>
 Description: Computes 46 optimized distance and similarity measures for comparing probability functions (Drost (2018) <doi:10.21105/joss.00765>). These comparisons between probability functions have their foundations in a broad range of scientific disciplines from mathematics to ecology. The aim of this package is to provide a core framework for clustering, classification, statistical inference, goodness-of-fit, non-parametric statistics, information theory, and machine learning tasks that are based on comparing univariate or multivariate probability functions.
 Depends:
