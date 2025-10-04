@@ -1,6 +1,16 @@
-## Version 0.9.0.9000
+## Version 0.10.0
+ 
+### Updates
 
-### New Features
+* The core distance calculation engine has been refactored to use C++ template metaprogramming and `RcppParallel`. This provides significant speed and memory usage improvements for `distance()`, `dist_one_many()`, and `dist_many_many()`. (see PR #40 by @brownag)
+
+* Default values for optional arguments (like `p` for the Minkowski distance) have been updated from `NA` to `NULL` in the R function signatures to better align with the C++ backend. 
+
+## Version 0.9.0
+
+### Updates
+
+ - Documentation
 
 ## Version 0.8.0
 
