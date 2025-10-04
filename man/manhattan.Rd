@@ -4,7 +4,7 @@
 \alias{manhattan}
 \title{Manhattan distance (lowlevel function)}
 \usage{
-manhattan(P, Q, testNA)
+manhattan(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

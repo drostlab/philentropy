@@ -4,7 +4,7 @@
 \alias{jensen_difference}
 \title{Jensen difference (lowlevel function)}
 \usage{
-jensen_difference(P, Q, testNA, unit)
+jensen_difference(P, Q, testNA = TRUE, unit = "log")
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

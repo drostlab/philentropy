@@ -4,7 +4,7 @@
 \alias{kumar_hassebrook}
 \title{Kumar hassebrook distance (lowlevel function)}
 \usage{
-kumar_hassebrook(P, Q, testNA)
+kumar_hassebrook(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

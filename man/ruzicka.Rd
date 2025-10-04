@@ -4,7 +4,7 @@
 \alias{ruzicka}
 \title{Ruzicka distance (lowlevel function)}
 \usage{
-ruzicka(P, Q, testNA)
+ruzicka(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

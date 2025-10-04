@@ -38,7 +38,7 @@ test_that("Only numeric values are passed to distance()", {
                 paste0(
                         "Your input ",
                         class(distMat)[1],
-                        " stores non-numeric values. Non numeric values cannot be used to compute distances.."
+                        " stores non-numeric values. Non-numeric values cannot be used to compute distances."
                 )
         )
 })

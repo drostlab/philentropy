@@ -4,7 +4,7 @@
 \alias{minkowski}
 \title{Minkowski distance (lowlevel function)}
 \usage{
-minkowski(P, Q, n, testNA)
+minkowski(P, Q, n, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

@@ -4,7 +4,7 @@
 \alias{lorentzian}
 \title{Lorentzian distance (lowlevel function)}
 \usage{
-lorentzian(P, Q, testNA, unit)
+lorentzian(P, Q, testNA = TRUE, unit = "log")
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

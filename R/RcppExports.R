@@ -29,27 +29,8 @@ squared_pearson_corr <- function(x, y, testNA) {
     .Call(`_philentropy_squared_pearson_corr`, x, y, testNA)
 }
 
-DistMatrixWithoutUnitDF <- function(distsDF, DistFunc, testNA, p = NULL) {
-    .Call(`_philentropy_DistMatrixWithoutUnitDF`, distsDF, DistFunc, testNA, p)
-}
-
-DistMatrixMinkowskiMAT <- function(dists, p, testNA) {
-    .Call(`_philentropy_DistMatrixMinkowskiMAT`, dists, p, testNA)
-}
-
-DistMatrixWithoutUnitMAT <- function(dists, DistFunc, testNA, p = NULL) {
-    .Call(`_philentropy_DistMatrixWithoutUnitMAT`, dists, DistFunc, testNA, p)
-}
-
-DistMatrixWithUnitDF <- function(distsDF, DistFunc, testNA, unit) {
-    .Call(`_philentropy_DistMatrixWithUnitDF`, distsDF, DistFunc, testNA, unit)
-}
-
-DistMatrixWithUnitMAT <- function(dists, DistFunc, testNA, unit) {
-    .Call(`_philentropy_DistMatrixWithUnitMAT`, dists, DistFunc, testNA, unit)
-}
-
 #' @title Distances and Similarities between Two Probability Density Functions
+#' @name dist_one_one
 #' @description This functions computes the distance/dissimilarity between two probability density functions.
 #' @param P a numeric vector storing the first distribution.
 #' @param Q a numeric vector storing the second distribution.
@@ -86,24 +67,25 @@ dist_one_one <- function(P, Q, method, p = NULL, testNA = TRUE, unit = "log", ep
 }
 
 #' @title Distances and Similarities between One and Many Probability Density Functions
+#' @name dist_one_many
 #' @description This functions computes the distance/dissimilarity between one probability density functions and a set of probability density functions.
 #' @param P a numeric vector storing the first distribution.
 #' @param dists a numeric matrix storing distributions in its rows.
 #' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
-#' @param unit type of \code{log} function. Option are 
+#' @param unit type of \code{log} function. Option are
 #' \itemize{
 #' \item \code{unit = "log"}
 #' \item \code{unit = "log2"}
-#' \item \code{unit = "log10"}   
+#' \item \code{unit = "log10"}
 #' }
 #' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
 #' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
 #' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
-#' the expected similarity between compared probability density functions and 
+#' the expected similarity between compared probability density functions and
 #' whether or not many 0 values are present within the compared vectors.
-#' As a rough rule of thumb we suggest that when dealing with very large 
+#' As a rough rule of thumb we suggest that when dealing with very large
 #' input vectors which are very similar and contain many \code{0} values,
 #' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
 #' whereas when vector sizes are small or distributions very divergent then
@@ -111,36 +93,38 @@ dist_one_one <- function(P, Q, method, p = NULL, testNA = TRUE, unit = "log", ep
 #' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
 #' return negative values which are not defined and only occur due to the
 #' technical issues of computing x / 0 or 0 / 0 cases.
+#' @param num_threads an integer specifying the number of threads to be used for parallel computations. Default is taken from the `RCPP_PARALLEL_NUM_THREADS` environment variable, or `2` if not set.
 #' @return A vector of distance values
 #' @examples
-#' set.seed(2020-08-20)
-#' P <- 1:10 / sum(1:10)
-#' M <- t(replicate(100, sample(1:10, size = 10) / 55))
-#' dist_one_many(P, M, method = "euclidean", testNA = FALSE)
+#'   set.seed(2020-08-20)
+#'   P <- 1:10 / sum(1:10)
+#'   M <- t(replicate(100, sample(1:10, size = 10) / 55))
+#'   dist_one_many(P, M, method = "euclidean", testNA = FALSE)
 #' @export
-dist_one_many <- function(P, dists, method, p = NULL, testNA = TRUE, unit = "log", epsilon = 0.00001) {
-    .Call(`_philentropy_dist_one_many`, P, dists, method, p, testNA, unit, epsilon)
+dist_one_many <- function(P, dists, method, p = NULL, testNA = TRUE, unit = "log", epsilon = 0.00001, num_threads = NULL) {
+    .Call(`_philentropy_dist_one_many_cpp`, P, dists, method, p, testNA, unit, epsilon, num_threads)
 }
 
 #' @title Distances and Similarities between Many Probability Density Functions
+#' @name dist_many_many
 #' @description This functions computes the distance/dissimilarity between two sets of probability density functions.
 #' @param dists1 a numeric matrix storing distributions in its rows.
 #' @param dists2 a numeric matrix storing distributions in its rows.
 #' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
 #' @param testNA a logical value indicating whether or not distributions shall be checked for \code{NA} values.
-#' @param unit type of \code{log} function. Option are 
+#' @param unit type of \code{log} function. Option are
 #' \itemize{
 #' \item \code{unit = "log"}
 #' \item \code{unit = "log2"}
-#' \item \code{unit = "log10"}   
+#' \item \code{unit = "log10"}
 #' }
 #' @param epsilon epsilon a small value to address cases in the distance computation where division by zero occurs. In
 #' these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
 #' However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
-#' the expected similarity between compared probability density functions and 
+#' the expected similarity between compared probability density functions and
 #' whether or not many 0 values are present within the compared vectors.
-#' As a rough rule of thumb we suggest that when dealing with very large 
+#' As a rough rule of thumb we suggest that when dealing with very large
 #' input vectors which are very similar and contain many \code{0} values,
 #' the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
 #' whereas when vector sizes are small or distributions very divergent then
@@ -148,15 +132,36 @@ dist_one_many <- function(P, dists, method, p = NULL, testNA = TRUE, unit = "log
 #' Addressing this \code{epsilon} issue is important to avoid cases where distance metrics
 #' return negative values which are not defined and only occur due to the
 #' technical issues of computing x / 0 or 0 / 0 cases.
+#' @param num_threads an integer specifying the number of threads to be used for parallel computations. Default is taken from the `RCPP_PARALLEL_NUM_THREADS` environment variable, or `2` if not set.
 #' @return A matrix of distance values
-#' @examples 
+#' @examples
 #'   set.seed(2020-08-20)
 #'   M1 <- t(replicate(10, sample(1:10, size = 10) / 55))
 #'   M2 <- t(replicate(10, sample(1:10, size = 10) / 55))
 #'   result <- dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)
 #' @export
-dist_many_many <- function(dists1, dists2, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001) {
-    .Call(`_philentropy_dist_many_many`, dists1, dists2, method, p, testNA, unit, epsilon)
+dist_many_many <- function(dists1, dists2, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001, num_threads = NULL) {
+    .Call(`_philentropy_dist_many_many_cpp`, dists1, dists2, method, p, testNA, unit, epsilon, num_threads)
+}
+
+DistMatrixWithoutUnitDF <- function(distsDF, method, testNA, epsilon, p = NULL, numThreads = NULL) {
+    .Call(`_philentropy_DistMatrixWithoutUnitDF`, distsDF, method, testNA, epsilon, p, numThreads)
+}
+
+DistMatrixWithoutUnitMAT <- function(dists, method, testNA, epsilon, p = NULL, numThreads = NULL) {
+    .Call(`_philentropy_DistMatrixWithoutUnitMAT`, dists, method, testNA, epsilon, p, numThreads)
+}
+
+DistMatrixWithUnitDF <- function(distsDF, method, testNA, epsilon, unit, numThreads = NULL) {
+    .Call(`_philentropy_DistMatrixWithUnitDF`, distsDF, method, testNA, epsilon, unit, numThreads)
+}
+
+DistMatrixWithUnitMAT <- function(dists, method, testNA, epsilon, unit, numThreads = NULL) {
+    .Call(`_philentropy_DistMatrixWithUnitMAT`, dists, method, testNA, epsilon, unit, numThreads)
+}
+
+distance_cpp <- function(x, method, p, test_na, unit, epsilon, num_threads) {
+    .Call(`_philentropy_distance_cpp`, x, method, p, test_na, unit, epsilon, num_threads)
 }
 
 custom_log2 <- function(x) {

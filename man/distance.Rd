@@ -16,11 +16,12 @@ distance(
   as.dist.obj = FALSE,
   diag = FALSE,
   upper = FALSE,
-  mute.message = FALSE
+  mute.message = FALSE,
+  num.threads = NULL
 )
 }
 \arguments{
-\item{x}{a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).}
+\item{x}{a numeric \code{data.frame} or \code{matrixF} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).}
 
 \item{method}{a character string indicating whether the distance measure that should be computed.}
 
@@ -33,9 +34,9 @@ distance(
 \item{epsilon}{a small value to address cases in the distance computation where division by zero occurs. In
 these cases, x / 0 or 0 / 0 will be replaced by \code{epsilon}. The default is \code{epsilon = 0.00001}.
 However, we recommend to choose a custom \code{epsilon} value depending on the size of the input vectors,
-the expected similarity between compared probability density functions and 
+the expected similarity between compared probability density functions and
 whether or not many 0 values are present within the compared vectors.
-As a rough rule of thumb we suggest that when dealing with very large 
+As a rough rule of thumb we suggest that when dealing with very large
 input vectors which are very similar and contain many \code{0} values,
 the \code{epsilon} value should be set even smaller (e.g. \code{epsilon = 0.000000001}),
 whereas when vector sizes are small or distributions very divergent then
@@ -59,6 +60,8 @@ the input matrix shall be used as rownames and colnames of the output distance m
 \item{upper}{if \code{as.dist.obj = TRUE}, then this value indicates whether the upper triangle of the distance matrix should be printed.}
 
 \item{mute.message}{a logical value indicating whether or not messages printed by \code{distance} shall be muted. Default is \code{mute.message = FALSE}.}
+
+\item{num.threads}{an integer specifying the number of threads to be used for parallel computations. Default is taken from the `RCPP_PARALLEL_NUM_THREADS` environment variable, or `2` if not set.}
 }
 \value{
 The following results are returned depending on the dimension of \code{x}:

@@ -17,7 +17,7 @@
 
 #' @title Distances and Similarities between Probability Density Functions
 #' @description This functions computes the distance/dissimilarity between two probability density functions.
-#' @param x a numeric \code{data.frame} or \code{matrix} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).
+#' @param x a numeric \code{data.frame} or \code{matrixF} (storing probability vectors) or a numeric \code{data.frame} or \code{matrix} storing counts (if \code{est.prob} is specified).
 #' @param method a character string indicating whether the distance measure that should be computed.
 #' @param p power of the Minkowski distance.
 #' @param test.na a boolean value indicating whether input vectors should be tested for \code{NA} values. Faster computations if \code{test.na = FALSE}.
@@ -45,6 +45,7 @@
 #' @param diag if \code{as.dist.obj = TRUE}, then this value indicates whether the diagonal of the distance matrix should be printed. Default
 #' @param upper if \code{as.dist.obj = TRUE}, then this value indicates whether the upper triangle of the distance matrix should be printed.
 #' @param mute.message a logical value indicating whether or not messages printed by \code{distance} shall be muted. Default is \code{mute.message = FALSE}.
+#' @param num.threads an integer specifying the number of threads to be used for parallel computations. Default is taken from the `RCPP_PARALLEL_NUM_THREADS` environment variable, or `2` if not set.
 #' @author Hajk-Georg Drost
 #' @details
 #' Here a distance is defined as a quantitative degree of how far two mathematical objects are apart from eachother (Cha, 2007).
@@ -220,7 +221,8 @@ distance <- function(
   as.dist.obj = FALSE,
   diag = FALSE,
   upper = FALSE,
-  mute.message = FALSE
+  mute.message = FALSE,
+  num.threads = NULL
 ) {
   if (
     !any(is.element(
@@ -246,68 +248,14 @@ distance <- function(
       paste0(
         "Your input ",
         class(x)[1],
-        " stores non-numeric values. Non numeric values cannot be used to compute distances.."
+        " stores non-numeric values. Non-numeric values cannot be used to compute distances."
       ),
       call = FALSE
     )
   }
 
-  dist_methods <- vector(mode = "character", length = 46)
-  dist_methods <-
-    c(
-      "euclidean",
-      "manhattan",
-      "minkowski",
-      "chebyshev",
-      "sorensen",
-      "gower",
-      "soergel",
-      "kulczynski_d",
-      "canberra",
-      "lorentzian",
-      "intersection",
-      "non-intersection",
-      "wavehedges",
-      "czekanowski",
-      "motyka",
-      "kulczynski_s",
-      "tanimoto",
-      "ruzicka",
-      "inner_product",
-      "harmonic_mean",
-      "cosine",
-      "hassebrook",
-      "jaccard",
-      "dice",
-      "fidelity",
-      "bhattacharyya",
-      "hellinger",
-      "matusita",
-      "squared_chord",
-      "squared_euclidean",
-      "pearson",
-      "neyman",
-      "squared_chi",
-      "prob_symm",
-      "divergence",
-      "clark",
-      "additive_symm",
-      "kullback-leibler",
-      "jeffreys",
-      "k_divergence",
-      "topsoe",
-      "jensen-shannon",
-      "jensen_difference",
-      "taneja",
-      "kumar-johnson",
-      "avg"
-    )
-
-  # if (tibble::has_rownames(x) & use.row.names) {
-  #   remember_row_names <- row.names(x)
-  #   x <- tibble::remove_rownames(x)
-  # }
-
+  dist_methods <- getDistMethods()
+  
   # transpose the matrix or data.frame
   # in case of DF: DF is transformed to matrix by t()
   x <- t(x)
@@ -332,6 +280,9 @@ distance <- function(
     stop("You can only choose units: log, log2, or log10.", call. = FALSE)
   }
 
+  message("Metric: '",method, "' with unit: '", unit,
+          "'; comparing: ", ncols, " vectors")
+
   # although validation would be great, it cost a lot of computation time
   # for large comparisons between multiple distributions
   # here a smarter (faster) way to validate distributions needs to be implemented
@@ -340,14 +291,7 @@ distance <- function(
   #                 apply(x,2,valid.distr)
   #         }
 
-  if (ncols == 2) {
-    dist <- vector("numeric", 1)
-  } else {
-    dist <- matrix(NA_real_, ncols, ncols)
-  }
-
-  # message("Metric: '", method, "' using unit: '", unit, "'.")
-
+  dist <- NULL
   if (ncols == 2) {
     dist <- dist_one_one(
       as.numeric(x[, 1]),
@@ -359,34 +303,7 @@ distance <- function(
       epsilon
     )
   } else {
-    # Define groups of methods
-    unit_methods <- c(
-      "lorentzian",
-      "bhattacharyya",
-      "kullback-leibler",
-      "jeffreys",
-      "k_divergence",
-      "topsoe",
-      "jensen-shannon",
-      "jensen_difference",
-      "taneja"
-    )
-
-    if (method %in% unit_methods) {
-      dist <- DistMatrixWithUnitMAT(x, method, test.na, unit)
-    } else if (method == "minkowski") {
-      if (!is.null(p)) {
-        dist <- DistMatrixMinkowskiMAT(x, as.double(p), test.na)
-      } else {
-        stop("Please specify p for the Minkowski distance.", call. = FALSE)
-      }
-    } else if (method == "non-intersection") {
-      dist <- 1.0 - DistMatrixWithoutUnitMAT(x, "intersection", test.na, p)
-    } else if (method == "kulczynski_s") {
-      dist <- 1.0 / DistMatrixWithoutUnitMAT(x, "kulczynski_d", test.na, p)
-    } else {
-      dist <- DistMatrixWithoutUnitMAT(x, method, test.na, p)
-    }
+    dist <- distance_cpp(x, method, p, test.na, unit, epsilon, num_threads = num.threads)
   }
 
   if (ncols == 2) {
@@ -394,8 +311,7 @@ distance <- function(
   } else {
     if (!use.row.names) {
       colnames(dist) <- paste0("v", seq_len(ncols))
-      rownames(dist) <-
-        paste0("v", seq_len(ncols))
+      rownames(dist) <- paste0("v", seq_len(ncols))
     }
     if (use.row.names) {
       colnames(dist) <- colnames(x)

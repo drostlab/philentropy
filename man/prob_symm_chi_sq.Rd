@@ -4,7 +4,7 @@
 \alias{prob_symm_chi_sq}
 \title{Probability symmetric chi-squared distance (lowlevel function)}
 \usage{
-prob_symm_chi_sq(P, Q, testNA)
+prob_symm_chi_sq(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

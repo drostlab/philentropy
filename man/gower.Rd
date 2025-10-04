@@ -4,7 +4,7 @@
 \alias{gower}
 \title{Gower distance (lowlevel function)}
 \usage{
-gower(P, Q, testNA)
+gower(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

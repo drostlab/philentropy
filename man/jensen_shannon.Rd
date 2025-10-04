@@ -4,7 +4,7 @@
 \alias{jensen_shannon}
 \title{Jensen-Shannon distance (lowlevel function)}
 \usage{
-jensen_shannon(P, Q, testNA, unit)
+jensen_shannon(P, Q, testNA = TRUE, unit = "log")
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

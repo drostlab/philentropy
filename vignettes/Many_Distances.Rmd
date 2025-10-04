@@ -122,7 +122,9 @@ many_dists = function(m1, m2){
 
 ... and compare it to `dist_many_many()`.
 
-```{r}
+`dist_many_many()` is fully implemented in C++ and can use multiple threads. For this comparison we will use the default `num.threads = NULL` which will use 2 threads unless the `RCPP_PARALLEL_NUM_THREADS` environment variable is set. There are trade-offs with selecting the number of threads. Using too many threads, more than needed for the workload, will incur additional overhead and may not get to the result any faster than a sequential approach. 
+
+```{r} 
 # install.packages("microbenchmark")
 bm <- microbenchmark::microbenchmark(
   `many_dists` = many_dists(M1, M2),
@@ -139,4 +141,4 @@ y <- x$x
 names(y) <- x$expr
 ```
 
-The above benchmark concludes that `dist_many_many()` is about `r round(y["many_dists"] / y["dist_many_many"], -1)` times faster than our custom `many_dists()` approach.
+The above benchmark concludes that `dist_many_many()` is about `r round(y["many_dists"] / y["dist_many_many"], -1)` times faster than our custom `many_dists()` approach. If we were to calculate the distance manually, as opposed to using the optimized `distance()` function which calls compiled code, we would see an even bigger difference.

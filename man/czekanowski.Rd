@@ -4,7 +4,7 @@
 \alias{czekanowski}
 \title{Czekanowski distance (lowlevel function)}
 \usage{
-czekanowski(P, Q, testNA)
+czekanowski(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

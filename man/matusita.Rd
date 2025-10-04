@@ -4,7 +4,7 @@
 \alias{matusita}
 \title{Matusita distance (lowlevel function)}
 \usage{
-matusita(P, Q, testNA)
+matusita(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

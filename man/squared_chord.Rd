@@ -4,7 +4,7 @@
 \alias{squared_chord}
 \title{Squared chord distance (lowlevel function)}
 \usage{
-squared_chord(P, Q, testNA)
+squared_chord(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

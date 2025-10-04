@@ -4,7 +4,7 @@
 \alias{additive_symm_chi_sq}
 \title{Additive symmetric chi-squared distance (lowlevel function)}
 \usage{
-additive_symm_chi_sq(P, Q, testNA)
+additive_symm_chi_sq(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

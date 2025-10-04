@@ -4,7 +4,7 @@
 \alias{chebyshev}
 \title{Chebyshev distance (lowlevel function)}
 \usage{
-chebyshev(P, Q, testNA)
+chebyshev(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

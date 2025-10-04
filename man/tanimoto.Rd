@@ -4,7 +4,7 @@
 \alias{tanimoto}
 \title{Tanimoto distance (lowlevel function)}
 \usage{
-tanimoto(P, Q, testNA)
+tanimoto(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

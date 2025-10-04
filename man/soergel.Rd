@@ -4,7 +4,7 @@
 \alias{soergel}
 \title{Soergel distance (lowlevel function)}
 \usage{
-soergel(P, Q, testNA)
+soergel(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

@@ -4,7 +4,7 @@
 \alias{motyka}
 \title{Motyka distance (lowlevel function)}
 \usage{
-motyka(P, Q, testNA)
+motyka(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

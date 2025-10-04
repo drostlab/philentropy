@@ -4,7 +4,7 @@
 \alias{hellinger}
 \title{Hellinger distance (lowlevel function)}
 \usage{
-hellinger(P, Q, testNA)
+hellinger(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

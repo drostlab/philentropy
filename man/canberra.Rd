@@ -4,7 +4,7 @@
 \alias{canberra}
 \title{Canberra distance (lowlevel function)}
 \usage{
-canberra(P, Q, testNA)
+canberra(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

@@ -4,7 +4,7 @@
 \alias{sorensen}
 \title{Sorensen distance (lowlevel function)}
 \usage{
-sorensen(P, Q, testNA)
+sorensen(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

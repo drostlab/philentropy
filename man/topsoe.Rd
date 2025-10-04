@@ -4,7 +4,7 @@
 \alias{topsoe}
 \title{Topsoe distance (lowlevel function)}
 \usage{
-topsoe(P, Q, testNA, unit)
+topsoe(P, Q, testNA = TRUE, unit = "log")
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}
