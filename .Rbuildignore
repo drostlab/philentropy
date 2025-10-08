@@ -17,3 +17,5 @@ LICENSE
 ^\.\.Rcheck$
 ^\.git$
 ^\.vscode$
+^revdep$
+^scratch$
