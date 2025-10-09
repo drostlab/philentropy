@@ -23,14 +23,6 @@ int get_num_threads_cpp(Rcpp::Nullable<int> num_threads) {
     }
 }
 
-// validate 'p' for methods that require it before entering parallel regions
-void validate_p_parameter(const std::string& method, double p) {
-    const std::set<std::string> p_methods = {"minkowski"};
-    if (p_methods.count(method) && std::isnan(p)) {
-        Rcpp::stop("Please specify the 'p' parameter for the '" + method + "' distance.");
-    }
-}
-
 // template for dispatching internal distance methods
 template <typename InputIt1, typename InputIt2>
 double dispatch_dist_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2,

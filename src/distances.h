@@ -48,7 +48,6 @@ double custom_log10(const double& x ){
   }
 }
 
-
 //' @title Euclidean distance (lowlevel function)
 //' @description The lowlevel function for computing the euclidean distance.
 //' @param P a numeric vector storing the first distribution.
@@ -94,6 +93,7 @@ double manhattan(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, boo
 // [[Rcpp::export]]
 double minkowski(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, double n, bool testNA = true){
         if (testNA) check_na(P, Q);
+        validate_p_parameter("minkowski", n);
         return minkowski_internal(P.begin(), P.end(), Q.begin(), n);
 }
 

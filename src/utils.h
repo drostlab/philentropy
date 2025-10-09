@@ -68,4 +68,13 @@ inline void check_na(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q)
     }
 }
 
+
+// validate 'p' for methods that require it before entering parallel regions
+inline void validate_p_parameter(const std::string& method, double p) {
+    const std::set<std::string> p_methods = {"minkowski"};
+    if (p_methods.count(method) && std::isnan(p)) {
+        Rcpp::stop("Please specify the 'p' parameter for the '" + method + "' distance.");
+    }
+}
+
 #endif // philentropy_UTILS_H
