@@ -119,8 +119,7 @@ double dispatch_dist_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2,
     } else if (method == "avg") {
         return avg_internal(first1, last1, first2);
     }
-    Rcpp::stop("Specified method is not implemented. Please consult getDistMethods().");
-    return -1.0; // Should not be reached
+    return NAN; 
 }
 
 struct DistMatrixWorkerWithP : public RcppParallel::Worker {
