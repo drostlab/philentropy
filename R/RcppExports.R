@@ -67,7 +67,6 @@ dist_one_one <- function(P, Q, method, p = NULL, testNA = TRUE, unit = "log", ep
 }
 
 #' @title Distances and Similarities between One and Many Probability Density Functions
-#' @name dist_one_many
 #' @description This functions computes the distance/dissimilarity between one probability density functions and a set of probability density functions.
 #' @param P a numeric vector storing the first distribution.
 #' @param dists a numeric matrix storing distributions in its rows.
@@ -106,7 +105,6 @@ dist_one_many <- function(P, dists, method, p = NULL, testNA = TRUE, unit = "log
 }
 
 #' @title Distances and Similarities between Many Probability Density Functions
-#' @name dist_many_many
 #' @description This functions computes the distance/dissimilarity between two sets of probability density functions.
 #' @param dists1 a numeric matrix storing distributions in its rows.
 #' @param dists2 a numeric matrix storing distributions in its rows.

@@ -23,13 +23,23 @@ int get_num_threads_cpp(Rcpp::Nullable<int> num_threads) {
     }
 }
 
-// template for dispatching all methods that do not require user-specified 'p'
+// validate 'p' for methods that require it before entering parallel regions
+void validate_p_parameter(const std::string& method, double p) {
+    const std::set<std::string> p_methods = {"minkowski"};
+    if (p_methods.count(method) && std::isnan(p)) {
+        Rcpp::stop("Please specify the 'p' parameter for the '" + method + "' distance.");
+    }
+}
+
+// template for dispatching internal distance methods
 template <typename InputIt1, typename InputIt2>
 double dispatch_dist_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2,
                               const std::string& method,
                               const std::string& unit,
-                              double epsilon) {
-    if (method == "euclidean"){
+                              double epsilon, double p) {
+    if (method == "minkowski") {
+        return minkowski_internal(first1, last1, first2, p);
+    } else if (method == "euclidean"){
         return euclidean_internal(first1, last1, first2);
     } else if (method == "manhattan") {
         return minkowski_internal(first1, last1, first2, 1.0);
@@ -123,31 +133,6 @@ double dispatch_dist_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2,
     return NAN; 
 }
 
-// the "WithP" parallel workers operate on minkowski-like function signature (P, Q, p)
-struct DistMatrixWorkerWithP : public RcppParallel::Worker {
-    RcppParallel::RMatrix<double> dists;
-    RcppParallel::RMatrix<double> dist_matrix;
-    double p;
-
-    DistMatrixWorkerWithP(Rcpp::NumericMatrix& dists,
-                          Rcpp::NumericMatrix& dist_matrix,
-                          double p)
-        : dists(dists), dist_matrix(dist_matrix), p(p) {}
-
-    void operator()(std::size_t begin, std::size_t end) {
-        for (std::size_t i = begin; i < end; ++i) {
-            for (std::size_t j = i; j < (std::size_t)dists.ncol(); ++j) {
-                auto col_i = dists.column(i);
-                auto col_j = dists.column(j);
-                // can dispatch any other 'method' with similar function signature here
-                double dist_val = minkowski_internal(col_i.begin(), col_i.end(), col_j.begin(), p);
-                dist_matrix(i, j) = dist_val;
-                dist_matrix(j, i) = dist_val;
-            }
-        }
-    }
-};
-
 //' @title Distances and Similarities between Two Probability Density Functions
 //' @name dist_one_one
 //' @description This functions computes the distance/dissimilarity between two probability density functions.
@@ -192,31 +177,10 @@ double dist_one_one(const Rcpp::NumericVector& P, const Rcpp::NumericVector& Q, 
                 Rcpp::stop("Please specify p for the Minkowski distance.");
             }
         }
-        return dispatch_dist_internal(P.begin(), P.end(), Q.begin(), method_str, unit_str, epsilon);
+        return dispatch_dist_internal(P.begin(), P.end(), Q.begin(), method_str, unit_str, epsilon, NAN);
 }
 
-struct OneManyWorkerWithP : public RcppParallel::Worker {
-    const RcppParallel::RVector<double> P;
-    RcppParallel::RMatrix<double> dists;
-    RcppParallel::RVector<double> dist_values;
-    const double p;
-
-    OneManyWorkerWithP(const Rcpp::NumericVector& P_in,
-                       const Rcpp::NumericMatrix& dists_in,
-                       Rcpp::NumericVector& dist_values_in,
-                       const double p_in)
-        : P(P_in), dists(dists_in), dist_values(dist_values_in), p(p_in) {}
-
-    void operator()(std::size_t begin, std::size_t end) {
-        for (std::size_t i = begin; i < end; ++i) {
-            auto Q = dists.row(i);
-            dist_values[i] = minkowski_internal(P.begin(), P.end(), Q.begin(), p);
-        }
-    }
-};
-
-// the "generic" workers operate on other function signature (P, Q, unit, epsilon)
-struct OneManyWorkerGeneric : public RcppParallel::Worker {
+struct OneManyWorker : public RcppParallel::Worker {
     const RcppParallel::RVector<double> P;
     RcppParallel::RMatrix<double> dists;
     RcppParallel::RVector<double> dist_values;
@@ -225,28 +189,29 @@ struct OneManyWorkerGeneric : public RcppParallel::Worker {
     const bool testNA;
     const std::string unit;
     const double epsilon;
+    const double p;
 
-    OneManyWorkerGeneric(const Rcpp::NumericVector& P_in,
-                         const Rcpp::NumericMatrix& dists_in,
-                         Rcpp::NumericVector& dist_values_in,
-                         const Rcpp::String& method_in,
-                         const bool& testNA_in,
-                         const Rcpp::String& unit_in,
-                         const double& epsilon_in)
+    OneManyWorker(const Rcpp::NumericVector& P_in,
+                  const Rcpp::NumericMatrix& dists_in,
+                  Rcpp::NumericVector& dist_values_in,
+                  const Rcpp::String& method_in,
+                  const bool& testNA_in,
+                  const Rcpp::String& unit_in,
+                  const double& epsilon_in,
+                  const double p_in)
         : P(P_in), dists(dists_in), dist_values(dist_values_in),
           method(method_in), testNA(testNA_in),
-          unit(unit_in), epsilon(epsilon_in) {}
+          unit(unit_in), epsilon(epsilon_in), p(p_in) {}
 
     void operator()(std::size_t begin, std::size_t end) {
         for (std::size_t i = begin; i < end; ++i) {
             auto Q = dists.row(i);
-            dist_values[i] = dispatch_dist_internal(P.begin(), P.end(), Q.begin(), method, unit, epsilon);
+            dist_values[i] = dispatch_dist_internal(P.begin(), P.end(), Q.begin(), method, unit, epsilon, p);
         }
     }
 };
 
 //' @title Distances and Similarities between One and Many Probability Density Functions
-//' @name dist_one_many
 //' @description This functions computes the distance/dissimilarity between one probability density functions and a set of probability density functions.
 //' @param P a numeric vector storing the first distribution.
 //' @param dists a numeric matrix storing distributions in its rows.
@@ -286,58 +251,33 @@ Rcpp::NumericVector dist_one_many_cpp(const Rcpp::NumericVector& P, Rcpp::Numeri
     int nrows = dists.nrow();
     Rcpp::NumericVector dist_values(nrows);
     int n_threads = get_num_threads_cpp(num_threads);
+    double p_val = p.isNotNull() ? Rcpp::as<double>(p) : NAN;
 
-    if (method_str == "minkowski") {
-        if (!p.isNotNull()) Rcpp::stop("Please specify p for the Minkowski distance.");
-        OneManyWorkerWithP worker(P, dists, dist_values, Rcpp::as<double>(p));
-        RcppParallel::parallelFor(0, nrows, worker, 1, n_threads);
-    } else {
-        OneManyWorkerGeneric worker(P, dists, dist_values, method, testNA, unit, epsilon);
-        RcppParallel::parallelFor(0, nrows, worker, 1, n_threads);
-    }
+    validate_p_parameter(method_str, p_val);
+    OneManyWorker worker(P, dists, dist_values, method, testNA, unit, epsilon, p_val);
+    RcppParallel::parallelFor(0, nrows, worker, 1, n_threads);
 
     return dist_values;
 }
 
-struct ManyManyWorkerWithP : public RcppParallel::Worker {
-    RcppParallel::RMatrix<double> dists1;
-    RcppParallel::RMatrix<double> dists2;
-    RcppParallel::RMatrix<double> dist_matrix;
-    const double p;
-
-    ManyManyWorkerWithP(Rcpp::NumericMatrix& dists1,
-                        Rcpp::NumericMatrix& dists2,
-                        Rcpp::NumericMatrix& dist_matrix,
-                        double p)
-        : dists1(dists1), dists2(dists2), dist_matrix(dist_matrix), p(p) {}
-
-    void operator()(std::size_t begin, std::size_t end) {
-        for (std::size_t i = begin; i < end; ++i) {
-            for (std::size_t j = 0; j < (std::size_t)dists2.nrow(); ++j) {
-                auto row_i = dists1.row(i);
-                auto row_j = dists2.row(j);
-                dist_matrix(i, j) = minkowski_internal(row_i.begin(), row_i.end(), row_j.begin(), p);
-            }
-        }
-    }
-};
-
-struct ManyManyWorkerGeneric : public RcppParallel::Worker {
+struct ManyManyWorker : public RcppParallel::Worker {
     RcppParallel::RMatrix<double> dists1;
     RcppParallel::RMatrix<double> dists2;
     RcppParallel::RMatrix<double> dist_matrix;
     std::string method;
     std::string unit;
     double epsilon;
+    double p;
 
-    ManyManyWorkerGeneric(Rcpp::NumericMatrix& dists1,
-                          Rcpp::NumericMatrix& dists2,
-                          Rcpp::NumericMatrix& dist_matrix,
-                          std::string method,
-                          std::string unit,
-                          double epsilon)
+    ManyManyWorker(Rcpp::NumericMatrix& dists1,
+                   Rcpp::NumericMatrix& dists2,
+                   Rcpp::NumericMatrix& dist_matrix,
+                   std::string method,
+                   std::string unit,
+                   double epsilon,
+                   double p)
         : dists1(dists1), dists2(dists2), dist_matrix(dist_matrix),
-          method(method), unit(unit), epsilon(epsilon) {}
+          method(method), unit(unit), epsilon(epsilon), p(p) {}
 
     void operator()(std::size_t begin, std::size_t end) {
         for (std::size_t i = begin; i < end; ++i) {
@@ -345,7 +285,7 @@ struct ManyManyWorkerGeneric : public RcppParallel::Worker {
                 auto row_i = dists1.row(i);
                 auto row_j = dists2.row(j);
                 double dist = dispatch_dist_internal(row_i.begin(), row_i.end(), row_j.begin(),
-                                                     method, unit, epsilon);
+                                                     method, unit, epsilon, p);
                 dist_matrix(i, j) = dist;
             }
         }
@@ -353,7 +293,6 @@ struct ManyManyWorkerGeneric : public RcppParallel::Worker {
 };
 
 //' @title Distances and Similarities between Many Probability Density Functions
-//' @name dist_many_many
 //' @description This functions computes the distance/dissimilarity between two sets of probability density functions.
 //' @param dists1 a numeric matrix storing distributions in its rows.
 //' @param dists2 a numeric matrix storing distributions in its rows.
@@ -395,32 +334,27 @@ Rcpp::NumericMatrix dist_many_many_cpp(Rcpp::NumericMatrix& dists1, Rcpp::Numeri
     std::string method_str(method);
     std::string unit_str(unit);
     int n_threads = get_num_threads_cpp(num_threads);
+    double p_val = p.isNotNull() ? Rcpp::as<double>(p) : NAN;
 
-    if (method_str == "minkowski") {
-        if (!p.isNotNull()) {
-            Rcpp::stop("Please specify p for the Minkowski distance.");
-        }
-        double p_val = Rcpp::as<double>(p);
-        ManyManyWorkerWithP worker(dists1, dists2, dist_matrix, p_val);
-        RcppParallel::parallelFor(0, n1, worker, 1, n_threads);
-    } else {
-        ManyManyWorkerGeneric worker(dists1, dists2, dist_matrix, method_str, unit_str, epsilon);
-        RcppParallel::parallelFor(0, n1, worker, 1, n_threads);
-    }
+    validate_p_parameter(method_str, p_val);
+    ManyManyWorker worker(dists1, dists2, dist_matrix, method_str, unit_str, epsilon, p_val);
+    RcppParallel::parallelFor(0, n1, worker, 1, n_threads);
     return dist_matrix;
 }
 
-struct DistMatrixWorkerGeneric : public RcppParallel::Worker {
+struct DistMatrixWorker : public RcppParallel::Worker {
     RcppParallel::RMatrix<double> dists;
     RcppParallel::RMatrix<double> dist_matrix;
     std::string method;
     double epsilon;
+    double p;
 
-    DistMatrixWorkerGeneric(Rcpp::NumericMatrix& dists,
+    DistMatrixWorker(Rcpp::NumericMatrix& dists,
                             Rcpp::NumericMatrix& dist_matrix,
                             std::string method,
-                            double epsilon)
-        : dists(dists), dist_matrix(dist_matrix), method(method), epsilon(epsilon) {}
+                            double epsilon,
+                            double p)
+        : dists(dists), dist_matrix(dist_matrix), method(method), epsilon(epsilon), p(p) {}
 
     void operator()(std::size_t begin, std::size_t end) {
         for (std::size_t i = begin; i < end; ++i) {
@@ -428,9 +362,8 @@ struct DistMatrixWorkerGeneric : public RcppParallel::Worker {
                 double dist = 0.0;
                 auto col_i = dists.column(i);
                 auto col_j = dists.column(j);
-                // p is not needed here because 'minkowski' is handled by its own worker
                 dist = dispatch_dist_internal(col_i.begin(), col_i.end(), col_j.begin(),
-                                              method, "log", epsilon);
+                                              method, "log", epsilon, p);
                 dist_matrix(i, j) = dist;
                 dist_matrix(j, i) = dist;
             }
@@ -448,14 +381,11 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitMAT_internal(Rcpp::NumericMatrix dists,
     Rcpp::NumericMatrix dist_matrix(n, n);
     int n_threads = get_num_threads_cpp(num_threads);
 
-    if (method == "minkowski") {
-        if (!p.isNotNull()) Rcpp::stop("Please specify p for the Minkowski distance.");
-        DistMatrixWorkerWithP worker(dists, dist_matrix, Rcpp::as<double>(p));
-        RcppParallel::parallelFor(0, n, worker, 1, n_threads);
-    } else {
-        DistMatrixWorkerGeneric worker(dists, dist_matrix, method, epsilon);
-        RcppParallel::parallelFor(0, n, worker, 1, n_threads);
-    }
+    double p_val = NAN;
+    if (p.isNotNull()) p_val = Rcpp::as<double>(p);
+    validate_p_parameter(method, p_val);
+    DistMatrixWorker worker(dists, dist_matrix, method, epsilon, p_val);
+    RcppParallel::parallelFor(0, n, worker, 1, n_threads);
 
     return dist_matrix;
 }
@@ -480,8 +410,7 @@ struct DistMatrixWorkerWithUnit : public RcppParallel::Worker {
                 double dist = 0.0;
                 auto col_i = dists.column(i);
                 auto col_j = dists.column(j);
-                dist = dispatch_dist_internal(col_i.begin(), col_i.end(), col_j.begin(),
-                                              method, unit, epsilon);
+                dist = dispatch_dist_internal(col_i.begin(), col_i.end(), col_j.begin(), method, unit, epsilon, NAN);
                 dist_matrix(i, j) = dist;
                 dist_matrix(j, i) = dist;
             }
@@ -505,16 +434,17 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT_internal(Rcpp::NumericMatrix dists,
     return dist_matrix;
 }
 
-struct DFWorkerGeneric : public RcppParallel::Worker {
+struct DFWorker : public RcppParallel::Worker {
     RcppParallel::RMatrix<double> dists;
     RcppParallel::RMatrix<double> dist_matrix;
     std::string method;
     double epsilon;
+    double p;
 
-    DFWorkerGeneric(Rcpp::NumericMatrix& dists,
+    DFWorker(Rcpp::NumericMatrix& dists,
                     Rcpp::NumericMatrix& dists_matrix,
                     std::string method,
-                    double epsilon)
+                    double epsilon, double p)
         : dists(dists), dist_matrix(dists_matrix), method(method), epsilon(epsilon) {}
 
     void operator()(std::size_t begin, std::size_t end) {
@@ -523,9 +453,8 @@ struct DFWorkerGeneric : public RcppParallel::Worker {
                 double dist = 0.0;
                 auto row_i = dists.row(i);
                 auto row_j = dists.row(j);
-                // p is not needed here because 'minkowski' is handled by its own worker
                 dist = dispatch_dist_internal(row_i.begin(), row_i.end(), row_j.begin(),
-                                              method, "log", epsilon);
+                                              method, "log", epsilon, p);
                 dist_matrix(i, j) = dist;
                 dist_matrix(j, i) = dist;
             }
@@ -544,7 +473,10 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitDF_internal(Rcpp::DataFrame distsDF,
     Rcpp::NumericMatrix dist_matrix(n, n);
     int n_threads = get_num_threads_cpp(num_threads);
 
-    DFWorkerGeneric worker(dists, dist_matrix, method, epsilon);
+    double p_val = NAN;
+    if (p.isNotNull()) p_val = Rcpp::as<double>(p);
+    validate_p_parameter(method, p_val);
+    DFWorker worker(dists, dist_matrix, method, epsilon, p_val);
     RcppParallel::parallelFor(0, n, worker, 1, n_threads);
 
     return dist_matrix;
@@ -570,8 +502,7 @@ struct DFWorkerWithUnit : public RcppParallel::Worker {
                 double dist = 0.0;
                 auto row_i = dists.row(i);
                 auto row_j = dists.row(j);
-                dist = dispatch_dist_internal(row_i.begin(), row_i.end(), row_j.begin(),
-                                              method, unit, epsilon);
+                dist = dispatch_dist_internal(row_i.begin(), row_i.end(), row_j.begin(), method, unit, epsilon, NAN);
                 dist_matrix(i, j) = dist;
                 dist_matrix(j, i) = dist;
             }
