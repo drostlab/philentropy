@@ -1,29 +1,171 @@
-
 #ifndef philentropy_Distances_Internal_H
 #define philentropy_Distances_Internal_H philentropy_Distances_Internal_H
 
-#include <Rcpp.h> 
-#include <math.h>
-#include <iostream>
-#include "utils.h"
+#include <cmath>
+#include <string>
+#include <algorithm>
 
 template <typename InputIt1, typename InputIt2>
-double fidelity_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2);
+double intersection_dist_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
+    double dist = 0.0;
+
+    while (first1 != last1) {
+        dist += std::min(*first1, *first2);
+        first1++;
+        first2++;
+    }
+    return dist;
+}
 
 template <typename InputIt1, typename InputIt2>
-double squared_chi_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2);
+double fidelity_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
+    double dist = 0.0;
+
+    while (first1 != last1) {
+        dist += std::sqrt(*first1 * *first2);
+        first1++;
+        first2++;
+    }
+
+    return dist;
+}
 
 template <typename InputIt1, typename InputIt2>
-double k_divergence_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit);
+double squared_chi_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
+    double dist = 0.0;
+    double PQdiff = 0.0;
+    double PQsum = 0.0;
+
+    while (first1 != last1) {
+        PQdiff = std::pow(*first1 - *first2, 2.0);
+        PQsum = *first1 + *first2;
+        if (PQdiff != 0.0 && PQsum != 0.0) {
+            dist += PQdiff / PQsum;
+        }
+        first1++;
+        first2++;
+    }
+
+    return dist;
+}
 
 template <typename InputIt1, typename InputIt2>
-double topsoe_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit);
+double k_divergence_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit) {
+    double dist = 0.0;
+    while (first1 != last1) {
+        double p_i = *first1;
+        double q_i = *first2;
+
+        if (p_i > 0.0) {
+            double pq_sum = p_i + q_i;
+            double term = 0.0;
+            if (pq_sum > 0.0) {
+                term = p_i * std::log(2.0 * p_i / pq_sum);
+            } else {
+                // This handles the 0 * log(0/0) case, which should be 0.
+            }
+
+            if (unit == "log2")
+                dist += term / std::log(2.0);
+            else if (unit == "log10")
+                dist += term / std::log(10.0);
+            else
+                dist += term;
+        }
+        first1++;
+        first2++;
+    }
+
+    return dist;
+}
 
 template <typename InputIt1, typename InputIt2>
-double jensen_shannon_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit);
+double topsoe_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit) {
+    double dist = 0.0;
+
+    while (first1 != last1) {
+        double p_i = *first1;
+        double q_i = *first2;
+        double pq_sum = p_i + q_i;
+
+        double term1 = 0.0;
+        if (p_i > 0.0 && pq_sum != 0.0) {
+            term1 = p_i * std::log(2.0 * p_i / pq_sum);
+        }
+
+        double term2 = 0.0;
+        if (q_i > 0.0 && pq_sum != 0.0) {
+            term2 = q_i * std::log(2.0 * q_i / pq_sum);
+        }
+
+        double total_term = term1 + term2;
+
+        if (unit == "log2") {
+            dist += total_term / std::log(2.0);
+        } else if (unit == "log10") {
+            dist += total_term / std::log(10.0);
+        } else {
+            dist += total_term;
+        }
+
+        first1++;
+        first2++;
+    }
+    return dist;
+}
 
 template <typename InputIt1, typename InputIt2>
-double chebyshev_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2);
+double jensen_shannon_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit) {
+    double sum1 = 0.0;
+    double sum2 = 0.0;
+    double PQsum = 0.0;
+
+    while (first1 != last1) {
+        PQsum = *first1 + *first2;
+        if (unit == "log2") {
+            if (*first1 != 0.0 && PQsum != 0.0) {
+                sum1 += *first1 * std::log((2.0 * *first1) / PQsum) / std::log(2.0);
+            }
+            if (*first2 != 0.0 && PQsum != 0.0) {
+                sum2 += *first2 * std::log((2.0 * *first2) / PQsum) / std::log(2.0);
+            }
+        } else if (unit == "log10") {
+            if (*first1 != 0.0 && PQsum != 0.0) {
+                sum1 += *first1 * std::log((2.0 * *first1) / PQsum) / std::log(10.0);
+            }
+            if (*first2 != 0.0 && PQsum != 0.0) {
+                sum2 += *first2 * std::log((2.0 * *first2) / PQsum) / std::log(10.0);
+            }
+        } else {
+            if (*first1 != 0.0 && PQsum != 0.0) {
+                sum1 += *first1 * std::log((2.0 * *first1) / PQsum);
+            }
+            if (*first2 != 0.0 && PQsum != 0.0) {
+                sum2 += *first2 * std::log((2.0 * *first2) / PQsum);
+            }
+        }
+        first1++;
+        first2++;
+    }
+
+    return 0.5 * (sum1 + sum2);
+}
+
+template <typename InputIt1, typename InputIt2>
+double chebyshev_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
+    double dist = 0.0;
+    double diff = 0.0;
+
+    while (first1 != last1) {
+        diff = std::abs(*first1 - *first2);
+        if (diff > dist) {
+            dist = diff;
+        }
+        first1++;
+        first2++;
+    }
+    return dist;
+}
 
 template <typename InputIt1, typename InputIt2>
 double euclidean_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
@@ -306,21 +448,6 @@ double dice_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
     }
 }
 
-
-template <typename InputIt1, typename InputIt2>
-double fidelity_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
-    double dist = 0.0;
-
-    while (first1 != last1) {
-        dist += std::sqrt(*first1 * *first2);
-        first1++;
-        first2++;
-    }
-
-    return dist;
-}
-
-
 template <typename InputIt1, typename InputIt2>
 double bhattacharyya_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit, double epsilon) {
     double fid_value = fidelity_internal(first1, last1, first2);
@@ -411,27 +538,6 @@ double neyman_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, double 
 
     return dist;
 }
-
-
-template <typename InputIt1, typename InputIt2>
-double squared_chi_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
-    double dist = 0.0;
-    double PQdiff = 0.0;
-    double PQsum = 0.0;
-
-    while (first1 != last1) {
-        PQdiff = std::pow(*first1 - *first2, 2.0);
-        PQsum = *first1 + *first2;
-        if (PQdiff != 0.0 && PQsum != 0.0) {
-            dist += PQdiff / PQsum;
-        }
-        first1++;
-        first2++;
-    }
-
-    return dist;
-}
-
 
 template <typename InputIt1, typename InputIt2>
 double prob_symm_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
@@ -566,111 +672,6 @@ double jeffreys_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const
     return dist;
 }
 
-
-template <typename InputIt1, typename InputIt2>
-double k_divergence_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit) {
-    double dist = 0.0;
-    while (first1 != last1) {
-        double p_i = *first1;
-        double q_i = *first2;
-
-        if (p_i > 0.0) {
-            double pq_sum = p_i + q_i;
-            double term = 0.0;
-            if (pq_sum > 0.0) {
-                term = p_i * std::log(2.0 * p_i / pq_sum);
-            } else {
-                // This handles the 0 * log(0/0) case, which should be 0.
-            }
-
-            if (unit == "log2")
-                dist += term / std::log(2.0);
-            else if (unit == "log10")
-                dist += term / std::log(10.0);
-            else
-                dist += term;
-        }
-        first1++;
-        first2++;
-    }
-
-    return dist;
-}
-
-
-template <typename InputIt1, typename InputIt2>
-double topsoe_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit) {
-    double dist = 0.0;
-
-    while (first1 != last1) {
-        double p_i = *first1;
-        double q_i = *first2;
-        double pq_sum = p_i + q_i;
-
-        double term1 = 0.0;
-        if (p_i > 0.0 && pq_sum != 0.0) {
-            term1 = p_i * std::log(2.0 * p_i / pq_sum);
-        }
-
-        double term2 = 0.0;
-        if (q_i > 0.0 && pq_sum != 0.0) {
-            term2 = q_i * std::log(2.0 * q_i / pq_sum);
-        }
-
-        double total_term = term1 + term2;
-
-        if (unit == "log2") {
-            dist += total_term / std::log(2.0);
-        } else if (unit == "log10") {
-            dist += total_term / std::log(10.0);
-        } else {
-            dist += total_term;
-        }
-
-        first1++;
-        first2++;
-    }
-    return dist;
-}
-
-template <typename InputIt1, typename InputIt2>
-double jensen_shannon_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit) {
-    double sum1 = 0.0;
-    double sum2 = 0.0;
-    double PQsum = 0.0;
-
-    while (first1 != last1) {
-        PQsum = *first1 + *first2;
-        if (unit == "log2") {
-            if (*first1 != 0.0 && PQsum != 0.0) {
-                sum1 += *first1 * std::log((2.0 * *first1) / PQsum) / std::log(2.0);
-            }
-            if (*first2 != 0.0 && PQsum != 0.0) {
-                sum2 += *first2 * std::log((2.0 * *first2) / PQsum) / std::log(2.0);
-            }
-        } else if (unit == "log10") {
-            if (*first1 != 0.0 && PQsum != 0.0) {
-                sum1 += *first1 * std::log((2.0 * *first1) / PQsum) / std::log(10.0);
-            }
-            if (*first2 != 0.0 && PQsum != 0.0) {
-                sum2 += *first2 * std::log((2.0 * *first2) / PQsum) / std::log(10.0);
-            }
-        } else {
-            if (*first1 != 0.0 && PQsum != 0.0) {
-                sum1 += *first1 * std::log((2.0 * *first1) / PQsum);
-            }
-            if (*first2 != 0.0 && PQsum != 0.0) {
-                sum2 += *first2 * std::log((2.0 * *first2) / PQsum);
-            }
-        }
-        first1++;
-        first2++;
-    }
-
-    return 0.5 * (sum1 + sum2);
-}
-
-
 template <typename InputIt1, typename InputIt2>
 double jensen_difference_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const std::string& unit) {
     double dist = 0.0;
@@ -742,7 +743,7 @@ double taneja_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2, const s
     return dist;
 }
 
-// helper function to compute the canberra distance
+
 template <typename InputIt1, typename InputIt2>
 double canberra_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
     double dist = 0.0;
@@ -761,20 +762,7 @@ double canberra_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
     return dist;
 }
 
-// helper function to compute the intersection distance
-template <typename InputIt1, typename InputIt2>
-double intersection_dist_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
-    double dist = 0.0;
 
-    while (first1 != last1) {
-        dist += std::min(*first1, *first2);
-        first1++;
-        first2++;
-    }
-    return dist;
-}
-
-// helper function to compute the wave hedges distance
 template <typename InputIt1, typename InputIt2>
 double wave_hedges_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
     double dist = 0.0;
@@ -793,7 +781,7 @@ double wave_hedges_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
     return dist;
 }
 
-// helper function to compute the czekanowski distance
+
 template <typename InputIt1, typename InputIt2>
 double czekanowski_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
     double sum_min = 0.0;
@@ -814,7 +802,6 @@ double czekanowski_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
 }
 
 
-// helper function to compute the motyka distance
 template <typename InputIt1, typename InputIt2>
 double motyka_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
     double sum_min = 0.0;
@@ -879,22 +866,6 @@ double avg_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
     }
 
     return (dist + pq_max) / 2.0;
-}
-
-template <typename InputIt1, typename InputIt2>
-double chebyshev_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2) {
-    double dist = 0.0;
-    double diff = 0.0;
-
-    while (first1 != last1) {
-        diff = std::abs(*first1 - *first2);
-        if (diff > dist) {
-            dist = diff;
-        }
-        first1++;
-        first2++;
-    }
-    return dist;
 }
 
 #endif // philentropy_Distances_Internal_H

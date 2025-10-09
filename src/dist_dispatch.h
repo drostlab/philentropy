@@ -2,6 +2,7 @@
 #define philentropy_DISPATCH_H philentropy_DISPATCH_H
 
 #include <string>
+#include <cmath>
 #include "distances_internal.h"
 
 // template for dispatching internal distance methods
