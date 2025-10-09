@@ -4,7 +4,14 @@
 \alias{lin.cor}
 \title{Linear Correlation}
 \usage{
-lin.cor(x, y = NULL, method = "pearson", test.na = FALSE)
+lin.cor(
+  x,
+  y = NULL,
+  method = "pearson",
+  test.na = FALSE,
+  epsilon = 1e-05,
+  num.threads = NULL
+)
 }
 \arguments{
 \item{x}{a numeric \code{vector}, \code{matrix}, or \code{data.frame}.}
@@ -14,6 +21,12 @@ lin.cor(x, y = NULL, method = "pearson", test.na = FALSE)
 \item{method}{the method to compute the linear correlation between \code{x} and \code{y}.}
 
 \item{test.na}{a boolean value indicating whether input data should be checked for \code{NA} values.}
+
+\item{epsilon}{a small value to address cases where division by zero occurs. Default is `0.00001`.
+This is only used for `method = "pearson"`.}
+
+\item{num.threads}{an integer specifying the number of threads to be used for parallel computations.
+Default is `NULL`, which uses the value from the `RCPP_PARALLEL_NUM_THREADS` environment variable or `2` if not set.}
 }
 \description{
 This function computed the linear correlation between two vectors or a correlation matrix for an input matrix.
