@@ -142,16 +142,8 @@ dist_many_many <- function(dists1, dists2, method, p = NULL, testNA = TRUE, unit
     .Call(`_philentropy_dist_many_many_cpp`, dists1, dists2, method, p, testNA, unit, epsilon, num_threads)
 }
 
-DistMatrixWithoutUnitDF <- function(distsDF, method, testNA, epsilon, p = NULL, num_threads = NULL) {
-    .Call(`_philentropy_DistMatrixWithoutUnitDF`, distsDF, method, testNA, epsilon, p, num_threads)
-}
-
 DistMatrixWithoutUnitMAT <- function(dists, method, testNA, epsilon, p = NULL, num_threads = NULL) {
     .Call(`_philentropy_DistMatrixWithoutUnitMAT`, dists, method, testNA, epsilon, p, num_threads)
-}
-
-DistMatrixWithUnitDF <- function(distsDF, method, testNA, epsilon, unit, num_threads = NULL) {
-    .Call(`_philentropy_DistMatrixWithUnitDF`, distsDF, method, testNA, epsilon, unit, num_threads)
 }
 
 DistMatrixWithUnitMAT <- function(dists, method, testNA, epsilon, unit, num_threads = NULL) {

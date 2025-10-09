@@ -309,109 +309,6 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT_internal(Rcpp::NumericMatrix dists,
     return dist_matrix;
 }
 
-struct DFWorker : public RcppParallel::Worker {
-    RcppParallel::RMatrix<double> dists;
-    RcppParallel::RMatrix<double> dist_matrix;
-    std::string method;
-    double epsilon;
-    double p;
-
-    DFWorker(Rcpp::NumericMatrix& dists,
-                    Rcpp::NumericMatrix& dists_matrix,
-                    std::string method,
-                    double epsilon, double p)
-        : dists(dists), dist_matrix(dists_matrix), method(method), epsilon(epsilon) {}
-
-    void operator()(std::size_t begin, std::size_t end) {
-        for (std::size_t i = begin; i < end; ++i) {
-            for (std::size_t j = i; j < (std::size_t)dists.nrow(); ++j) {
-                double dist = 0.0;
-                auto row_i = dists.row(i);
-                auto row_j = dists.row(j);
-                dist = dispatch_dist_internal(row_i.begin(), row_i.end(), row_j.begin(),
-                                              method, "log", epsilon, p);
-                dist_matrix(i, j) = dist;
-                dist_matrix(j, i) = dist;
-            }
-        }
-    }
-};
-
-Rcpp::NumericMatrix DistMatrixWithoutUnitDF_internal(Rcpp::DataFrame distsDF,
-                                                     std::string method,
-                                                     bool testNA,
-                                                     double epsilon,
-                                                     Rcpp::Nullable<double> p,
-                                                     Rcpp::Nullable<int> num_threads) {
-    Rcpp::NumericMatrix dists = as_matrix(distsDF);
-    int n = dists.nrow();
-    Rcpp::NumericMatrix dist_matrix(n, n);
-    int n_threads = get_num_threads_cpp(num_threads);
-
-    double p_val = NAN;
-    if (p.isNotNull()) p_val = Rcpp::as<double>(p);
-    validate_p_parameter(method, p_val);
-    DFWorker worker(dists, dist_matrix, method, epsilon, p_val);
-    RcppParallel::parallelFor(0, n, worker, 1, n_threads);
-
-    return dist_matrix;
-}
-
-struct DFWorkerWithUnit : public RcppParallel::Worker {
-    RcppParallel::RMatrix<double> dists;
-    RcppParallel::RMatrix<double> dist_matrix;
-    std::string method;
-    std::string unit;
-    double epsilon;
-
-    DFWorkerWithUnit(Rcpp::NumericMatrix& dists,
-                     Rcpp::NumericMatrix& dist_matrix,
-                     std::string method,
-                     std::string unit,
-                     double epsilon)
-        : dists(dists), dist_matrix(dist_matrix), method(method), unit(unit), epsilon(epsilon) {}
-
-    void operator()(std::size_t begin, std::size_t end) {
-        for (std::size_t i = begin; i < end; ++i) {
-            for (std::size_t j = i; j < (std::size_t)dists.nrow(); ++j) {
-                double dist = 0.0;
-                auto row_i = dists.row(i);
-                auto row_j = dists.row(j);
-                dist = dispatch_dist_internal(row_i.begin(), row_i.end(), row_j.begin(), method, unit, epsilon, NAN);
-                dist_matrix(i, j) = dist;
-                dist_matrix(j, i) = dist;
-            }
-        }
-    }
-};
-
-Rcpp::NumericMatrix DistMatrixWithUnitDF_internal(Rcpp::DataFrame distsDF,
-                                                  std::string method,
-                                                  bool testNA,
-                                                  double epsilon,
-                                                  std::string unit,
-                                                  Rcpp::Nullable<int> num_threads) {
-    Rcpp::NumericMatrix dists = as_matrix(distsDF);
-    int n = dists.nrow();
-    Rcpp::NumericMatrix dist_matrix(n, n);
-    int n_threads = get_num_threads_cpp(num_threads);
-
-    DFWorkerWithUnit worker(dists, dist_matrix, method, unit, epsilon);
-    RcppParallel::parallelFor(0, n, worker, 1, n_threads);
-
-    return dist_matrix;
-}
-
-// [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF,
-                                            std::string method,
-                                            bool testNA,
-                                            double epsilon,
-                                            Rcpp::Nullable<double> p = R_NilValue,
-                                            Rcpp::Nullable<int> num_threads = R_NilValue) {
-    return DistMatrixWithoutUnitDF_internal(distsDF, method, testNA, epsilon, p, num_threads);
-}
-
 // [[Rcpp::export]]
 Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists,
                                              std::string method,
@@ -420,11 +317,6 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists,
                                              Rcpp::Nullable<double> p = R_NilValue,
                                              Rcpp::Nullable<int> num_threads = R_NilValue) {
     return DistMatrixWithoutUnitMAT_internal(dists, method, testNA, epsilon, p, num_threads);
-}
-
-// [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> num_threads = R_NilValue) {
-    return DistMatrixWithUnitDF_internal(distsDF, method, testNA, epsilon, unit, num_threads);
 }
 
 // [[Rcpp::export]]
