@@ -9,20 +9,6 @@
 #include "correlation.h"
 #include <RcppParallel.h>
 
-// C++ helper to resolve number of threads
-int get_num_threads_cpp(Rcpp::Nullable<int> num_threads) {
-    if (num_threads.isNotNull()) {
-        return Rcpp::as<int>(num_threads);
-    } else {
-        char* env_var = std::getenv("RCPP_PARALLEL_NUM_THREADS");
-        if (env_var) {
-            return std::atoi(env_var);
-        } else {
-            return 2;
-        }
-    }
-}
-
 // template for dispatching internal distance methods
 template <typename InputIt1, typename InputIt2>
 double dispatch_dist_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2,

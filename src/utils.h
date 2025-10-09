@@ -77,4 +77,18 @@ inline void validate_p_parameter(const std::string& method, double p) {
     }
 }
 
+// C++ helper to resolve number of threads
+inline int get_num_threads_cpp(Rcpp::Nullable<int> num_threads) {
+    if (num_threads.isNotNull()) {
+        return Rcpp::as<int>(num_threads);
+    } else {
+        char* env_var = std::getenv("RCPP_PARALLEL_NUM_THREADS");
+        if (env_var) {
+            return std::atoi(env_var);
+        } else {
+            return 2;
+        }
+    }
+}
+
 #endif // philentropy_UTILS_H
