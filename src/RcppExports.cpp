@@ -156,38 +156,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// DistMatrixWithoutUnitMAT
-Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists, std::string method, bool testNA, double epsilon, Rcpp::Nullable<double> p, Rcpp::Nullable<int> num_threads);
-RcppExport SEXP _philentropy_DistMatrixWithoutUnitMAT(SEXP distsSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP pSEXP, SEXP num_threadsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type dists(distsSEXP);
-    Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
-    Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Nullable<double> >::type p(pSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type num_threads(num_threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(DistMatrixWithoutUnitMAT(dists, method, testNA, epsilon, p, num_threads));
-    return rcpp_result_gen;
-END_RCPP
-}
-// DistMatrixWithUnitMAT
-Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> num_threads);
-RcppExport SEXP _philentropy_DistMatrixWithUnitMAT(SEXP distsSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP unitSEXP, SEXP num_threadsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type dists(distsSEXP);
-    Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
-    Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
-    Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
-    Rcpp::traits::input_parameter< std::string >::type unit(unitSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type num_threads(num_threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(DistMatrixWithUnitMAT(dists, method, testNA, epsilon, unit, num_threads));
-    return rcpp_result_gen;
-END_RCPP
-}
 // distance_cpp
 Rcpp::NumericMatrix distance_cpp(Rcpp::NumericMatrix x, std::string method, Rcpp::Nullable<double> p, bool test_na, std::string unit, double epsilon, Rcpp::Nullable<int> num_threads);
 RcppExport SEXP _philentropy_distance_cpp(SEXP xSEXP, SEXP methodSEXP, SEXP pSEXP, SEXP test_naSEXP, SEXP unitSEXP, SEXP epsilonSEXP, SEXP num_threadsSEXP) {
@@ -987,8 +955,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_philentropy_dist_one_one", (DL_FUNC) &_philentropy_dist_one_one, 7},
     {"_philentropy_dist_one_many_cpp", (DL_FUNC) &_philentropy_dist_one_many_cpp, 8},
     {"_philentropy_dist_many_many_cpp", (DL_FUNC) &_philentropy_dist_many_many_cpp, 8},
-    {"_philentropy_DistMatrixWithoutUnitMAT", (DL_FUNC) &_philentropy_DistMatrixWithoutUnitMAT, 6},
-    {"_philentropy_DistMatrixWithUnitMAT", (DL_FUNC) &_philentropy_DistMatrixWithUnitMAT, 6},
     {"_philentropy_distance_cpp", (DL_FUNC) &_philentropy_distance_cpp, 7},
     {"_philentropy_custom_log2", (DL_FUNC) &_philentropy_custom_log2, 1},
     {"_philentropy_custom_log10", (DL_FUNC) &_philentropy_custom_log10, 1},

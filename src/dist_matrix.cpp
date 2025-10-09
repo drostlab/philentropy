@@ -310,21 +310,6 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT_internal(Rcpp::NumericMatrix dists,
 }
 
 // [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists,
-                                             std::string method,
-                                             bool testNA,
-                                             double epsilon,
-                                             Rcpp::Nullable<double> p = R_NilValue,
-                                             Rcpp::Nullable<int> num_threads = R_NilValue) {
-    return DistMatrixWithoutUnitMAT_internal(dists, method, testNA, epsilon, p, num_threads);
-}
-
-// [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> num_threads = R_NilValue) {
-    return DistMatrixWithUnitMAT_internal(dists, method, testNA, epsilon, unit, num_threads);
-}
-
-// [[Rcpp::export]]
 Rcpp::NumericMatrix distance_cpp(Rcpp::NumericMatrix x,
                                  std::string method,
                                  Rcpp::Nullable<double> p,
