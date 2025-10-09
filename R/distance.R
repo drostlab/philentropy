@@ -303,7 +303,7 @@ distance <- function(
       epsilon
     )
   } else {
-    dist <- distance_cpp(x, method, p, test.na, unit, epsilon, num_threads = num.threads)
+    dist <- distance_cpp(x, method, p, test.na, unit, epsilon, num.threads)
   }
 
   if (ncols == 2) {

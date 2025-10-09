@@ -9,10 +9,10 @@
 #include "correlation.h"
 #include <RcppParallel.h>
 
-// C++ helper to resolve number of threads, mirroring the logic from R
-int get_num_threads_cpp(Rcpp::Nullable<int> numThreads) {
-    if (numThreads.isNotNull()) {
-        return Rcpp::as<int>(numThreads);
+// C++ helper to resolve number of threads
+int get_num_threads_cpp(Rcpp::Nullable<int> num_threads) {
+    if (num_threads.isNotNull()) {
+        return Rcpp::as<int>(num_threads);
     } else {
         char* env_var = std::getenv("RCPP_PARALLEL_NUM_THREADS");
         if (env_var) {
@@ -23,6 +23,7 @@ int get_num_threads_cpp(Rcpp::Nullable<int> numThreads) {
     }
 }
 
+// template for dispatching all methods that do not require user-specified 'p'
 template <typename InputIt1, typename InputIt2>
 double dispatch_dist_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2,
                               const std::string& method,
@@ -122,6 +123,7 @@ double dispatch_dist_internal(InputIt1 first1, InputIt1 last1, InputIt2 first2,
     return NAN; 
 }
 
+// the "WithP" parallel workers operate on minkowski-like function signature (P, Q, p)
 struct DistMatrixWorkerWithP : public RcppParallel::Worker {
     RcppParallel::RMatrix<double> dists;
     RcppParallel::RMatrix<double> dist_matrix;
@@ -137,6 +139,7 @@ struct DistMatrixWorkerWithP : public RcppParallel::Worker {
             for (std::size_t j = i; j < (std::size_t)dists.ncol(); ++j) {
                 auto col_i = dists.column(i);
                 auto col_j = dists.column(j);
+                // can dispatch any other 'method' with similar function signature here
                 double dist_val = minkowski_internal(col_i.begin(), col_i.end(), col_j.begin(), p);
                 dist_matrix(i, j) = dist_val;
                 dist_matrix(j, i) = dist_val;
@@ -212,7 +215,7 @@ struct OneManyWorkerWithP : public RcppParallel::Worker {
     }
 };
 
-
+// the "generic" workers operate on other function signature (P, Q, unit, epsilon)
 struct OneManyWorkerGeneric : public RcppParallel::Worker {
     const RcppParallel::RVector<double> P;
     RcppParallel::RMatrix<double> dists;
@@ -440,10 +443,10 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitMAT_internal(Rcpp::NumericMatrix dists,
                                                       bool testNA,
                                                       double epsilon,
                                                       Rcpp::Nullable<double> p,
-                                                      Rcpp::Nullable<int> numThreads) {
+                                                      Rcpp::Nullable<int> num_threads) {
     int n = dists.ncol();
     Rcpp::NumericMatrix dist_matrix(n, n);
-    int n_threads = get_num_threads_cpp(numThreads);
+    int n_threads = get_num_threads_cpp(num_threads);
 
     if (method == "minkowski") {
         if (!p.isNotNull()) Rcpp::stop("Please specify p for the Minkowski distance.");
@@ -491,10 +494,10 @@ Rcpp::NumericMatrix DistMatrixWithUnitMAT_internal(Rcpp::NumericMatrix dists,
                                                    bool testNA,
                                                    double epsilon,
                                                    std::string unit,
-                                                   Rcpp::Nullable<int> numThreads) {
+                                                   Rcpp::Nullable<int> num_threads) {
     int n = dists.ncol();
     Rcpp::NumericMatrix dist_matrix(n, n);
-    int n_threads = get_num_threads_cpp(numThreads);
+    int n_threads = get_num_threads_cpp(num_threads);
 
     DistMatrixWorkerWithUnit worker(dists, dist_matrix, method, unit, epsilon);
     RcppParallel::parallelFor(0, n, worker, 1, n_threads);
@@ -535,11 +538,11 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitDF_internal(Rcpp::DataFrame distsDF,
                                                      bool testNA,
                                                      double epsilon,
                                                      Rcpp::Nullable<double> p,
-                                                     Rcpp::Nullable<int> numThreads) {
+                                                     Rcpp::Nullable<int> num_threads) {
     Rcpp::NumericMatrix dists = as_matrix(distsDF);
     int n = dists.nrow();
     Rcpp::NumericMatrix dist_matrix(n, n);
-    int n_threads = get_num_threads_cpp(numThreads);
+    int n_threads = get_num_threads_cpp(num_threads);
 
     DFWorkerGeneric worker(dists, dist_matrix, method, epsilon);
     RcppParallel::parallelFor(0, n, worker, 1, n_threads);
@@ -581,11 +584,11 @@ Rcpp::NumericMatrix DistMatrixWithUnitDF_internal(Rcpp::DataFrame distsDF,
                                                   bool testNA,
                                                   double epsilon,
                                                   std::string unit,
-                                                  Rcpp::Nullable<int> numThreads) {
+                                                  Rcpp::Nullable<int> num_threads) {
     Rcpp::NumericMatrix dists = as_matrix(distsDF);
     int n = dists.nrow();
     Rcpp::NumericMatrix dist_matrix(n, n);
-    int n_threads = get_num_threads_cpp(numThreads);
+    int n_threads = get_num_threads_cpp(num_threads);
 
     DFWorkerWithUnit worker(dists, dist_matrix, method, unit, epsilon);
     RcppParallel::parallelFor(0, n, worker, 1, n_threads);
@@ -599,8 +602,8 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF,
                                             bool testNA,
                                             double epsilon,
                                             Rcpp::Nullable<double> p = R_NilValue,
-                                            Rcpp::Nullable<int> numThreads = R_NilValue) {
-    return DistMatrixWithoutUnitDF_internal(distsDF, method, testNA, epsilon, p, numThreads);
+                                            Rcpp::Nullable<int> num_threads = R_NilValue) {
+    return DistMatrixWithoutUnitDF_internal(distsDF, method, testNA, epsilon, p, num_threads);
 }
 
 // [[Rcpp::export]]
@@ -609,21 +612,20 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists,
                                              bool testNA,
                                              double epsilon,
                                              Rcpp::Nullable<double> p = R_NilValue,
-                                             Rcpp::Nullable<int> numThreads = R_NilValue) {
-    return DistMatrixWithoutUnitMAT_internal(dists, method, testNA, epsilon, p, numThreads);
+                                             Rcpp::Nullable<int> num_threads = R_NilValue) {
+    return DistMatrixWithoutUnitMAT_internal(dists, method, testNA, epsilon, p, num_threads);
 }
 
 // [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> numThreads = R_NilValue) {
-    return DistMatrixWithUnitDF_internal(distsDF, method, testNA, epsilon, unit, numThreads);
+Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> num_threads = R_NilValue) {
+    return DistMatrixWithUnitDF_internal(distsDF, method, testNA, epsilon, unit, num_threads);
 }
 
 // [[Rcpp::export]]
-Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> numThreads = R_NilValue) {
-    return DistMatrixWithUnitMAT_internal(dists, method, testNA, epsilon, unit, numThreads);
+Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> num_threads = R_NilValue) {
+    return DistMatrixWithUnitMAT_internal(dists, method, testNA, epsilon, unit, num_threads);
 }
 
-// This is the new single entry point for the R distance() function
 // [[Rcpp::export]]
 Rcpp::NumericMatrix distance_cpp(Rcpp::NumericMatrix x,
                                  std::string method,
@@ -657,7 +659,7 @@ Rcpp::NumericMatrix distance_cpp(Rcpp::NumericMatrix x,
                 if (kulczynski_d_matrix(i, j) != 0) {
                     kulczynski_d_matrix(i, j) = 1.0 / kulczynski_d_matrix(i, j);
                 } else {
-                    kulczynski_d_matrix(i, j) = R_PosInf; // Or some other indicator for infinity
+                    kulczynski_d_matrix(i, j) = R_PosInf; 
                 }
             }
         }

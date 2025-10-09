@@ -157,8 +157,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // DistMatrixWithoutUnitDF
-Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF, std::string method, bool testNA, double epsilon, Rcpp::Nullable<double> p, Rcpp::Nullable<int> numThreads);
-RcppExport SEXP _philentropy_DistMatrixWithoutUnitDF(SEXP distsDFSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP pSEXP, SEXP numThreadsSEXP) {
+Rcpp::NumericMatrix DistMatrixWithoutUnitDF(Rcpp::DataFrame distsDF, std::string method, bool testNA, double epsilon, Rcpp::Nullable<double> p, Rcpp::Nullable<int> num_threads);
+RcppExport SEXP _philentropy_DistMatrixWithoutUnitDF(SEXP distsDFSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP pSEXP, SEXP num_threadsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -167,14 +167,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<double> >::type p(pSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type numThreads(numThreadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(DistMatrixWithoutUnitDF(distsDF, method, testNA, epsilon, p, numThreads));
+    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type num_threads(num_threadsSEXP);
+    rcpp_result_gen = Rcpp::wrap(DistMatrixWithoutUnitDF(distsDF, method, testNA, epsilon, p, num_threads));
     return rcpp_result_gen;
 END_RCPP
 }
 // DistMatrixWithoutUnitMAT
-Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists, std::string method, bool testNA, double epsilon, Rcpp::Nullable<double> p, Rcpp::Nullable<int> numThreads);
-RcppExport SEXP _philentropy_DistMatrixWithoutUnitMAT(SEXP distsSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP pSEXP, SEXP numThreadsSEXP) {
+Rcpp::NumericMatrix DistMatrixWithoutUnitMAT(Rcpp::NumericMatrix dists, std::string method, bool testNA, double epsilon, Rcpp::Nullable<double> p, Rcpp::Nullable<int> num_threads);
+RcppExport SEXP _philentropy_DistMatrixWithoutUnitMAT(SEXP distsSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP pSEXP, SEXP num_threadsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -183,14 +183,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
     Rcpp::traits::input_parameter< Rcpp::Nullable<double> >::type p(pSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type numThreads(numThreadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(DistMatrixWithoutUnitMAT(dists, method, testNA, epsilon, p, numThreads));
+    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type num_threads(num_threadsSEXP);
+    rcpp_result_gen = Rcpp::wrap(DistMatrixWithoutUnitMAT(dists, method, testNA, epsilon, p, num_threads));
     return rcpp_result_gen;
 END_RCPP
 }
 // DistMatrixWithUnitDF
-Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> numThreads);
-RcppExport SEXP _philentropy_DistMatrixWithUnitDF(SEXP distsDFSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP unitSEXP, SEXP numThreadsSEXP) {
+Rcpp::NumericMatrix DistMatrixWithUnitDF(Rcpp::DataFrame distsDF, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> num_threads);
+RcppExport SEXP _philentropy_DistMatrixWithUnitDF(SEXP distsDFSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP unitSEXP, SEXP num_threadsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -199,14 +199,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
     Rcpp::traits::input_parameter< std::string >::type unit(unitSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type numThreads(numThreadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(DistMatrixWithUnitDF(distsDF, method, testNA, epsilon, unit, numThreads));
+    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type num_threads(num_threadsSEXP);
+    rcpp_result_gen = Rcpp::wrap(DistMatrixWithUnitDF(distsDF, method, testNA, epsilon, unit, num_threads));
     return rcpp_result_gen;
 END_RCPP
 }
 // DistMatrixWithUnitMAT
-Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> numThreads);
-RcppExport SEXP _philentropy_DistMatrixWithUnitMAT(SEXP distsSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP unitSEXP, SEXP numThreadsSEXP) {
+Rcpp::NumericMatrix DistMatrixWithUnitMAT(Rcpp::NumericMatrix dists, std::string method, bool testNA, double epsilon, std::string unit, Rcpp::Nullable<int> num_threads);
+RcppExport SEXP _philentropy_DistMatrixWithUnitMAT(SEXP distsSEXP, SEXP methodSEXP, SEXP testNASEXP, SEXP epsilonSEXP, SEXP unitSEXP, SEXP num_threadsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -215,8 +215,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
     Rcpp::traits::input_parameter< std::string >::type unit(unitSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type numThreads(numThreadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(DistMatrixWithUnitMAT(dists, method, testNA, epsilon, unit, numThreads));
+    Rcpp::traits::input_parameter< Rcpp::Nullable<int> >::type num_threads(num_threadsSEXP);
+    rcpp_result_gen = Rcpp::wrap(DistMatrixWithUnitMAT(dists, method, testNA, epsilon, unit, num_threads));
     return rcpp_result_gen;
 END_RCPP
 }
