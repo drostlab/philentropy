@@ -386,7 +386,7 @@ struct ManyManyWorkerGeneric : public RcppParallel::Worker {
 //'   result <- dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)
 //' @export
 // [[Rcpp::export(name = "dist_many_many")]]
-Rcpp::NumericMatrix dist_many_many_cpp(Rcpp::NumericMatrix& dists1, Rcpp::NumericMatrix& dists2, Rcpp::String method, double p = NA_REAL, bool testNA = true, Rcpp::String unit = "log", double epsilon = 0.00001, Rcpp::Nullable<int> num_threads = R_NilValue) {
+Rcpp::NumericMatrix dist_many_many_cpp(Rcpp::NumericMatrix& dists1, Rcpp::NumericMatrix& dists2, Rcpp::String method, Rcpp::Nullable<double> p = R_NilValue, bool testNA = true, Rcpp::String unit = "log", double epsilon = 0.00001, Rcpp::Nullable<int> num_threads = R_NilValue) {
     int n1 = dists1.nrow();
     int n2 = dists2.nrow();
     Rcpp::NumericMatrix dist_matrix(n1, n2);
@@ -395,7 +395,11 @@ Rcpp::NumericMatrix dist_many_many_cpp(Rcpp::NumericMatrix& dists1, Rcpp::Numeri
     int n_threads = get_num_threads_cpp(num_threads);
 
     if (method_str == "minkowski") {
-        ManyManyWorkerWithP worker(dists1, dists2, dist_matrix, p);
+        if (!p.isNotNull()) {
+            Rcpp::stop("Please specify p for the Minkowski distance.");
+        }
+        double p_val = Rcpp::as<double>(p);
+        ManyManyWorkerWithP worker(dists1, dists2, dist_matrix, p_val);
         RcppParallel::parallelFor(0, n1, worker, 1, n_threads);
     } else {
         ManyManyWorkerGeneric worker(dists1, dists2, dist_matrix, method_str, unit_str, epsilon);
@@ -538,8 +542,6 @@ Rcpp::NumericMatrix DistMatrixWithoutUnitDF_internal(Rcpp::DataFrame distsDF,
     Rcpp::NumericMatrix dist_matrix(n, n);
     int n_threads = get_num_threads_cpp(numThreads);
 
-    // This path assumes no 'p' parameter is needed for data frames,
-    // as minkowski is handled by the matrix-based functions.
     DFWorkerGeneric worker(dists, dist_matrix, method, epsilon);
     RcppParallel::parallelFor(0, n, worker, 1, n_threads);
 
@@ -644,7 +646,6 @@ Rcpp::NumericMatrix distance_cpp(Rcpp::NumericMatrix x,
         if (!p.isNotNull()) {
             Rcpp::stop("Please specify p for the Minkowski distance.");
         }
-        // Note: DistMatrixWithoutUnitMAT_internal handles the minkowski case
         return DistMatrixWithoutUnitMAT_internal(x, method, test_na, epsilon, p, num_threads);
     } else if (method == "non-intersection") {
         Rcpp::NumericMatrix intersection_matrix = DistMatrixWithoutUnitMAT_internal(x, "intersection", test_na, epsilon, p, num_threads);

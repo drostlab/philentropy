@@ -140,7 +140,7 @@ dist_one_many <- function(P, dists, method, p = NULL, testNA = TRUE, unit = "log
 #'   M2 <- t(replicate(10, sample(1:10, size = 10) / 55))
 #'   result <- dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)
 #' @export
-dist_many_many <- function(dists1, dists2, method, p = NA_real_, testNA = TRUE, unit = "log", epsilon = 0.00001, num_threads = NULL) {
+dist_many_many <- function(dists1, dists2, method, p = NULL, testNA = TRUE, unit = "log", epsilon = 0.00001, num_threads = NULL) {
     .Call(`_philentropy_dist_many_many_cpp`, dists1, dists2, method, p, testNA, unit, epsilon, num_threads)
 }
 

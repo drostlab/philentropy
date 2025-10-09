@@ -139,7 +139,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // dist_many_many_cpp
-Rcpp::NumericMatrix dist_many_many_cpp(Rcpp::NumericMatrix& dists1, Rcpp::NumericMatrix& dists2, Rcpp::String method, double p, bool testNA, Rcpp::String unit, double epsilon, Rcpp::Nullable<int> num_threads);
+Rcpp::NumericMatrix dist_many_many_cpp(Rcpp::NumericMatrix& dists1, Rcpp::NumericMatrix& dists2, Rcpp::String method, Rcpp::Nullable<double> p, bool testNA, Rcpp::String unit, double epsilon, Rcpp::Nullable<int> num_threads);
 RcppExport SEXP _philentropy_dist_many_many_cpp(SEXP dists1SEXP, SEXP dists2SEXP, SEXP methodSEXP, SEXP pSEXP, SEXP testNASEXP, SEXP unitSEXP, SEXP epsilonSEXP, SEXP num_threadsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -147,7 +147,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericMatrix& >::type dists1(dists1SEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericMatrix& >::type dists2(dists2SEXP);
     Rcpp::traits::input_parameter< Rcpp::String >::type method(methodSEXP);
-    Rcpp::traits::input_parameter< double >::type p(pSEXP);
+    Rcpp::traits::input_parameter< Rcpp::Nullable<double> >::type p(pSEXP);
     Rcpp::traits::input_parameter< bool >::type testNA(testNASEXP);
     Rcpp::traits::input_parameter< Rcpp::String >::type unit(unitSEXP);
     Rcpp::traits::input_parameter< double >::type epsilon(epsilonSEXP);
