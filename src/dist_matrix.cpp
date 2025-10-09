@@ -437,11 +437,11 @@ struct DistMatrixWorkerGeneric : public RcppParallel::Worker {
 };
 
 Rcpp::NumericMatrix DistMatrixWithoutUnitMAT_internal(Rcpp::NumericMatrix dists,
-                                                    std::string method,
-                                                    bool testNA,
-                                                    double epsilon,
-                                                    Rcpp::Nullable<double> p,
-                                                    Rcpp::Nullable<int> numThreads) {
+                                                      std::string method,
+                                                      bool testNA,
+                                                      double epsilon,
+                                                      Rcpp::Nullable<double> p,
+                                                      Rcpp::Nullable<int> numThreads) {
     int n = dists.ncol();
     Rcpp::NumericMatrix dist_matrix(n, n);
     int n_threads = get_num_threads_cpp(numThreads);
@@ -488,11 +488,11 @@ struct DistMatrixWorkerWithUnit : public RcppParallel::Worker {
 };
 
 Rcpp::NumericMatrix DistMatrixWithUnitMAT_internal(Rcpp::NumericMatrix dists,
-                                                    std::string method,
-                                                    bool testNA,
-                                                    double epsilon,
-                                                    std::string unit,
-                                                    Rcpp::Nullable<int> numThreads) {
+                                                   std::string method,
+                                                   bool testNA,
+                                                   double epsilon,
+                                                   std::string unit,
+                                                   Rcpp::Nullable<int> numThreads) {
     int n = dists.ncol();
     Rcpp::NumericMatrix dist_matrix(n, n);
     int n_threads = get_num_threads_cpp(numThreads);
@@ -532,11 +532,11 @@ struct DFWorkerGeneric : public RcppParallel::Worker {
 };
 
 Rcpp::NumericMatrix DistMatrixWithoutUnitDF_internal(Rcpp::DataFrame distsDF,
-                                                    std::string method,
-                                                    bool testNA,
-                                                    double epsilon,
-                                                    Rcpp::Nullable<double> p,
-                                                    Rcpp::Nullable<int> numThreads) {
+                                                     std::string method,
+                                                     bool testNA,
+                                                     double epsilon,
+                                                     Rcpp::Nullable<double> p,
+                                                     Rcpp::Nullable<int> numThreads) {
     Rcpp::NumericMatrix dists = as_matrix(distsDF);
     int n = dists.nrow();
     Rcpp::NumericMatrix dist_matrix(n, n);
@@ -578,11 +578,11 @@ struct DFWorkerWithUnit : public RcppParallel::Worker {
 };
 
 Rcpp::NumericMatrix DistMatrixWithUnitDF_internal(Rcpp::DataFrame distsDF,
-                                                    std::string method,
-                                                    bool testNA,
-                                                    double epsilon,
-                                                    std::string unit,
-                                                    Rcpp::Nullable<int> numThreads) {
+                                                  std::string method,
+                                                  bool testNA,
+                                                  double epsilon,
+                                                  std::string unit,
+                                                  Rcpp::Nullable<int> numThreads) {
     Rcpp::NumericMatrix dists = as_matrix(distsDF);
     int n = dists.nrow();
     Rcpp::NumericMatrix dist_matrix(n, n);
