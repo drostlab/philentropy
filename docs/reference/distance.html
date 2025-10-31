@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">philentropy</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.0</span>
       </span>
     </div>
 
@@ -84,7 +84,8 @@
 <span>  as.dist.obj <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  diag <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  upper <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  mute.message <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  mute.message <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  num.threads <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -93,7 +94,7 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>a numeric <code>data.frame</code> or <code>matrix</code> (storing probability vectors) or a numeric <code>data.frame</code> or <code>matrix</code> storing counts (if <code>est.prob</code> is specified).</p></dd>
+<dd><p>a numeric <code>data.frame</code> or <code>matrixF</code> (storing probability vectors) or a numeric <code>data.frame</code> or <code>matrix</code> storing counts (if <code>est.prob</code> is specified).</p></dd>
 
 
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
@@ -152,6 +153,10 @@ the input matrix shall be used as rownames and colnames of the output distance m
 
 <dt id="arg-mute-message">mute.message<a class="anchor" aria-label="anchor" href="#arg-mute-message"></a></dt>
 <dd><p>a logical value indicating whether or not messages printed by <code>distance</code> shall be muted. Default is <code>mute.message = FALSE</code>.</p></dd>
+
+
+<dt id="arg-num-threads">num.threads<a class="anchor" aria-label="anchor" href="#arg-num-threads"></a></dt>
+<dd><p>an integer specifying the number of threads to be used for parallel computations. Default is taken from the `RCPP_PARALLEL_NUM_THREADS` environment variable, or `2` if not set.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -272,14 +277,14 @@ occur when dealing with 0 probabilities.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## compute the euclidean distance between two probability vectors</span></span></span>
 <span class="r-in"><span><span class="fu">distance</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean'; comparing: 2 vectors.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean' with unit: 'log'; comparing: 2 vectors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> euclidean </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.1280713 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## compute the euclidean distance between all pairwise comparisons of probability vectors</span></span></span>
 <span class="r-in"><span><span class="va">ProbMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>,<span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">distance</span><span class="op">(</span><span class="va">ProbMatrix</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean'; comparing: 3 vectors.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean' with unit: 'log'; comparing: 3 vectors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           v1         v2         v3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v1 0.0000000 0.12807130 0.13881717</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v2 0.1280713 0.00000000 0.01074588</span>
@@ -287,7 +292,7 @@ occur when dealing with 0 probabilities.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># compute distance matrix without testing for NA values in the input matrix</span></span></span>
 <span class="r-in"><span><span class="fu">distance</span><span class="op">(</span><span class="va">ProbMatrix</span>, method <span class="op">=</span> <span class="st">"euclidean"</span>, test.na <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean'; comparing: 3 vectors.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean' with unit: 'log'; comparing: 3 vectors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           v1         v2         v3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v1 0.0000000 0.12807130 0.13881717</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v2 0.1280713 0.00000000 0.01074588</span>
@@ -298,7 +303,7 @@ occur when dealing with 0 probabilities.</p>
 <span class="r-in"><span><span class="va">ProbMatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span>,<span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">30</span><span class="op">:</span><span class="fl">39</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">ProbMatrix</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Example"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">distance</span><span class="op">(</span><span class="va">ProbMatrix</span>, method <span class="op">=</span> <span class="st">"euclidean"</span>, use.row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean'; comparing: 3 vectors.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean' with unit: 'log'; comparing: 3 vectors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           Example1   Example2   Example3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Example1 0.0000000 0.12807130 0.13881717</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Example2 0.1280713 0.00000000 0.01074588</span>
@@ -310,7 +315,7 @@ occur when dealing with 0 probabilities.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## estimate probabilities from a count matrix</span></span></span>
 <span class="r-in"><span><span class="fu">distance</span><span class="op">(</span><span class="va">CountMatrix</span>, method <span class="op">=</span> <span class="st">"euclidean"</span>, est.prob <span class="op">=</span> <span class="st">"empirical"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean'; comparing: 3 vectors.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean' with unit: 'log'; comparing: 3 vectors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           v1         v2         v3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v1 0.0000000 0.12807130 0.13881717</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v2 0.1280713 0.00000000 0.01074588</span>
@@ -319,7 +324,7 @@ occur when dealing with 0 probabilities.</p>
 <span class="r-in"><span><span class="co">## compute the euclidean distance for count data</span></span></span>
 <span class="r-in"><span><span class="co">## NOTE: some distance measures are only defined for probability values,</span></span></span>
 <span class="r-in"><span><span class="fu">distance</span><span class="op">(</span><span class="va">CountMatrix</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean'; comparing: 3 vectors.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'euclidean' with unit: 'log'; comparing: 3 vectors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          v1       v2       v3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v1  0.00000 60.08328 91.70605</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v2 60.08328  0.00000 31.62278</span>
@@ -328,7 +333,7 @@ occur when dealing with 0 probabilities.</p>
 <span class="r-in"><span><span class="co">## compute the Kullback-Leibler Divergence with different logarithm bases:</span></span></span>
 <span class="r-in"><span><span class="co">### case: unit = log (Default)</span></span></span>
 <span class="r-in"><span><span class="fu">distance</span><span class="op">(</span><span class="va">ProbMatrix</span>, method <span class="op">=</span> <span class="st">"kullback-leibler"</span>, unit <span class="op">=</span> <span class="st">"log"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'kullback-leibler' using unit: 'log'; comparing: 3 vectors.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'kullback-leibler' with unit: 'log'; comparing: 3 vectors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            v1           v2           v3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v1 0.00000000 0.0965296706 0.1111323599</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v2 0.09652967 0.0000000000 0.0005867893</span>
@@ -336,7 +341,7 @@ occur when dealing with 0 probabilities.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">### case: unit = log2</span></span></span>
 <span class="r-in"><span><span class="fu">distance</span><span class="op">(</span><span class="va">ProbMatrix</span>, method <span class="op">=</span> <span class="st">"kullback-leibler"</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'kullback-leibler' using unit: 'log2'; comparing: 3 vectors.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'kullback-leibler' with unit: 'log2'; comparing: 3 vectors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           v1           v2           v3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v1 0.0000000 0.1392628771 0.1603301045</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v2 0.1392629 0.0000000000 0.0008465581</span>
@@ -344,7 +349,7 @@ occur when dealing with 0 probabilities.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">### case: unit = log10</span></span></span>
 <span class="r-in"><span><span class="fu">distance</span><span class="op">(</span><span class="va">ProbMatrix</span>, method <span class="op">=</span> <span class="st">"kullback-leibler"</span>, unit <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'kullback-leibler' using unit: 'log10'; comparing: 3 vectors.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Metric: 'kullback-leibler' with unit: 'log10'; comparing: 3 vectors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            v1           v2           v3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v1 0.00000000 0.0419223033 0.0482641707</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> v2 0.04192230 0.0000000000 0.0002548394</span>
@@ -364,7 +369,7 @@ occur when dealing with 0 probabilities.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>
