@@ -4,7 +4,7 @@
 \alias{squared_chi_sq}
 \title{Squared chi-squared distance (lowlevel function)}
 \usage{
-squared_chi_sq(P, Q, testNA)
+squared_chi_sq(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

@@ -4,7 +4,7 @@
 \alias{kulczynski_d}
 \title{Kulczynski_d distance (lowlevel function)}
 \usage{
-kulczynski_d(P, Q, testNA, epsilon)
+kulczynski_d(P, Q, testNA = TRUE, epsilon = 1e-05)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

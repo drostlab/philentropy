@@ -4,7 +4,7 @@
 \alias{cosine_dist}
 \title{Cosine distance (lowlevel function)}
 \usage{
-cosine_dist(P, Q, testNA)
+cosine_dist(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

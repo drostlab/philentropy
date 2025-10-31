@@ -4,7 +4,7 @@
 \alias{squared_euclidean}
 \title{Squared euclidean distance (lowlevel function)}
 \usage{
-squared_euclidean(P, Q, testNA)
+squared_euclidean(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

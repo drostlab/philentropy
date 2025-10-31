@@ -4,7 +4,7 @@
 \alias{avg}
 \title{AVG distance (lowlevel function)}
 \usage{
-avg(P, Q, testNA)
+avg(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

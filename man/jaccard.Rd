@@ -4,7 +4,7 @@
 \alias{jaccard}
 \title{Jaccard distance (lowlevel function)}
 \usage{
-jaccard(P, Q, testNA)
+jaccard(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

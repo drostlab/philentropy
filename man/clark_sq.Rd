@@ -4,7 +4,7 @@
 \alias{clark_sq}
 \title{Clark squared distance (lowlevel function)}
 \usage{
-clark_sq(P, Q, testNA)
+clark_sq(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

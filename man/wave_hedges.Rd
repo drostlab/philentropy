@@ -4,7 +4,7 @@
 \alias{wave_hedges}
 \title{Wave hedges distance (lowlevel function)}
 \usage{
-wave_hedges(P, Q, testNA)
+wave_hedges(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

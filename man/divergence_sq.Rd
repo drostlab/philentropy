@@ -4,7 +4,7 @@
 \alias{divergence_sq}
 \title{Divergence squared distance (lowlevel function)}
 \usage{
-divergence_sq(P, Q, testNA)
+divergence_sq(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

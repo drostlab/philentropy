@@ -4,7 +4,7 @@
 \alias{taneja}
 \title{Taneja difference (lowlevel function)}
 \usage{
-taneja(P, Q, testNA, unit, epsilon)
+taneja(P, Q, testNA = TRUE, unit = "log", epsilon = 1e-05)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

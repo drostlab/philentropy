@@ -4,7 +4,7 @@
 \alias{intersection_dist}
 \title{Intersection distance (lowlevel function)}
 \usage{
-intersection_dist(P, Q, testNA)
+intersection_dist(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

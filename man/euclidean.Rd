@@ -4,7 +4,7 @@
 \alias{euclidean}
 \title{Euclidean distance (lowlevel function)}
 \usage{
-euclidean(P, Q, testNA)
+euclidean(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

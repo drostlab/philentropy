@@ -4,7 +4,7 @@
 \alias{harmonic_mean_dist}
 \title{Harmonic mean distance (lowlevel function)}
 \usage{
-harmonic_mean_dist(P, Q, testNA)
+harmonic_mean_dist(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

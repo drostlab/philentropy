@@ -4,7 +4,7 @@
 \alias{inner_product}
 \title{Inner product distance (lowlevel function)}
 \usage{
-inner_product(P, Q, testNA)
+inner_product(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

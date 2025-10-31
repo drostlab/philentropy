@@ -1,7 +1,7 @@
 ---
 title: "Comparing many probability density functions"
 author: Jakub Nowosad
-date: 2021-08-20
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Comparing many probability density functions}
@@ -93,8 +93,10 @@ It is, in this case, much faster than `distance()`, and visibly faster than `dis
 ## `dist_many_many()`
 
 `dist_many_many()` calculates distances between two sets of probability density functions (as rows in two `matrix` objects).
+`dist_many_many()` calculates distances between two sets of probability density functions (as rows in two `matrix` objects). This is useful when you have two different sets of distributions, say `M1` and `M2`, and you want to compute the distance from every distribution in `M1` to every distribution in `M2`. The main `distance()` function cannot do this, as it only computes pairwise distances *within* a single matrix.
 
 Let's create two new `matrix` example data.
+Let's create two `matrix` examples.
 
 ```{r}
 set.seed(2020-08-20)
@@ -120,13 +122,23 @@ many_dists = function(m1, m2){
 
 ... and compare it to `dist_many_many()`.
 
-```{r}
+`dist_many_many()` is fully implemented in C++ and can use multiple threads. For this comparison we will use the default `num.threads = NULL` which will use 2 threads unless the `RCPP_PARALLEL_NUM_THREADS` environment variable is set. There are trade-offs with selecting the number of threads. Using too many threads, more than needed for the workload, will incur additional overhead and may not get to the result any faster than a sequential approach. 
+
+```{r} 
 # install.packages("microbenchmark")
-microbenchmark::microbenchmark(
-  many_dists(M1, M2),
-  dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)
+bm <- microbenchmark::microbenchmark(
+  `many_dists` = many_dists(M1, M2),
+  `dist_many_many` = dist_many_many(M1, M2, method = "euclidean", testNA = FALSE)
 )
+bm
 ```
 
 Both `many_dists()`and `dist_many_many()` return a matrix.
-The above benchmark concludes that `dist_many_many()` is about 30 times faster than our custom `many_dists()` approach.
+
+```{r echo=FALSE}
+x <- aggregate(bm$time, by = list(expr=bm$expr), FUN = mean)
+y <- x$x
+names(y) <- x$expr
+```
+
+The above benchmark concludes that `dist_many_many()` is about `r round(y["many_dists"] / y["dist_many_many"], -1)` times faster than our custom `many_dists()` approach. If we were to calculate the distance manually, as opposed to using the optimized `distance()` function which calls compiled code, we would see an even bigger difference.

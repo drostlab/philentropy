@@ -4,7 +4,7 @@
 \alias{fidelity}
 \title{Fidelity distance (lowlevel function)}
 \usage{
-fidelity(P, Q, testNA)
+fidelity(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

@@ -12,3 +12,10 @@ paper.bib
 docs
 LICENSE
 ^_pkgdown.yml$
+^\.gitignore$
+^inst/include/\.DS_Store$
+^\.\.Rcheck$
+^\.git$
+^\.vscode$
+^revdep$
+^scratch$

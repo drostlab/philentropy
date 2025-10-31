@@ -4,7 +4,7 @@
 \alias{k_divergence}
 \title{K-Divergence (lowlevel function)}
 \usage{
-k_divergence(P, Q, testNA, unit)
+k_divergence(P, Q, testNA = TRUE, unit = "log")
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}

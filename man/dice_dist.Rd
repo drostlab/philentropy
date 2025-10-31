@@ -4,7 +4,7 @@
 \alias{dice_dist}
 \title{Dice distance (lowlevel function)}
 \usage{
-dice_dist(P, Q, testNA)
+dice_dist(P, Q, testNA = TRUE)
 }
 \arguments{
 \item{P}{a numeric vector storing the first distribution.}
