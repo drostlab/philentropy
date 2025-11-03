@@ -205,7 +205,7 @@ Use <code>distance(X, method="cosine", mute.message=TRUE)</code> to compute the 
 </tbody>
 </table>
 <blockquote>
-<p>Run <code><a href="reference/getDistMethods.html">getDistMethods()</a></code> to explore all 50+ implemented measures.</p>
+<p>Run <code><a href="reference/getDistMethods.html">getDistMethods()</a></code> to explore all 45+ implemented measures.</p>
 </blockquote>
 <hr>
 </div>
@@ -215,7 +215,17 @@ Use <code>distance(X, method="cosine", mute.message=TRUE)</code> to compute the 
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://drostlab.github.io/philentropy/" class="external-link">philentropy</a></span><span class="op">)</span></span>
 <span><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/getDistMethods.html">getDistMethods</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<pre><code>[1] "euclidean"         "manhattan"         "minkowski"         "chebyshev"         "sorensen"
+[6] "gower"             "soergel"           "kulczynski_d"      "canberra"          "lorentzian"
+[11] "intersection"      "non-intersection"  "wavehedges"        "czekanowski"       "motyka"
+[16] "kulczynski_s"      "tanimoto"          "ruzicka"           "inner_product"     "harmonic_mean"
+[21] "cosine"            "hassebrook"        "jaccard"           "dice"              "fidelity"
+[26] "bhattacharyya"     "hellinger"         "matusita"          "squared_chord"     "squared_euclidean"
+[31] "pearson"           "neyman"            "squared_chi"       "prob_symm"         "divergence"
+[36] "clark"             "additive_symm"     "kullback-leibler"  "jeffreys"          "k_divergence"
+[41] "topsoe"            "jensen-shannon"    "jensen_difference" "taneja"            "kumar-johnson"
+[46] "avg"</code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># define probability density functions P and Q</span></span>
 <span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">Q</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">29</span><span class="op">)</span></span>
@@ -226,7 +236,7 @@ Use <code>distance(X, method="cosine", mute.message=TRUE)</code> to compute the 
 jensen-shannon
     0.02628933</code></pre>
 <p>Alternatively, compute all available distances:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">philentropy</span><span class="fu">::</span><span class="fu"><a href="reference/dist.diversity.html">dist.diversity</a></span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">2</span>, unit <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>

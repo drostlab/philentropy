@@ -275,11 +275,11 @@ approaches - (a) build-in R <code><a href="https://rdrr.io/r/stats/dist.html" cl
 <span><span class="co">##  distance(rbind(P, Q), method = "euclidean", test.na = FALSE,      mute.message = TRUE)</span></span>
 <span><span class="co">##                                                                  euclidean(P, Q, FALSE)</span></span>
 <span><span class="co">##                                dist_one_one(P, Q, method = "euclidean", testNA = FALSE)</span></span>
-<span><span class="co">##    min       lq      mean   median       uq    max neval</span></span>
-<span><span class="co">##   5494   6027.0   7335.31   6785.5   7052.0  74866   100</span></span>
-<span><span class="co">##  94587 101659.5 105556.55 102377.0 103750.5 330337   100</span></span>
-<span><span class="co">##    533    574.0    861.82    697.0    738.0  19393   100</span></span>
-<span><span class="co">##    861    943.0   1057.39   1025.0   1107.0   1804   100</span></span></code></pre>
+<span><span class="co">##    min     lq      mean   median       uq    max neval</span></span>
+<span><span class="co">##   5740   6068   7365.65   6703.5   7072.5  81057   100</span></span>
+<span><span class="co">##  98810 101311 106379.42 102643.5 104734.5 364121   100</span></span>
+<span><span class="co">##    533    615    868.38    697.0    738.0  19188   100</span></span>
+<span><span class="co">##    902    984   1086.09   1066.0   1148.0   1722   100</span></span></code></pre>
 <p>All of them return the same, single value. However, as you can see in
 the benchmark above, some are more flexible, and others are faster.</p>
 </div>
@@ -418,10 +418,10 @@ measure between <code>P</code> and values in this row.</p>
 <span><span class="co">##                                      as.matrix(dist(rbind(P, M), method = "euclidean"))[1, ][-1]</span></span>
 <span><span class="co">##  distance(rbind(P, M), method = "euclidean", test.na = FALSE,      mute.message = TRUE)[1, ][-1]</span></span>
 <span><span class="co">##                                        dist_one_many(P, M, method = "euclidean", testNA = FALSE)</span></span>
-<span><span class="co">##      min       lq      mean  median       uq      max neval</span></span>
-<span><span class="co">##   69.536  78.8430  84.48665  81.221  89.0930  136.817   100</span></span>
-<span><span class="co">##  188.108 194.9755 203.28907 200.982 207.2550  295.651   100</span></span>
-<span><span class="co">##   37.105  38.1710  52.79693  38.991  44.5875 1232.624   100</span></span></code></pre>
+<span><span class="co">##      min       lq      mean   median       uq      max neval</span></span>
+<span><span class="co">##   77.326  80.6470  84.69739  82.9225  85.6900  155.718   100</span></span>
+<span><span class="co">##  189.379 196.5335 204.94547 201.6380 207.8905  375.150   100</span></span>
+<span><span class="co">##   37.597  39.0730  52.13027  40.7335  41.9430 1110.813   100</span></span></code></pre>
 <p>The <code><a href="../reference/dist_one_many.html">dist_one_many()</a></code> returns a vector of values. It is,
 in this case, much faster than <code><a href="../reference/distance.html">distance()</a></code>, and visibly
 faster than <code><a href="https://rdrr.io/r/stats/dist.html" class="external-link">dist()</a></code> while allowing for more possible
@@ -10481,16 +10481,16 @@ approach.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bm</span></span></code></pre></div>
 <pre><code><span><span class="co">## Unit: microseconds</span></span>
-<span><span class="co">##            expr      min        lq        mean     median       uq       max</span></span>
-<span><span class="co">##      many_dists 9807.651 10117.877 10733.23379 10347.0880 11083.65 14553.155</span></span>
-<span><span class="co">##  dist_many_many   40.918    44.444    68.57783    56.0265    85.69   216.316</span></span>
+<span><span class="co">##            expr       min        lq        mean    median         uq       max</span></span>
+<span><span class="co">##      many_dists 10074.397 10356.354 11208.62920 10830.786 11784.1585 18037.745</span></span>
+<span><span class="co">##  dist_many_many    40.344    43.829    83.28453    61.172   109.6545   292.043</span></span>
 <span><span class="co">##  neval</span></span>
 <span><span class="co">##    100</span></span>
 <span><span class="co">##    100</span></span></code></pre>
 <p>Both <code>many_dists()</code>and <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code>
 return a matrix.</p>
 <p>The above benchmark concludes that <code><a href="../reference/dist_many_many.html">dist_many_many()</a></code> is
-about 160 times faster than our custom <code>many_dists()</code>
+about 130 times faster than our custom <code>many_dists()</code>
 approach. If we were to calculate the distance manually, as opposed to
 using the optimized <code><a href="../reference/distance.html">distance()</a></code> function which calls
 compiled code, we would see an even bigger difference.</p>

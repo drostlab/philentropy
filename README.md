@@ -91,7 +91,7 @@ jensen-shannon
 | 🧬 Sparse counts / binary | `canberra`, `jaccard`, `sorensen` |
 | ⚖️ Scale-invariant | `manhattan`, `chebyshev` |
 
-> Run `getDistMethods()` to explore all 50+ implemented measures.
+> Run `getDistMethods()` to explore all 45+ implemented measures.
 
 ---
 
@@ -100,6 +100,19 @@ jensen-shannon
 ```r
 library(philentropy)
 philentropy::getDistMethods()
+```
+
+```
+[1] "euclidean"         "manhattan"         "minkowski"         "chebyshev"         "sorensen"         
+[6] "gower"             "soergel"           "kulczynski_d"      "canberra"          "lorentzian"       
+[11] "intersection"      "non-intersection"  "wavehedges"        "czekanowski"       "motyka"           
+[16] "kulczynski_s"      "tanimoto"          "ruzicka"           "inner_product"     "harmonic_mean"    
+[21] "cosine"            "hassebrook"        "jaccard"           "dice"              "fidelity"         
+[26] "bhattacharyya"     "hellinger"         "matusita"          "squared_chord"     "squared_euclidean"
+[31] "pearson"           "neyman"            "squared_chi"       "prob_symm"         "divergence"       
+[36] "clark"             "additive_symm"     "kullback-leibler"  "jeffreys"          "k_divergence"     
+[41] "topsoe"            "jensen-shannon"    "jensen_difference" "taneja"            "kumar-johnson"    
+[46] "avg"
 ```
 
 ```r
