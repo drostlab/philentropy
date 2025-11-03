@@ -107,6 +107,9 @@ and probability vectors \(P(X)\) and \(P(Y)\).</p>
     <h2>Details</h2>
     <p>This function might be useful to fastly compute Shannon's Mutual Information
 for any given joint-probability vector and probability vectors.</p>
+<p>There are two ways the <code>MI()</code> function could have been implemented.</p><ul><li><p>Version one: <code>MI()</code> takes the the joint probability \(P(X,Y)\) as 2D matrix and then internally converts it to a joint probability vector \(xy[i,j]\) through indexing.</p></li>
+<li><p>Version two: <code>MI()</code> takes the the joint probability \(P(X,Y)\) directly as probability vector <code>AFTER</code> the user converts their 2D matrix to a joint probability vector \({ xy[i,j] }\)</p></li>
+</ul><p>We chose to implement version two to give users maximum flexibility on how to define their joint probabilities.</p>
     </div>
     <div id="references">
     <h2>References</h2>

@@ -26,6 +26,13 @@ and probability vectors \eqn{P(X)} and \eqn{P(Y)}.
 \details{
 This function might be useful to fastly compute Shannon's Mutual Information
 for any given joint-probability vector and probability vectors.
+
+There are two ways the \code{MI()} function could have been implemented.
+\itemize{
+\item Version one: \code{MI()} takes the the joint probability \eqn{P(X,Y)} as 2D matrix and then internally converts it to a joint probability vector \eqn{xy[i,j]} through indexing.
+\item Version two: \code{MI()} takes the the joint probability \eqn{P(X,Y)} directly as probability vector \code{AFTER} the user converts their 2D matrix to a joint probability vector \eqn{{ xy[i,j] }}
+} 
+We chose to implement version two to give users maximum flexibility on how to define their joint probabilities.
 }
 \examples{
 

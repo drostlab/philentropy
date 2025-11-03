@@ -1,6 +1,6 @@
 #  Part of the philentropy package
 #
-#  Copyright (C) 2015 Hajk-Georg Drost
+#  Copyright (C) 2015-2025 Hajk-Georg Drost
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -23,6 +23,13 @@
 #' 
 #' This function might be useful to fastly compute Shannon's Mutual Information
 #' for any given joint-probability vector and probability vectors.
+#' 
+#' There are two ways the \code{MI()} function could have been implemented.
+#' \itemize{
+#' \item Version one: \code{MI()} takes the the joint probability \eqn{P(X,Y)} as 2D matrix and then internally converts it to a joint probability vector \eqn{xy[i,j]} through indexing.
+#' \item Version two: \code{MI()} takes the the joint probability \eqn{P(X,Y)} directly as probability vector \code{AFTER} the user converts their 2D matrix to a joint probability vector \eqn{{ xy[i,j] }}
+#' } 
+#' We chose to implement version two to give users maximum flexibility on how to define their joint probabilities.
 #' 
 #' @param x a numeric probability vector \eqn{P(X)}.
 #' @param y a numeric probability vector \eqn{P(Y)}.
