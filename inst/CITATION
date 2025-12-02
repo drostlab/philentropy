@@ -2,7 +2,7 @@ citHeader("To cite philentropy in publications please use:")
 
 bibentry(bibtype = "Article",
   title        = "Philentropy: Information Theory and Distance Quantification with R",
-  author       = "Drost HG",
+  author       = person("HG", "Drost"),
   journal      = "Journal of Open Source Software",
   year         = "2018",
   volume       = "3",
