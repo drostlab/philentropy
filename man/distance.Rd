@@ -16,7 +16,7 @@ distance(
   as.dist.obj = FALSE,
   diag = FALSE,
   upper = FALSE,
-  mute.message = FALSE,
+  mute.message = getOption("philentropy.mute.message", default = FALSE),
   num.threads = NULL
 )
 }
@@ -59,7 +59,7 @@ the input matrix shall be used as rownames and colnames of the output distance m
 
 \item{upper}{if \code{as.dist.obj = TRUE}, then this value indicates whether the upper triangle of the distance matrix should be printed.}
 
-\item{mute.message}{a logical value indicating whether or not messages printed by \code{distance} shall be muted. Default is \code{mute.message = FALSE}.}
+\item{mute.message}{a logical value indicating whether or not messages printed by \code{distance} shall be muted. Default is \code{mute.message = getOption("philentropy.mute.message", default = FALSE)}. Set option "philentropy.mute.message" to control message output for the session.}
 
 \item{num.threads}{an integer specifying the number of threads to be used for parallel computations. Default is taken from the `RCPP_PARALLEL_NUM_THREADS` environment variable, or `2` if not set.}
 }
