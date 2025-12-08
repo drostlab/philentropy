@@ -280,9 +280,11 @@ distance <- function(
     stop("You can only choose units: log, log2, or log10.", call. = FALSE)
   }
 
-  message("Metric: '",method, "' with unit: '", unit,
-          "'; comparing: ", ncols, " vectors")
-
+  if (isFALSE(mute.message)) {
+    message("Metric: '",method, "' with unit: '", unit,
+            "'; comparing: ", ncols, " vectors")
+  }
+  
   # although validation would be great, it cost a lot of computation time
   # for large comparisons between multiple distributions
   # here a smarter (faster) way to validate distributions needs to be implemented
