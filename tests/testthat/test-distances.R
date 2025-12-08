@@ -17,7 +17,18 @@
 
 context("Test implementation of distance measures...")
 
-
+test_that("mute.messages argument and option", {
+        
+        distMat <- rbind(rep(0.2, 5), rep(0.1, 5), c(5, 1, 7, 9, 5))
+        expect_message(distance(distMat))
+        
+        optin <- options()
+        
+        options(philentropy.mute.message = TRUE)
+        expect_silent(distance(distMat))
+        
+        options(optin)
+})
 
 P <- 1:10 / sum(1:10)
 Q <- 20:29 / sum(20:29)
