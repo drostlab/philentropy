@@ -44,7 +44,7 @@
 #' @param as.dist.obj shall the return value or matrix be an object of class \code{link[stats]{dist}}? Default is \code{as.dist.obj = FALSE}.
 #' @param diag if \code{as.dist.obj = TRUE}, then this value indicates whether the diagonal of the distance matrix should be printed. Default
 #' @param upper if \code{as.dist.obj = TRUE}, then this value indicates whether the upper triangle of the distance matrix should be printed.
-#' @param mute.message a logical value indicating whether or not messages printed by \code{distance} shall be muted. Default is \code{mute.message = FALSE}.
+#' @param mute.message a logical value indicating whether or not messages printed by \code{distance} shall be muted. Default is \code{mute.message = getOption("philentropy.mute.message", default = FALSE)}. Set option "philentropy.mute.message" to control message output for the session.
 #' @param num.threads an integer specifying the number of threads to be used for parallel computations. Default is taken from the `RCPP_PARALLEL_NUM_THREADS` environment variable, or `2` if not set.
 #' @author Hajk-Georg Drost
 #' @details
@@ -221,7 +221,7 @@ distance <- function(
   as.dist.obj = FALSE,
   diag = FALSE,
   upper = FALSE,
-  mute.message = FALSE,
+  mute.message = getOption("philentropy.mute.message", default = FALSE),
   num.threads = NULL
 ) {
   if (
@@ -280,9 +280,11 @@ distance <- function(
     stop("You can only choose units: log, log2, or log10.", call. = FALSE)
   }
 
-  message("Metric: '",method, "' with unit: '", unit,
-          "'; comparing: ", ncols, " vectors")
-
+  if (isFALSE(mute.message)) {
+    message("Metric: '",method, "' with unit: '", unit,
+            "'; comparing: ", ncols, " vectors")
+  }
+  
   # although validation would be great, it cost a lot of computation time
   # for large comparisons between multiple distributions
   # here a smarter (faster) way to validate distributions needs to be implemented
