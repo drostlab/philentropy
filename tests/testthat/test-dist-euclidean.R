@@ -26,7 +26,7 @@ test_that(
                 distMat <- rbind(rep(0.2, 5), rep(0.1, 10))
                 expect_error(
                         distance(distMat, method = "euclidien"),
-                        "Method 'euclidien' is not implemented in this function. Please consult getDistMethods()."
+                        "Method 'euclidien' is not implemented in this function. Please consult philentropy::getDistMethods()."
                 )
         }
 )

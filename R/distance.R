@@ -264,7 +264,7 @@ distance <- function(
     stop(
       "Method '",
       method,
-      "' is not implemented in this function. Please consult getDistMethods().",
+      "' is not implemented in this function. Please consult philentropy::getDistMethods().",
       call. = FALSE
     )
   }
