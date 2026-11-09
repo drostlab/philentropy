@@ -1,3 +1,9 @@
+## Version 0.10.1
+ 
+### Updates
+
+* Exporting all `*.cpp` functions for use in other packages (see PR: https://github.com/drostlab/philentropy/pull/47).
+
 ## Version 0.10.0
  
 ### Updates
